@@ -1,5 +1,6 @@
 {
   "name": "vxq",
+  "version": "0.0.0-dev.4",
   "repository": "vxq/js",
   "description": "vxq/js",
   "license": "UNLICENSED",
@@ -7,6 +8,11 @@
     "google-closure-compiler": "^20160315.2.0",
     "gulp": "^3.9.1"
   },
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "main": "dist/debug",
   "scripts": {
     "prepublish": "gulp build",
     "pretest": "rm -f dist/*.js && gulp build",
