@@ -8,6 +8,7 @@
     "google-closure-compiler": "^20160315.2.0",
     "gulp": "^3.9.1",
     "gulp-typescript": "^2.13.4",
+    "tap": "^5.7.1",
     "typescript": "^1.8.10"
   },
   "files": [
@@ -18,6 +19,6 @@
   "scripts": {
     "prepublish": "rm -rf dist/ && gulp build",
     "pretest": "rm -rf dist/ && gulp build",
-    "test": "ls -lR dist"
+    "test": "node test"
   }
 }
