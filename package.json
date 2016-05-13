@@ -1,21 +1,23 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.4",
+  "version": "0.0.0-dev.5",
   "repository": "vxq/js",
   "description": "vxq/js",
   "license": "UNLICENSED",
   "dependencies": {
     "google-closure-compiler": "^20160315.2.0",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.13.4",
+    "typescript": "^1.8.10"
   },
   "files": [
     "dist/",
     "src/"
   ],
-  "main": "dist/debug",
+  "main": "dist/closed/debug",
   "scripts": {
-    "prepublish": "gulp build",
-    "pretest": "rm -f dist/*.js && gulp build",
-    "test": "cat dist/*.js"
+    "prepublish": "rm -rf dist/ && gulp build",
+    "pretest": "rm -rf dist/ && gulp build",
+    "test": "ls -lR dist"
   }
 }
