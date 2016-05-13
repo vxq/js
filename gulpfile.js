@@ -9,8 +9,10 @@ const flags = {
   compilation_level: 'ADVANCED_OPTIMIZATIONS',
   warning_level: 'VERBOSE',
   output_wrapper: '-function(){%output%}.call(window)',
-  language_in: 'ECMASCRIPT6_STRICT',
-  language_out: 'ECMASCRIPT5_STRICT'
+  language_in: 'ECMASCRIPT6_TYPED',
+  language_out: 'ECMASCRIPT5_STRICT',
+  generate_exports: true,
+  jscomp_error: ['checkTypes']
 };
 
 
@@ -25,7 +27,7 @@ gulp.task('build', () => [
   .pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'debug.js',
     debug: true,
-    formatting: 'pretty_print',
+    formatting: 'pretty_print'
   })))
   .pipe(gulp.dest('dist'))
 ]);
