@@ -1,0 +1,15 @@
+{
+  "name": "vxq",
+  "repository": "vxq/js",
+  "description": "vxq/js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "google-closure-compiler": "^20160315.2.0",
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "prepublish": "gulp build",
+    "pretest": "rm -f dist/*.js && gulp build",
+    "test": "cat dist/*.js"
+  }
+}
