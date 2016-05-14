@@ -1,13 +1,32 @@
 const fs = require('fs');
 
 const gulp = require('gulp');
+const merge = require('merge2');
 const closureCompiler = require('google-closure-compiler').gulp();
 const ts = require('gulp-typescript');
+const flow = require('gulp-flowtype');
 
 
-gulp.task('build', ['build-closure', 'build-typescript']);
+gulp.task('build', ['build-closure', 'build-typescript', 'build-flow']);
 
-(closure => {
+const typescripts = [
+    'vxq/**.ts',
+];
+const javascripts = [
+    'vxq/**.js',
+];
+const excludeSeperateDefinitions = [
+    '!vxq/**/closure-externs/*',
+    '!vxq/**/flow-declarations/*',
+    '!vxq/**.externs.js'
+];
+const excludeAllDefinitions = [
+    ...excludeSeperateDefinitions,
+    '!vxq/**/typescript-ds/*',
+    '!vxq/**.d.ts',
+];
+
+(__closure__ => {
   const flags = {
     closure_entry_point: 'vxq.main',
     compilation_level: 'ADVANCED_OPTIMIZATIONS',
@@ -26,9 +45,13 @@ gulp.task('build', ['build-closure', 'build-typescript']);
     language_out: 'ECMASCRIPT5_STRICT',
     generate_exports: true,
     jscomp_error: ['checkTypes'],
-    externs: ['vxq/index.externs.js']
+    externs: ['vxq/closure-externs/index.js']
   };
-  const src = () => gulp.src(['vxq/**/*.ts', 'vxq/**/*.js', '!vxq/**/*.externs.js']);
+  const src = () => gulp.src([
+    ...typescripts,
+    ...javascripts,
+    ...excludeAllDefinitions
+  ]);
   const dest = () => gulp.dest('dist/closed');
 
   gulp.task('build-closure', ['build-closure-prod', 'build-closure-debug']);
@@ -46,12 +69,36 @@ gulp.task('build', ['build-closure', 'build-typescript']);
     }))).pipe(dest()));
 })();
 
-(typescript => {
-  const src = () => gulp.src(['vxq/**/*.ts']);
-  const project = ts.createProject('tsconfig.json');
-  const dest = () => gulp.dest('dist/typed');
+(__typescript__ => {
+  gulp.task('build-typescript', () => {
+    const tsResult = gulp.src([
+      ...typescripts,
+      ...javascripts,
+      ...excludeSeperateDefinitions
+    ]).pipe(ts(
+        ts.createProject('tsconfig.json')
+    ));
 
-  gulp.task('build-typescript', () => src().pipe(ts(project)).pipe(dest()));
+    return merge([
+      tsResult.dts.pipe(gulp.dest('dist/typed/d')),
+      tsResult.js.pipe(gulp.dest('dist/typed'))
+    ]);
+  });
 })();
+
+(__flow__ => {
+  gulp.task('build-flow', () =>
+    gulp.src([
+        ...typescripts,
+        ...excludeAllDefinitions
+    ]).pipe(flow({
+        abort: true,
+        all: true,
+        killFlow: true,
+    })).pipe(gulp.dest(
+        'dist/flowed'
+    )));
+})();
+
 
 

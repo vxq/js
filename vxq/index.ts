@@ -16,7 +16,7 @@ vxq.main.ModuleType_ = class {
       console.log(message);
     }
 
-    console.log(add(2, ~'3'));
+    console.log(add(2, Number('3')));
     console.log(util());
   }
 };
