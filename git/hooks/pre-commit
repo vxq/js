@@ -2,7 +2,8 @@
 rm -rf dist/;
 git rm -rf dist/ || true;
 mkdir -p dist/;
-npm test | tee dist/TESTED || true;
-gulp build | tee dist/BUILT || true;
-git add dist;
+npm version --no-git-tag-version prerelease | tee -a dist/BUILT dist/TESTED || true;
+npm test | tee -a dist/TESTED || true;
+gulp build | tee -a dist/BUILT || true;
+git add package.json dist;
 git diff HEAD -- dist/{BUILT,TESTED};
