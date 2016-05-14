@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.28",
+  "version": "0.0.0-dev.29",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -18,7 +18,7 @@
     "vxq/"
   ],
   "scripts": {
-    "prepublish": "rm -rf dist/ && mkdir dist/ && gulp build | tee -a dist/BUILT && npm run test | tee -a dist/TESTED",
+    "prepublish": "set -o pipefail && rm -rf dist/ && mkdir dist/ && gulp build | tee -a dist/BUILT && npm run test | tee -a dist/TESTED",
     "postpublish": "git add -A && git commit --no-verify -m \"$(npm view . version)\" && git tag \"$(npm view . version)\" && git push --tags && git push",
     "pretest": "gulp build",
     "test": "node test"
