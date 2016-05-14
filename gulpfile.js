@@ -2,13 +2,11 @@ const gulp = require('gulp');
 const closureCompiler = require('google-closure-compiler').gulp();
 
 
-const inRoot = 'vxq';
-
-const outRoot = 'dist';
-
 const srcs = [
-  `**.js`,
-  `!**.externs.js`
+  '!**/*.externs.js',
+  'vxq/**/*.js',
+  'node_modules/google-closure-library/closure/**/*.js',
+  '!node_modules/google-closure-library/closure/**/*_test.js'
 ];
 
 const flags = {
@@ -25,25 +23,26 @@ const flags = {
         `typeof module == 'object' ? module : {}`,
     `)`
   ].join(''),
-  language_in: 'ECMASCRIPT6_TYPED',
+  language_in: 'ECMASCRIPT6_STRICT',
   language_out: 'ECMASCRIPT5_STRICT',
+  entry_point: 'vxq.main',
   generate_exports: true,
   jscomp_error: ['checkTypes'],
   externs: [
-      `${inRoot}/index.externs.js`
+      'vxq/index.externs.js'
   ]
 };
 
 gulp.task('build', ['build-prod', 'build-debug'])
 
 gulp.task('build-debug', () =>
-  gulp.src(srcs, {cwd: inRoot}).pipe(closureCompiler(Object.assign({}, flags, {
+  gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'debug.js',
     debug: true,
     formatting: 'pretty_print'
-  }))).pipe(gulp.dest(outRoot)));
+  }))).pipe(gulp.dest('dist')));
 
 gulp.task('build-prod', ['build-debug'], () =>
-  gulp.src(srcs, {cwd: inRoot}).pipe(closureCompiler(Object.assign({}, flags, {
+  gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'prod.js'
-  }))).pipe(gulp.dest(outRoot)));
+  }))).pipe(gulp.dest('dist')));

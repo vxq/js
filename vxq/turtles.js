@@ -1,10 +1,11 @@
 goog.module('vxq.turtles');
 
+
 class Turtle {
-  x:number;
-  y:number;
   constructor() {
+    /** @type {number} */
     this.x = 0;
+    /** @type {number} */
     this.y = 0;
   }
 }

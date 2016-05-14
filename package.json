@@ -1,13 +1,13 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.39",
+  "version": "0.0.0-dev.40",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
   "dependencies": {
     "google-closure-compiler": "^20160315.2.0",
+    "google-closure-library": "^20160315.0.0",
     "gulp": "^3.9.1",
-    "merge2": "^1.0.2",
     "tape": "^4.5.1"
   },
   "files": [
