@@ -6,8 +6,6 @@ const gjslint = require('gulp-gjslint');
 const srcs = [
   '!**/*.externs.js',
   'vxq/**/*.js',
-  'node_modules/google-closure-library/closure/**/*.js',
-  '!node_modules/google-closure-library/closure/**/*_test.js'
 ];
 
 const flags = {

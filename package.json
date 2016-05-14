@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.54",
+  "version": "0.0.0-dev.55",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -24,5 +24,6 @@
     "build": "gulp build",
     "test": "node test",
     "lint": "gulp lint"
-  }
+  },
+  "dependencies": {}
 }
