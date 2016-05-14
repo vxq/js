@@ -1,12 +1,12 @@
 goog.module('vxq.main');
 
 const turtles = goog.require('vxq.turtles');
-const asserts = goog.require('goog.asserts');
+const assert = goog.require('vxq.testing.assert')
 
 
 const testTheTurtles = () => {
   const turtle = new turtles.Turtle;
-  asserts.assert(1 == turtle.x);
+  assert.equals(0, turtle.x);
 
   console.log("Test complete.");
 };
