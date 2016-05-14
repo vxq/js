@@ -1,0 +1,4 @@
+/** @interface */
+class IVXQModule {
+  test() {}
+}

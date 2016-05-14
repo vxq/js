@@ -29,7 +29,8 @@ const flags = {
   generate_exports: true,
   jscomp_error: ['checkTypes'],
   externs: [
-      'vxq/index.externs.js'
+      'vxq/import.externs.js',
+      'vxq/export.externs.js'
   ]
 };
 

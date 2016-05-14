@@ -1,1 +1,0 @@
-var /** undefined|{exports:*} */ module;
