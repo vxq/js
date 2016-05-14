@@ -1,4 +1,4 @@
-/// <reference path="typescript-ds/index.d.ts" />
+/// <reference path="index.d.ts" />
 const util = require('./util');
 function add(a, b) {
     return a + b;
@@ -15,6 +15,6 @@ const ModuleType_ = class {
     }
 }
 ;
-const module = new ModuleType_;
-module.hello();
-exports = module;
+const vxq = new ModuleType_;
+vxq.hello();
+module.exports = vxq;

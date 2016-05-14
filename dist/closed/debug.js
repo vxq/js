@@ -26,8 +26,11 @@ function $$jscomp$makeIterator$$() {
     return $index$$46$$ == $iterable$$2$$.length ? {done:!0} : {done:!1, value:$iterable$$2$$[$index$$46$$++]};
   }};
 }
-var $module$$vxq$util$$ = {};
-function $ModuleType_$$module$$vxq$index_ts$$() {
+function $module$$vxq$util$$() {
+  return new Promise(function() {
+  });
+}
+;function $ModuleType_$$module$$vxq$index_ts$$() {
 }
 $ModuleType_$$module$$vxq$index_ts$$.prototype.hello = function $$ModuleType_$$module$$vxq$index_ts$$$$hello$() {
   for (var $$jscomp$iter$0$$ = $$jscomp$makeIterator$$(), $$jscomp$key$n$$ = $$jscomp$iter$0$$.next();!$$jscomp$key$n$$.done;$$jscomp$key$n$$ = $$jscomp$iter$0$$.next()) {

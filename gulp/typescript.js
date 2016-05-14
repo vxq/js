@@ -3,14 +3,13 @@ const merge2 = require('merge2');
 const ts = require('gulp-typescript');
 
 
-exports.defineTasks = (inRoot, outRoot, extraSrcs) => {
+exports.defineTasks = (inRoot, outRoot) => {
   const BUILD_TASK = 'build-typescript';
   const cwd = inRoot;
   const srcs = [
     `**.js`,
     `**.ts`,
-    `typescropt-ds/index.d.ts`,
-    ...extraSrcs.map(s => `../${s}`)
+    `!**.externs.*`,
   ];
   const dest = `${outRoot}/typed`;
 

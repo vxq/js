@@ -1,16 +1,15 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.7",
+  "version": "0.0.0-dev.8",
   "repository": "vxq/js",
   "description": "vxq/js",
   "license": "UNLICENSED",
   "dependencies": {
     "google-closure-compiler": "^20160315.2.0",
     "gulp": "^3.9.1",
-    "gulp-flowtype": "^0.4.9",
     "gulp-typescript": "^2.13.4",
     "merge2": "^1.0.2",
-    "tap": "^5.7.1",
+    "tape": "^4.5.1",
     "typescript": "^1.8.10"
   },
   "files": [

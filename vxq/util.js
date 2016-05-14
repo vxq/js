@@ -1,2 +1,2 @@
-/// <reference path="typescript-ds/index.d.ts" />
-exports = function() { return new Promise(function() {}); };
+/// <reference path="index.d.ts" />
+module.exports = function() { return new Promise(function() {}); };

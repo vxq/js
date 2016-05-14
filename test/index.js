@@ -1,18 +1,24 @@
-const {test} = require('tap');
+const t = require('tape');
 
 
-test("closure-compiled vxq node module", ({test, end}) => {
-  const vxqProd = require('../dist/closed/prod');
+t.test("closure binary", t => {
+  t.test("run prod", t => {
+    const vxqProd = require('../dist/closed/prod');
+    t.end();
+  });
 
-  test("verify that we can also import the debug build", ({test, end}) => {
+  t.test("run debug", t => {
     const vxqDebug = require('../dist/closed/debug');
-    end();  
+    t.end();  
   });
 
-  test("test hello()", ({test, end}) => {
-    vxqProd.hello();
-    end();  
-  });
+  t.end();
+});
 
-  end();
+t.test("typescript node module", t => {
+  const vqx = require('../dist/typed');
+
+  t.equal(undefined, vqx.hello());
+
+  t.end();
 });

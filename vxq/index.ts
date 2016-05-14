@@ -1,4 +1,4 @@
-/// <reference path="typescript-ds/index.d.ts" />
+/// <reference path="index.d.ts" />
 const util:any = require('./util');
 
 
@@ -20,8 +20,8 @@ const ModuleType_ = class {
   }
 };
 
-const module:IVxqExports = new ModuleType_;
+const vxq:IVxqExports = new ModuleType_;
 
-module.hello();
+vxq.hello();
 
-exports = module;
+module.exports = vxq;
