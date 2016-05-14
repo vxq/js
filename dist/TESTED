@@ -1,20 +1,20 @@
 
-> vxq@0.0.0-dev.13 pretest /Users/j/src/github.com/vxq/js
+> vxq@0.0.0-dev.14 pretest /Users/j/src/github.com/vxq/js
 > gulp build
 
-[02:06:36] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[02:06:36] Starting 'build-closure-debug'...
-[02:06:36] Starting 'build-typescript'...
-[02:06:37] Finished 'build-typescript' after 886 ms
-[02:06:40] Finished 'build-closure-debug' after 3.21 s
-[02:06:40] Starting 'build-closure-prod'...
-[02:06:43] Finished 'build-closure-prod' after 2.99 s
-[02:06:43] Starting 'build-closure'...
-[02:06:43] Finished 'build-closure' after 6.69 μs
-[02:06:43] Starting 'build'...
-[02:06:43] Finished 'build' after 6.18 μs
+[02:10:59] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[02:10:59] Starting 'build-closure-debug'...
+[02:10:59] Starting 'build-typescript'...
+[02:11:00] Finished 'build-typescript' after 871 ms
+[02:11:03] Finished 'build-closure-debug' after 3.49 s
+[02:11:03] Starting 'build-closure-prod'...
+[02:11:06] Finished 'build-closure-prod' after 3.17 s
+[02:11:06] Starting 'build-closure'...
+[02:11:06] Finished 'build-closure' after 4.87 μs
+[02:11:06] Starting 'build'...
+[02:11:06] Finished 'build' after 5.69 μs
 
-> vxq@0.0.0-dev.13 test /Users/j/src/github.com/vxq/js
+> vxq@0.0.0-dev.14 test /Users/j/src/github.com/vxq/js
 > node test
 
 TAP version 13
