@@ -1,3 +1,5 @@
+goog.module('vxq.turtles');
+
 class Turtle {
   x:number;
   y:number;
@@ -7,4 +9,4 @@ class Turtle {
   }
 }
 
-module.exports = {Turtle};
+exports = {Turtle};

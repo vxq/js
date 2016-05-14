@@ -1,0 +1,17 @@
+
+> vxq@0.0.0-dev.39 tests /Users/j/src/github.com/vxq/js
+> node test
+
+TAP version 13
+# run closure
+# prod
+Test complete.
+# debug
+Test complete.
+
+1..0
+# tests 0
+# pass  0
+
+# ok
+

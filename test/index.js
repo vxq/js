@@ -3,19 +3,14 @@ const t = require('tape');
 
 t.test("run closure", t => {
   t.test("prod", t => {
-    require('../dist/closed/prod');
+    require('../dist/prod').test();
     t.end();
   });
 
   t.test("debug", t => {
-    require('../dist/closed/debug');
+    require('../dist/debug').test();
     t.end();  
   });
 
-  t.end();
-});
-
-t.test("run typescript", t => {
-  require('../dist/typed');
   t.end();
 });
