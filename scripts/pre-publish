@@ -1,8 +1,7 @@
 #!/bin/bash
 set -veuo pipefail;
 
-rm -rf dist/;
-mkdir dist/;
+npm run clean;
 npm run build | tee dist/01-BUILD;
-npm run tests | tee dist/02-TEST;
+npm run test  | tee dist/02-TEST;
 npm run lint  | tee dist/03-LINT;

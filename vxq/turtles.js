@@ -8,6 +8,6 @@ class Turtle {
     /** @type {number} */
     this.y = 0;
   }
-}
+};
 
 exports = {Turtle};
