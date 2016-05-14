@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.12",
+  "version": "0.0.0-dev.13",
   "repository": "vxq/js",
   "description": "vxq/js",
   "license": "UNLICENSED",
@@ -14,7 +14,9 @@
   },
   "files": [
     "dist/",
-    "vxq/"
+    "vxq/",
+    "package.json",
+    "README.md"
   ],
   "main": "dist/typed",
   "scripts": {
