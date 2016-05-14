@@ -1,28 +1,28 @@
-[21:40:29] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[21:40:29] Starting 'build-closure-debug'...
-[21:40:29] Starting 'build-typescript'...
-[21:40:29] Starting 'build-flow'...
-[21:40:30] TypeScript: 9 semantic errors
-[21:40:30] TypeScript: emit succeeded (with errors)
-[21:40:30] Finished 'build-typescript' after 976 ms
+[21:41:31] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[21:41:31] Starting 'build-closure-debug'...
+[21:41:31] Starting 'build-typescript'...
+[21:41:31] Starting 'build-flow'...
+[21:41:32] TypeScript: 9 semantic errors
+[21:41:32] TypeScript: emit succeeded (with errors)
+[21:41:32] Finished 'build-typescript' after 957 ms
 ✔ Flow has found 0 errors
-[21:40:31] Finished 'build-flow' after 1.51 s
-[21:40:33] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
+[21:41:33] Finished 'build-flow' after 1.42 s
+[21:41:35] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
 vxq.main.module = exports.module = module.exports = new vxq.main.ModuleType_;
                   ^
 
 0 error(s), 1 warning(s), 90.6% typed
 
-[21:40:33] Finished 'build-closure-debug' after 3.9 s
-[21:40:33] Starting 'build-closure-prod'...
-[21:40:37] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
+[21:41:35] Finished 'build-closure-debug' after 3.69 s
+[21:41:35] Starting 'build-closure-prod'...
+[21:41:38] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
 vxq.main.module = exports.module = module.exports = new vxq.main.ModuleType_;
                   ^
 
 0 error(s), 1 warning(s), 90.6% typed
 
-[21:40:37] Finished 'build-closure-prod' after 4.18 s
-[21:40:37] Starting 'build-closure'...
-[21:40:37] Finished 'build-closure' after 5.91 μs
-[21:40:37] Starting 'build'...
-[21:40:37] Finished 'build' after 5.88 μs
+[21:41:38] Finished 'build-closure-prod' after 3.01 s
+[21:41:38] Starting 'build-closure'...
+[21:41:38] Finished 'build-closure' after 4.25 μs
+[21:41:38] Starting 'build'...
+[21:41:38] Finished 'build' after 5.35 μs

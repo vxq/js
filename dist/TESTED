@@ -2,34 +2,34 @@
 > vxq@0.0.0-dev.6 pretest /Users/j/src/github.com/vxq/js
 > gulp build
 
-[21:40:22] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[21:40:22] Starting 'build-closure-debug'...
-[21:40:22] Starting 'build-typescript'...
-[21:40:22] Starting 'build-flow'...
-[21:40:23] TypeScript: 9 semantic errors
-[21:40:23] TypeScript: emit succeeded (with errors)
-[21:40:23] Finished 'build-typescript' after 901 ms
+[21:41:23] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[21:41:23] Starting 'build-closure-debug'...
+[21:41:23] Starting 'build-typescript'...
+[21:41:23] Starting 'build-flow'...
+[21:41:24] TypeScript: 9 semantic errors
+[21:41:24] TypeScript: emit succeeded (with errors)
+[21:41:24] Finished 'build-typescript' after 949 ms
 ✔ Flow has found 0 errors
-[21:40:23] Finished 'build-flow' after 1.47 s
-[21:40:26] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
+[21:41:25] Finished 'build-flow' after 1.57 s
+[21:41:27] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
 vxq.main.module = exports.module = module.exports = new vxq.main.ModuleType_;
                   ^
 
 0 error(s), 1 warning(s), 90.6% typed
 
-[21:40:26] Finished 'build-closure-debug' after 3.79 s
-[21:40:26] Starting 'build-closure-prod'...
-[21:40:28] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
+[21:41:27] Finished 'build-closure-debug' after 3.43 s
+[21:41:27] Starting 'build-closure-prod'...
+[21:41:30] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
 vxq.main.module = exports.module = module.exports = new vxq.main.ModuleType_;
                   ^
 
 0 error(s), 1 warning(s), 90.6% typed
 
-[21:40:28] Finished 'build-closure-prod' after 2.94 s
-[21:40:28] Starting 'build-closure'...
-[21:40:28] Finished 'build-closure' after 4.36 μs
-[21:40:28] Starting 'build'...
-[21:40:28] Finished 'build' after 5.04 μs
+[21:41:30] Finished 'build-closure-prod' after 3.37 s
+[21:41:30] Starting 'build-closure'...
+[21:41:30] Finished 'build-closure' after 4.02 μs
+[21:41:30] Starting 'build'...
+[21:41:30] Finished 'build' after 4.65 μs
 
 > vxq@0.0.0-dev.6 test /Users/j/src/github.com/vxq/js
 > node test
@@ -38,7 +38,7 @@ TAP version 13
     # Subtest: closure-compiled vxq node module
         # Subtest: verify that we can also import the debug build
         1..0
-    ok 1 - verify that we can also import the debug build # time=1.645ms
+    ok 1 - verify that we can also import the debug build # time=1.744ms
 
         # Subtest: test hello()
 Hello, world.
@@ -47,10 +47,10 @@ Hello, world.
 5
 Promise { <pending> }
         1..0
-    ok 2 - test hello() # time=11.413ms
+    ok 2 - test hello() # time=12.143ms
 
     1..2
-ok 1 - closure-compiled vxq node module # time=21.002ms
+ok 1 - closure-compiled vxq node module # time=22.93ms
 
 1..1
-# time=34.26ms
+# time=36.398ms
