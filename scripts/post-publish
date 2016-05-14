@@ -1,7 +1,7 @@
 #!/bin/bash
-set -veuo pipefail;
+set -veuxo pipefail;
 
-version="$(npm view . version)";
+version="$(node -e "console.log(require('./package.json').version);")";
 branch="$(git rev-parse --abbrev-ref HEAD)";
 remote="$(git config branch.${branch}.remote)";
 

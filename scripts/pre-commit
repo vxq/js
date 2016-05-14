@@ -1,5 +1,5 @@
 #!/bin/bash
-set -veuo pipefail;
+set -veuxo pipefail;
 
 npm version --no-git-tag-version prerelease;
 git add package.json;
