@@ -1,11 +1,11 @@
 
-> vxq@0.0.0-dev.57 build /Users/j/src/github.com/vxq/js
+> vxq@0.0.0-dev.58 build /Users/j/src/github.com/vxq/js
 > gulp build
 
-[14:41:38] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[14:41:38] Starting 'build-debug'...
-[14:41:41] Finished 'build-debug' after 3.05 s
-[14:41:41] Starting 'build-prod'...
-[14:41:45] Finished 'build-prod' after 3.59 s
-[14:41:45] Starting 'build'...
-[14:41:45] Finished 'build' after 30 μs
+[15:20:20] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[15:20:20] Starting 'build-debug'...
+[15:20:23] Finished 'build-debug' after 3.44 s
+[15:20:23] Starting 'build-prod'...
+[15:20:26] Finished 'build-prod' after 2.63 s
+[15:20:26] Starting 'build'...
+[15:20:26] Finished 'build' after 44 μs
