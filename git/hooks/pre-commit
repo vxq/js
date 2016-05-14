@@ -1,0 +1,7 @@
+#!/bin/bash -veux
+rm -rf dist/;
+git rm -rf dist/ || true;
+mkdir -p dist/;
+npm test | tee dist/TESTED || true;
+gulp build | tee dist/BUILT || true;
+git add dist;

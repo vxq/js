@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.5",
+  "version": "0.0.0-dev.6",
   "repository": "vxq/js",
   "description": "vxq/js",
   "license": "UNLICENSED",
@@ -20,7 +20,7 @@
   "main": "dist/closed/debug",
   "scripts": {
     "prepublish": "rm -rf dist/ && gulp build",
-    "pretest": "rm -rf dist/ && gulp build",
+    "pretest": "gulp build",
     "test": "node test"
   }
 }
