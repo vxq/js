@@ -1,0 +1,7 @@
+#!/bin/bash
+set -veuo pipefail;
+
+npm version --no-git-tag-version prerelease;
+git add package.json;
+npm run prepublish || (echo "$?" > dist/0X-FAILED && git diff dist/0*-*);
+git add dist/;

@@ -1,5 +1,0 @@
-#!/bin/bash -eu
-npm version --no-git-tag-version prerelease;
-git add package.json;
-npm run prepublish || echo "$?" > dist/0X-FAILED;
-git add dist/;
