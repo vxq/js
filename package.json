@@ -1,8 +1,8 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.17",
+  "version": "0.0.0-dev.18",
   "repository": "vxq/js",
-  "description": "vxq/js",
+  "description": "TBD",
   "license": "UNLICENSED",
   "dependencies": {
     "google-closure-compiler": "^20160315.2.0",
