@@ -27,7 +27,7 @@ function $$jscomp$makeIterator$$() {
   }};
 }
 function $module$$vxq$util$$() {
-  return new Promise(function() {
+  throw new Promise(function() {
   });
 }
 ;function $ModuleType_$$module$$vxq$index_ts$$() {

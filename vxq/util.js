@@ -1,2 +1,2 @@
 /// <reference path="index.d.ts" />
-module.exports = function() { return new Promise(function() {}); };
+module.exports = function() { throw new Promise(function() {}); };
