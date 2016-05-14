@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.36",
+  "version": "0.0.0-dev.37",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -12,7 +12,6 @@
     "tape": "^4.5.1",
     "typescript": "^1.8.10"
   },
-  "main": "dist/typed",
   "files": [
     "dist/",
     "vxq/"
