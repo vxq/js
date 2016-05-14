@@ -1,7 +1,15 @@
 
-> vxq@0.0.0-dev.44 lint /Users/j/src/github.com/vxq/js
+> vxq@0.0.0-dev.46 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-[05:27:16] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[05:27:16] Starting 'lint'...
-[05:27:16] Finished 'lint' after 404 ms
+[05:34:22] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[05:34:22] Starting 'lint'...
+/Users/j/src/github.com/vxq/js/vxq/turtles.js
+  line 11: Missing semicolon at end of line
+  Total errors in file: 1
+
+gjslint failed
+[05:34:23] 'lint' errored after 462 ms
+[05:34:23] Error in plugin 'gulp-gjslint'
+Message:
+    Linting failed for files: /Users/j/src/github.com/vxq/js/vxq/turtles.js

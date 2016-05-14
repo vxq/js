@@ -52,4 +52,10 @@ gulp.task('build-prod', ['build-debug'], () =>
 gulp.task('lint', () =>
   gulp.src('vxq/**.js')
     .pipe(gjslint())
-    .pipe(gjslint.reporter('console'), {fail: true}));
+    .pipe(gjslint.reporter('console'))
+    .pipe(gjslint.reporter('fail')));
+
+gulp.task('lint-all', () =>
+  gulp.src('vxq/**.js')
+    .pipe(gjslint())
+    .pipe(gjslint.reporter('console')));
