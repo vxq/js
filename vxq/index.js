@@ -18,7 +18,7 @@ class VXQModule {
     this.testTheTurtles(renderer);
   }
 
-  /** @protected */ testTheTurtles(/** ?turtles.Renderer= */ renderer=null) {
+  /** @protected */ testTheTurtles(/** ?turtles.Renderer= */ renderer = null) {
     const turtle = new turtles.Turtle(renderer);
 
     assert.equals(50, turtle.x);
@@ -29,32 +29,32 @@ class VXQModule {
     assert.equals(50, turtle.x);
     assert.equals(100, turtle.y);
 
-    turtle.turn(1/4);
+    turtle.turn(1 / 4);
     turtle.forward(25);
 
     assert.equals(25, turtle.x);
     assert.equals(100, turtle.y);
 
-    turtle.turn(-3/8);
+    turtle.turn(-3 / 8);
     turtle.forward(100);
 
     for (let i = 0; i < 12; i++) {
-      turtle.turn(-1/16);
+      turtle.turn(-1 / 16);
       turtle.forward(10);
     }
 
     turtle.forward(100);
 
-    turtle.turn(-1/4);
+    turtle.turn(-1 / 4);
 
     turtle.forward(200);
 
     for (let i = 0; i < 6; i++) {
-      turtle.turn(-1/16);
+      turtle.turn(-1 / 16);
       turtle.forward(10);
     }
 
-    turtle.forward(50);
+    turtle.forward(5 0);
 
     console.log('Test complete.');
   }

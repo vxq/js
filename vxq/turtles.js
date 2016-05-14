@@ -55,7 +55,7 @@ class Turtle {
 
 /** @interface */ class Renderer {
   turtle(/** !Turtle */ t) {}
-}
+};
 
 
 /** @implements {Renderer} */
@@ -75,7 +75,7 @@ class CanvasRenderer {
   /** @override */ turtle(/** !Turtle */ t) {
     const radians = t.rotation * 2 * Math.PI;
 
-    this.context.fillStyle = `hsl(${this.hueRotation}, 50%, 50%)`;
+    this.context.fillStyle = 'hsl(' + this.hueRotation + ', 50%, 50%)';
     this.hueRotation += 7;
     this.context.strokeStyle = 'rgba(255, 255, 255, 0.5)';
 
@@ -84,7 +84,7 @@ class CanvasRenderer {
     this.context.fill();
     this.context.stroke();
   }
-}
+};
 
 
 exports = {
