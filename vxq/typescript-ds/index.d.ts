@@ -2,11 +2,6 @@ interface IVxqExports {
   hello():void;
 }
 
-class Module {
-  exports:IVxqExports;
-}
+declare function require(string):any;
 
-declare var module:Module;
-
-declare var vxq:Object;
-declare var goog:Object;
+declare var exports:IVxqExports;

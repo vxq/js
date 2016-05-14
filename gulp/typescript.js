@@ -5,16 +5,23 @@ const ts = require('gulp-typescript');
 
 exports.defineTasks = (inRoot, outRoot, extraSrcs) => {
   const BUILD_TASK = 'build-typescript';
+  const cwd = inRoot;
   const srcs = [
-    `${inRoot}/**.js`,
-    `${inRoot}/**.ts`,
-    ...extraSrcs
+    `**.js`,
+    `**.ts`,
+    `typescropt-ds/index.d.ts`,
+    ...extraSrcs.map(s => `../${s}`)
   ];
   const dest = `${outRoot}/typed`;
 
   gulp.task(BUILD_TASK, () => {
-    const tsResult = gulp.src(srcs).pipe(
-      ts(ts.createProject('tsconfig.json')));
+    const tsResult = gulp.src(srcs, {cwd}).pipe(
+      ts({
+        "target": "es6",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "allowJs": true
+      }));
 
     return merge2([
       tsResult.dts.pipe(gulp.dest(`${dest}/d`)),

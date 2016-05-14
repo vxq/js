@@ -1,6 +1,5 @@
-goog.module('vxq.main');
-
-const util = goog.require('vxq.util')
+/// <reference path="typescript-ds/index.d.ts" />
+const util:any = require('./util');
 
 
 function add(a:number, b:number):number {
@@ -8,7 +7,7 @@ function add(a:number, b:number):number {
 }
 
 /** @implements {IVxqExports} */
-vxq.main.ModuleType_ = class {
+const ModuleType_ = class {
   hello() {
     const message = "Hello, world.";
 
@@ -21,8 +20,8 @@ vxq.main.ModuleType_ = class {
   }
 };
 
-if (typeof module === 'undefined' && typeof window === 'object') {
-  window.module = {};
-}
+const module:IVxqExports = new ModuleType_;
 
-vxq.main.module = exports.module = module.exports = new vxq.main.ModuleType_;
+module.hello();
+
+exports = module;

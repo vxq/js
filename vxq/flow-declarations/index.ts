@@ -1,2 +1,3 @@
-declare var goog: Object;
-declare var vxq: Object;
+interface IVxqExports {
+  hello():void;
+}

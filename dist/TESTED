@@ -2,55 +2,74 @@
 > vxq@0.0.0-dev.7 pretest /Users/j/src/github.com/vxq/js
 > gulp build
 
-[00:02:50] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[00:02:50] Starting 'build-closure-debug'...
-[00:02:50] Starting 'build-typescript'...
-[00:02:50] Starting 'build-flow'...
-[00:02:50] TypeScript: 9 semantic errors
-[00:02:50] TypeScript: emit succeeded (with errors)
-[00:02:50] Finished 'build-typescript' after 897 ms
-✔ Flow has found 0 errors
-[00:02:52] Finished 'build-flow' after 2.7 s
-[00:02:54] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
-vxq.main.module = exports.module = module.exports = new vxq.main.ModuleType_;
-                  ^
-
-0 error(s), 1 warning(s), 90.6% typed
-
-[00:02:54] Finished 'build-closure-debug' after 4.38 s
-[00:02:54] Starting 'build-closure-prod'...
-[00:02:57] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
-vxq.main.module = exports.module = module.exports = new vxq.main.ModuleType_;
-                  ^
-
-0 error(s), 1 warning(s), 90.6% typed
-
-[00:02:57] Finished 'build-closure-prod' after 3.21 s
-[00:02:57] Starting 'build-closure'...
-[00:02:57] Finished 'build-closure' after 5.11 μs
-[00:02:57] Starting 'build'...
-[00:02:57] Finished 'build' after 16 μs
+[00:58:02] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[00:58:02] Starting 'build-closure-debug'...
+[00:58:02] Starting 'build-typescript'...
+[00:58:02] Starting 'build-flow'...
+[00:58:03] Finished 'build-typescript' after 858 ms
+[00:58:06] Finished 'build-closure-debug' after 3.55 s
+[00:58:06] Starting 'build-closure-prod'...
+[00:58:09] Finished 'build-closure-prod' after 2.9 s
+[00:58:09] Starting 'build-closure'...
+[00:58:09] Finished 'build-closure' after 4.2 μs
 
 > vxq@0.0.0-dev.7 test /Users/j/src/github.com/vxq/js
 > node test
 
 TAP version 13
     # Subtest: closure-compiled vxq node module
-        # Subtest: verify that we can also import the debug build
-        1..0
-    ok 1 - verify that we can also import the debug build # time=1.535ms
-
-        # Subtest: test hello()
 Hello, world.
 Hello, world.
 Hello, world.
 5
-Promise { <pending> }
-        1..0
-    ok 2 - test hello() # time=11.277ms
-
-    1..2
-ok 1 - closure-compiled vxq node module # time=20.327ms
+    not ok 1 - TypeError: k is not a function
+      ---
+      at:
+        line: 2
+        column: 634
+        file: dist/closed/prod.js
+        function: l.hello
+      stack: |
+        l.hello (dist/closed/prod.js:2:634)
+        Object.<anonymous> (dist/closed/prod.js:2:648)
+        Object.<anonymous> (dist/closed/prod.js:3:3)
+        test (test/index.js:5:19)
+      test: closure-compiled vxq node module
+      message: 'TypeError: k is not a function'
+      source: >
+        'use strict';var b="undefined"!=typeof
+        window&&window===this?this:"undefined"!=typeof global?global:this;function
+        d(){b.Symbol||(b.Symbol=e);d=function(){}}var f=0;function
+        e(a){return"jscomp_symbol_"+a+f++}function
+        g(){d();b.Symbol.iterator||(b.Symbol.iterator=b.Symbol("iterator"));g=function(){}}function
+        h(){var a=[1,2,3];g();if(a[b.Symbol.iterator])return
+        a[b.Symbol.iterator]();var c=0;return{next:function(){return
+        c==a.length?{done:!0}:{done:!1,value:a[c++]}}}}var k={};function
+        l(){}l.prototype.hello=function(){for(var
+        a=h(),c=a.next();!c.done;c=a.next())console.log("Hello,
+        world.");console.log(2+Number("3"));console.log(k())};(new l).hello();
+      ...
+    1..1
+    # failed 1 of 1 tests
+not ok 1 - closure-compiled vxq node module # time=15.992ms
+  ---
+  at:
+    line: 4
+    column: 1
+    file: test/index.js
+  results:
+    plan:
+      start: 1
+      end: 1
+    count: 1
+    pass: 0
+    ok: false
+    fail: 1
+    time: 15.992
+  source: |
+    test("closure-compiled vxq node module", ({test, end}) => {
+  ...
 
 1..1
-# time=33.243ms
+# failed 1 of 1 tests
+# time=32.066ms

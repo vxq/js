@@ -16,7 +16,8 @@ exports.defineTasks = (inRoot, outRoot, extraSrcs) => {
     gulp.src(srcs).pipe(flow({
         abort: true,
         all: true,
-        killFlow: true
+        killFlow: true,
+        allowJs: true
     })).pipe(gulp.dest(dest)));
 
   return BUILD_TASK;

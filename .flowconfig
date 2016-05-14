@@ -1,13 +1,18 @@
 [ignore]
 node_modules
 dist
+test
+gulpfile.js
+vxq/closure-externs
+vxq/flow-declarations
+vxq/typescript-ds
 
 [include]
 vxq
 
 [options]
 module.file_ext=.ts
+#module.file_ext=.js
 
 [libs]
-flow-declarations
 vxq/flow-declarations

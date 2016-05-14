@@ -1,28 +1,10 @@
-[00:02:58] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[00:02:58] Starting 'build-closure-debug'...
-[00:02:58] Starting 'build-typescript'...
-[00:02:58] Starting 'build-flow'...
-[00:02:59] TypeScript: 9 semantic errors
-[00:02:59] TypeScript: emit succeeded (with errors)
-[00:02:59] Finished 'build-typescript' after 1.08 s
-✔ Flow has found 0 errors
-[00:03:01] Finished 'build-flow' after 2.96 s
-[00:03:02] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
-vxq.main.module = exports.module = module.exports = new vxq.main.ModuleType_;
-                  ^
-
-0 error(s), 1 warning(s), 90.6% typed
-
-[00:03:02] Finished 'build-closure-debug' after 3.93 s
-[00:03:02] Starting 'build-closure-prod'...
-[00:03:05] gulp-google-closure-compiler: /vxq/index.ts:28: WARNING - constant property module assigned a value more than once
-vxq.main.module = exports.module = module.exports = new vxq.main.ModuleType_;
-                  ^
-
-0 error(s), 1 warning(s), 90.6% typed
-
-[00:03:05] Finished 'build-closure-prod' after 3.16 s
-[00:03:05] Starting 'build-closure'...
-[00:03:05] Finished 'build-closure' after 5.46 μs
-[00:03:05] Starting 'build'...
-[00:03:05] Finished 'build' after 17 μs
+[00:58:10] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[00:58:10] Starting 'build-closure-debug'...
+[00:58:10] Starting 'build-typescript'...
+[00:58:10] Starting 'build-flow'...
+[00:58:11] Finished 'build-typescript' after 852 ms
+[00:58:13] Finished 'build-closure-debug' after 3.3 s
+[00:58:13] Starting 'build-closure-prod'...
+[00:58:16] Finished 'build-closure-prod' after 2.93 s
+[00:58:16] Starting 'build-closure'...
+[00:58:16] Finished 'build-closure' after 3.75 μs
