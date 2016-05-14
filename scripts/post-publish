@@ -1,12 +1,13 @@
 #!/bin/bash
 set -veuo pipefail;
 
+version="$(npm view . version)";
 branch="$(git rev-parse --abbrev-ref HEAD)";
 remote="$(git config branch.${branch}.remote)";
 
 git add -A;
-git commit --no-verify -m "$(npm view . version)";
-git tag "$(npm view . version)";
+git commit --no-verify -m "${version}";
+git tag "${version}";
 git push "${remote}" --tags;
-git push "${remote}";
-git push "${remote}" "${branch}:gh-pages";
+git push "${remote}" "${branch}";
+git push -f "${remote}" "${branch}:gh-pages";

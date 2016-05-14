@@ -5,3 +5,10 @@ npm run clean;
 npm run build | tee dist/01-BUILD;
 npm run test  | tee dist/02-TEST;
 npm run lint  | tee dist/03-LINT;
+
+version="$(npm view . version)";
+
+if git show-ref "$(version)"; then
+  echo "Version '${version}' already exists in git.";
+  exit 1;
+fi
