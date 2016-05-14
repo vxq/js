@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.22",
+  "version": "0.0.0-dev.23",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -12,15 +12,13 @@
     "tape": "^4.5.1",
     "typescript": "^1.8.10"
   },
+  "main": "dist/typed",
   "files": [
     "dist/",
-    "vxq/",
-    "package.json",
-    "README.md"
+    "vxq/"
   ],
-  "main": "dist/typed",
   "scripts": {
-    "prepublish": "rm -rf dist/ && mkdir dist/ && gulp build | tee -a dist/BUILT && npm run test | tee -a dist/TESTED",
+    "prepublish": "rm -rf dist/ && mkdir dist/ && (gulp build | tee -a dist/BUILT || true) && (npm run test | tee -a dist/TESTED || true)",
     "postpublish": "git add -A && git commit --no-verify -m \"published $(npm view . version)\" && git push",
     "pretest": "gulp build",
     "test": "node test"

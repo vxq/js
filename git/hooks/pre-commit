@@ -3,4 +3,3 @@ npm version --no-git-tag-version prerelease;
 git add package.json;
 npm run prepublish;
 git add dist/;
-git diff HEAD -- dist/{BUILT,TESTED};
