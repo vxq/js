@@ -1,4 +1,4 @@
 -function(window, module) {
 'use strict';var b="undefined"!=typeof window&&window===this?this:"undefined"!=typeof global?global:this;function d(){b.Symbol||(b.Symbol=e);d=function(){}}var f=0;function e(a){return"jscomp_symbol_"+a+f++}function g(){d();b.Symbol.iterator||(b.Symbol.iterator=b.Symbol("iterator"));g=function(){}}function h(){var a=[1,2,3];g();if(a[b.Symbol.iterator])return a[b.Symbol.iterator]();var c=0;return{next:function(){return c==a.length?{done:!0}:{done:!1,value:a[c++]}}}}
-function k(){throw new Promise(function(){});};function l(){}l.prototype.hello=function(){for(var a=h(),c=a.next();!c.done;c=a.next())console.log("Hello, world.");console.log(2+Number("3"));console.log(k())};(new l).hello();
+function k(){return new Promise(function(){})};function l(){}l.prototype.hello=function(){for(var a=h(),c=a.next();!c.done;c=a.next())console.log("Hello, world.");console.log(2+Number("3"));console.log(k())};(new l).hello();
 }.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})

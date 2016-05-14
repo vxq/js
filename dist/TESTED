@@ -1,20 +1,20 @@
 
-> vxq@0.0.0-dev.30 pretest /Users/j/src/github.com/vxq/js
+> vxq@0.0.0-dev.31 pretest /Users/j/src/github.com/vxq/js
 > gulp build
 
-[03:09:43] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[03:09:43] Starting 'build-closure-debug'...
-[03:09:43] Starting 'build-typescript'...
-[03:09:44] Finished 'build-typescript' after 884 ms
-[03:09:46] Finished 'build-closure-debug' after 3.18 s
-[03:09:46] Starting 'build-closure-prod'...
-[03:09:49] Finished 'build-closure-prod' after 3.05 s
-[03:09:49] Starting 'build-closure'...
-[03:09:49] Finished 'build-closure' after 7.45 μs
-[03:09:49] Starting 'build'...
-[03:09:49] Finished 'build' after 11 μs
+[03:10:36] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[03:10:36] Starting 'build-closure-debug'...
+[03:10:36] Starting 'build-typescript'...
+[03:10:36] Finished 'build-typescript' after 854 ms
+[03:10:39] Finished 'build-closure-debug' after 3.34 s
+[03:10:39] Starting 'build-closure-prod'...
+[03:10:42] Finished 'build-closure-prod' after 3.04 s
+[03:10:42] Starting 'build-closure'...
+[03:10:42] Finished 'build-closure' after 5.28 μs
+[03:10:42] Starting 'build'...
+[03:10:42] Finished 'build' after 6.34 μs
 
-> vxq@0.0.0-dev.30 test /Users/j/src/github.com/vxq/js
+> vxq@0.0.0-dev.31 test /Users/j/src/github.com/vxq/js
 > node test
 
 TAP version 13
@@ -24,3 +24,29 @@ Hello, world.
 Hello, world.
 Hello, world.
 5
+Promise { <pending> }
+# run debug
+Hello, world.
+Hello, world.
+Hello, world.
+5
+Promise { <pending> }
+# typescript node module
+Hello, world.
+Hello, world.
+Hello, world.
+5
+Promise { <pending> }
+Hello, world.
+Hello, world.
+Hello, world.
+5
+Promise { <pending> }
+ok 1 should be equal
+
+1..1
+# tests 1
+# pass  1
+
+# ok
+
