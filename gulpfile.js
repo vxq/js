@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const closureCompiler = require('google-closure-compiler').gulp();
+const gjslint = require('gulp-gjslint');
 
 
 const srcs = [
@@ -47,3 +48,8 @@ gulp.task('build-prod', ['build-debug'], () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'prod.js'
   }))).pipe(gulp.dest('dist')));
+
+gulp.task('lint', () =>
+  gulp.src('vxq/**.js')
+    .pipe(gjslint())
+    .pipe(gjslint.reporter('console'), {fail: true}));

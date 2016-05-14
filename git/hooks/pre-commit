@@ -1,5 +1,5 @@
 #!/bin/bash -eu
 npm version --no-git-tag-version prerelease;
 git add package.json;
-npm run prepublish || touch dist/FAILED;
+npm run prepublish || touch dist/0X-FAILED;
 git add dist/;

@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.43",
+  "version": "0.0.0-dev.44",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -8,6 +8,7 @@
     "google-closure-compiler": "^20160315.2.0",
     "google-closure-library": "^20160315.0.0",
     "gulp": "^3.9.1",
+    "gulp-gjslint": "^0.1.5",
     "tape": "^4.5.1"
   },
   "files": [
@@ -15,11 +16,12 @@
     "vxq/"
   ],
   "scripts": {
-    "prepublish": "rm -rf dist/ && mkdir dist/ && npm run build > dist/BUILT && npm run tests > dist/TESTED",
+    "prepublish": "rm -rf dist/ && mkdir dist/ && npm run build > dist/01-BUILT && npm run tests > dist/02-TESTED && npm run lint > dist/03-LINTED",
     "postpublish": "git add -A && git commit --no-verify -m \"$(npm view . version)\" && git tag \"$(npm view . version)\" && git push --tags && git push",
     "build": "gulp build",
     "tests": "node test",
     "pretest": "npm run build",
-    "test": "npm run tests"
+    "test": "npm run tests",
+    "lint": "gulp lint"
   }
 }
