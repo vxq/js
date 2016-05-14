@@ -1,1 +1,0 @@
-git rm -rf dist/TESTED dist/BUILT || true;

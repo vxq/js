@@ -5,3 +5,4 @@ mkdir -p dist/;
 npm test | tee dist/TESTED || true;
 gulp build | tee dist/BUILT || true;
 git add dist;
+git diff HEAD -- dist/{BUILT,TESTED};
