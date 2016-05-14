@@ -1,0 +1,7 @@
+
+> vxq@0.0.0-dev.64 lint /Users/j/src/github.com/vxq/js
+> gulp lint
+
+[16:43:34] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[16:43:34] Starting 'lint'...
+[16:43:34] Finished 'lint' after 417 ms

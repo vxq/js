@@ -54,7 +54,7 @@ class VXQModule {
       turtle.forward(10);
     }
 
-    turtle.forward(5 0);
+    turtle.forward(50);
 
     console.log('Test complete.');
   }

@@ -1,8 +1,12 @@
 #!/bin/bash
 set -veuo pipefail;
 
+branch="$(git rev-parse --abbrev-ref HEAD)";
+remote="$(git config ${branch}.master.remote)";
+
 git add -A;
 git commit --no-verify -m "$(npm view . version)";
 git tag "$(npm view . version)";
-git push --tags;
-git push;
+git push "${remote}" --tags;
+git push "${remote}";
+git push "${remote}" "${branch}:gh-pages";
