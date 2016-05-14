@@ -1,4 +1,8 @@
 #!/bin/bash
 set -veuo pipefail;
 
-git add -A && git commit --no-verify -m "$(npm view . version)" && git tag "$(npm view . version)" && git push --tags && git push
+git add -A;
+git commit --no-verify -m "$(npm view . version)";
+git tag "$(npm view . version)";
+git push --tags;
+git push;
