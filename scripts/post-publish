@@ -2,7 +2,7 @@
 set -veuo pipefail;
 
 branch="$(git rev-parse --abbrev-ref HEAD)";
-remote="$(git config ${branch}.master.remote)";
+remote="$(git config branch.${branch}.remote)";
 
 git add -A;
 git commit --no-verify -m "$(npm view . version)";
