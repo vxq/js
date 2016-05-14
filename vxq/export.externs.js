@@ -1,4 +1,4 @@
-/** @interface */
-class IVXQModule {
+/** @interface */ class IVXQModule {
   test() {}
+  browserTurtleStuff() {}
 };
