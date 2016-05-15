@@ -1,1 +1,1 @@
-exports = require('dist/typed');
+module.exports = require('./dist/debug');
