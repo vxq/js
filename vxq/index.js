@@ -12,7 +12,7 @@ class VXQModule {
     this.testTheTurtles();
   }
 
-  /** @override */ browserTurtleStuff() {
+  /** @override */ addBrowserTurtlePlaygroundNextToCurrentScript() {
     const renderer = new turtles.CanvasRenderer();
     renderer.canvas.width = 512;
     renderer.canvas.height = 512;

@@ -10,13 +10,51 @@
 let VXQ = class {
   test() {}
 
-  /** @return {!VXQ.Agent} */
-  browserTurtleStuff() {}
+  /** @return {!VXQ.World} */
+  addBrowserTurtlePlaygroundNextToCurrentScript() {}
 };
 
 
 /**
- * An agent that can be directed around a 3D space.
+ * @interface 
+ */
+VXQ.CallbackList = class {
+  /**
+   * @param {function():void} f A function to be added to the callback list.
+   * @return {function():void} A function that may be called once to remove
+   *     this from the callback list.
+   */
+   add(f) {}
+};
+
+
+/**
+ * A world of fixed dimensions with a potentially-changing set of agents.
+ * @interface
+ */
+VXZ.World = class {
+  /** @return {number} */
+  get height() {}
+  /** @return {number} */
+  get width() {}
+
+  /**
+   * All known agents in the world.
+   * @return {!Set<!VXQ.Agent>}
+   */
+  get agents() {}
+
+  /**
+   * A callback list that will be called eventually after any changes to the
+   * set of agents in the world.
+   * @return {!VXQ.CallbackList}
+   */
+  get changeCallbacks() {};
+};
+
+
+/**
+ * An agent that can be directed around a 3D world.
  * @interface
  */
 VXQ.Agent = class {
@@ -27,13 +65,13 @@ VXQ.Agent = class {
   /** @return {number} */
   get z() {}
 
+
   /**
-   * @param {function():void} f A function that will eventually be called
-   *     if there this agent's external state changes.
-   * @return {function():void} A function that may be called to remove this
-   *     callback.
+   * A callback list that will be called eventually after any changes to the
+   * agent's coordinates.
+   * @return {!VXQ.CallbackList}
    */
-  addChangeCallback(f) {}
+  get changeCallbacks() {};
 
   /**
    * Request that the agent attempt to move towards a specific point.

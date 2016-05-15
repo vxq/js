@@ -2,6 +2,7 @@ goog.module('vxq.turtles');
 /** @fileoverview Provides... turtles? */
 
 const debug = goog.require('vxq.debug');
+const util = goog.require('vxq.util');
 
 
 /** @implements {VXQ.Agent} */
@@ -24,20 +25,16 @@ class Turtle {
 
     this.render();
 
-    /** @protected @const {!Array<function():void>} */
-    this.changeCallbacks = [];
+    /** @protected @const */
+    this.changeCallbacks = new util.CallbackList;
   }
 
   /** @override */ addChangeCallback(f) {
-    this.changeCallbacks.push(f);
-    return () => void this.changeCallbacks.splice(
-        this.changeCallbacks.indexOf(f), 1);
+    this.changeCallbacks.add(f);
   }
 
   /** @protected */ fireChangeCallbacks() {
-    for (const f of this.changeCallbacks) {
-      f();
-    }
+    this.changeCallbacks.call(f;
   }
 
   get xFactor() {
