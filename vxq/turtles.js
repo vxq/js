@@ -29,14 +29,6 @@ class Turtle {
     this.changeCallbacks = new util.CallbackList;
   }
 
-  /** @override */ addChangeCallback(f) {
-    this.changeCallbacks.add(f);
-  }
-
-  /** @protected */ fireChangeCallbacks() {
-    this.changeCallbacks.call(f;
-  }
-
   get xFactor() {
     return -Math.sin(this.rotation * 2 * Math.PI);
   }

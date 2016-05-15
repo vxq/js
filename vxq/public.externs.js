@@ -32,7 +32,7 @@ VXQ.CallbackList = class {
  * A world of fixed dimensions with a potentially-changing set of agents.
  * @interface
  */
-VXZ.World = class {
+VXQ.World = class {
   /** @return {number} */
   get height() {}
   /** @return {number} */
