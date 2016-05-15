@@ -62,12 +62,12 @@ gulp.task('build-prod', () =>
   }))).pipe(gulp.dest('zdist')));
 
 gulp.task('lint', () =>
-  gulp.src('vxq/**.js')
+  gulp.src('vxq/**/*.js')
     .pipe(gjslint())
     .pipe(gjslint.reporter('console'))
     .pipe(gjslint.reporter('fail')));
 
-gulp.task('lint-all', () =>
-  gulp.src('vxq/**.js')
+gulp.task('lint-full', () =>
+  gulp.src('vxq/**/*.js')
     .pipe(gjslint())
     .pipe(gjslint.reporter('console')));

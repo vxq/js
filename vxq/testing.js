@@ -2,17 +2,22 @@ goog.module('vxq.testing');
 /** @fileoverview Provides utilities for use in tests. */
 
 
-const assert = (condition, /** string= */ message=undefined) => {
+/**
+ * Asserts that a condition is truthy.
+ * @param {*} condition
+ * @param {?string=} message
+ */
+exports.assert = function(condition, message) {
   if (!condition) {
     throw new Error(message || 'Assertion failed');
   }
-}
+};
 
-const assertEquals = (expected, actual) => {
-  assert(expected === actual, `${expected} !== ${actual}`);
-}
-
-exports = {
-  assert,
-  assertEquals
+/**
+ * Asserts that two values are identical.
+ * @param {*} expected
+ * @param {*} actual
+ */
+exports.assertEquals = function(expected, actual) {
+  exports.assert(expected === actual, `${expected} !== ${actual}`);
 };
