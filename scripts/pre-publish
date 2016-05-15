@@ -1,13 +1,6 @@
 #!/bin/bash
 set -veuxo pipefail;
 
-version="$(node -e "console.log(require('./package.json').version)")";
-
-if git show-ref "${version}"; then
-  echo "Version '${version}' already exists in git.";
-  exit 1;
-fi
-
 npm run clean;
 npm run build | tee dist/01-BUILD;
 npm run test  | tee dist/02-TEST;
