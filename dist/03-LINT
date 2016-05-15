@@ -1,19 +1,7 @@
 
-> vxq@0.0.0-dev.76 lint /Users/j/src/github.com/vxq/js
+> vxq@0.0.0-dev.77 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-[18:46:41] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[18:46:41] Starting 'lint'...
-/Users/j/src/github.com/vxq/js/vxq/turtles.js
-  line 106: Missing space before "="
-  line 106: Missing space after "="
-  line 106: Missing space before "="
-  line 106: Missing space after "="
-  line 109: Line too long (90 characters).
-  Total errors in file: 5
-
-gjslint failed
-[18:46:41] 'lint' errored after 531 ms
-[18:46:41] Error in plugin 'gulp-gjslint'
-Message:
-    Linting failed for files: /Users/j/src/github.com/vxq/js/vxq/turtles.js
+[18:49:03] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[18:49:03] Starting 'lint'...
+[18:49:03] Finished 'lint' after 412 ms

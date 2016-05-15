@@ -103,10 +103,11 @@ class CanvasRenderer {
     this.hueRotation = 0;
   }
 
-  /** @override */ turtle(t, fillStyle=null, strokeStyle=null) {
+  /** @override */ turtle(t, fillStyle = null, strokeStyle = null) {
     const radians = t.rotation * 2 * Math.PI;
 
-    this.context.fillStyle = fillStyle || 'hsla(' + this.hueRotation + ', 50%, 50%, 0.5)';
+    this.context.fillStyle =
+        fillStyle || 'hsla(' + this.hueRotation + ', 50%, 50%, 0.5)';
     this.hueRotation += 7;
     this.context.strokeStyle = strokeStyle || 'rgba(255, 255, 255, 0.25)';
 
