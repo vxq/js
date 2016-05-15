@@ -45,4 +45,4 @@ VXQ.Agent = class {
    *     finished attempting to reach the destination.
    */
   goTo(x, y, z) {}
-}
+};

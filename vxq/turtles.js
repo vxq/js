@@ -30,10 +30,8 @@ class Turtle {
 
   /** @override */ addChangeCallback(f) {
     this.changeCallbacks.push(f);
-    return () => {
-      this.changeCallbacks.splice(
+    return () => void this.changeCallbacks.splice(
         this.changeCallbacks.indexOf(f), 1);
-    }
   }
 
   /** @protected */ fireChangeCallbacks() {

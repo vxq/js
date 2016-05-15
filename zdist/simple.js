@@ -645,7 +645,7 @@ $jscomp.scope.Turtle.prototype.addChangeCallback = function $$jscomp$scope$Turtl
   var $$jscomp$this$$ = this;
   this.changeCallbacks.push($f$$);
   return function() {
-    $$jscomp$this$$.changeCallbacks.splice($$jscomp$this$$.changeCallbacks.indexOf($f$$), 1);
+    return void $$jscomp$this$$.changeCallbacks.splice($$jscomp$this$$.changeCallbacks.indexOf($f$$), 1);
   };
 };
 $jscomp.scope.Turtle.prototype.fireChangeCallbacks = function $$jscomp$scope$Turtle$$fireChangeCallbacks$() {

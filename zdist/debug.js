@@ -53,7 +53,7 @@ $$jscomp$scope$Turtle$$.prototype.addChangeCallback = function $$$jscomp$scope$T
   var $$jscomp$this$$1$$ = this;
   this.$c$.push($f$$2$$);
   return function() {
-    $$jscomp$this$$1$$.$c$.splice($$jscomp$this$$1$$.$c$.indexOf($f$$2$$), 1);
+    return void $$jscomp$this$$1$$.$c$.splice($$jscomp$this$$1$$.$c$.indexOf($f$$2$$), 1);
   };
 };
 function $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$left$$($JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$left$self$$, $turns$$1$$) {
