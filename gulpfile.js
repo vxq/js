@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const closureCompiler = require('google-closure-compiler').gulp();
 const gjslint = require('gulp-gjslint');
+const runSequence = require('run-sequence');
 
 
 const srcs = [
@@ -28,12 +29,24 @@ const flags = {
   generate_exports: true,
   jscomp_error: ['checkTypes'],
   externs: [
-      'vxq/import.externs.js',
-      'vxq/export.externs.js'
+    'vxq/import.externs.js',
+    'vxq/export.externs.js'
   ]
 };
 
-gulp.task('build', ['build-prod', 'build-debug'])
+gulp.task('build', ['build-simple', 'build-debug', 'build-prod']);
+gulp.task('build-seq', () => runSequence('build-simple', 'build-debug', 'build-prod'));
+
+gulp.task('build-simple', () => {
+  gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
+    compilation_level: 'SIMPLE_OPTIMIZATIONS',
+    js_output_file: 'simple.js',
+    jscomp_warning: ['checkTypes'],
+    debug: true,
+    formatting: 'pretty_print',
+    define: ['vxq.debug.DEBUG=true']
+  }))).pipe(gulp.dest('dist'));
+});
 
 gulp.task('build-debug', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
@@ -43,7 +56,7 @@ gulp.task('build-debug', () =>
     define: ['vxq.debug.DEBUG=true']
   }))).pipe(gulp.dest('dist')));
 
-gulp.task('build-prod', ['build-debug'], () =>
+gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'prod.js'
   }))).pipe(gulp.dest('dist')));

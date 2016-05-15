@@ -1,4 +1,5 @@
 goog.module('vxq.testing');
+/** @fileoverview Provides utilities for use in tests. */
 
 
 const assert = (condition, /** string= */ message=undefined) => {
