@@ -1,17 +1,29 @@
 <!doctype html>
 <body>
-<script src="../dist/debug.js"></script>
+
 <style>
   html {
+    padding: 64px 0;
     background: #666;
+    text-align: center;
   }
+
   canvas {
-    margin: 32px auto;
-    display: block;
+    width: 32%;
     background: rgb(222, 222, 222);
-    border: 1px dashed black;
+    border: 2px solid black;
+    margin: -4px;
   }
 </style>
-<script>
-  vxq.browserTurtleStuff();
-</script>
+
+<script src="../dist/simple.js"></script>
+<script>vxq.browserTurtleStuff();</script>
+<script>delete vxq;</script>
+
+<script src="../dist/debug.js"></script>
+<script>vxq.browserTurtleStuff();</script>
+<script>delete vxq;</script>
+
+<script src="../dist/prod.js"></script>
+<script>vxq.browserTurtleStuff();</script>
+<script>delete vxq;</script>
