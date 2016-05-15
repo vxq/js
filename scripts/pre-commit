@@ -18,9 +18,5 @@ node <<END
 END
 
 git add package.json;
-npm run prepublish && ( \
-  echo "exit status 0" | tee zdist/00-SUCCESS \
-) || ( \
-  echo "exit status $?" | tee zdist/00-FAILURE \
-);
+npm run prepublish || echo "exit status $?" | tee zdist/00-FAILURE;
 git add zdist/;
