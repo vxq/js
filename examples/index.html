@@ -17,14 +17,13 @@
   }
 
   section article {
-    border: 0px solid #666;
-    border-width: 4px 0 4px 0;
+    border-top: 4px solid #666;
     min-height: 16px;
-    background: #D22;
   }
 
   section article canvas {
     width: 100%;
+    border-bottom: 4px solid #666;
     background: white;
   }
 
@@ -36,7 +35,7 @@
 <script>
   'use strict';
   const jump = world => {
-    for (let sprite of world.sprites) {
+    for (let sprite of world.agents) {
       sprite.goTo(Math.random() * world.width, Math.random() * world.height);
     }
   }
@@ -45,13 +44,10 @@
 <section>
   <h2><a href="../zdist/simple.js">simple</a></h2>
 
-  <article>
-    <script src="../zdist/simple.js"></script>
-    <script>
-      const simpleWorld = vxq.browserTurtleStuff();
-      delete vxq;
-    </script>
-  </article>
+  <article><script src="../zdist/simple.js"></script><script>
+    const simpleWorld = vxq.addBrowserTurtlePlaygroundNextToCurrentScript();
+    delete vxq;
+  </script></article>
 
   <button onclick="jump(simpleWorld)">jump</button>
 </section>
@@ -59,13 +55,10 @@
 <section>
   <h2><a href="../zdist/debug.js">debug</a></h2>
 
-  <article>
-    <script src="../zdist/debug.js"></script>
-    <script>
-      const debugWorld = vxq.browserTurtleStuff();
-      delete vxq;
-    </script>
-  </article>
+  <article><script src="../zdist/debug.js"></script><script>
+    const debugWorld = vxq.addBrowserTurtlePlaygroundNextToCurrentScript();
+    delete vxq;
+  </script></article>
 
   <button onclick="jump(debugWorld)">jump</button>
 </section>
@@ -76,7 +69,7 @@
   <article>
     <script src="../zdist/prod.js"></script>
     <script>
-      const prodWorld = vxq.browserTurtleStuff();
+      const prodWorld = vxq.addBrowserTurtlePlaygroundNextToCurrentScript();
       delete vxq;
     </script>
   </article>

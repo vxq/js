@@ -3,6 +3,7 @@ goog.module('vxq.main');
 const turtles = goog.require('vxq.turtles');
 const debug = goog.require('vxq.debug');
 const testing = goog.require('vxq.testing');
+const CanvasRenderer = goog.require('vxq.CanvasRenderer');
 
 
 /** @implements {VXQ} */
@@ -13,23 +14,27 @@ class VXQModule {
   }
 
   /** @override */ addBrowserTurtlePlaygroundNextToCurrentScript() {
-    const renderer = new turtles.CanvasRenderer();
-    renderer.canvas.width = 512;
-    renderer.canvas.height = 512;
+    const world = new turtles.World(512, 512, []);
+    const renderer = new CanvasRenderer(world);
 
     document.currentScript.parentNode.appendChild(renderer.canvas);
 
-    return this.testTheTurtles(renderer);
+    this.testTheTurtles(world);
+
+    return world;
   }
 
-  /** @protected */ testTheTurtles(/** ?turtles.Renderer= */ renderer = null) {
-    const turtle = new turtles.Turtle(renderer);
+  /** @protected */ testTheTurtles(
+    /** turtles.World= */ world = new turtles.World(512, 512, [])
+  ) {
+    const turtle = new turtles.Turtle();
+    world.turtles.add(turtle);
+    world.changeCallbacks.call();
 
     testing.assertEquals(50, turtle.x);
     testing.assertEquals(50, turtle.y);
 
     turtle.forward(50);
-    turtle.dot();
 
     testing.assertEquals(50, turtle.x);
     testing.assertEquals(100, turtle.y);
@@ -42,7 +47,6 @@ class VXQModule {
 
     turtle.left(3 / 8);
     turtle.forward(100);
-    turtle.dot();
 
     for (let i = 0; i < 12; i++) {
       turtle.left(1 / 16);
@@ -52,7 +56,6 @@ class VXQModule {
     turtle.forward(100);
 
     turtle.left(1 / 4);
-    turtle.dot();
 
     turtle.forward(200);
 
@@ -64,8 +67,6 @@ class VXQModule {
     turtle.forward(50);
 
     console.log('Test complete.');
-
-    return turtle;
   }
 
   /** @protected */ exportFromClosure() {

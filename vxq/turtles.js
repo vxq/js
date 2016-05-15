@@ -1,15 +1,37 @@
 goog.module('vxq.turtles');
-/** @fileoverview Provides... turtles? */
+/** @fileoverview Provides simple "turtle" worlds and agents. */
 
 const debug = goog.require('vxq.debug');
 const util = goog.require('vxq.util');
 
 
-/** @implements {VXQ.Agent} */
-class Turtle {
-  constructor(/** ?Renderer */ renderer) {
-    this.renderer = renderer;
+/** @implements {VXQ.World} */
+exports.World = class {
+  constructor(
+    /** number */ width,
+    /** number */ height,
+    /** !Array<!vxq.turtles.Turtle> */ turtles
+  ) {
+    /** @const */
+    this.width = width;
+    /** @const */
+    this.height = height;
+    /** @const {!Set<!vxq.turtles.Turtle>} */
+    this.turtles = new Set(turtles);
 
+    /** @const */
+    this.changeCallbacks = new util.CallbackList;
+  }
+
+  /** @override */ get agents() {
+    return this.turtles;
+  }
+};
+
+
+/** @implements {VXQ.Agent} */
+exports.Turtle = class {
+  constructor() {
     /** @type {number} */
     this.x = 50;
     /** @type {number} */
@@ -23,9 +45,7 @@ class Turtle {
      */
     this.rotation = 0;
 
-    this.render();
-
-    /** @protected @const */
+    /** @const */
     this.changeCallbacks = new util.CallbackList;
   }
 
@@ -49,21 +69,21 @@ class Turtle {
 
   forward(/** number */ distance) {
     debug.assert(Number.isFinite(distance));
-    this.renderTo(
+    this.goTo(
       this.x + distance * this.xFactor,
       this.y + distance * this.yFactor);
   }
 
   backward(/** number */ distance) {
     debug.assert(Number.isFinite(distance));
-    this.renderTo(
+    this.goTo(
       this.x + -distance * this.xFactor,
       this.y + -distance * this.yFactor);
   }
 
   /** @override */ goTo(x, y, z) {
     if (x != null && y != null) {
-      this.renderTo(x, y);
+      this.goTo(x, y);
     }
     if (z != null) {
       this.z = z;
@@ -71,7 +91,11 @@ class Turtle {
     return Promise.resolve();
   }
 
-  renderTo(/** number */ x, /** number */ y) {
+  goTo(x, y, z) {
+    if (!(x != null && y != null)) {
+      return Promise.reject(new Error('x and y required'));
+    }
+
     const xDelta = x - this.x;
     const yDelta = y - this.y;
     const distance = Math.sqrt(xDelta * xDelta + yDelta * yDelta);
@@ -81,66 +105,14 @@ class Turtle {
     for (let i = 0; i < steps; i++) {
       this.x += xDelta / steps;
       this.y += yDelta / steps;
-      this.render();
+      this.changeCallbacks.call();
     }
 
     this.x = x;
     this.y = y;
-    this.fireChangeCallbacks();
-  }
+    this.changeCallbacks.call();
 
-  render() {
-    this.renderer && this.renderer.turtle(this);
-  }
-
-  dot() {
-    this.renderer && this.renderer.turtle(this, 'black', 'black');
+    return Promise.resolve();
   }
 };
 
-
-/** @interface */ class Renderer {
-  /**
-   * @param {!Turtle} t
-   * @param {?string=} fillStyle
-   * @param {?string=} strokeStyle
-   */
-  turtle(t, fillStyle, strokeStyle) {}
-};
-
-
-/** @implements {Renderer} */
-class CanvasRenderer {
-  constructor() {
-    /** @const */
-    this.canvas = /** @type {!HTMLCanvasElement} */ (
-        document.createElement('canvas'));
-
-    /** @const */
-    this.context = this.canvas.getContext('2d');
-
-    /** @protected */
-    this.hueRotation = 0;
-  }
-
-  /** @override */ turtle(t, fillStyle = null, strokeStyle = null) {
-    const radians = t.rotation * 2 * Math.PI;
-
-    this.context.fillStyle =
-        fillStyle || 'hsla(' + this.hueRotation + ', 50%, 50%, 0.5)';
-    this.hueRotation += 7;
-    this.context.strokeStyle = strokeStyle || 'rgba(255, 255, 255, 0.25)';
-
-    this.context.beginPath();
-    this.context.arc(t.x, t.y, 6, 0, 2 * Math.PI);
-    this.context.fill();
-    this.context.stroke();
-  }
-};
-
-
-exports = {
-  Turtle,
-  Renderer,
-  CanvasRenderer
-};

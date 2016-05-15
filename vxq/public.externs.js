@@ -29,6 +29,15 @@ VXQ.CallbackList = class {
 
 
 /**
+ * Represents the contents of a world in some way.
+ * @interface
+ */
+VXQ.Renderer = class {
+  constructor(/** !VXQ.World */ world) {}
+};
+
+
+/**
  * A world of fixed dimensions with a potentially-changing set of agents.
  * @interface
  */
