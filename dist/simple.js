@@ -640,21 +640,34 @@ $jscomp.scope.Turtle = function $$jscomp$scope$Turtle$($renderer$$) {
   this.rotation = 0;
   this.render();
 };
-$jscomp.scope.Turtle.prototype.turn = function $$jscomp$scope$Turtle$$turn$($turns$$) {
+$jscomp.scope.Turtle.prototype.right = function $$jscomp$scope$Turtle$$right$($turns$$) {
   vxq.debug.assert(Number.isFinite($turns$$));
   this.rotation += $turns$$;
-  this.render();
+};
+$jscomp.scope.Turtle.prototype.left = function $$jscomp$scope$Turtle$$left$($turns$$) {
+  vxq.debug.assert(Number.isFinite($turns$$));
+  this.rotation -= $turns$$;
 };
 $jscomp.scope.Turtle.prototype.forward = function $$jscomp$scope$Turtle$$forward$($distance$$) {
   vxq.debug.assert(Number.isFinite($distance$$));
-  for (var $x$$ = this.x, $y$$ = this.y, $steps$$ = Math.ceil($distance$$ / 16), $i$$ = 0;$i$$ < $steps$$;$i$$++) {
-    this.x += $distance$$ * this.xFactor / $steps$$, this.y += $distance$$ * this.yFactor / $steps$$, this.render();
+  this.renderTo(this.x + $distance$$ * this.xFactor, this.y + $distance$$ * this.yFactor);
+};
+$jscomp.scope.Turtle.prototype.backward = function $$jscomp$scope$Turtle$$backward$($distance$$) {
+  vxq.debug.assert(Number.isFinite($distance$$));
+  this.renderTo(this.x + -$distance$$ * this.xFactor, this.y + -$distance$$ * this.yFactor);
+};
+$jscomp.scope.Turtle.prototype.renderTo = function $$jscomp$scope$Turtle$$renderTo$($x$$, $y$$) {
+  for (var $xDelta$$ = $x$$ - this.x, $yDelta$$ = $y$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta$$ * $xDelta$$ + $yDelta$$ * $yDelta$$) / 16), $i$$ = 0;$i$$ < $steps$$;$i$$++) {
+    this.x += $xDelta$$ / $steps$$, this.y += $yDelta$$ / $steps$$, this.render();
   }
-  this.x = $x$$ + $distance$$ * this.xFactor;
-  this.y = $y$$ + $distance$$ * this.yFactor;
+  this.x = $x$$;
+  this.y = $y$$;
 };
 $jscomp.scope.Turtle.prototype.render = function $$jscomp$scope$Turtle$$render$() {
   this.renderer && this.renderer.turtle(this);
+};
+$jscomp.scope.Turtle.prototype.dot = function $$jscomp$scope$Turtle$$dot$() {
+  this.renderer && this.renderer.turtle(this, "black", "black");
 };
 Object.defineProperties($jscomp.scope.Turtle.prototype, {xFactor:{configurable:!0, enumerable:!0, get:function() {
   return -Math.sin(2 * this.rotation * Math.PI);
@@ -663,17 +676,17 @@ Object.defineProperties($jscomp.scope.Turtle.prototype, {xFactor:{configurable:!
 }}});
 $jscomp.scope.Renderer = function $$jscomp$scope$Renderer$() {
 };
-$jscomp.scope.Renderer.prototype.turtle = function $$jscomp$scope$Renderer$$turtle$($t$$) {
+$jscomp.scope.Renderer.prototype.turtle = function $$jscomp$scope$Renderer$$turtle$($t$$, $fillStyle$$, $strokeStyle$$) {
 };
 $jscomp.scope.CanvasRenderer = function $$jscomp$scope$CanvasRenderer$() {
   this.canvas = document.createElement("canvas");
   this.context = this.canvas.getContext("2d");
   this.hueRotation = 0;
 };
-$jscomp.scope.CanvasRenderer.prototype.turtle = function $$jscomp$scope$CanvasRenderer$$turtle$($t$$) {
-  this.context.fillStyle = "hsl(" + this.hueRotation + ", 50%, 50%)";
+$jscomp.scope.CanvasRenderer.prototype.turtle = function $$jscomp$scope$CanvasRenderer$$turtle$($t$$, $fillStyle$$, $strokeStyle$$) {
+  this.context.fillStyle = (void 0 === $fillStyle$$ ? null : $fillStyle$$) || "hsla(" + this.hueRotation + ", 50%, 50%, 0.5)";
   this.hueRotation += 7;
-  this.context.strokeStyle = "rgba(255, 255, 255, 0.5)";
+  this.context.strokeStyle = (void 0 === $strokeStyle$$ ? null : $strokeStyle$$) || "rgba(255, 255, 255, 0.25)";
   this.context.beginPath();
   this.context.arc($t$$.x, $t$$.y, 6, 0, 2 * Math.PI);
   this.context.fill();
@@ -707,22 +720,25 @@ $jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQMo
   vxq.testing.assertEquals(50, $renderer$$.x);
   vxq.testing.assertEquals(50, $renderer$$.y);
   $renderer$$.forward(50);
+  $renderer$$.dot();
   vxq.testing.assertEquals(50, $renderer$$.x);
   vxq.testing.assertEquals(100, $renderer$$.y);
-  $renderer$$.turn(.25);
+  $renderer$$.right(.25);
   $renderer$$.forward(25);
   vxq.testing.assertEquals(25, $renderer$$.x);
   vxq.testing.assertEquals(100, $renderer$$.y);
-  $renderer$$.turn(-.375);
+  $renderer$$.left(.375);
   $renderer$$.forward(100);
+  $renderer$$.dot();
   for (var $i$$ = 0;12 > $i$$;$i$$++) {
-    $renderer$$.turn(-.0625), $renderer$$.forward(10);
+    $renderer$$.left(.0625), $renderer$$.forward(10);
   }
   $renderer$$.forward(100);
-  $renderer$$.turn(-.25);
+  $renderer$$.left(.25);
+  $renderer$$.dot();
   $renderer$$.forward(200);
   for ($i$$ = 0;6 > $i$$;$i$$++) {
-    $renderer$$.turn(-.0625), $renderer$$.forward(10);
+    $renderer$$.left(.0625), $renderer$$.forward(10);
   }
   $renderer$$.forward(50);
   console.log("Test complete.");

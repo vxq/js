@@ -27,32 +27,35 @@ class VXQModule {
     testing.assertEquals(50, turtle.y);
 
     turtle.forward(50);
+    turtle.dot();
 
     testing.assertEquals(50, turtle.x);
     testing.assertEquals(100, turtle.y);
 
-    turtle.turn(1 / 4);
+    turtle.right(1 / 4);
     turtle.forward(25);
 
     testing.assertEquals(25, turtle.x);
     testing.assertEquals(100, turtle.y);
 
-    turtle.turn(-3 / 8);
+    turtle.left(3 / 8);
     turtle.forward(100);
+    turtle.dot();
 
     for (let i = 0; i < 12; i++) {
-      turtle.turn(-1 / 16);
+      turtle.left(1 / 16);
       turtle.forward(10);
     }
 
     turtle.forward(100);
 
-    turtle.turn(-1 / 4);
+    turtle.left(1 / 4);
+    turtle.dot();
 
     turtle.forward(200);
 
     for (let i = 0; i < 6; i++) {
-      turtle.turn(-1 / 16);
+      turtle.left(1 / 16);
       turtle.forward(10);
     }
 

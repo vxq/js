@@ -28,39 +28,64 @@ class Turtle {
     return Math.cos(this.rotation * 2 * Math.PI);
   }
 
-  turn(/** number */ turns) {
+  right(/** number */ turns) {
     debug.assert(Number.isFinite(turns));
-
     this.rotation += turns;
-    this.render();
+  }
+
+  left(/** number */ turns) {
+    debug.assert(Number.isFinite(turns));
+    this.rotation -= turns;
   }
 
   forward(/** number */ distance) {
     debug.assert(Number.isFinite(distance));
+    this.renderTo(
+      this.x + distance * this.xFactor,
+      this.y + distance * this.yFactor);
+  }
 
-    const {x, y} = this;
+  backward(/** number */ distance) {
+    debug.assert(Number.isFinite(distance));
+    this.renderTo(
+      this.x + -distance * this.xFactor,
+      this.y + -distance * this.yFactor);
+  }
+
+  renderTo(x, y) {
+    const xDelta = x - this.x;
+    const yDelta = y - this.y;
+    const distance = Math.sqrt(xDelta * xDelta + yDelta * yDelta);
 
     // Render several stops, possibly with some precision loss.
     const steps = Math.ceil(distance / 16);
     for (let i = 0; i < steps; i++) {
-      this.x += distance * this.xFactor / steps;
-      this.y += distance * this.yFactor / steps;
+      this.x += xDelta / steps;
+      this.y += yDelta / steps;
       this.render();
     }
 
-    // Jump to precise destination.
-    this.x = x + distance * this.xFactor;
-    this.y = y + distance * this.yFactor;
+    this.x = x;
+    this.y = y;
   }
 
   render() {
     this.renderer && this.renderer.turtle(this);
   }
+
+  dot() {
+    this.renderer && this.renderer.turtle(this, 'black', 'black');
+  }
 };
 
 
 /** @interface */ class Renderer {
-  turtle(/** !Turtle */ t) {}
+  /**
+   * @param {!Turtle} t
+   * @param {?string=} fillStyle
+   * @param {?string=} strokeStyle
+   */
+  turtle(t, fillStyle, strokeStyle) {}
 };
 
 
@@ -78,12 +103,12 @@ class CanvasRenderer {
     this.hueRotation = 0;
   }
 
-  /** @override */ turtle(/** !Turtle */ t) {
+  /** @override */ turtle(t, fillStyle=null, strokeStyle=null) {
     const radians = t.rotation * 2 * Math.PI;
 
-    this.context.fillStyle = 'hsl(' + this.hueRotation + ', 50%, 50%)';
+    this.context.fillStyle = fillStyle || 'hsla(' + this.hueRotation + ', 50%, 50%, 0.5)';
     this.hueRotation += 7;
-    this.context.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    this.context.strokeStyle = strokeStyle || 'rgba(255, 255, 255, 0.25)';
 
     this.context.beginPath();
     this.context.arc(t.x, t.y, 6, 0, 2 * Math.PI);

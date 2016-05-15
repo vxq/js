@@ -46,32 +46,24 @@ function $vxq$debug$log$$($args$$) {
   this.$c$ = $renderer$$;
   this.$a$ = this.x = 50;
   this.$b$ = 0;
-  $JSCompiler_StaticMethods_render$$(this);
+  this.$c$ && $JSCompiler_StaticMethods_turtle$$(this.$c$, this);
 }
-function $JSCompiler_StaticMethods_turn$$($JSCompiler_StaticMethods_turn$self$$, $turns$$) {
-  $vxq$debug$assert$$(Number.isFinite($turns$$));
-  $JSCompiler_StaticMethods_turn$self$$.$b$ += $turns$$;
-  $JSCompiler_StaticMethods_render$$($JSCompiler_StaticMethods_turn$self$$);
+function $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$left$$($JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$left$self$$, $turns$$1$$) {
+  $vxq$debug$assert$$(Number.isFinite($turns$$1$$));
+  $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$left$self$$.$b$ -= $turns$$1$$;
 }
 function $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$, $distance$$) {
   $vxq$debug$assert$$(Number.isFinite($distance$$));
-  for (var $x$$78$$ = $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.x, $y$$49$$ = $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$a$, $steps$$ = Math.ceil($distance$$ / 16), $i$$12$$ = 0;$i$$12$$ < $steps$$;$i$$12$$++) {
-    $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.x += $distance$$ * $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$xFactor$ / $steps$$, $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$a$ += $distance$$ * $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$yFactor$ / $steps$$, $JSCompiler_StaticMethods_render$$($JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$);
+  for (var $x$$inline_3$$ = $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.x + $distance$$ * $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$xFactor$, $y$$inline_4$$ = $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$a$ + $distance$$ * $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$yFactor$, $xDelta$$inline_5$$ = $x$$inline_3$$ - $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.x, 
+  $yDelta$$inline_6$$ = $y$$inline_4$$ - $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$a$, $steps$$inline_7$$ = Math.ceil(Math.sqrt($xDelta$$inline_5$$ * $xDelta$$inline_5$$ + $yDelta$$inline_6$$ * $yDelta$$inline_6$$) / 16), $i$$inline_8$$ = 0;$i$$inline_8$$ < $steps$$inline_7$$;$i$$inline_8$$++) {
+    $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.x += $xDelta$$inline_5$$ / $steps$$inline_7$$, $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$a$ += $yDelta$$inline_6$$ / $steps$$inline_7$$, $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$c$ && $JSCompiler_StaticMethods_turtle$$($JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$c$, $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$)
+    ;
   }
-  $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.x = $x$$78$$ + $distance$$ * $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$xFactor$;
-  $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$a$ = $y$$49$$ + $distance$$ * $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$yFactor$;
+  $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.x = $x$$inline_3$$;
+  $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$self$$.$a$ = $y$$inline_4$$;
 }
-function $JSCompiler_StaticMethods_render$$($JSCompiler_StaticMethods_render$self$$) {
-  if ($JSCompiler_StaticMethods_render$self$$.$c$) {
-    var $JSCompiler_StaticMethods_turtle$self$$inline_3$$ = $JSCompiler_StaticMethods_render$self$$.$c$;
-    $JSCompiler_StaticMethods_turtle$self$$inline_3$$.$a$.fillStyle = "hsl(" + $JSCompiler_StaticMethods_turtle$self$$inline_3$$.$c$ + ", 50%, 50%)";
-    $JSCompiler_StaticMethods_turtle$self$$inline_3$$.$c$ += 7;
-    $JSCompiler_StaticMethods_turtle$self$$inline_3$$.$a$.strokeStyle = "rgba(255, 255, 255, 0.5)";
-    $JSCompiler_StaticMethods_turtle$self$$inline_3$$.$a$.beginPath();
-    $JSCompiler_StaticMethods_turtle$self$$inline_3$$.$a$.arc($JSCompiler_StaticMethods_render$self$$.x, $JSCompiler_StaticMethods_render$self$$.$a$, 6, 0, 2 * Math.PI);
-    $JSCompiler_StaticMethods_turtle$self$$inline_3$$.$a$.fill();
-    $JSCompiler_StaticMethods_turtle$self$$inline_3$$.$a$.stroke();
-  }
+function $JSCompiler_StaticMethods_dot$$($JSCompiler_StaticMethods_dot$self$$) {
+  $JSCompiler_StaticMethods_dot$self$$.$c$ && $JSCompiler_StaticMethods_turtle$$($JSCompiler_StaticMethods_dot$self$$.$c$, $JSCompiler_StaticMethods_dot$self$$, "black", "black");
 }
 Object.defineProperties($$jscomp$scope$Turtle$$.prototype, {$xFactor$:{configurable:!0, enumerable:!0, get:function() {
   return -Math.sin(2 * this.$b$ * Math.PI);
@@ -82,6 +74,15 @@ function $$jscomp$scope$CanvasRenderer$$() {
   this.$b$ = document.createElement("canvas");
   this.$a$ = this.$b$.getContext("2d");
   this.$c$ = 0;
+}
+function $JSCompiler_StaticMethods_turtle$$($JSCompiler_StaticMethods_turtle$self$$, $t$$1$$, $fillStyle$$1$$, $strokeStyle$$1$$) {
+  $JSCompiler_StaticMethods_turtle$self$$.$a$.fillStyle = (void 0 === $fillStyle$$1$$ ? null : $fillStyle$$1$$) || "hsla(" + $JSCompiler_StaticMethods_turtle$self$$.$c$ + ", 50%, 50%, 0.5)";
+  $JSCompiler_StaticMethods_turtle$self$$.$c$ += 7;
+  $JSCompiler_StaticMethods_turtle$self$$.$a$.strokeStyle = (void 0 === $strokeStyle$$1$$ ? null : $strokeStyle$$1$$) || "rgba(255, 255, 255, 0.25)";
+  $JSCompiler_StaticMethods_turtle$self$$.$a$.beginPath();
+  $JSCompiler_StaticMethods_turtle$self$$.$a$.arc($t$$1$$.x, $t$$1$$.$a$, 6, 0, 2 * Math.PI);
+  $JSCompiler_StaticMethods_turtle$self$$.$a$.fill();
+  $JSCompiler_StaticMethods_turtle$self$$.$a$.stroke();
 }
 ;function $vxq$testing$assertEquals$$($expected$$, $actual$$) {
   if ($expected$$ !== $actual$$) {
@@ -106,28 +107,32 @@ function $JSCompiler_StaticMethods_testTheTurtles$$($renderer$$2_turtle$$) {
   $vxq$testing$assertEquals$$(50, $renderer$$2_turtle$$.x);
   $vxq$testing$assertEquals$$(50, $renderer$$2_turtle$$.$a$);
   $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 50);
+  $JSCompiler_StaticMethods_dot$$($renderer$$2_turtle$$);
   $vxq$testing$assertEquals$$(50, $renderer$$2_turtle$$.x);
   $vxq$testing$assertEquals$$(100, $renderer$$2_turtle$$.$a$);
-  $JSCompiler_StaticMethods_turn$$($renderer$$2_turtle$$, .25);
+  $vxq$debug$assert$$(Number.isFinite(.25));
+  $renderer$$2_turtle$$.$b$ += .25;
   $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 25);
   $vxq$testing$assertEquals$$(25, $renderer$$2_turtle$$.x);
   $vxq$testing$assertEquals$$(100, $renderer$$2_turtle$$.$a$);
-  $JSCompiler_StaticMethods_turn$$($renderer$$2_turtle$$, -.375);
+  $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$left$$($renderer$$2_turtle$$, .375);
   $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 100);
+  $JSCompiler_StaticMethods_dot$$($renderer$$2_turtle$$);
   for (var $i$$13_i$1$$ = 0;12 > $i$$13_i$1$$;$i$$13_i$1$$++) {
-    $JSCompiler_StaticMethods_turn$$($renderer$$2_turtle$$, -.0625), $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 10);
+    $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$left$$($renderer$$2_turtle$$, .0625), $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 10);
   }
   $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 100);
-  $JSCompiler_StaticMethods_turn$$($renderer$$2_turtle$$, -.25);
+  $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$left$$($renderer$$2_turtle$$, .25);
+  $JSCompiler_StaticMethods_dot$$($renderer$$2_turtle$$);
   $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 200);
   for ($i$$13_i$1$$ = 0;6 > $i$$13_i$1$$;$i$$13_i$1$$++) {
-    $JSCompiler_StaticMethods_turn$$($renderer$$2_turtle$$, -.0625), $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 10);
+    $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$left$$($renderer$$2_turtle$$, .0625), $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 10);
   }
   $JSCompiler_StaticMethods_$jscomp_scope_Turtle_prototype$forward$$($renderer$$2_turtle$$, 50);
   console.log("Test complete.");
 }
-var $JSCompiler_StaticMethods_exportFromClosure$self$$inline_9$$ = new $$jscomp$scope$VXQModule$$;
-"object" === typeof module && null != module && (module.exports = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_9$$);
-"object" === typeof window && null != window && (window.vxq = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_9$$);
+var $JSCompiler_StaticMethods_exportFromClosure$self$$inline_16$$ = new $$jscomp$scope$VXQModule$$;
+"object" === typeof module && null != module && (module.exports = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_16$$);
+"object" === typeof window && null != window && (window.vxq = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_16$$);
 
 }.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})
