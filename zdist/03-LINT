@@ -1,7 +1,21 @@
 
-> vxq@0.0.0-dev.80 lint /Users/j/src/github.com/vxq/js
+> vxq@0.0.0-dev.81 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-[18:55:54] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[18:55:54] Starting 'lint'...
-[18:55:54] Finished 'lint' after 464 ms
+[19:04:35] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[19:04:35] Starting 'lint'...
+/Users/j/src/github.com/vxq/js/vxq/debug.js
+  line 8: Missing description in @define tag
+  line 20: Missing semicolon at end of line
+  line 25: Type should be immediately after @param tag
+  line 31: Missing semicolon at end of line
+  Total errors in file: 4
+
+/Users/j/src/github.com/vxq/js/vxq/testing.js
+  Total errors in file: 4
+
+gjslint failed
+[19:04:36] 'lint' errored after 602 ms
+[19:04:36] Error in plugin 'gulp-gjslint'
+Message:
+    Linting failed for files: /Users/j/src/github.com/vxq/js/vxq/debug.js, /Users/j/src/github.com/vxq/js/vxq/testing.js
