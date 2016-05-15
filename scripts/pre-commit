@@ -20,7 +20,7 @@ node <<END
   data.version =
     semver.inc(data.version, 'prerelease', 'dev')
         .replace(/\d+\$/, ${ancestor_count});
-  fs.writeFileSync('package.json', JSON.stringify(data, null, 2));
+  fs.writeFileSync('package.json', JSON.stringify(data, null, 2) + '\n');
 END
 
 git add package.json;
