@@ -3,6 +3,7 @@ goog.module('vxq.turtles');
 const debug = goog.require('vxq.debug');
 
 
+/** @implements {VXQ.Agent} */
 class Turtle {
   constructor(/** ?Renderer */ renderer) {
     this.renderer = renderer;
@@ -11,13 +12,33 @@ class Turtle {
     this.x = 50;
     /** @type {number} */
     this.y = 50;
+    /** @type {number} */
+    this.z = 0;
 
     /**
-     * @type {number} The number of turns by which this is rotated clockwise.
+     * @type {number} The number of turns by which this is rotated clockwise
+     *    around the Z axis.
      */
     this.rotation = 0;
 
     this.render();
+
+    /** @protected @const {!Array<function():void>} */
+    this.changeCallbacks = [];
+  }
+
+  /** @override */ addChangeCallback(f) {
+    this.changeCallbacks.push(f);
+    return () => {
+      this.changeCallbacks.splice(
+        this.changeCallbacks.indexOf(f), 1);
+    }
+  }
+
+  /** @protected */ fireChangeCallbacks() {
+    for (const f of this.changeCallbacks) {
+      f();
+    }
   }
 
   get xFactor() {
@@ -52,7 +73,17 @@ class Turtle {
       this.y + -distance * this.yFactor);
   }
 
-  renderTo(x, y) {
+  /** @override */ goTo(x, y, z) {
+    if (x != null && y != null) {
+      this.renderTo(x, y);
+    }
+    if (z != null) {
+      this.z = z;
+    }
+    return Promise.resolve();
+  }
+
+  renderTo(/** number */ x, /** number */ y) {
     const xDelta = x - this.x;
     const yDelta = y - this.y;
     const distance = Math.sqrt(xDelta * xDelta + yDelta * yDelta);
@@ -67,6 +98,7 @@ class Turtle {
 
     this.x = x;
     this.y = y;
+    this.fireChangeCallbacks();
   }
 
   render() {
