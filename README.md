@@ -1,1 +1,1 @@
-# [vxq/js](https://github.com/vxq/js) [![on travis](https://travis-ci.org/vxq/js.svg?branch=master)](https://travis-ci.org/vxq/js) [![on npm](https://badge.fury.io/js/vxq.svg)](https://www.npmjs.com/package/vxq)
+# [vxq/js](https://github.com/vxq/js) [![on travis](https://travis-ci.org/vxq/js.svg?branch=master)](https://travis-ci.org/vxq/js) [![on npm](https://badge.fury.io/js/vxq.svg)](https://www.npmjs.com/package/vxq) [![gemnasium dependency status](https://gemnasium.com/badges/github.com/vxq/js.svg)](https://gemnasium.com/github.com/vxq/js)
