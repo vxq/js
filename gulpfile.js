@@ -39,7 +39,8 @@ gulp.task('build-debug', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'debug.js',
     debug: true,
-    formatting: 'pretty_print'
+    formatting: 'pretty_print',
+    define: ['vxq.debug.DEBUG=true']
   }))).pipe(gulp.dest('dist')));
 
 gulp.task('build-prod', ['build-debug'], () =>

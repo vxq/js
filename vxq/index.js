@@ -1,12 +1,14 @@
 goog.module('vxq.main');
 
 const turtles = goog.require('vxq.turtles');
-const assert = goog.require('vxq.testing.assert');
+const debug = goog.require('vxq.debug');
+const testing = goog.require('vxq.testing');
 
 
 /** @implements {IVXQModule} */
 class VXQModule {
   /** @override */ test() {
+    debug.log('Let\'s testTheTurtles()!');
     this.testTheTurtles();
   }
 
@@ -21,19 +23,19 @@ class VXQModule {
   /** @protected */ testTheTurtles(/** ?turtles.Renderer= */ renderer = null) {
     const turtle = new turtles.Turtle(renderer);
 
-    assert.equals(50, turtle.x);
-    assert.equals(50, turtle.y);
+    testing.assertEquals(50, turtle.x);
+    testing.assertEquals(50, turtle.y);
 
     turtle.forward(50);
 
-    assert.equals(50, turtle.x);
-    assert.equals(100, turtle.y);
+    testing.assertEquals(50, turtle.x);
+    testing.assertEquals(100, turtle.y);
 
     turtle.turn(1 / 4);
     turtle.forward(25);
 
-    assert.equals(25, turtle.x);
-    assert.equals(100, turtle.y);
+    testing.assertEquals(25, turtle.x);
+    testing.assertEquals(100, turtle.y);
 
     turtle.turn(-3 / 8);
     turtle.forward(100);

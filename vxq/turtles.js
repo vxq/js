@@ -1,5 +1,7 @@
 goog.module('vxq.turtles');
 
+const debug = goog.require('vxq.debug');
+
 
 class Turtle {
   constructor(/** ?Renderer */ renderer) {
@@ -27,11 +29,15 @@ class Turtle {
   }
 
   turn(/** number */ turns) {
+    debug.assert(Number.isFinite(turns));
+
     this.rotation += turns;
     this.render();
   }
 
   forward(/** number */ distance) {
+    debug.assert(Number.isFinite(distance));
+
     const {x, y} = this;
 
     // Render several stops, possibly with some precision loss.
@@ -62,8 +68,8 @@ class Turtle {
 class CanvasRenderer {
   constructor() {
     /** @const */
-    this.canvas =
-        /** @type {!HTMLCanvasElement} */ (document.createElement('canvas'));
+    this.canvas = /** @type {!HTMLCanvasElement} */ (
+        document.createElement('canvas'));
 
     /** @const */
     this.context = this.canvas.getContext('2d');
