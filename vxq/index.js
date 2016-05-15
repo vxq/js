@@ -5,7 +5,7 @@ const debug = goog.require('vxq.debug');
 const testing = goog.require('vxq.testing');
 
 
-/** @implements {IVXQModule} */
+/** @implements {VXQ} */
 class VXQModule {
   /** @override */ test() {
     debug.log('Let\'s testTheTurtles()!');
@@ -14,10 +14,12 @@ class VXQModule {
 
   /** @override */ browserTurtleStuff() {
     const renderer = new turtles.CanvasRenderer();
-    document.body.appendChild(renderer.canvas);
     renderer.canvas.width = 512;
     renderer.canvas.height = 512;
-    this.testTheTurtles(renderer);
+
+    document.currentScript.parentNode.appendChild(renderer.canvas);
+
+    return this.testTheTurtles(renderer);
   }
 
   /** @protected */ testTheTurtles(/** ?turtles.Renderer= */ renderer = null) {
@@ -62,6 +64,8 @@ class VXQModule {
     turtle.forward(50);
 
     console.log('Test complete.');
+
+    return turtle;
   }
 
   /** @protected */ exportFromClosure() {

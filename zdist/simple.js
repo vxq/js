@@ -374,8 +374,8 @@ $jscomp.math.tanh = function $$jscomp$math$tanh$($x$$) {
   if (0 === $x$$) {
     return $x$$;
   }
-  var $y$$44_z$$ = Math.exp(2 * -Math.abs($x$$)), $y$$44_z$$ = (1 - $y$$44_z$$) / (1 + $y$$44_z$$);
-  return 0 > $x$$ ? -$y$$44_z$$ : $y$$44_z$$;
+  var $y$$45_z$$ = Math.exp(2 * -Math.abs($x$$)), $y$$45_z$$ = (1 - $y$$45_z$$) / (1 + $y$$45_z$$);
+  return 0 > $x$$ ? -$y$$45_z$$ : $y$$45_z$$;
 };
 $jscomp.math.acosh = function $$jscomp$math$acosh$($x$$) {
   $x$$ = Number($x$$);
@@ -637,8 +637,21 @@ vxq.debug.log = function $vxq$debug$log$($args$$) {
 $jscomp.scope.Turtle = function $$jscomp$scope$Turtle$($renderer$$) {
   this.renderer = $renderer$$;
   this.y = this.x = 50;
-  this.rotation = 0;
+  this.rotation = this.z = 0;
   this.render();
+  this.changeCallbacks = [];
+};
+$jscomp.scope.Turtle.prototype.addChangeCallback = function $$jscomp$scope$Turtle$$addChangeCallback$($f$$) {
+  var $$jscomp$this$$ = this;
+  this.changeCallbacks.push($f$$);
+  return function() {
+    return void $$jscomp$this$$.changeCallbacks.splice($$jscomp$this$$.changeCallbacks.indexOf($f$$), 1);
+  };
+};
+$jscomp.scope.Turtle.prototype.fireChangeCallbacks = function $$jscomp$scope$Turtle$$fireChangeCallbacks$() {
+  for (var $$jscomp$iter$0$$ = $jscomp.makeIterator(this.changeCallbacks), $$jscomp$key$f_f$$ = $$jscomp$iter$0$$.next();!$$jscomp$key$f_f$$.done;$$jscomp$key$f_f$$ = $$jscomp$iter$0$$.next()) {
+    $$jscomp$key$f_f$$ = $$jscomp$key$f_f$$.value, $$jscomp$key$f_f$$();
+  }
 };
 $jscomp.scope.Turtle.prototype.right = function $$jscomp$scope$Turtle$$right$($turns$$) {
   vxq.debug.assert(Number.isFinite($turns$$));
@@ -656,12 +669,18 @@ $jscomp.scope.Turtle.prototype.backward = function $$jscomp$scope$Turtle$$backwa
   vxq.debug.assert(Number.isFinite($distance$$));
   this.renderTo(this.x + -$distance$$ * this.xFactor, this.y + -$distance$$ * this.yFactor);
 };
+$jscomp.scope.Turtle.prototype.goTo = function $$jscomp$scope$Turtle$$goTo$($x$$, $y$$, $z$$) {
+  null != $x$$ && null != $y$$ && this.renderTo($x$$, $y$$);
+  null != $z$$ && (this.z = $z$$);
+  return Promise.resolve();
+};
 $jscomp.scope.Turtle.prototype.renderTo = function $$jscomp$scope$Turtle$$renderTo$($x$$, $y$$) {
   for (var $xDelta$$ = $x$$ - this.x, $yDelta$$ = $y$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta$$ * $xDelta$$ + $yDelta$$ * $yDelta$$) / 16), $i$$ = 0;$i$$ < $steps$$;$i$$++) {
     this.x += $xDelta$$ / $steps$$, this.y += $yDelta$$ / $steps$$, this.render();
   }
   this.x = $x$$;
   this.y = $y$$;
+  this.fireChangeCallbacks();
 };
 $jscomp.scope.Turtle.prototype.render = function $$jscomp$scope$Turtle$$render$() {
   this.renderer && this.renderer.turtle(this);
@@ -710,10 +729,10 @@ $jscomp.scope.VXQModule.prototype.test = function $$jscomp$scope$VXQModule$$test
 };
 $jscomp.scope.VXQModule.prototype.browserTurtleStuff = function $$jscomp$scope$VXQModule$$browserTurtleStuff$() {
   var $renderer$$ = new vxq.turtles.CanvasRenderer;
-  document.body.appendChild($renderer$$.canvas);
   $renderer$$.canvas.width = 512;
   $renderer$$.canvas.height = 512;
-  this.testTheTurtles($renderer$$);
+  document.currentScript.parentNode.appendChild($renderer$$.canvas);
+  return this.testTheTurtles($renderer$$);
 };
 $jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQModule$$testTheTurtles$($renderer$$) {
   $renderer$$ = new vxq.turtles.Turtle(void 0 === $renderer$$ ? null : $renderer$$);
@@ -742,6 +761,7 @@ $jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQMo
   }
   $renderer$$.forward(50);
   console.log("Test complete.");
+  return $renderer$$;
 };
 $jscomp.scope.VXQModule.prototype.exportFromClosure = function $$jscomp$scope$VXQModule$$exportFromClosure$() {
   "object" === typeof module && null != module && (module.exports = this);

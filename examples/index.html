@@ -3,27 +3,53 @@
 
 <style>
   html {
+    font-family: "Trebuchet MS", sans-serif;
     padding: 92px 0;
     background: #666;
     text-align: center;
   }
 
-  canvas {
+  section {
+    display: inline-block;
     width: 32%;
-    background: rgb(222, 222, 222);
-    border: 2px solid black;
-    margin: -4px;
+    padding-bottom: 4px;
+    background: white;
+  }
+
+  section canvas {
+    width: 100%;
+    border: 4px solid #666;
+    border-width: 4px 0 4px 0;
+  }
+
+  h2 a {
+    color: inherit;
   }
 </style>
 
-<script src="../zdist/simple.js"></script>
-<script>vxq.browserTurtleStuff();</script>
-<script>delete vxq;</script>
+<section>
+  <h2><a href="../zdist/simple.js">simple</a></h2>
+  <script src="../zdist/simple.js"></script>
+  <script>let simpleTurtle = vxq.browserTurtleStuff();</script>
+  <button onclick="simpleTurtle.goTo(
+      Math.random() * 512, Math.random() * 512)">jump</button>
+  <script>delete vxq; delete turtle;</script>
+</section>
 
-<script src="../zdist/debug.js"></script>
-<script>vxq.browserTurtleStuff();</script>
-<script>delete vxq;</script>
+<section>
+  <h2><a href="../zdist/debug.js">debug</a></h2>
+  <script src="../zdist/debug.js"></script>
+  <script>let debugTurtle = vxq.browserTurtleStuff();</script>
+  <button onclick="debugTurtle.goTo(
+      Math.random() * 512, Math.random() * 512)">jump</button>
+  <script>delete vxq;</script>
+</section>
 
-<script src="../zdist/prod.js"></script>
-<script>vxq.browserTurtleStuff();</script>
-<script>delete vxq;</script>
+<section>
+  <h2><a href="../zdist/prod.js">prod</a></h2>
+  <script src="../zdist/prod.js"></script>
+  <script>let prodTurtle = vxq.browserTurtleStuff();</script>
+  <button onclick="prodTurtle.goTo(
+      Math.random() * 512, Math.random() * 512)">jump</button>
+  <script>delete vxq;</script>
+</section>
