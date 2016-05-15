@@ -10,4 +10,7 @@ git commit --no-verify -m "${version}";
 git tag "${version}";
 git push "${remote}" --tags;
 git push "${remote}" "${branch}";
-git push -f "${remote}" "${branch}:gh-pages";
+git push "${remote}" "${branch}:gh-pages" || \
+    echo "Optimistically assuming that gh-pages update failed correctly " \
+         "because this release is an update to a previous version, not the " \
+         "latest version.";
