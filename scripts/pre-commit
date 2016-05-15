@@ -1,10 +1,6 @@
 #!/bin/bash
 set -veuxo pipefail;
 
-ancestor_count="$(git rev-list --count HEAD)";
-# Update package.json to specify a -dev prelease version using this git
-# ancestor count, and automatically resolve version number conflicts based
-# on the greater version number.
 node <<END
   const fs = require('fs');
   const semver = require('semver');
@@ -17,9 +13,7 @@ node <<END
         '"version": ' + (semver.gte(JSON.parse(firstVersion), JSON.parse(secondVersion)) ? firstVersion : secondVersion) + ',');
 
   const data = JSON.parse(rawDataWithVersionConflictResovled);
-  data.version =
-    semver.inc(data.version, 'prerelease', 'dev')
-        .replace(/\d+\$/, ${ancestor_count});
+  data.version = semver.inc(data.version, 'prerelease', 'dev');
   fs.writeFileSync('package.json', JSON.stringify(data, null, 2) + '\n');
 END
 
