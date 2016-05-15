@@ -3,17 +3,17 @@ const t = require('tape');
 
 t.test('run closure', t => {
   t.test('simple', t => {
-    require('../dist/simple').test();
+    require('../zdist/simple').test();
     t.end();
   });
 
   t.test('debug', t => {
-    require('../dist/debug').test();
+    require('../zdist/debug').test();
     t.end();
   });
 
   t.test('prod', t => {
-    require('../dist/prod').test();
+    require('../zdist/prod').test();
     t.end();
   });
 

@@ -45,7 +45,7 @@ gulp.task('build-simple', () => {
     debug: true,
     formatting: 'pretty_print',
     define: ['vxq.debug.DEBUG=true']
-  }))).pipe(gulp.dest('dist'));
+  }))).pipe(gulp.dest('zdist'));
 });
 
 gulp.task('build-debug', () =>
@@ -54,12 +54,12 @@ gulp.task('build-debug', () =>
     debug: true,
     formatting: 'pretty_print',
     define: ['vxq.debug.DEBUG=true']
-  }))).pipe(gulp.dest('dist')));
+  }))).pipe(gulp.dest('zdist')));
 
 gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'prod.js'
-  }))).pipe(gulp.dest('dist')));
+  }))).pipe(gulp.dest('zdist')));
 
 gulp.task('lint', () =>
   gulp.src('vxq/**.js')

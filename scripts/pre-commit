@@ -4,8 +4,8 @@ set -veuxo pipefail;
 npm version --no-git-tag-version prerelease;
 git add package.json;
 npm run prepublish && ( \
-  echo "exit status 0" | tee dist/0S-SUCCESS \
+  echo "exit status 0" | tee zdist/0S-SUCCESS \
 ) || ( \
-  echo "exit status $?" | tee dist/0F-FAILURE \
+  echo "exit status $?" | tee zdist/0F-FAILURE \
 );
-git add dist/;
+git add zdist/;
