@@ -767,6 +767,13 @@ $jscomp.scope.VXQModule.prototype.exportFromClosure = function $$jscomp$scope$VX
   "object" === typeof module && null != module && (module.exports = this);
   "object" === typeof window && null != window && (window.vxq = this);
 };
+$jscomp.scope.VXQModule.prototype.harderToParse = function $$jscomp$scope$VXQModule$$harderToParse$() {
+  (function($f$$) {
+    $f$$();
+    return 8;
+  })(function() {
+  });
+};
 vxq.main = new $jscomp.scope.VXQModule;
 vxq.main.exportFromClosure();
 

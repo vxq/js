@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.0.0-dev.87",
+  "version": "0.0.0-dev.88",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -8,7 +8,7 @@
     "google-closure-compiler": "^20160315.2.0",
     "google-closure-library": "^20160315.0.0",
     "gulp": "^3.9.1",
-    "gulp-gjslint": "vxq/gulp-gjslint#3df50cf10349d08befc08afb3aa974a178114232",
+    "gulp-gjslint": "vxq/gulp-gjslint#tmp",
     "run-sequence": "^1.1.5",
     "tape": "^4.5.1"
   },

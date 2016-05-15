@@ -79,6 +79,18 @@ class VXQModule {
       window['vxq'] = this;
     }
   }
+
+  /** @protected */ harderToParse() {
+    const x = (f) => {
+      const y = 3;
+      f();
+      return y + 5;
+    };
+
+    x(() => {
+
+    });
+  }
 };
 
 exports = new VXQModule;
