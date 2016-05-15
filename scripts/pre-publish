@@ -5,3 +5,4 @@ npm run clean;
 npm run build | tee zdist/01-BUILD;
 npm run test  | tee zdist/02-TEST;
 npm run lint  | tee zdist/03-LINT;
+echo "exit status 0" | tee zdist/00-SUCCESS;

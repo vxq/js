@@ -1,11 +1,22 @@
 #!/bin/bash
 set -veuxo pipefail;
 
-npm version --no-git-tag-version prerelease;
+node <<END
+  const fs = require('fs');
+  const semver = require('semver');
+
+  const rawData = fs.readFileSync('package.json', {encoding: 'utf8'});
+
+  const rawDataWithVersionConflictResovled = rawData.replace(
+      /\n<<<<<<<[^\n]*\n\s*"version"\s*:\s*([^,]+),\n=======\n\s*"version"\s*:\s*([^,]+),\n>>>>>>>[^\n]+\n/,
+      (match, firstVersion, secondVersion) =>
+        '"version": ' + (semver.gte(JSON.parse(firstVersion), JSON.parse(secondVersion)) ? firstVersion : secondVersion) + ',');
+
+  const data = JSON.parse(rawDataWithVersionConflictResovled);
+  data.version = semver.inc(data.version, 'prerelease', 'dev');
+  fs.writeFileSync('package.json', JSON.stringify(data, null, 2) + '\n');
+END
+
 git add package.json;
-npm run prepublish && ( \
-  echo "exit status 0" | tee zdist/00-SUCCESS \
-) || ( \
-  echo "exit status $?" | tee zdist/00-FAILURE \
-);
+npm run prepublish || echo "exit status $?" | tee zdist/00-FAILURE;
 git add zdist/;
