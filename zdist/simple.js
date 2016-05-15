@@ -712,15 +712,15 @@ $jscomp.scope.CanvasRenderer.prototype.turtle = function $$jscomp$scope$CanvasRe
   this.context.stroke();
 };
 vxq.turtles = {Turtle:$jscomp.scope.Turtle, Renderer:$jscomp.scope.Renderer, CanvasRenderer:$jscomp.scope.CanvasRenderer};
-$jscomp.scope.assert = function $$jscomp$scope$assert$($condition$$, $message$$) {
+vxq.testing = {};
+vxq.testing.assert = function $vxq$testing$assert$($condition$$, $message$$) {
   if (!$condition$$) {
     throw Error($message$$ || "Assertion failed");
   }
 };
-$jscomp.scope.assertEquals = function $$jscomp$scope$assertEquals$($expected$$, $actual$$) {
-  (0,$jscomp.scope.assert)($expected$$ === $actual$$, $expected$$ + " !== " + $actual$$);
+vxq.testing.assertEquals = function $vxq$testing$assertEquals$($expected$$, $actual$$) {
+  vxq.testing.assert($expected$$ === $actual$$, $expected$$ + " !== " + $actual$$);
 };
-vxq.testing = {assert:$jscomp.scope.assert, assertEquals:$jscomp.scope.assertEquals};
 $jscomp.scope.VXQModule = function $$jscomp$scope$VXQModule$() {
 };
 $jscomp.scope.VXQModule.prototype.test = function $$jscomp$scope$VXQModule$$test$() {
