@@ -31,6 +31,76 @@ function $$jscomp$arrayFromIterator$$($iterator$$) {
   }
   return $arr$$8$$;
 }
+function $vxq$debug$assert$$($condition$$1$$) {
+  if (!$condition$$1$$) {
+    throw Error("Assertion failed");
+  }
+}
+function $vxq$debug$log$$($args$$) {
+  for (var $$jscomp$restParams$$4$$ = [], $$jscomp$restIndex$$4$$ = 0;$$jscomp$restIndex$$4$$ < arguments.length;++$$jscomp$restIndex$$4$$) {
+    $$jscomp$restParams$$4$$[$$jscomp$restIndex$$4$$ - 0] = arguments[$$jscomp$restIndex$$4$$];
+  }
+  console.log.apply(console, [].concat($$jscomp$restParams$$4$$ instanceof Array ? $$jscomp$restParams$$4$$ : $$jscomp$arrayFromIterator$$($$jscomp$makeIterator$$($$jscomp$restParams$$4$$))));
+}
+;function $vxq$util$CallbackList$$() {
+  this.$b$ = [];
+  this.$a$ = [];
+}
+$vxq$util$CallbackList$$.prototype.add = function $$vxq$util$CallbackList$$$$add$($f$$2$$) {
+  var $token$$2$$ = {};
+  this.$a$.push($token$$2$$);
+  this.$b$.push($f$$2$$);
+  return function() {
+    var $index$$50$$ = this.$a$.indexOf($token$$2$$);
+    this.$b$.splice($index$$50$$, 1);
+    this.$a$.splice($index$$50$$, 1);
+  }.bind(this);
+};
+$vxq$util$CallbackList$$.prototype.call = function $$vxq$util$CallbackList$$$$call$() {
+  for (var $$jscomp$iter$0$$ = $$jscomp$makeIterator$$(this.$b$), $$jscomp$key$f_f$$3$$ = $$jscomp$iter$0$$.next();!$$jscomp$key$f_f$$3$$.done;$$jscomp$key$f_f$$3$$ = $$jscomp$iter$0$$.next()) {
+    $$jscomp$key$f_f$$3$$ = $$jscomp$key$f_f$$3$$.value, $$jscomp$key$f_f$$3$$();
+  }
+};
+function $vxq$turtles$World$$($width$$12$$, $height$$11$$, $turtles$$) {
+  this.width = $width$$12$$;
+  this.height = $height$$11$$;
+  this.$a$ = new Set($turtles$$);
+  this.changeCallbacks = new $vxq$util$CallbackList$$;
+}
+Object.defineProperties($vxq$turtles$World$$.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
+  return this.$a$;
+}}});
+function $vxq$turtles$Turtle$$() {
+  this.y = this.x = 50;
+  this.$a$ = this.z = 0;
+  this.changeCallbacks = new $vxq$util$CallbackList$$;
+}
+function $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$$($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$self$$, $turns$$1$$) {
+  $vxq$debug$assert$$(Number.isFinite($turns$$1$$));
+  $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$self$$.$a$ -= $turns$$1$$;
+}
+function $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$, $distance$$) {
+  $vxq$debug$assert$$(Number.isFinite($distance$$));
+  $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.goTo($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.x + $distance$$ * $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.$xFactor$, $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.y + $distance$$ * $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.$yFactor$, $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.z);
+}
+$vxq$turtles$Turtle$$.prototype.goTo = function $$vxq$turtles$Turtle$$$$goTo$($x$$79$$, $y$$50$$, $xDelta_z$$13$$) {
+  $vxq$debug$assert$$(Number.isFinite($x$$79$$));
+  $vxq$debug$assert$$(Number.isFinite($y$$50$$));
+  $vxq$debug$assert$$(Number.isFinite($xDelta_z$$13$$));
+  $xDelta_z$$13$$ = $x$$79$$ - this.x;
+  for (var $yDelta$$ = $y$$50$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta_z$$13$$ * $xDelta_z$$13$$ + $yDelta$$ * $yDelta$$) / 4), $i$$12$$ = 0;$i$$12$$ < $steps$$;$i$$12$$++) {
+    this.x += $xDelta_z$$13$$ / $steps$$, this.y += $yDelta$$ / $steps$$, this.changeCallbacks.call();
+  }
+  this.x = $x$$79$$;
+  this.y = $y$$50$$;
+  this.changeCallbacks.call();
+  return Promise.resolve();
+};
+Object.defineProperties($vxq$turtles$Turtle$$.prototype, {$xFactor$:{configurable:!0, enumerable:!0, get:function() {
+  return -Math.sin(2 * this.$a$ * Math.PI);
+}}, $yFactor$:{configurable:!0, enumerable:!0, get:function() {
+  return Math.cos(2 * this.$a$ * Math.PI);
+}}});
 function $$jscomp$scope$AgentRender$$($renderer$$, $agent$$) {
   var $$jscomp$this$$1$$ = this;
   this.$b$ = 0;
@@ -66,85 +136,15 @@ function $vxq$CanvasRenderer$$($world$$1$$) {
   this.$a$.changeCallbacks.add(this.$g$.bind(this));
 }
 $vxq$CanvasRenderer$$.prototype.$g$ = function $$vxq$CanvasRenderer$$$$$g$$() {
-  for (var $$jscomp$iter$0_$jscomp$iter$1$$1$$ = $$jscomp$makeIterator$$(this.$c$), $$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$0_$jscomp$iter$1$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$0_$jscomp$iter$1$$1$$.next()) {
+  for (var $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$ = $$jscomp$makeIterator$$(this.$c$), $$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$1$$.value.cancel();
   }
   this.$c$ = new Map;
-  $$jscomp$iter$0_$jscomp$iter$1$$1$$ = $$jscomp$makeIterator$$(this.$a$.agents);
-  for ($$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$0_$jscomp$iter$1$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$0_$jscomp$iter$1$$1$$.next()) {
+  $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$ = $$jscomp$makeIterator$$(this.$a$.agents);
+  for ($$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$1$$.value, this.$c$.set($$jscomp$key$agent_$jscomp$key$render_agent$$1$$, new $$jscomp$scope$AgentRender$$(this, $$jscomp$key$agent_$jscomp$key$render_agent$$1$$));
   }
 };
-function $vxq$debug$assert$$($condition$$1$$) {
-  if (!$condition$$1$$) {
-    throw Error("Assertion failed");
-  }
-}
-function $vxq$debug$log$$($args$$) {
-  for (var $$jscomp$restParams$$4$$ = [], $$jscomp$restIndex$$4$$ = 0;$$jscomp$restIndex$$4$$ < arguments.length;++$$jscomp$restIndex$$4$$) {
-    $$jscomp$restParams$$4$$[$$jscomp$restIndex$$4$$ - 0] = arguments[$$jscomp$restIndex$$4$$];
-  }
-  console.log.apply(console, [].concat($$jscomp$restParams$$4$$ instanceof Array ? $$jscomp$restParams$$4$$ : $$jscomp$arrayFromIterator$$($$jscomp$makeIterator$$($$jscomp$restParams$$4$$))));
-}
-;function $vxq$util$CallbackList$$() {
-  this.$b$ = [];
-  this.$a$ = [];
-}
-$vxq$util$CallbackList$$.prototype.add = function $$vxq$util$CallbackList$$$$add$($f$$2$$) {
-  var $token$$2$$ = {};
-  this.$a$.push($token$$2$$);
-  this.$b$.push($f$$2$$);
-  return function() {
-    var $index$$50$$ = this.$a$.indexOf($token$$2$$);
-    this.$b$.splice($index$$50$$, 1);
-    this.$a$.splice($index$$50$$, 1);
-  }.bind(this);
-};
-$vxq$util$CallbackList$$.prototype.call = function $$vxq$util$CallbackList$$$$call$() {
-  for (var $$jscomp$iter$2$$1$$ = $$jscomp$makeIterator$$(this.$b$), $$jscomp$key$f_f$$3$$ = $$jscomp$iter$2$$1$$.next();!$$jscomp$key$f_f$$3$$.done;$$jscomp$key$f_f$$3$$ = $$jscomp$iter$2$$1$$.next()) {
-    $$jscomp$key$f_f$$3$$ = $$jscomp$key$f_f$$3$$.value, $$jscomp$key$f_f$$3$$();
-  }
-};
-function $vxq$turtles$World$$($width$$12$$, $height$$11$$, $turtles$$) {
-  this.width = $width$$12$$;
-  this.height = $height$$11$$;
-  this.$a$ = new Set($turtles$$);
-  this.changeCallbacks = new $vxq$util$CallbackList$$;
-}
-Object.defineProperties($vxq$turtles$World$$.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
-  return this.$a$;
-}}});
-function $vxq$turtles$Turtle$$() {
-  this.y = this.x = 50;
-  this.$a$ = this.z = 0;
-  this.changeCallbacks = new $vxq$util$CallbackList$$;
-}
-function $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$$($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$self$$, $turns$$1$$) {
-  $vxq$debug$assert$$(Number.isFinite($turns$$1$$));
-  $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$self$$.$a$ -= $turns$$1$$;
-}
-function $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$, $distance$$1$$) {
-  $vxq$debug$assert$$(Number.isFinite($distance$$1$$));
-  $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.goTo($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.x + $distance$$1$$ * $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.$xFactor$, $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.y + $distance$$1$$ * $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.$yFactor$, $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.z);
-}
-$vxq$turtles$Turtle$$.prototype.goTo = function $$vxq$turtles$Turtle$$$$goTo$($x$$80$$, $y$$51$$, $xDelta_z$$14$$) {
-  $vxq$debug$assert$$(Number.isFinite($x$$80$$));
-  $vxq$debug$assert$$(Number.isFinite($y$$51$$));
-  $vxq$debug$assert$$(Number.isFinite($xDelta_z$$14$$));
-  $xDelta_z$$14$$ = $x$$80$$ - this.x;
-  for (var $yDelta$$ = $y$$51$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta_z$$14$$ * $xDelta_z$$14$$ + $yDelta$$ * $yDelta$$) / 4), $i$$12$$ = 0;$i$$12$$ < $steps$$;$i$$12$$++) {
-    this.x += $xDelta_z$$14$$ / $steps$$, this.y += $yDelta$$ / $steps$$, this.changeCallbacks.call();
-  }
-  this.x = $x$$80$$;
-  this.y = $y$$51$$;
-  this.changeCallbacks.call();
-  return Promise.resolve();
-};
-Object.defineProperties($vxq$turtles$Turtle$$.prototype, {$xFactor$:{configurable:!0, enumerable:!0, get:function() {
-  return -Math.sin(2 * this.$a$ * Math.PI);
-}}, $yFactor$:{configurable:!0, enumerable:!0, get:function() {
-  return Math.cos(2 * this.$a$ * Math.PI);
-}}});
 function $vxq$testing$assertEquals$$($expected$$, $actual$$) {
   if ($expected$$ !== $actual$$) {
     throw Error($expected$$ + " !== " + $actual$$ || "Assertion failed");

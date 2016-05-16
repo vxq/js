@@ -621,58 +621,7 @@ $jscomp.string.endsWith = function $$jscomp$string$endsWith$($searchString$$, $o
 $jscomp.string.endsWith$install = function $$jscomp$string$endsWith$install$() {
   String.prototype.endsWith || (String.prototype.endsWith = $jscomp.string.endsWith);
 };
-var vxq = {};
-$jscomp.scope.AgentRender = function $$jscomp$scope$AgentRender$($renderer$$, $agent$$) {
-  var $$jscomp$this$$ = this;
-  this.totalDistance = 0;
-  this.hueSeed = 1E3 * Math.random();
-  this.lastZ = this.lastY = this.lastX = 0;
-  this.renderer = $renderer$$;
-  this.agent = $agent$$;
-  this.cancel = $agent$$.changeCallbacks.add(function() {
-    return void $$jscomp$this$$.update($agent$$.x, $agent$$.y, $agent$$.z);
-  });
-};
-$jscomp.scope.AgentRender.prototype.update = function $$jscomp$scope$AgentRender$$update$($deltaX_x$$, $deltaY_y$$, $deltaZ_g_z$$) {
-  $deltaX_x$$ -= this.lastX;
-  $deltaY_y$$ -= this.lastY;
-  $deltaZ_g_z$$ -= this.lastZ;
-  this.totalDistance += Math.sqrt($deltaX_x$$ * $deltaX_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_g_z$$ * $deltaZ_g_z$$);
-  $deltaZ_g_z$$ = this.renderer.context;
-  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 80%, 10%, 0.04)";
-  $deltaZ_g_z$$.beginPath();
-  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 192, 0, 2 * Math.PI);
-  $deltaZ_g_z$$.fill();
-  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 50%, 70%, 1.0)";
-  $deltaZ_g_z$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
-  $deltaZ_g_z$$.beginPath();
-  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
-  $deltaZ_g_z$$.fill();
-  $deltaZ_g_z$$.stroke();
-};
-vxq.CanvasRenderer = function $vxq$CanvasRenderer$($world$$) {
-  this.world = $world$$;
-  this.canvas = document.createElement("canvas");
-  this.canvas.width = this.world.width;
-  this.canvas.height = this.world.height;
-  this.context = this.canvas.getContext("2d");
-  this.context.fillStyle = "black";
-  this.context.fillRect(0, 0, this.world.width, this.world.height);
-  this.renders = new Map;
-  this.updateRenders();
-  this.world.changeCallbacks.add(this.updateRenders.bind(this));
-};
-vxq.CanvasRenderer.prototype.updateRenders = function $vxq$CanvasRenderer$$updateRenders$() {
-  for (var $$jscomp$iter$0_$jscomp$iter$1$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next()) {
-    $$jscomp$key$agent_$jscomp$key$render_agent$$.value.cancel();
-  }
-  this.renders = new Map;
-  $$jscomp$iter$0_$jscomp$iter$1$$ = $jscomp.makeIterator(this.world.agents);
-  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next()) {
-    $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render_agent$$, new $jscomp.scope.AgentRender(this, $$jscomp$key$agent_$jscomp$key$render_agent$$));
-  }
-};
-vxq.debug = {};
+var vxq = {debug:{}};
 vxq.debug.DEBUG = !0;
 vxq.debug.assert = function $vxq$debug$assert$($condition$$, $message$$) {
   if (vxq.debug.DEBUG && !$condition$$) {
@@ -701,7 +650,7 @@ vxq.util.CallbackList.prototype.add = function $vxq$util$CallbackList$$add$($f$$
   }.bind(this);
 };
 vxq.util.CallbackList.prototype.call = function $vxq$util$CallbackList$$call$() {
-  for (var $$jscomp$iter$2$$ = $jscomp.makeIterator(this.callbacks), $$jscomp$key$f_f$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$f_f$$.done;$$jscomp$key$f_f$$ = $$jscomp$iter$2$$.next()) {
+  for (var $$jscomp$iter$0$$ = $jscomp.makeIterator(this.callbacks), $$jscomp$key$f_f$$ = $$jscomp$iter$0$$.next();!$$jscomp$key$f_f$$.done;$$jscomp$key$f_f$$ = $$jscomp$iter$0$$.next()) {
     $$jscomp$key$f_f$$ = $$jscomp$key$f_f$$.value, $$jscomp$key$f_f$$();
   }
 };
@@ -754,6 +703,56 @@ Object.defineProperties(vxq.turtles.Turtle.prototype, {xFactor:{configurable:!0,
 }}, yFactor:{configurable:!0, enumerable:!0, get:function() {
   return Math.cos(2 * this.rotation * Math.PI);
 }}});
+$jscomp.scope.AgentRender = function $$jscomp$scope$AgentRender$($renderer$$, $agent$$) {
+  var $$jscomp$this$$ = this;
+  this.totalDistance = 0;
+  this.hueSeed = 1E3 * Math.random();
+  this.lastZ = this.lastY = this.lastX = 0;
+  this.renderer = $renderer$$;
+  this.agent = $agent$$;
+  this.cancel = $agent$$.changeCallbacks.add(function() {
+    return void $$jscomp$this$$.update($agent$$.x, $agent$$.y, $agent$$.z);
+  });
+};
+$jscomp.scope.AgentRender.prototype.update = function $$jscomp$scope$AgentRender$$update$($deltaX_x$$, $deltaY_y$$, $deltaZ_g_z$$) {
+  $deltaX_x$$ -= this.lastX;
+  $deltaY_y$$ -= this.lastY;
+  $deltaZ_g_z$$ -= this.lastZ;
+  this.totalDistance += Math.sqrt($deltaX_x$$ * $deltaX_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_g_z$$ * $deltaZ_g_z$$);
+  $deltaZ_g_z$$ = this.renderer.context;
+  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 80%, 10%, 0.04)";
+  $deltaZ_g_z$$.beginPath();
+  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 192, 0, 2 * Math.PI);
+  $deltaZ_g_z$$.fill();
+  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 50%, 70%, 1.0)";
+  $deltaZ_g_z$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
+  $deltaZ_g_z$$.beginPath();
+  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
+  $deltaZ_g_z$$.fill();
+  $deltaZ_g_z$$.stroke();
+};
+vxq.CanvasRenderer = function $vxq$CanvasRenderer$($world$$) {
+  this.world = $world$$;
+  this.canvas = document.createElement("canvas");
+  this.canvas.width = this.world.width;
+  this.canvas.height = this.world.height;
+  this.context = this.canvas.getContext("2d");
+  this.context.fillStyle = "black";
+  this.context.fillRect(0, 0, this.world.width, this.world.height);
+  this.renders = new Map;
+  this.updateRenders();
+  this.world.changeCallbacks.add(this.updateRenders.bind(this));
+};
+vxq.CanvasRenderer.prototype.updateRenders = function $vxq$CanvasRenderer$$updateRenders$() {
+  for (var $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
+    $$jscomp$key$agent_$jscomp$key$render_agent$$.value.cancel();
+  }
+  this.renders = new Map;
+  $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator(this.world.agents);
+  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
+    $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render_agent$$, new $jscomp.scope.AgentRender(this, $$jscomp$key$agent_$jscomp$key$render_agent$$));
+  }
+};
 vxq.testing = {};
 vxq.testing.assert = function $vxq$testing$assert$($condition$$, $message$$) {
   if (!$condition$$) {
