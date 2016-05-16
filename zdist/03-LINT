@@ -1,15 +1,14 @@
 
-> vxq@0.1.0-dev.7 lint /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.11 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-[04:00:50] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[04:00:50] Starting 'lint'...
+[01:49:48] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[01:49:48] Starting 'lint'...
 /Users/j/src/github.com/vxq/js/vxq/index.js
-  line 93: Error parsing file at token "<JavaScriptToken: 93, }, "}", {}, MetaData(None)>". Unable to check the rest of file.
   Total errors in file: 1
 
 gjslint failed
-[04:00:52] 'lint' errored after 1.33 s
-[04:00:52] Error in plugin 'gulp-gjslint'
+[01:49:48] 'lint' errored after 913 ms
+[01:49:48] Error in plugin 'gulp-gjslint'
 Message:
     Linting failed for files: /Users/j/src/github.com/vxq/js/vxq/index.js
