@@ -1,5 +1,5 @@
 <!doctype html>
-<body>
+<body hidden>
 
 <style>
   html {
@@ -54,34 +54,37 @@
   <h2><a href="../zdist/simple.js">simple</a></h2>
 
   <article><script src="../zdist/simple.js"></script><script>
-    const simpleWorld = vxq.addBrowserTurtlePlaygroundNextToCurrentScript();
-    delete vxq;
+    const simpleTurtles =
+        vxq.addFlatCanvasWithTurtles(document.currentScript.parentNode);
+    const simpleFlatland =
+        vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
   </script></article>
-
-  <button onclick="jump(simpleWorld)">jump</button>
 </section>
 
 <section>
   <h2><a href="../zdist/debug.js">debug</a></h2>
 
   <article><script src="../zdist/debug.js"></script><script>
-    const debugWorld = vxq.addBrowserTurtlePlaygroundNextToCurrentScript();
+    const debugTurtles =
+        vxq.addFlatCanvasWithTurtles(document.currentScript.parentNode);
+    const debugFlatland =
+        vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
     delete vxq;
   </script></article>
-
-  <button onclick="jump(debugWorld)">jump</button>
 </section>
 
 <section>
   <h2><a href="../zdist/prod.js">prod</a></h2>
 
-  <article>
-    <script src="../zdist/prod.js"></script>
-    <script>
-      const prodWorld = vxq.addBrowserTurtlePlaygroundNextToCurrentScript();
-      delete vxq;
-    </script>
-  </article>
-
-  <button onclick="jump(prodWorld)">jump</button>
+  <article><script src="../zdist/prod.js"></script><script>
+    const prodTurtles =
+        vxq.addFlatCanvasWithTurtles(document.currentScript.parentNode);
+    const prodFlatland =
+        vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
+    delete vxq;
+  </script></article>
 </section>
+
+<script>
+  document.body.hidden = false;
+</script>
