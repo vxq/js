@@ -36,15 +36,18 @@
   'use strict';
   const jump = world => {
     for (let sprite of world.agents) {
-      sprite.goTo(Math.random() * world.width, Math.random() * world.height, 0);
+      sprite.goTo(
+        (sprite.x * 3 + Math.random() * world.width) / 4,
+        (sprite.y * 3 + Math.random() * world.height) / 4,
+        0);
     }
   }
 
   setInterval(function() {
-    const buttons = document.querySelectorAll('button');
-    const index = Math.floor(Math.random() * buttons.length);
-    buttons[index].click()
-  }, 250);
+    for (const button of Array.from(document.querySelectorAll('button'))) {
+      button.click()
+    }
+  }, 50);
 </script>
 
 <section>
