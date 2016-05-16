@@ -1,31 +1,16 @@
 
-> vxq@0.1.0-dev.14 build /Users/j/src/github.com/vxq/js
-> gulp build-seq
+> vxq@0.1.0-dev.16 build /Users/j/src/github.com/vxq/js
+> gulp build
 
-[22:14:33] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[22:14:33] Starting 'build-seq'...
-[22:14:33] Starting 'build-simple'...
-[22:14:33] Finished 'build-simple' after 8.36 ms
-[22:14:33] Starting 'build-debug'...
-[22:14:33] Finished 'build-seq' after 14 ms
-[22:14:37] gulp-google-closure-compiler: /vxq/worlds/flatland.js:88: WARNING - Missing return statement. Function expected to return Promise<undefined>.
+[22:22:30] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[22:22:30] Starting 'build'...
+[22:22:30] Starting 'build-simple'...
+[22:22:30] Finished 'build' after 8.93 ms
+[22:22:33] gulp-google-closure-compiler: /vxq/worlds/flatland.js:88: WARNING - Missing return statement. Function expected to return Promise<undefined>.
   goTo(x, y, z) {
   ^
 
 0 error(s), 1 warning(s), 92.1% typed
 
-[22:14:38] gulp-google-closure-compiler: /vxq/worlds/flatland.js:88: WARNING - Missing return statement. Function expected to return Promise<undefined>.
-  goTo(x, y, z) {
-  ^
-
-0 error(s), 1 warning(s), 92.1% typed
-
-[22:14:38] Finished 'build-debug' after 5.14 s
-[22:14:38] Starting 'build-prod'...
-[22:14:41] gulp-google-closure-compiler: /vxq/worlds/flatland.js:88: WARNING - Missing return statement. Function expected to return Promise<undefined>.
-  goTo(x, y, z) {
-  ^
-
-0 error(s), 1 warning(s), 92.1% typed
-
-[22:14:41] Finished 'build-prod' after 3 s
+[22:22:33] Finished 'build-simple' after 2.56 s
+[22:22:33] Starting 'build-debug'...

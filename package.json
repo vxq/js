@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.1.0-dev.14",
+  "version": "0.1.0-dev.16",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -24,7 +24,7 @@
     "prepublish": "scripts/pre-publish",
     "postpublish": "scripts/post-publish",
     "clean": "mkdir -p zdist/ && rm -rf zdist/*",
-    "build": "gulp build-seq",
+    "build": "gulp build",
     "test": "node test",
     "lint": "gulp lint"
   },
