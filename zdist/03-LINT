@@ -1,7 +1,18 @@
 
-> vxq@0.1.0-dev.13 lint /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.14 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-[21:45:03] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[21:45:03] Starting 'lint'...
-[21:45:04] Finished 'lint' after 1.14 s
+[22:14:42] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[22:14:42] Starting 'lint'...
+/Users/j/src/github.com/vxq/js/vxq/worlds/flatland.js
+  line 50: Missing space before "="
+  line 50: Missing space after "="
+  line 50: Missing space before "="
+  line 50: Missing space after "="
+  Total errors in file: 4
+
+gjslint failed
+[22:14:43] 'lint' errored after 1.02 s
+[22:14:43] Error in plugin 'gulp-gjslint'
+Message:
+    Linting failed for files: /Users/j/src/github.com/vxq/js/vxq/worlds/flatland.js

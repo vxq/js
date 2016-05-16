@@ -705,6 +705,48 @@ Object.defineProperties(vxq.worlds.turtles.Turtle.prototype, {xFactor:{configura
   return Math.cos(2 * this.rotation * Math.PI);
 }}});
 vxq.worlds.flatland = {};
+vxq.worlds.flatland.World = function $vxq$worlds$flatland$World$($width$$, $height$$) {
+  this.width = $width$$;
+  this.height = $height$$;
+  this.changeCallbacks = new vxq.util.CallbackList;
+  this.units = new Set;
+  this.maxAcceleration = 10;
+  this.absoluteVelocityLossPerSecond = 2;
+  this.proportionalVelocityLossPerSecond = .2;
+  var $then$$ = +new Date;
+  this.interval = setInterval(function() {
+    var $$jscomp$iter$1$$ = +new Date, $dt$$ = ($$jscomp$iter$1$$ - $then$$) / 1E3;
+    $then$$ = $$jscomp$iter$1$$;
+    for (var $$jscomp$iter$1$$ = $jscomp.makeIterator(this.units), $$jscomp$key$unit$$ = $$jscomp$iter$1$$.next();!$$jscomp$key$unit$$.done;$$jscomp$key$unit$$ = $$jscomp$iter$1$$.next()) {
+      $$jscomp$key$unit$$.value.tick($dt$$);
+    }
+  }, 100);
+};
+Object.defineProperties(vxq.worlds.flatland.World.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
+  return new (Function.prototype.bind.apply(Set, [null].concat($jscomp.arrayFromIterable(this.units))));
+}}});
+vxq.worlds.flatland.Unit = function $vxq$worlds$flatland$Unit$($world$$, $x$$, $y$$) {
+  this.world = $world$$;
+  this.targetY = this.targetX = this.vY = this.vX = this.z = this.y = this.x = 0;
+  this.targetMaxDistance = 16;
+  this.targetMaxSpeed = 4;
+  this.currentMove = null;
+  this.changeCallbacks = new vxq.util.CallbackList;
+};
+vxq.worlds.flatland.Unit.prototype.tick = function $vxq$worlds$flatland$Unit$$tick$($dt$$) {
+};
+vxq.worlds.flatland.Unit.prototype.goTo = function $vxq$worlds$flatland$Unit$$goTo$($x$$, $y$$, $z$$) {
+  var $$jscomp$this$$ = this;
+  if (this.currentMove) {
+    var $f$$ = function $$f$$$() {
+      return $$jscomp$this$$.goTo($x$$, $y$$, $z$$);
+    };
+    this.currentMove.then($f$$, $f$$);
+  } else {
+    return this.currentMove = new Promise(function($resolve$$, $reject$$) {
+    });
+  }
+};
 vxq.testing = {};
 vxq.testing.assert = function $vxq$testing$assert$($condition$$, $message$$) {
   if (!$condition$$) {
@@ -756,12 +798,12 @@ vxq.renderers.FlatCanvas = function $vxq$renderers$FlatCanvas$($world$$) {
   this.world.changeCallbacks.add(this.updateRenders.bind(this));
 };
 vxq.renderers.FlatCanvas.prototype.updateRenders = function $vxq$renderers$FlatCanvas$$updateRenders$() {
-  for (var $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
+  for (var $$jscomp$iter$2$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$2$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$.value.cancel();
   }
   this.renders = new Map;
-  $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator(this.world.agents);
-  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
+  $$jscomp$iter$2$$ = $jscomp.makeIterator(this.world.agents);
+  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$2$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render_agent$$, new $jscomp.scope.AgentRender(this, $$jscomp$key$agent_$jscomp$key$render_agent$$));
   }
 };
@@ -777,11 +819,11 @@ $jscomp.scope.VXQModule.prototype.addBrowserTurtlePlaygroundNextToCurrentScript 
   this.testTheTurtles($world$$);
   return $world$$;
 };
-$jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQModule$$testTheTurtles$($i$$13_i$4_world$$) {
-  $i$$13_i$4_world$$ = void 0 === $i$$13_i$4_world$$ ? new vxq.worlds.turtles.World(512, 512, []) : $i$$13_i$4_world$$;
+$jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQModule$$testTheTurtles$($i$$13_i$5_world$$) {
+  $i$$13_i$5_world$$ = void 0 === $i$$13_i$5_world$$ ? new vxq.worlds.turtles.World(512, 512, []) : $i$$13_i$5_world$$;
   var $turtle$$ = new vxq.worlds.turtles.Turtle;
-  $i$$13_i$4_world$$.turtles.add($turtle$$);
-  $i$$13_i$4_world$$.changeCallbacks.call();
+  $i$$13_i$5_world$$.turtles.add($turtle$$);
+  $i$$13_i$5_world$$.changeCallbacks.call();
   vxq.testing.assertEquals(50, $turtle$$.x);
   vxq.testing.assertEquals(50, $turtle$$.y);
   $turtle$$.forward(50);
@@ -793,13 +835,13 @@ $jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQMo
   vxq.testing.assertEquals(100, $turtle$$.y);
   $turtle$$.left(.375);
   $turtle$$.forward(100);
-  for ($i$$13_i$4_world$$ = 0;12 > $i$$13_i$4_world$$;$i$$13_i$4_world$$++) {
+  for ($i$$13_i$5_world$$ = 0;12 > $i$$13_i$5_world$$;$i$$13_i$5_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(100);
   $turtle$$.left(.25);
   $turtle$$.forward(200);
-  for ($i$$13_i$4_world$$ = 0;6 > $i$$13_i$4_world$$;$i$$13_i$4_world$$++) {
+  for ($i$$13_i$5_world$$ = 0;6 > $i$$13_i$5_world$$;$i$$13_i$5_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(50);
