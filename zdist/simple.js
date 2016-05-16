@@ -741,11 +741,11 @@ vxq.worlds.flatland.Unit.prototype.goTo = function $vxq$worlds$flatland$Unit$$go
     var $f$$ = function $$f$$$() {
       return $$jscomp$this$$.goTo($x$$, $y$$, $z$$);
     };
-    this.currentMove.then($f$$, $f$$);
-  } else {
-    return this.currentMove = new Promise(function($resolve$$, $reject$$) {
-    });
+    return this.currentMove.then($f$$, $f$$);
   }
+  return this.currentMove = new Promise(function($resolve$$, $reject$$) {
+    return $resolve$$();
+  });
 };
 vxq.testing = {};
 vxq.testing.assert = function $vxq$testing$assert$($condition$$, $message$$) {

@@ -47,7 +47,7 @@ exports.World = class {
 
 /** @implements {VXQ.Agent} */
 exports.Unit = class {
-  constructor(world, x=0, y=0) {
+  constructor(world, x = 0, y = 0) {
     /** @const {!vxq.worlds.flatland.World} */
     this.world = world;
 
@@ -88,10 +88,10 @@ exports.Unit = class {
   goTo(x, y, z) {
     if (this.currentMove) {
       const f = () => this.goTo(x, y, z);
-      this.currentMove.then(f, f);
+      return this.currentMove.then(f, f);
     } else {
-      return this.currentMove = new Promise((resolve, reject) => {
-
+      return this.currentMove = new Promise(function(resolve, reject) {
+        return resolve();
       });
     }
   }

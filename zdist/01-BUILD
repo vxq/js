@@ -1,16 +1,13 @@
 
-> vxq@0.1.0-dev.16 build /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.17 build /Users/j/src/github.com/vxq/js
 > gulp build
 
-[22:22:30] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[22:22:30] Starting 'build'...
-[22:22:30] Starting 'build-simple'...
-[22:22:30] Finished 'build' after 8.93 ms
-[22:22:33] gulp-google-closure-compiler: /vxq/worlds/flatland.js:88: WARNING - Missing return statement. Function expected to return Promise<undefined>.
-  goTo(x, y, z) {
-  ^
-
-0 error(s), 1 warning(s), 92.1% typed
-
-[22:22:33] Finished 'build-simple' after 2.56 s
-[22:22:33] Starting 'build-debug'...
+[22:25:36] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[22:25:36] Starting 'build'...
+[22:25:36] Starting 'build-simple'...
+[22:25:36] Finished 'build' after 9.51 ms
+[22:25:39] Finished 'build-simple' after 2.66 s
+[22:25:39] Starting 'build-debug'...
+[22:25:42] Finished 'build-debug' after 3.46 s
+[22:25:42] Starting 'build-prod'...
+[22:25:46] Finished 'build-prod' after 3.69 s
