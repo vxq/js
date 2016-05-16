@@ -31,42 +31,51 @@ function $$jscomp$arrayFromIterator$$($iterator$$) {
   }
   return $arr$$8$$;
 }
-function $vxq$CanvasRenderer$$($world$$1$$) {
+function $$jscomp$scope$AgentRender$$($renderer$$, $agent$$) {
   var $$jscomp$this$$1$$ = this;
-  this.$b$ = $world$$1$$;
-  this.$c$ = document.createElement("canvas");
-  this.$c$.width = this.$b$.width;
-  this.$c$.height = this.$b$.height;
-  this.$a$ = this.$c$.getContext("2d");
-  $JSCompiler_StaticMethods_redraw$$(this);
-  for (var $cancels$$ = [], $$jscomp$iter$0$$ = $$jscomp$makeIterator$$(this.$b$.agents), $$jscomp$key$agent$$ = $$jscomp$iter$0$$.next();!$$jscomp$key$agent$$.done;$$jscomp$key$agent$$ = $$jscomp$iter$0$$.next()) {
-    $cancels$$.push($$jscomp$key$agent$$.value.changeCallbacks.add(function() {
-      return $JSCompiler_StaticMethods_redraw$$($$jscomp$this$$1$$);
-    }));
-  }
-  $world$$1$$.changeCallbacks.add(function() {
-    for (var $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$ = $$jscomp$makeIterator$$($cancels$$), $$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$.next();!$$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$.done;$$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$.next()) {
-      $$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$ = $$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$.value, $$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$();
-    }
-    $cancels$$ = [];
-    $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$b$.agents);
-    for ($$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$.next();!$$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$.done;$$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$1$$.next()) {
-      $cancels$$.push($$jscomp$key$agent$$1_$jscomp$key$cancel_cancel$$.value.changeCallbacks.add(function() {
-        return $JSCompiler_StaticMethods_redraw$$($$jscomp$this$$1$$);
-      }));
-    }
+  this.$b$ = 0;
+  this.$c$ = 1E3 * Math.random();
+  this.$f$ = $renderer$$;
+  this.$a$ = $agent$$;
+  this.cancel = $agent$$.changeCallbacks.add(function() {
+    var $deltaX$$inline_10_g$$inline_13$$ = $agent$$.x - 0, $deltaY$$inline_11$$ = $agent$$.y - 0, $deltaZ$$inline_12$$ = $agent$$.z - 0;
+    $$jscomp$this$$1$$.$b$ += Math.sqrt($deltaX$$inline_10_g$$inline_13$$ * $deltaX$$inline_10_g$$inline_13$$ + $deltaY$$inline_11$$ * $deltaY$$inline_11$$ + $deltaZ$$inline_12$$ * $deltaZ$$inline_12$$);
+    $deltaX$$inline_10_g$$inline_13$$ = $$jscomp$this$$1$$.$f$.$f$;
+    $deltaX$$inline_10_g$$inline_13$$.fillStyle = "hsla(" + ($$jscomp$this$$1$$.$c$ + .05 * $$jscomp$this$$1$$.$b$) + ", 80%, 10%, 0.04)";
+    $deltaX$$inline_10_g$$inline_13$$.beginPath();
+    $deltaX$$inline_10_g$$inline_13$$.arc($$jscomp$this$$1$$.$a$.x, $$jscomp$this$$1$$.$a$.y, 192, 0, 2 * Math.PI);
+    $deltaX$$inline_10_g$$inline_13$$.fill();
+    $deltaX$$inline_10_g$$inline_13$$.fillStyle = "hsla(" + ($$jscomp$this$$1$$.$c$ + .05 * $$jscomp$this$$1$$.$b$) + ", 50%, 70%, 1.0)";
+    $deltaX$$inline_10_g$$inline_13$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
+    $deltaX$$inline_10_g$$inline_13$$.beginPath();
+    $deltaX$$inline_10_g$$inline_13$$.arc($$jscomp$this$$1$$.$a$.x, $$jscomp$this$$1$$.$a$.y, 6, 0, 2 * Math.PI);
+    $deltaX$$inline_10_g$$inline_13$$.fill();
+    $deltaX$$inline_10_g$$inline_13$$.stroke();
   });
 }
-function $JSCompiler_StaticMethods_redraw$$($JSCompiler_StaticMethods_redraw$self$$) {
-  $JSCompiler_StaticMethods_redraw$self$$.$a$.fillStyle = "rgba(255, 255, 255, 0.01)";
-  $JSCompiler_StaticMethods_redraw$self$$.$a$.fillRect(0, 0, $JSCompiler_StaticMethods_redraw$self$$.$b$.width, $JSCompiler_StaticMethods_redraw$self$$.$b$.height);
-  $JSCompiler_StaticMethods_redraw$self$$.$a$.fillStyle = "hsla(60, 50%, 50%, 0.5)";
-  $JSCompiler_StaticMethods_redraw$self$$.$a$.strokeStyle = "rgba(255, 255, 255, 0.25)";
-  for (var $$jscomp$iter$3$$ = $$jscomp$makeIterator$$($JSCompiler_StaticMethods_redraw$self$$.$b$.agents), $$jscomp$key$agent$$2_agent$$1$$ = $$jscomp$iter$3$$.next();!$$jscomp$key$agent$$2_agent$$1$$.done;$$jscomp$key$agent$$2_agent$$1$$ = $$jscomp$iter$3$$.next()) {
-    $$jscomp$key$agent$$2_agent$$1$$ = $$jscomp$key$agent$$2_agent$$1$$.value, $JSCompiler_StaticMethods_redraw$self$$.$a$.beginPath(), $JSCompiler_StaticMethods_redraw$self$$.$a$.arc($$jscomp$key$agent$$2_agent$$1$$.x, $$jscomp$key$agent$$2_agent$$1$$.y, 6, 0, 2 * Math.PI), $JSCompiler_StaticMethods_redraw$self$$.$a$.fill(), $JSCompiler_StaticMethods_redraw$self$$.$a$.stroke();
-  }
+function $vxq$CanvasRenderer$$($world$$1$$) {
+  this.$a$ = $world$$1$$;
+  this.$b$ = document.createElement("canvas");
+  this.$b$.width = this.$a$.width;
+  this.$b$.height = this.$a$.height;
+  this.$f$ = this.$b$.getContext("2d");
+  this.$f$.fillStyle = "black";
+  this.$f$.fillRect(0, 0, this.$a$.width, this.$a$.height);
+  this.$c$ = new Map;
+  this.$g$();
+  this.$a$.changeCallbacks.add(this.$g$.bind(this));
 }
-;function $vxq$debug$assert$$($condition$$1$$) {
+$vxq$CanvasRenderer$$.prototype.$g$ = function $$vxq$CanvasRenderer$$$$$g$$() {
+  for (var $$jscomp$iter$0_$jscomp$iter$1$$1$$ = $$jscomp$makeIterator$$(this.$c$), $$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$0_$jscomp$iter$1$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$0_$jscomp$iter$1$$1$$.next()) {
+    $$jscomp$key$agent_$jscomp$key$render_agent$$1$$.value.cancel();
+  }
+  this.$c$ = new Map;
+  $$jscomp$iter$0_$jscomp$iter$1$$1$$ = $$jscomp$makeIterator$$(this.$a$.agents);
+  for ($$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$0_$jscomp$iter$1$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$0_$jscomp$iter$1$$1$$.next()) {
+    $$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$1$$.value, this.$c$.set($$jscomp$key$agent_$jscomp$key$render_agent$$1$$, new $$jscomp$scope$AgentRender$$(this, $$jscomp$key$agent_$jscomp$key$render_agent$$1$$));
+  }
+};
+function $vxq$debug$assert$$($condition$$1$$) {
   if (!$condition$$1$$) {
     throw Error("Assertion failed");
   }
@@ -82,17 +91,17 @@ function $vxq$debug$log$$($args$$) {
   this.$a$ = [];
 }
 $vxq$util$CallbackList$$.prototype.add = function $$vxq$util$CallbackList$$$$add$($f$$2$$) {
-  var $$jscomp$this$$2$$ = this, $token$$2$$ = {};
+  var $token$$2$$ = {};
   this.$a$.push($token$$2$$);
   this.$b$.push($f$$2$$);
   return function() {
-    var $index$$50$$ = $$jscomp$this$$2$$.$a$.indexOf($token$$2$$);
-    $$jscomp$this$$2$$.$b$.splice($index$$50$$, 1);
-    $$jscomp$this$$2$$.$a$.splice($index$$50$$, 1);
-  };
+    var $index$$50$$ = this.$a$.indexOf($token$$2$$);
+    this.$b$.splice($index$$50$$, 1);
+    this.$a$.splice($index$$50$$, 1);
+  }.bind(this);
 };
 $vxq$util$CallbackList$$.prototype.call = function $$vxq$util$CallbackList$$$$call$() {
-  for (var $$jscomp$iter$4$$1$$ = $$jscomp$makeIterator$$(this.$b$), $$jscomp$key$f_f$$3$$ = $$jscomp$iter$4$$1$$.next();!$$jscomp$key$f_f$$3$$.done;$$jscomp$key$f_f$$3$$ = $$jscomp$iter$4$$1$$.next()) {
+  for (var $$jscomp$iter$2$$1$$ = $$jscomp$makeIterator$$(this.$b$), $$jscomp$key$f_f$$3$$ = $$jscomp$iter$2$$1$$.next();!$$jscomp$key$f_f$$3$$.done;$$jscomp$key$f_f$$3$$ = $$jscomp$iter$2$$1$$.next()) {
     $$jscomp$key$f_f$$3$$ = $$jscomp$key$f_f$$3$$.value, $$jscomp$key$f_f$$3$$();
   }
 };
@@ -114,21 +123,17 @@ function $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$$($JSCompil
   $vxq$debug$assert$$(Number.isFinite($turns$$1$$));
   $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$self$$.$a$ -= $turns$$1$$;
 }
-function $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$, $distance$$) {
-  $vxq$debug$assert$$(Number.isFinite($distance$$));
-  $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.goTo($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.x + $distance$$ * $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.$xFactor$, $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.y + $distance$$ * $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.$yFactor$);
+function $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$, $distance$$1$$) {
+  $vxq$debug$assert$$(Number.isFinite($distance$$1$$));
+  $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.goTo($JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.x + $distance$$1$$ * $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.$xFactor$, $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.y + $distance$$1$$ * $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.$yFactor$, $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$self$$.z);
 }
-$vxq$turtles$Turtle$$.prototype.goTo = function $$vxq$turtles$Turtle$$$$goTo$($x$$79$$, $y$$50$$, $z$$13$$) {
-  null != $x$$79$$ && null != $y$$50$$ && this.goTo($x$$79$$, $y$$50$$);
-  null != $z$$13$$ && (this.z = $z$$13$$);
-  return Promise.resolve();
-};
-$vxq$turtles$Turtle$$.prototype.goTo = function $$vxq$turtles$Turtle$$$$goTo$($x$$80$$, $y$$51$$) {
-  if (null == $x$$80$$ || null == $y$$51$$) {
-    return Promise.reject(Error("x and y required"));
-  }
-  for (var $xDelta$$ = $x$$80$$ - this.x, $yDelta$$ = $y$$51$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta$$ * $xDelta$$ + $yDelta$$ * $yDelta$$) / 16), $i$$12$$ = 0;$i$$12$$ < $steps$$;$i$$12$$++) {
-    this.x += $xDelta$$ / $steps$$, this.y += $yDelta$$ / $steps$$, this.changeCallbacks.call();
+$vxq$turtles$Turtle$$.prototype.goTo = function $$vxq$turtles$Turtle$$$$goTo$($x$$80$$, $y$$51$$, $xDelta_z$$14$$) {
+  $vxq$debug$assert$$(Number.isFinite($x$$80$$));
+  $vxq$debug$assert$$(Number.isFinite($y$$51$$));
+  $vxq$debug$assert$$(Number.isFinite($xDelta_z$$14$$));
+  $xDelta_z$$14$$ = $x$$80$$ - this.x;
+  for (var $yDelta$$ = $y$$51$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta_z$$14$$ * $xDelta_z$$14$$ + $yDelta$$ * $yDelta$$) / 4), $i$$12$$ = 0;$i$$12$$ < $steps$$;$i$$12$$++) {
+    this.x += $xDelta_z$$14$$ / $steps$$, this.y += $yDelta$$ / $steps$$, this.changeCallbacks.call();
   }
   this.x = $x$$80$$;
   this.y = $y$$51$$;
@@ -152,16 +157,16 @@ $$jscomp$scope$VXQModule$$.prototype.test = function $$$jscomp$scope$VXQModule$$
   $JSCompiler_StaticMethods_testTheTurtles$$();
 };
 $$jscomp$scope$VXQModule$$.prototype.addBrowserTurtlePlaygroundNextToCurrentScript = function $$$jscomp$scope$VXQModule$$$$addBrowserTurtlePlaygroundNextToCurrentScript$() {
-  var $world$$2$$ = new $vxq$turtles$World$$(512, 512, []), $renderer$$ = new $vxq$CanvasRenderer$$($world$$2$$);
-  document.currentScript.parentNode.appendChild($renderer$$.$c$);
+  var $world$$2$$ = new $vxq$turtles$World$$(512, 512, []), $renderer$$1$$ = new $vxq$CanvasRenderer$$($world$$2$$);
+  document.currentScript.parentNode.appendChild($renderer$$1$$.$b$);
   $JSCompiler_StaticMethods_testTheTurtles$$($world$$2$$);
   return $world$$2$$;
 };
-function $JSCompiler_StaticMethods_testTheTurtles$$($i$$13_i$7_world$$3$$) {
-  $i$$13_i$7_world$$3$$ = void 0 === $i$$13_i$7_world$$3$$ ? new $vxq$turtles$World$$(512, 512, []) : $i$$13_i$7_world$$3$$;
+function $JSCompiler_StaticMethods_testTheTurtles$$($i$$13_i$4_world$$3$$) {
+  $i$$13_i$4_world$$3$$ = void 0 === $i$$13_i$4_world$$3$$ ? new $vxq$turtles$World$$(512, 512, []) : $i$$13_i$4_world$$3$$;
   var $turtle$$ = new $vxq$turtles$Turtle$$;
-  $i$$13_i$7_world$$3$$.$a$.add($turtle$$);
-  $i$$13_i$7_world$$3$$.changeCallbacks.call();
+  $i$$13_i$4_world$$3$$.$a$.add($turtle$$);
+  $i$$13_i$4_world$$3$$.changeCallbacks.call();
   $vxq$testing$assertEquals$$(50, $turtle$$.x);
   $vxq$testing$assertEquals$$(50, $turtle$$.y);
   $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($turtle$$, 50);
@@ -174,20 +179,20 @@ function $JSCompiler_StaticMethods_testTheTurtles$$($i$$13_i$7_world$$3$$) {
   $vxq$testing$assertEquals$$(100, $turtle$$.y);
   $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$$($turtle$$, .375);
   $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($turtle$$, 100);
-  for ($i$$13_i$7_world$$3$$ = 0;12 > $i$$13_i$7_world$$3$$;$i$$13_i$7_world$$3$$++) {
+  for ($i$$13_i$4_world$$3$$ = 0;12 > $i$$13_i$4_world$$3$$;$i$$13_i$4_world$$3$$++) {
     $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$$($turtle$$, .0625), $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($turtle$$, 10);
   }
   $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($turtle$$, 100);
   $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$$($turtle$$, .25);
   $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($turtle$$, 200);
-  for ($i$$13_i$7_world$$3$$ = 0;6 > $i$$13_i$7_world$$3$$;$i$$13_i$7_world$$3$$++) {
+  for ($i$$13_i$4_world$$3$$ = 0;6 > $i$$13_i$4_world$$3$$;$i$$13_i$4_world$$3$$++) {
     $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$left$$($turtle$$, .0625), $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($turtle$$, 10);
   }
   $JSCompiler_StaticMethods_vxq_turtles_Turtle_prototype$forward$$($turtle$$, 50);
   console.log("Test complete.");
 }
-var $JSCompiler_StaticMethods_exportFromClosure$self$$inline_14$$ = new $$jscomp$scope$VXQModule$$;
-"object" === typeof module && null != module && (module.exports = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_14$$);
-"object" === typeof window && null != window && (window.vxq = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_14$$);
+var $JSCompiler_StaticMethods_exportFromClosure$self$$inline_21$$ = new $$jscomp$scope$VXQModule$$;
+"object" === typeof module && null != module && (module.exports = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_21$$);
+"object" === typeof window && null != window && (window.vxq = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_21$$);
 
 }.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})

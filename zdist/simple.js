@@ -621,39 +621,55 @@ $jscomp.string.endsWith = function $$jscomp$string$endsWith$($searchString$$, $o
 $jscomp.string.endsWith$install = function $$jscomp$string$endsWith$install$() {
   String.prototype.endsWith || (String.prototype.endsWith = $jscomp.string.endsWith);
 };
-var vxq = {CanvasRenderer:function($world$$) {
+var vxq = {};
+$jscomp.scope.AgentRender = function $$jscomp$scope$AgentRender$($renderer$$, $agent$$) {
   var $$jscomp$this$$ = this;
+  this.totalDistance = 0;
+  this.hueSeed = 1E3 * Math.random();
+  this.lastZ = this.lastY = this.lastX = 0;
+  this.renderer = $renderer$$;
+  this.agent = $agent$$;
+  this.cancel = $agent$$.changeCallbacks.add(function() {
+    return void $$jscomp$this$$.update($agent$$.x, $agent$$.y, $agent$$.z);
+  });
+};
+$jscomp.scope.AgentRender.prototype.update = function $$jscomp$scope$AgentRender$$update$($deltaX_x$$, $deltaY_y$$, $deltaZ_g_z$$) {
+  $deltaX_x$$ -= this.lastX;
+  $deltaY_y$$ -= this.lastY;
+  $deltaZ_g_z$$ -= this.lastZ;
+  this.totalDistance += Math.sqrt($deltaX_x$$ * $deltaX_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_g_z$$ * $deltaZ_g_z$$);
+  $deltaZ_g_z$$ = this.renderer.context;
+  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 80%, 10%, 0.04)";
+  $deltaZ_g_z$$.beginPath();
+  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 192, 0, 2 * Math.PI);
+  $deltaZ_g_z$$.fill();
+  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 50%, 70%, 1.0)";
+  $deltaZ_g_z$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
+  $deltaZ_g_z$$.beginPath();
+  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
+  $deltaZ_g_z$$.fill();
+  $deltaZ_g_z$$.stroke();
+};
+vxq.CanvasRenderer = function $vxq$CanvasRenderer$($world$$) {
   this.world = $world$$;
   this.canvas = document.createElement("canvas");
   this.canvas.width = this.world.width;
   this.canvas.height = this.world.height;
   this.context = this.canvas.getContext("2d");
-  this.redraw();
-  for (var $cancels$$ = [], $$jscomp$iter$0$$ = $jscomp.makeIterator(this.world.agents), $$jscomp$key$agent$$ = $$jscomp$iter$0$$.next();!$$jscomp$key$agent$$.done;$$jscomp$key$agent$$ = $$jscomp$iter$0$$.next()) {
-    $cancels$$.push($$jscomp$key$agent$$.value.changeCallbacks.add(function() {
-      return $$jscomp$this$$.redraw();
-    }));
-  }
-  $world$$.changeCallbacks.add(function() {
-    for (var $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator($cancels$$), $$jscomp$key$agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$agent$$.done;$$jscomp$key$agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
-      $$jscomp$key$agent$$ = $$jscomp$key$agent$$.value, $$jscomp$key$agent$$();
-    }
-    $cancels$$ = [];
-    $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator($$jscomp$this$$.world.agents);
-    for ($$jscomp$key$agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$agent$$.done;$$jscomp$key$agent$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
-      $cancels$$.push($$jscomp$key$agent$$.value.changeCallbacks.add(function() {
-        return $$jscomp$this$$.redraw();
-      }));
-    }
-  });
-}};
-vxq.CanvasRenderer.prototype.redraw = function $vxq$CanvasRenderer$$redraw$() {
-  this.context.fillStyle = "rgba(255, 255, 255, 0.01)";
+  this.context.fillStyle = "black";
   this.context.fillRect(0, 0, this.world.width, this.world.height);
-  this.context.fillStyle = "hsla(60, 50%, 50%, 0.5)";
-  this.context.strokeStyle = "rgba(255, 255, 255, 0.25)";
-  for (var $$jscomp$iter$3$$ = $jscomp.makeIterator(this.world.agents), $$jscomp$key$agent$$2_agent$$ = $$jscomp$iter$3$$.next();!$$jscomp$key$agent$$2_agent$$.done;$$jscomp$key$agent$$2_agent$$ = $$jscomp$iter$3$$.next()) {
-    $$jscomp$key$agent$$2_agent$$ = $$jscomp$key$agent$$2_agent$$.value, this.context.beginPath(), this.context.arc($$jscomp$key$agent$$2_agent$$.x, $$jscomp$key$agent$$2_agent$$.y, 6, 0, 2 * Math.PI), this.context.fill(), this.context.stroke();
+  this.renders = new Map;
+  this.updateRenders();
+  this.world.changeCallbacks.add(this.updateRenders.bind(this));
+};
+vxq.CanvasRenderer.prototype.updateRenders = function $vxq$CanvasRenderer$$updateRenders$() {
+  for (var $$jscomp$iter$0_$jscomp$iter$1$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next()) {
+    $$jscomp$key$agent_$jscomp$key$render_agent$$.value.cancel();
+  }
+  this.renders = new Map;
+  $$jscomp$iter$0_$jscomp$iter$1$$ = $jscomp.makeIterator(this.world.agents);
+  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next()) {
+    $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render_agent$$, new $jscomp.scope.AgentRender(this, $$jscomp$key$agent_$jscomp$key$render_agent$$));
   }
 };
 vxq.debug = {};
@@ -675,17 +691,17 @@ vxq.util.CallbackList = function $vxq$util$CallbackList$() {
   this.callbackTokens = [];
 };
 vxq.util.CallbackList.prototype.add = function $vxq$util$CallbackList$$add$($f$$) {
-  var $$jscomp$this$$ = this, $token$$ = {};
+  var $token$$ = {};
   this.callbackTokens.push($token$$);
   this.callbacks.push($f$$);
   return function() {
-    var $index$$ = $$jscomp$this$$.callbackTokens.indexOf($token$$);
-    $$jscomp$this$$.callbacks.splice($index$$, 1);
-    $$jscomp$this$$.callbackTokens.splice($index$$, 1);
-  };
+    var $index$$ = this.callbackTokens.indexOf($token$$);
+    this.callbacks.splice($index$$, 1);
+    this.callbackTokens.splice($index$$, 1);
+  }.bind(this);
 };
 vxq.util.CallbackList.prototype.call = function $vxq$util$CallbackList$$call$() {
-  for (var $$jscomp$iter$4$$ = $jscomp.makeIterator(this.callbacks), $$jscomp$key$f_f$$ = $$jscomp$iter$4$$.next();!$$jscomp$key$f_f$$.done;$$jscomp$key$f_f$$ = $$jscomp$iter$4$$.next()) {
+  for (var $$jscomp$iter$2$$ = $jscomp.makeIterator(this.callbacks), $$jscomp$key$f_f$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$f_f$$.done;$$jscomp$key$f_f$$ = $$jscomp$iter$2$$.next()) {
     $$jscomp$key$f_f$$ = $$jscomp$key$f_f$$.value, $$jscomp$key$f_f$$();
   }
 };
@@ -714,23 +730,18 @@ vxq.turtles.Turtle.prototype.left = function $vxq$turtles$Turtle$$left$($turns$$
 };
 vxq.turtles.Turtle.prototype.forward = function $vxq$turtles$Turtle$$forward$($distance$$) {
   vxq.debug.assert(Number.isFinite($distance$$));
-  this.goTo(this.x + $distance$$ * this.xFactor, this.y + $distance$$ * this.yFactor);
+  this.goTo(this.x + $distance$$ * this.xFactor, this.y + $distance$$ * this.yFactor, this.z);
 };
 vxq.turtles.Turtle.prototype.backward = function $vxq$turtles$Turtle$$backward$($distance$$) {
   vxq.debug.assert(Number.isFinite($distance$$));
-  this.goTo(this.x + -$distance$$ * this.xFactor, this.y + -$distance$$ * this.yFactor);
-};
-vxq.turtles.Turtle.prototype.goTo = function $vxq$turtles$Turtle$$goTo$($x$$, $y$$, $z$$) {
-  null != $x$$ && null != $y$$ && this.goTo($x$$, $y$$);
-  null != $z$$ && (this.z = $z$$);
-  return Promise.resolve();
+  this.goTo(this.x + -$distance$$ * this.xFactor, this.y + -$distance$$ * this.yFactor, this.z);
 };
 vxq.turtles.Turtle.prototype.goTo = function $vxq$turtles$Turtle$$goTo$($x$$, $y$$, $xDelta_z$$) {
-  if (null == $x$$ || null == $y$$) {
-    return Promise.reject(Error("x and y required"));
-  }
+  vxq.debug.assert(Number.isFinite($x$$));
+  vxq.debug.assert(Number.isFinite($y$$));
+  vxq.debug.assert(Number.isFinite($xDelta_z$$));
   $xDelta_z$$ = $x$$ - this.x;
-  for (var $yDelta$$ = $y$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta_z$$ * $xDelta_z$$ + $yDelta$$ * $yDelta$$) / 16), $i$$ = 0;$i$$ < $steps$$;$i$$++) {
+  for (var $yDelta$$ = $y$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta_z$$ * $xDelta_z$$ + $yDelta$$ * $yDelta$$) / 4), $i$$ = 0;$i$$ < $steps$$;$i$$++) {
     this.x += $xDelta_z$$ / $steps$$, this.y += $yDelta$$ / $steps$$, this.changeCallbacks.call();
   }
   this.x = $x$$;
@@ -764,11 +775,11 @@ $jscomp.scope.VXQModule.prototype.addBrowserTurtlePlaygroundNextToCurrentScript 
   this.testTheTurtles($world$$);
   return $world$$;
 };
-$jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQModule$$testTheTurtles$($i$$13_i$7_world$$) {
-  $i$$13_i$7_world$$ = void 0 === $i$$13_i$7_world$$ ? new vxq.turtles.World(512, 512, []) : $i$$13_i$7_world$$;
+$jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQModule$$testTheTurtles$($i$$13_i$4_world$$) {
+  $i$$13_i$4_world$$ = void 0 === $i$$13_i$4_world$$ ? new vxq.turtles.World(512, 512, []) : $i$$13_i$4_world$$;
   var $turtle$$ = new vxq.turtles.Turtle;
-  $i$$13_i$7_world$$.turtles.add($turtle$$);
-  $i$$13_i$7_world$$.changeCallbacks.call();
+  $i$$13_i$4_world$$.turtles.add($turtle$$);
+  $i$$13_i$4_world$$.changeCallbacks.call();
   vxq.testing.assertEquals(50, $turtle$$.x);
   vxq.testing.assertEquals(50, $turtle$$.y);
   $turtle$$.forward(50);
@@ -780,13 +791,13 @@ $jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQMo
   vxq.testing.assertEquals(100, $turtle$$.y);
   $turtle$$.left(.375);
   $turtle$$.forward(100);
-  for ($i$$13_i$7_world$$ = 0;12 > $i$$13_i$7_world$$;$i$$13_i$7_world$$++) {
+  for ($i$$13_i$4_world$$ = 0;12 > $i$$13_i$4_world$$;$i$$13_i$4_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(100);
   $turtle$$.left(.25);
   $turtle$$.forward(200);
-  for ($i$$13_i$7_world$$ = 0;6 > $i$$13_i$7_world$$;$i$$13_i$7_world$$++) {
+  for ($i$$13_i$4_world$$ = 0;6 > $i$$13_i$4_world$$;$i$$13_i$4_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(50);

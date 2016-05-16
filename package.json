@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.1.0-dev.8",
+  "version": "0.1.0-dev.9",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -13,6 +13,7 @@
     "tape": "^4.5.1"
   },
   "files": [
+    "index.js",
     "zdist/",
     "vxq/",
     "scripts/",

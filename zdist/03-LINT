@@ -1,20 +1,7 @@
 
-> vxq@0.1.0-dev.8 lint /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.9 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-[03:01:29] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[03:01:29] Starting 'lint'...
-/Users/j/src/github.com/vxq/js/vxq/canvas-renderer.js
-  Total errors in file: 1
-
-/Users/j/src/github.com/vxq/js/vxq/public.externs.js
-  Total errors in file: 2
-
-/Users/j/src/github.com/vxq/js/vxq/util.js
-  Total errors in file: 1
-
-gjslint failed
-[03:01:30] 'lint' errored after 852 ms
-[03:01:30] Error in plugin 'gulp-gjslint'
-Message:
-    Linting failed for files: /Users/j/src/github.com/vxq/js/vxq/canvas-renderer.js, /Users/j/src/github.com/vxq/js/vxq/public.externs.js, /Users/j/src/github.com/vxq/js/vxq/util.js
+[20:54:50] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[20:54:50] Starting 'lint'...
+[20:54:51] Finished 'lint' after 938 ms

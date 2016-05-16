@@ -71,37 +71,29 @@ exports.Turtle = class {
     debug.assert(Number.isFinite(distance));
     this.goTo(
       this.x + distance * this.xFactor,
-      this.y + distance * this.yFactor);
+      this.y + distance * this.yFactor,
+      this.z);
   }
 
   backward(/** number */ distance) {
     debug.assert(Number.isFinite(distance));
     this.goTo(
       this.x + -distance * this.xFactor,
-      this.y + -distance * this.yFactor);
-  }
-
-  /** @override */ goTo(x, y, z) {
-    if (x != null && y != null) {
-      this.goTo(x, y);
-    }
-    if (z != null) {
-      this.z = z;
-    }
-    return Promise.resolve();
+      this.y + -distance * this.yFactor,
+      this.z);
   }
 
   goTo(x, y, z) {
-    if (!(x != null && y != null)) {
-      return Promise.reject(new Error('x and y required'));
-    }
+    debug.assert(Number.isFinite(x));
+    debug.assert(Number.isFinite(y));
+    debug.assert(Number.isFinite(z));
 
     const xDelta = x - this.x;
     const yDelta = y - this.y;
     const distance = Math.sqrt(xDelta * xDelta + yDelta * yDelta);
 
     // Render several stops, possibly with some precision loss.
-    const steps = Math.ceil(distance / 16);
+    const steps = Math.ceil(distance / 4);
     for (let i = 0; i < steps; i++) {
       this.x += xDelta / steps;
       this.y += yDelta / steps;

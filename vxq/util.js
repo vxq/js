@@ -17,11 +17,11 @@ exports.CallbackList = class {
     const token = {};
     this.callbackTokens.push(token);
     this.callbacks.push(f);
-    return () => {
+    return function() {
       const index = this.callbackTokens.indexOf(token);
       this.callbacks.splice(index, 1);
       this.callbackTokens.splice(index, 1);
-    };
+    }.bind(this);
   }
 
   call() {

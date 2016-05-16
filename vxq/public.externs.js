@@ -16,7 +16,7 @@ let VXQ = class {
 
 
 /**
- * @interface 
+ * @interface
  */
 VXQ.CallbackList = class {
   /**
@@ -58,7 +58,7 @@ VXQ.World = class {
    * set of agents in the world.
    * @return {!VXQ.CallbackList}
    */
-  get changeCallbacks() {};
+  get changeCallbacks() {}
 };
 
 
@@ -80,14 +80,14 @@ VXQ.Agent = class {
    * agent's coordinates.
    * @return {!VXQ.CallbackList}
    */
-  get changeCallbacks() {};
+  get changeCallbacks() {}
 
   /**
    * Request that the agent attempt to move towards a specific point.
    * The attempt may take time, or not reach the destination.
-   * @param {?number=} x
-   * @param {?number=} y
-   * @param {?number=} z
+   * @param {number} x
+   * @param {number} y
+   * @param {number} z
    * @return {!Promise<void>} A promise that resolves when the agent has
    *     finished attempting to reach the destination.
    */
