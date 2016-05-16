@@ -1,8 +1,7 @@
+goog.module('vxq.renderers.FlatCanvas');
 /**
- * @fileoverview Renders a world on a 2D <canvas>.
+ * @fileoverview Renders a World on a 2D <canvas>.
  */
-
-goog.module('vxq.CanvasRenderer');
 
 
 /** @protected */
@@ -24,7 +23,7 @@ class AgentRender {
     /** @type {number} */
     this.lastZ = 0.0;
 
-    /** @const {!vxq.CanvasRenderer} */
+    /** @const {!vxq.renderers.FlatCanvas} */
     this.renderer = renderer;
 
     /** @const {!VXQ.Agent} */

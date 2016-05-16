@@ -1,5 +1,7 @@
-goog.module('vxq.turtles');
-/** @fileoverview Provides simple "turtle" worlds and agents. */
+goog.module('vxq.worlds.turtles');
+/**
+ * @fileoverview A 2D world with no physics.
+ */
 
 const debug = goog.require('vxq.debug');
 const util = goog.require('vxq.util');
@@ -10,13 +12,13 @@ exports.World = class {
   constructor(
     /** number */ width,
     /** number */ height,
-    /** !Array<!vxq.turtles.Turtle> */ turtles
+    /** !Array<!vxq.worlds.turtles.Turtle> */ turtles
   ) {
     /** @const */
     this.width = width;
     /** @const */
     this.height = height;
-    /** @const {!Set<!vxq.turtles.Turtle>} */
+    /** @const {!Set<!vxq.worlds.turtles.Turtle>} */
     this.turtles = new Set(turtles);
 
     /** @const */
@@ -36,7 +38,7 @@ exports.Turtle = class {
     this.x = 50;
     /** @type {number} */
     this.y = 50;
-    /** @type {number} */
+    /** @const {number} */
     this.z = 0;
 
     /**

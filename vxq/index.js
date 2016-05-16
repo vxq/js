@@ -1,9 +1,10 @@
 goog.module('vxq.main');
 
-const turtles = goog.require('vxq.turtles');
+const turtles = goog.require('vxq.worlds.turtles');
+const flatland = goog.require('vxq.worlds.flatland');
 const debug = goog.require('vxq.debug');
 const testing = goog.require('vxq.testing');
-const CanvasRenderer = goog.require('vxq.CanvasRenderer');
+const FlatCanvas = goog.require('vxq.renderers.FlatCanvas');
 
 
 /** @implements {VXQ} */
@@ -15,7 +16,7 @@ class VXQModule {
 
   /** @override */ addBrowserTurtlePlaygroundNextToCurrentScript() {
     const world = new turtles.World(512, 512, []);
-    const renderer = new CanvasRenderer(world);
+    const renderer = new FlatCanvas(world);
 
     document.currentScript.parentNode.appendChild(renderer.canvas);
 

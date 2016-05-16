@@ -6,7 +6,7 @@ const runSequence = require('run-sequence');
 
 const srcs = [
   '!**/*.externs.js',
-  'vxq/**/*.js',
+  'vxq/**/*.js'
 ];
 
 const flags = {
