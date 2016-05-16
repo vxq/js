@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.1.0-dev.7",
+  "version": "0.1.0-dev.8",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -10,6 +10,7 @@
     "gulp": "^3.9.1",
     "gulp-gjslint": "^0.1.5",
     "run-sequence": "^1.1.5",
+    "semver": "^5.1.0",
     "tape": "^4.5.1"
   },
   "files": [
@@ -26,7 +27,5 @@
     "test": "node test",
     "lint": "gulp lint"
   },
-  "dependencies": {
-    "semver": "^5.1.0"
-  }
+  "dependencies": {}
 }
