@@ -5,9 +5,12 @@
 goog.module('vxq.CanvasRenderer');
 
 
-/** @protected */
+/**
+ * An agent being rendered.
+ * @protected
+ */
 class AgentRender {
-  constructor(renderer, agent) {
+  constructor(/** !vxq.CanvasRenderer */ renderer, /** !VXQ.Agent */ agent) {
     /**
      * An crude estimate of how much the agent has moved.
      * @type {number}
@@ -24,10 +27,10 @@ class AgentRender {
     /** @type {number} */
     this.lastZ = 0.0;
 
-    /** @const {!vxq.CanvasRenderer} */
+    /** @const */
     this.renderer = renderer;
 
-    /** @const {!VXQ.Agent} */
+    /** @const */
     this.agent = agent;
 
     /** @const */
@@ -35,7 +38,7 @@ class AgentRender {
         () => void this.update(agent.x, agent.y, agent.z));
   }
 
-  update(x, y, z) {
+  update(/** number */ x, /** number */ y, /** number */ z) {
     const deltaX = x - this.lastX;
     const deltaY = y - this.lastY;
     const deltaZ = z - this.lastZ;
@@ -65,7 +68,7 @@ class AgentRender {
     g.fill();
     g.stroke();
   }
-};
+}
 
 
 /** @implements {VXQ.Renderer} */
@@ -93,7 +96,7 @@ exports = class {
     this.world.changeCallbacks.add(this.updateRenders.bind(this));
   }
 
-  updateRenders() {
+  /** @protected */ updateRenders() {
     for (const render of this.renders) {
       render.cancel();
     }
@@ -102,4 +105,4 @@ exports = class {
     this.renders.set(agent, new AgentRender(this, agent));
     }
   }
-};
+}

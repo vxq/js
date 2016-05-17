@@ -757,7 +757,7 @@ Object.defineProperties(vxq.turtles.Turtle.prototype, {xFactor:{configurable:!0,
 vxq.testing = {};
 vxq.testing.assert = function $vxq$testing$assert$($condition$$, $message$$) {
   if (!$condition$$) {
-    throw Error($message$$ || "Assertion failed");
+    throw Error((void 0 === $message$$ ? null : $message$$) || "Assertion failed");
   }
 };
 vxq.testing.assertEquals = function $vxq$testing$assertEquals$($expected$$, $actual$$) {

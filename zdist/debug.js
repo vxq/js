@@ -146,8 +146,9 @@ Object.defineProperties($vxq$turtles$Turtle$$.prototype, {$xFactor$:{configurabl
   return Math.cos(2 * this.$a$ * Math.PI);
 }}});
 function $vxq$testing$assertEquals$$($expected$$, $actual$$) {
+  var $message$$inline_16$$ = $expected$$ + " !== " + $actual$$;
   if ($expected$$ !== $actual$$) {
-    throw Error($expected$$ + " !== " + $actual$$ || "Assertion failed");
+    throw Error((void 0 === $message$$inline_16$$ ? null : $message$$inline_16$$) || "Assertion failed");
   }
 }
 ;function $$jscomp$scope$VXQModule$$() {

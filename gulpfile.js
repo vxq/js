@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const closureCompiler = require('google-closure-compiler').gulp();
-const gjslint = require('gulp-gjslint');
 const runSequence = require('run-sequence');
 
 
@@ -8,6 +7,7 @@ const srcs = [
   '!**/*.externs.js',
   'vxq/**/*.js',
 ];
+const dest = 'zdist';
 
 const flags = {
   compilation_level: 'ADVANCED_OPTIMIZATIONS',
@@ -27,25 +27,27 @@ const flags = {
   language_out: 'ECMASCRIPT5_STRICT',
   entry_point: 'vxq.main',
   generate_exports: true,
-  jscomp_error: ['checkTypes'],
+  jscomp_error: ['checkTypes', 'missingReturn'],
+  jscomp_warning: [],
   externs: [
     'vxq/public.externs.js',
     'vxq/environment.externs.js'
   ]
 };
 
-gulp.task('build', ['build-simple', 'build-debug', 'build-prod']);
-gulp.task('build-seq', () => runSequence('build-simple', 'build-debug', 'build-prod'));
+gulp.task('pbuild', ['build-simple', 'build-debug', 'build-prod']);
+gulp.task('build', () => runSequence('build-simple', 'build-debug', 'build-prod'));
 
 gulp.task('build-simple', () => {
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     compilation_level: 'SIMPLE_OPTIMIZATIONS',
     js_output_file: 'simple.js',
     jscomp_warning: ['checkTypes'],
+    jscomp_error: [],
     debug: true,
     formatting: 'pretty_print',
     define: ['vxq.debug.DEBUG=true']
-  }))).pipe(gulp.dest('zdist'));
+  }))).pipe(gulp.dest(dest));
 });
 
 gulp.task('build-debug', () =>
@@ -54,20 +56,21 @@ gulp.task('build-debug', () =>
     debug: true,
     formatting: 'pretty_print',
     define: ['vxq.debug.DEBUG=true']
-  }))).pipe(gulp.dest('zdist')));
+  }))).pipe(gulp.dest(dest)));
 
 gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'prod.js'
-  }))).pipe(gulp.dest('zdist')));
+  }))).pipe(gulp.dest(dest)));
 
 gulp.task('lint', () =>
-  gulp.src('vxq/**/*.js')
-    .pipe(gjslint())
-    .pipe(gjslint.reporter('console'))
-    .pipe(gjslint.reporter('fail')));
-
-gulp.task('lint-full', () =>
-  gulp.src('vxq/**/*.js')
-    .pipe(gjslint())
-    .pipe(gjslint.reporter('console')));
+  // Runs prod build, but with lint checks and all warnings turned to errors,
+  // and discarding the output files.
+  gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
+    // We need to have an output path, but don't want to save this
+    // (it should be identical to prod.js anyway), so we put it here.
+    js_output_file: 'tmp/prod-linted.js',
+    jscomp_error:
+        flags.jscomp_error.concat(['lintChecks', ...flags.jscomp_warning]),
+    jscomp_warning: []
+  }))).pipe(gulp.dest(dest)));

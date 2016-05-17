@@ -17,7 +17,7 @@ exports.assert = (/** * */ condition, /** ?string= */ message = null) => {
   if (DEBUG && !condition) {
     throw new Error(message || 'Assertion failed');
   }
-};
+}
 
 
 /**
@@ -28,4 +28,4 @@ exports.log = (...args) => {
   if (DEBUG) {
     console.log(...args);
   }
-};
+}
