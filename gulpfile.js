@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const closureCompiler = require('google-closure-compiler').gulp();
-const shell = require('gulp-shell');
 const runSequence = require('run-sequence');
 
 
@@ -12,6 +11,7 @@ const dest = 'zdist';
 
 const flags = {
   compilation_level: 'ADVANCED_OPTIMIZATIONS',
+  use_types_for_optimization: true,
   warning_level: 'VERBOSE',
   get output_wrapper() {
     return [
@@ -29,15 +29,23 @@ const flags = {
   language_in: 'ECMASCRIPT6_STRICT',
   language_out: 'ECMASCRIPT5_STRICT',
   entry_point: 'vxq.main',
-  jscomp_error: ['checkTypes', 'missingReturn', 'checkVars', 'missingProvide', 'missingRequire'],
-  jscomp_warning: ['accessControls', 'deprecated', 'undefinedVars', 'undefinedNames'],
+  jscomp_error: [
+    'checkTypes', 'missingReturn', 'checkVars', 'missingProvide',
+    'missingRequire', 'missingProperties'
+  ],
+  jscomp_warning: [
+    'accessControls', 'undefinedVars', 'undefinedNames', 'visibility',
+    'externsValidation'
+  ],
   externs: [
     'vxq/public.externs.js',
     'vxq/environment.externs.js'
   ]
 };
 const lintFlags = [
-    'lintChecks', 'fileoverviewTags', 'nonStandardJsDocs', 'suspiciousCode'];
+    'lintChecks', 'fileoverviewTags', 'nonStandardJsDocs', 'suspiciousCode',
+    'deprecated'
+];
 
 gulp.task('pbuild', ['build-simple', 'build-debug', 'build-prod']);
 gulp.task('build', () => runSequence('build-simple', 'build-debug', 'build-prod'));
@@ -45,6 +53,7 @@ gulp.task('build', () => runSequence('build-simple', 'build-debug', 'build-prod'
 gulp.task('build-simple', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     compilation_level: 'SIMPLE_OPTIMIZATIONS',
+    use_types_for_optimization: false,
     js_output_file: 'simple/vxq.js',
     output_manifest: 'zdist/simple/vxq.manifest',
     jscomp_error: [],
@@ -79,5 +88,3 @@ gulp.task('lint', () =>
         lintFlags, flags.jscomp_warning, flags.jscomp_error),
     jscomp_warning: []
   }))).pipe(gulp.dest(dest)));
-
-gulp.task('test', () => shell.task(['node test']));
