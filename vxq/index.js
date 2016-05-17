@@ -80,7 +80,7 @@ class VXQModule {
       window['vxq'] = this;
     }
   }
-};
+}
 
 exports = new VXQModule;
 exports.exportFromClosure();

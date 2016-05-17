@@ -7,6 +7,7 @@ const srcs = [
   '!**/*.externs.js',
   'vxq/**/*.js',
 ];
+const dest = 'zdist';
 
 const flags = {
   compilation_level: 'ADVANCED_OPTIMIZATIONS',
@@ -46,7 +47,7 @@ gulp.task('build-simple', () => {
     debug: true,
     formatting: 'pretty_print',
     define: ['vxq.debug.DEBUG=true']
-  }))).pipe(gulp.dest('zdist'));
+  }))).pipe(gulp.dest(dest));
 });
 
 gulp.task('build-debug', () =>
@@ -55,19 +56,21 @@ gulp.task('build-debug', () =>
     debug: true,
     formatting: 'pretty_print',
     define: ['vxq.debug.DEBUG=true']
-  }))).pipe(gulp.dest('zdist')));
+  }))).pipe(gulp.dest(dest)));
 
 gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'prod.js'
-  }))).pipe(gulp.dest('zdist')));
+  }))).pipe(gulp.dest(dest)));
 
 gulp.task('lint', () =>
   // Runs prod build, but with lint checks and all warnings turned to errors,
   // and discarding the output files.
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    js_output_file: 'prod.js',
+    // We need to have an output path, but don't want to save this
+    // (it should be identical to prod.js anyway), so we put it here.
+    js_output_file: 'tmp/prod-linted.js',
     jscomp_error:
         flags.jscomp_error.concat(['lintChecks', ...flags.jscomp_warning]),
     jscomp_warning: []
-  }))).pipe(gulp.dest('/dev/null')));
+  }))).pipe(gulp.dest(dest)));

@@ -26,7 +26,7 @@ exports.World = class {
   /** @override */ get agents() {
     return this.turtles;
   }
-};
+}
 
 
 /** @implements {VXQ.Agent} */
@@ -83,7 +83,7 @@ exports.Turtle = class {
       this.z);
   }
 
-  goTo(x, y, z) {
+  /** @override */ goTo(x, y, z) {
     debug.assert(Number.isFinite(x));
     debug.assert(Number.isFinite(y));
     debug.assert(Number.isFinite(z));
@@ -106,5 +106,5 @@ exports.Turtle = class {
 
     return Promise.resolve();
   }
-};
+}
 
