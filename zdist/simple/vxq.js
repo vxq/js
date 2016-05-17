@@ -727,7 +727,9 @@ Object.defineProperties(vxq.worlds.flatland.World.prototype, {agents:{configurab
 }}});
 vxq.worlds.flatland.Unit = function $vxq$worlds$flatland$Unit$($world$$, $x$$, $y$$) {
   this.world = $world$$;
-  this.targetY = this.targetX = this.vY = this.vX = this.z = this.y = this.x = 0;
+  this.x = void 0 === $x$$ ? 0 : $x$$;
+  this.y = void 0 === $y$$ ? 0 : $y$$;
+  this.targetY = this.targetX = this.vY = this.vX = this.z = 0;
   this.targetMaxDistance = 16;
   this.targetMaxSpeed = 4;
   this.currentMove = null;
@@ -750,7 +752,7 @@ vxq.worlds.flatland.Unit.prototype.goTo = function $vxq$worlds$flatland$Unit$$go
 vxq.testing = {};
 vxq.testing.assert = function $vxq$testing$assert$($condition$$, $message$$) {
   if (!$condition$$) {
-    throw Error($message$$ || "Assertion failed");
+    throw Error((void 0 === $message$$ ? null : $message$$) || "Assertion failed");
   }
 };
 vxq.testing.assertEquals = function $vxq$testing$assertEquals$($expected$$, $actual$$) {
@@ -854,4 +856,4 @@ $jscomp.scope.VXQModule.prototype.exportFromClosure = function $$jscomp$scope$VX
 vxq.main = new $jscomp.scope.VXQModule;
 vxq.main.exportFromClosure();
 
-}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})
+}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})//# sourceMappingURL=vxq.map.js

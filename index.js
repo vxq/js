@@ -1,1 +1,1 @@
-module.exports = require('./zdist/debug');
+module.exports = require('./zdist/debug/vxq');

@@ -13,8 +13,8 @@ exports.CallbackList = class {
     this.callbackTokens = [];
   }
 
-  add(f) {
-    const token = {};
+  /** @override */ add(f) {
+    const token = {}
     this.callbackTokens.push(token);
     this.callbacks.push(f);
     return function() {
@@ -24,9 +24,10 @@ exports.CallbackList = class {
     }.bind(this);
   }
 
+  /** Call all of the callbacks. */
   call() {
     for (const f of this.callbacks) {
       f();
     }
   }
-};
+}

@@ -118,8 +118,9 @@ Object.defineProperties(function($width$$13$$, $height$$12$$) {
   return new (Function.prototype.bind.apply(Set, [null].concat($$jscomp$arrayFromIterable$$(this.units))));
 }}});
 function $vxq$testing$assertEquals$$($expected$$, $actual$$) {
+  var $message$$inline_13$$ = $expected$$ + " !== " + $actual$$;
   if ($expected$$ !== $actual$$) {
-    throw Error($expected$$ + " !== " + $actual$$ || "Assertion failed");
+    throw Error((void 0 === $message$$inline_13$$ ? null : $message$$inline_13$$) || "Assertion failed");
   }
 }
 ;function $$jscomp$scope$AgentRender$$($renderer$$, $agent$$) {
@@ -211,4 +212,4 @@ var $JSCompiler_StaticMethods_exportFromClosure$self$$inline_27$$ = new $$jscomp
 "object" === typeof module && null != module && (module.exports = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_27$$);
 "object" === typeof window && null != window && (window.vxq = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_27$$);
 
-}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})
+}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})//# sourceMappingURL=vxq.map.js

@@ -1,7 +1,8 @@
-goog.module('vxq.renderers.FlatCanvas');
 /**
- * @fileoverview Renders a World on a 2D <canvas>.
+ * @fileoverview Renders a world on a 2D <canvas>.
  */
+
+goog.module('vxq.CanvasRenderer');
 
 
 /**
@@ -9,10 +10,7 @@ goog.module('vxq.renderers.FlatCanvas');
  * @protected
  */
 class AgentRender {
-  constructor(
-    /** !vxq.renderers.FlatCanvas */ renderer,
-    /** !VXQ.Agent */ agent
-  ) {
+  constructor(renderer, agent) {
     /**
      * An crude estimate of how much the agent has moved.
      * @type {number}
@@ -29,10 +27,10 @@ class AgentRender {
     /** @type {number} */
     this.lastZ = 0.0;
 
-    /** @const */
+    /** @const {!vxq.CanvasRenderer} */
     this.renderer = renderer;
 
-    /** @const */
+    /** @const {!VXQ.Agent} */
     this.agent = agent;
 
     /** @const */
@@ -104,7 +102,7 @@ exports = class {
     }
     this.renders = new Map();
     for (const agent of this.world.agents) {
-        this.renders.set(agent, new AgentRender(this, agent));
+      this.renders.set(agent, new AgentRender(this, agent));
     }
   }
 }

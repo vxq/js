@@ -19,7 +19,6 @@ exports.World = class {
     /** @const {!Set<!vxq.worlds.flatland.Unit>} */
     this.units = new Set();
 
-    /** @const */
     this.maxAcceleration = 10;
 
     /** @const */
@@ -45,16 +44,20 @@ exports.World = class {
 };
 
 
-/** @implements {VXQ.Agent} */
+/**@implements {VXQ.Agent} */
 exports.Unit = class {
-  constructor(world, x = 0, y = 0) {
-    /** @const {!vxq.worlds.flatland.World} */
+  constructor(
+    /** !vxq.worlds.flatland.World */ world,
+    /** number= */ x = 0,
+    /** number= */ y = 0
+  ) {
+    /** @const */
     this.world = world;
 
     /** @type {number} */
-    this.x = 0;
+    this.x = x;
     /** @type {number} */
-    this.y = 0;
+    this.y = y;
 
     /** @const */
     this.z = 0;
@@ -81,11 +84,11 @@ exports.Unit = class {
     this.changeCallbacks = new util.CallbackList;
   }
 
-  tick(dt) {
+  tick(/** number */ dt) {
 
   }
 
-  goTo(x, y, z) {
+  /** @override */ goTo(x, y, z) {
     if (this.currentMove) {
       const f = () => this.goTo(x, y, z);
       return this.currentMove.then(f, f);
