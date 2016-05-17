@@ -1,7 +1,7 @@
 
-> vxq@0.1.0-dev.20 test /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.22 test /Users/j/src/github.com/vxq/js
 > gulp test
 
-[22:49:07] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[22:49:07] Starting 'test'...
-[22:49:07] Finished 'test' after 117 μs
+[22:54:56] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[22:54:56] Starting 'test'...
+[22:54:56] Finished 'test' after 112 μs

@@ -23,7 +23,7 @@ const flags = {
             `: null,`,
           `typeof window == 'object' ? window : null,`,
           `typeof module == 'object' ? module : {}`,
-      `)//# sourceMappingURL=vxq.map.js`
+      `)`
     ].join('');
   },
   language_in: 'ECMASCRIPT6_STRICT',
@@ -46,7 +46,6 @@ gulp.task('build-simple', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     compilation_level: 'SIMPLE_OPTIMIZATIONS',
     js_output_file: 'simple/vxq.js',
-    create_source_map: 'zdist/simple/vxq.map.js',
     output_manifest: 'zdist/simple/vxq.manifest',
     jscomp_error: [],
     jscomp_warning: [].concat(flags.jscomp_warning, flags.jscomp_error),
@@ -58,7 +57,6 @@ gulp.task('build-simple', () =>
 gulp.task('build-debug', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'debug/vxq.js',
-    create_source_map: 'zdist/debug/vxq.map.js',
     output_manifest: 'zdist/debug/vxq.manifest',
     formatting: 'pretty_print',
     debug: true,
@@ -68,7 +66,6 @@ gulp.task('build-debug', () =>
 gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'prod/vxq.js',
-    create_source_map: 'zdist/prod/vxq.map.js',
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('lint', () =>

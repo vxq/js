@@ -856,4 +856,4 @@ $jscomp.scope.VXQModule.prototype.exportFromClosure = function $$jscomp$scope$VX
 vxq.main = new $jscomp.scope.VXQModule;
 vxq.main.exportFromClosure();
 
-}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})//# sourceMappingURL=vxq.map.js
+}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})
