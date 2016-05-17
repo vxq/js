@@ -74,7 +74,7 @@ gulp.task('build-debug', () =>
 
 gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    js_output_file: 'prod/vxq.js',
+    js_output_file: 'prod/vxq.js'
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('lint', () =>

@@ -12,7 +12,7 @@ let VXQ = class {
 
   /** @return {!VXQ.World} */
   addBrowserTurtlePlaygroundNextToCurrentScript() {}
-}
+};
 
 
 /**
@@ -25,7 +25,7 @@ VXQ.CallbackList = class {
    *     this from the callback list.
    */
    add(f) {}
-}
+};
 
 
 /**
@@ -34,7 +34,7 @@ VXQ.CallbackList = class {
  */
 VXQ.Renderer = class {
   constructor(/** !VXQ.World */ world) {}
-}
+};
 
 
 /**
@@ -59,7 +59,7 @@ VXQ.World = class {
    * @return {!VXQ.CallbackList}
    */
   get changeCallbacks() {}
-}
+};
 
 
 /**
@@ -92,4 +92,4 @@ VXQ.Agent = class {
    *     finished attempting to reach the destination.
    */
   goTo(x, y, z) {}
-}
+};

@@ -107,4 +107,4 @@ exports = class {
         this.renders.set(agent, new AgentRender(this, agent));
     }
   }
-}
+};

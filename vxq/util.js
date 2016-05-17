@@ -30,4 +30,4 @@ exports.CallbackList = class {
       f();
     }
   }
-}
+};

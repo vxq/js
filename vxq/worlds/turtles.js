@@ -28,7 +28,7 @@ exports.World = class {
   /** @override */ get agents() {
     return this.turtles;
   }
-}
+};
 
 
 /** @implements {VXQ.Agent} */
@@ -108,5 +108,4 @@ exports.Turtle = class {
 
     return Promise.resolve();
   }
-}
-
+};
