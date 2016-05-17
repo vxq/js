@@ -38,14 +38,15 @@ const flags = {
 gulp.task('pbuild', ['build-simple', 'build-debug', 'build-prod']);
 gulp.task('build', () => runSequence('build-simple', 'build-debug', 'build-prod'));
 
+
 gulp.task('build-simple', () => {
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     compilation_level: 'SIMPLE_OPTIMIZATIONS',
     js_output_file: 'simple.js',
-    jscomp_warning: ['checkTypes'],
     jscomp_error: [],
-    debug: true,
+    jscomp_warning: [].concat(flags.jscomp_warning, flags.jscomp_error),
     formatting: 'pretty_print',
+    debug: true,
     define: ['vxq.debug.DEBUG=true']
   }))).pipe(gulp.dest(dest));
 });
@@ -53,8 +54,8 @@ gulp.task('build-simple', () => {
 gulp.task('build-debug', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'debug.js',
-    debug: true,
     formatting: 'pretty_print',
+    debug: true,
     define: ['vxq.debug.DEBUG=true']
   }))).pipe(gulp.dest(dest)));
 
@@ -71,6 +72,6 @@ gulp.task('lint', () =>
     // (it should be identical to prod.js anyway), so we put it here.
     js_output_file: 'tmp/prod-linted.js',
     jscomp_error:
-        flags.jscomp_error.concat(['lintChecks', ...flags.jscomp_warning]),
+        ['lintChecks'].concat(flags.jscomp_warning, flags.jscomp_error),
     jscomp_warning: []
   }))).pipe(gulp.dest(dest)));
