@@ -831,21 +831,24 @@ $jscomp.scope.VXQModule.prototype.addFlatCanvasWithTurtles = function $$jscomp$s
   this.testTheTurtles($world$$);
   return $world$$;
 };
-$jscomp.scope.VXQModule.prototype.addFlatCanvasWithFlatland = function $$jscomp$scope$VXQModule$$addFlatCanvasWithFlatland$($element$$) {
+$jscomp.scope.VXQModule.prototype.addFlatCanvasWithFlatland = function $$jscomp$scope$VXQModule$$addFlatCanvasWithFlatland$($element$$5_r$$) {
   var $world$$ = new vxq.worlds.flatland.World(512, 512), $renderer$$ = new vxq.renderers.FlatCanvas($world$$);
-  $element$$.appendChild($renderer$$.canvas);
-  $element$$ = new vxq.worlds.flatland.Unit($world$$, 50, 50);
-  $element$$.vX = 50;
-  $element$$.vY = 50;
-  $world$$.units.add($element$$);
-  $element$$ = new vxq.worlds.flatland.Unit($world$$, 100, 50);
-  $element$$.vX = -8;
-  $element$$.vY = 36;
-  $world$$.units.add($element$$);
-  $element$$ = new vxq.worlds.flatland.Unit($world$$, 100, 175);
-  $element$$.vX = -4;
-  $element$$.vY = -20;
-  $world$$.units.add($element$$);
+  $element$$5_r$$.appendChild($renderer$$.canvas);
+  $element$$5_r$$ = function $$element$$5_r$$$() {
+    return .5 + (Math.random() + Math.random() + Math.random()) / 3;
+  };
+  $renderer$$ = new vxq.worlds.flatland.Unit($world$$, 50, 50);
+  $renderer$$.vX = 50 * $element$$5_r$$();
+  $renderer$$.vY = 50 * $element$$5_r$$();
+  $world$$.units.add($renderer$$);
+  $renderer$$ = new vxq.worlds.flatland.Unit($world$$, 100, 50);
+  $renderer$$.vX = -8 * $element$$5_r$$();
+  $renderer$$.vY = 36 * $element$$5_r$$();
+  $world$$.units.add($renderer$$);
+  $renderer$$ = new vxq.worlds.flatland.Unit($world$$, 100, 175);
+  $renderer$$.vX = -4 * $element$$5_r$$();
+  $renderer$$.vY = -20 * $element$$5_r$$();
+  $world$$.units.add($renderer$$);
   $world$$.changeCallbacks.call();
   return $world$$;
 };

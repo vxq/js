@@ -27,19 +27,22 @@ class VXQModule {
     const renderer = new FlatCanvas(world);
     element.appendChild(renderer.canvas);
 
+    const r = () =>
+        0.5 + (Math.random() + Math.random() + Math.random()) / 3;
+
     const unit1 = new flatland.Unit(world, 50, 50);
-    unit1.vX = 50;
-    unit1.vY = 50;
+    unit1.vX = r() * 50;
+    unit1.vY = r() * 50;
     world.units.add(unit1);
 
     const unit2 = new flatland.Unit(world, 100, 50);
-    unit2.vX = -8;
-    unit2.vY = 36;
+    unit2.vX = r() * -8;
+    unit2.vY = r() * 36;
     world.units.add(unit2);
 
     const unit3 = new flatland.Unit(world, 100, 175);
-    unit3.vX = -4;
-    unit3.vY = -20;
+    unit3.vX = r() * -4;
+    unit3.vY = r() * -20;
     world.units.add(unit3);
 
     world.changeCallbacks.call();

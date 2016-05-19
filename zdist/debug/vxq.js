@@ -208,19 +208,22 @@ $$jscomp$scope$VXQModule$$.prototype.addFlatCanvasWithTurtles = function $$$jsco
   return $world$$3$$;
 };
 $$jscomp$scope$VXQModule$$.prototype.addFlatCanvasWithFlatland = function $$$jscomp$scope$VXQModule$$$$addFlatCanvasWithFlatland$($element$$5_unit1_unit2_unit3$$) {
+  function $r$$1$$() {
+    return .5 + (Math.random() + Math.random() + Math.random()) / 3;
+  }
   var $world$$4$$ = new $vxq$worlds$flatland$World$$(512, 512), $renderer$$2$$ = new $vxq$renderers$FlatCanvas$$($world$$4$$);
   $element$$5_unit1_unit2_unit3$$.appendChild($renderer$$2$$.$b$);
   $element$$5_unit1_unit2_unit3$$ = new $vxq$worlds$flatland$Unit$$(0, 50, 50);
-  $element$$5_unit1_unit2_unit3$$.$a$ = 50;
-  $element$$5_unit1_unit2_unit3$$.$b$ = 50;
+  $element$$5_unit1_unit2_unit3$$.$a$ = 50 * $r$$1$$();
+  $element$$5_unit1_unit2_unit3$$.$b$ = 50 * $r$$1$$();
   $world$$4$$.$a$.add($element$$5_unit1_unit2_unit3$$);
   $element$$5_unit1_unit2_unit3$$ = new $vxq$worlds$flatland$Unit$$(0, 100, 50);
-  $element$$5_unit1_unit2_unit3$$.$a$ = -8;
-  $element$$5_unit1_unit2_unit3$$.$b$ = 36;
+  $element$$5_unit1_unit2_unit3$$.$a$ = -8 * $r$$1$$();
+  $element$$5_unit1_unit2_unit3$$.$b$ = 36 * $r$$1$$();
   $world$$4$$.$a$.add($element$$5_unit1_unit2_unit3$$);
   $element$$5_unit1_unit2_unit3$$ = new $vxq$worlds$flatland$Unit$$(0, 100, 175);
-  $element$$5_unit1_unit2_unit3$$.$a$ = -4;
-  $element$$5_unit1_unit2_unit3$$.$b$ = -20;
+  $element$$5_unit1_unit2_unit3$$.$a$ = -4 * $r$$1$$();
+  $element$$5_unit1_unit2_unit3$$.$b$ = -20 * $r$$1$$();
   $world$$4$$.$a$.add($element$$5_unit1_unit2_unit3$$);
   $world$$4$$.changeCallbacks.call();
   return $world$$4$$;
