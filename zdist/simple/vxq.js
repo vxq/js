@@ -654,6 +654,11 @@ vxq.util.CallbackList.prototype.call = function $vxq$util$CallbackList$$call$() 
     $$jscomp$key$f_f$$ = $$jscomp$key$f_f$$.value, $$jscomp$key$f_f$$();
   }
 };
+vxq.util.waitTimeout = function $vxq$util$waitTimeout$($millis$$) {
+  return new Promise(function($resolve$$) {
+    return setTimeout($resolve$$, $millis$$);
+  });
+};
 vxq.worlds = {};
 vxq.worlds.turtles = {};
 vxq.worlds.turtles.World = function $vxq$worlds$turtles$World$($width$$, $height$$, $turtles$$) {
@@ -721,10 +726,10 @@ vxq.worlds.flatland.World = function $vxq$worlds$flatland$World$($width$$, $heig
     for (var $$jscomp$iter$1$$ = $jscomp.makeIterator($$jscomp$this$$.units), $$jscomp$key$unit$$ = $$jscomp$iter$1$$.next();!$$jscomp$key$unit$$.done;$$jscomp$key$unit$$ = $$jscomp$iter$1$$.next()) {
       $$jscomp$key$unit$$.value.tick($dt$$);
     }
-  }, 100);
+  }, 20);
 };
 Object.defineProperties(vxq.worlds.flatland.World.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
-  return new (Function.prototype.bind.apply(Set, [null].concat($jscomp.arrayFromIterable(this.units))));
+  return new Set(this.units);
 }}});
 vxq.worlds.flatland.Unit = function $vxq$worlds$flatland$Unit$($world$$, $x$$, $y$$) {
   this.world = $world$$;
@@ -737,6 +742,15 @@ vxq.worlds.flatland.Unit = function $vxq$worlds$flatland$Unit$($world$$, $x$$, $
   this.changeCallbacks = new vxq.util.CallbackList;
 };
 vxq.worlds.flatland.Unit.prototype.tick = function $vxq$worlds$flatland$Unit$$tick$($dt$$) {
+  if (0 < $dt$$ && (0 != this.vX || 0 != this.vY)) {
+    this.x += $dt$$ * this.vX;
+    this.y += $dt$$ * this.vY;
+    var $speed$$ = Math.sqrt(this.vX * this.vX + this.vY * this.vY);
+    $dt$$ = Math.max(0, $speed$$ - $dt$$ * this.world.absoluteVelocityLossPerSecond - $dt$$ * $speed$$ * this.world.proportionalVelocityLossPerSecond);
+    this.vX *= $dt$$ / $speed$$;
+    this.vY *= $dt$$ / $speed$$;
+    this.changeCallbacks.call();
+  }
 };
 vxq.worlds.flatland.Unit.prototype.goTo = function $vxq$worlds$flatland$Unit$$goTo$($x$$, $y$$, $z$$) {
   var $$jscomp$this$$ = this;
@@ -825,6 +839,19 @@ $jscomp.scope.VXQModule.prototype.addFlatCanvasWithTurtles = function $$jscomp$s
 $jscomp.scope.VXQModule.prototype.addFlatCanvasWithFlatland = function $$jscomp$scope$VXQModule$$addFlatCanvasWithFlatland$($element$$) {
   var $world$$ = new vxq.worlds.flatland.World(512, 512), $renderer$$ = new vxq.renderers.FlatCanvas($world$$);
   $element$$.appendChild($renderer$$.canvas);
+  $element$$ = new vxq.worlds.flatland.Unit($world$$, 50, 50);
+  $element$$.vX = 50;
+  $element$$.vY = 50;
+  $world$$.units.add($element$$);
+  $element$$ = new vxq.worlds.flatland.Unit($world$$, 100, 50);
+  $element$$.vX = -8;
+  $element$$.vY = 36;
+  $world$$.units.add($element$$);
+  $element$$ = new vxq.worlds.flatland.Unit($world$$, 100, 175);
+  $element$$.vX = -4;
+  $element$$.vY = -20;
+  $world$$.units.add($element$$);
+  $world$$.changeCallbacks.call();
   return $world$$;
 };
 $jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQModule$$testTheTurtles$($i$$13_i$5_world$$) {

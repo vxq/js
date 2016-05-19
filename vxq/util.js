@@ -31,3 +31,6 @@ exports.CallbackList = class {
     }
   }
 };
+
+exports.waitTimeout = millis =>
+    new Promise(resolve => setTimeout(resolve, millis));

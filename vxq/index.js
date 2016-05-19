@@ -26,6 +26,24 @@ class VXQModule {
     const world = new flatland.World(512, 512);
     const renderer = new FlatCanvas(world);
     element.appendChild(renderer.canvas);
+
+    const unit1 = new flatland.Unit(world, 50, 50);
+    unit1.vX = 50;
+    unit1.vY = 50;
+    world.units.add(unit1);
+
+    const unit2 = new flatland.Unit(world, 100, 50);
+    unit2.vX = -8;
+    unit2.vY = 36;
+    world.units.add(unit2);
+
+    const unit3 = new flatland.Unit(world, 100, 175);
+    unit3.vX = -4;
+    unit3.vY = -20;
+    world.units.add(unit3);
+
+    world.changeCallbacks.call();
+
     return world;
   }
 

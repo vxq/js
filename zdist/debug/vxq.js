@@ -25,15 +25,11 @@ function $$jscomp$makeIterator$$($iterable$$2$$) {
     return $index$$46$$ == $iterable$$2$$.length ? {done:!0} : {done:!1, value:$iterable$$2$$[$index$$46$$++]};
   }};
 }
-function $$jscomp$arrayFromIterable$$($JSCompiler_temp$$6_iterable$$3_iterator$$inline_8$$) {
-  if (!($JSCompiler_temp$$6_iterable$$3_iterator$$inline_8$$ instanceof Array)) {
-    $JSCompiler_temp$$6_iterable$$3_iterator$$inline_8$$ = $$jscomp$makeIterator$$($JSCompiler_temp$$6_iterable$$3_iterator$$inline_8$$);
-    for (var $i$$inline_9$$, $arr$$inline_10$$ = [];!($i$$inline_9$$ = $JSCompiler_temp$$6_iterable$$3_iterator$$inline_8$$.next()).done;) {
-      $arr$$inline_10$$.push($i$$inline_9$$.value);
-    }
-    $JSCompiler_temp$$6_iterable$$3_iterator$$inline_8$$ = $arr$$inline_10$$;
+function $$jscomp$arrayFromIterator$$($iterator$$) {
+  for (var $i$$3$$, $arr$$8$$ = [];!($i$$3$$ = $iterator$$.next()).done;) {
+    $arr$$8$$.push($i$$3$$.value);
   }
-  return $JSCompiler_temp$$6_iterable$$3_iterator$$inline_8$$;
+  return $arr$$8$$;
 }
 function $vxq$debug$assert$$($condition$$1$$) {
   if (!$condition$$1$$) {
@@ -44,7 +40,7 @@ function $vxq$debug$log$$($args$$) {
   for (var $$jscomp$restParams$$4$$ = [], $$jscomp$restIndex$$4$$ = 0;$$jscomp$restIndex$$4$$ < arguments.length;++$$jscomp$restIndex$$4$$) {
     $$jscomp$restParams$$4$$[$$jscomp$restIndex$$4$$ - 0] = arguments[$$jscomp$restIndex$$4$$];
   }
-  console.log.apply(console, [].concat($$jscomp$arrayFromIterable$$($$jscomp$restParams$$4$$)));
+  console.log.apply(console, [].concat($$jscomp$restParams$$4$$ instanceof Array ? $$jscomp$restParams$$4$$ : $$jscomp$arrayFromIterator$$($$jscomp$makeIterator$$($$jscomp$restParams$$4$$))));
 }
 ;function $vxq$util$CallbackList$$() {
   this.$b$ = [];
@@ -111,14 +107,44 @@ function $vxq$worlds$flatland$World$$($width$$13$$, $height$$12$$) {
   this.height = $height$$12$$;
   this.changeCallbacks = new $vxq$util$CallbackList$$;
   this.$a$ = new Set;
+  var $then$$ = +new Date;
   setInterval(function() {
-    for (var $$jscomp$iter$1$$1$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$), $$jscomp$key$unit$$ = $$jscomp$iter$1$$1$$.next();!$$jscomp$key$unit$$.done;$$jscomp$key$unit$$ = $$jscomp$iter$1$$1$$.next()) {
+    var $$jscomp$iter$1$$1_now$$ = +new Date, $dt$$ = ($$jscomp$iter$1$$1_now$$ - $then$$) / 1E3;
+    $then$$ = $$jscomp$iter$1$$1_now$$;
+    for (var $$jscomp$iter$1$$1_now$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$), $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$ = $$jscomp$iter$1$$1_now$$.next();!$$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.done;$$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$ = $$jscomp$iter$1$$1_now$$.next()) {
+      if ($$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$ = $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.value, 0 < $dt$$ && (0 != $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$ || 0 != $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$)) {
+        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.x += $dt$$ * $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$;
+        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.y += $dt$$ * $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$;
+        var $speed$$inline_9$$ = Math.sqrt($$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$ * $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$ + $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$ * $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$), $newSpeed$$inline_10$$ = Math.max(0, $speed$$inline_9$$ - 2 * $dt$$ - $dt$$ * $speed$$inline_9$$ * .2);
+        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$ *= $newSpeed$$inline_10$$ / $speed$$inline_9$$;
+        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$ *= $newSpeed$$inline_10$$ / $speed$$inline_9$$;
+        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.changeCallbacks.call();
+      }
     }
-  }, 100);
+  }, 20);
 }
 Object.defineProperties($vxq$worlds$flatland$World$$.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
-  return new (Function.prototype.bind.apply(Set, [null].concat($$jscomp$arrayFromIterable$$(this.$a$))));
+  return new Set(this.$a$);
 }}});
+function $vxq$worlds$flatland$Unit$$($world$$1$$, $x$$80$$, $y$$51$$) {
+  this.x = void 0 === $x$$80$$ ? 0 : $x$$80$$;
+  this.y = void 0 === $y$$51$$ ? 0 : $y$$51$$;
+  this.$b$ = this.$a$ = this.z = 0;
+  this.$c$ = null;
+  this.changeCallbacks = new $vxq$util$CallbackList$$;
+}
+$vxq$worlds$flatland$Unit$$.prototype.goTo = function $$vxq$worlds$flatland$Unit$$$$goTo$($x$$81$$, $y$$52$$, $z$$14$$) {
+  var $$jscomp$this$$2$$ = this;
+  if (this.$c$) {
+    var $f$$4$$ = function $$f$$4$$$() {
+      return $$jscomp$this$$2$$.goTo($x$$81$$, $y$$52$$, $z$$14$$);
+    };
+    return this.$c$.then($f$$4$$, $f$$4$$);
+  }
+  return this.$c$ = new Promise(function($resolve$$1$$) {
+    return $resolve$$1$$();
+  });
+};
 function $vxq$testing$assertEquals$$($expected$$, $actual$$) {
   var $message$$inline_13$$ = $expected$$ + " !== " + $actual$$;
   if ($expected$$ !== $actual$$) {
@@ -181,9 +207,22 @@ $$jscomp$scope$VXQModule$$.prototype.addFlatCanvasWithTurtles = function $$$jsco
   $JSCompiler_StaticMethods_testTheTurtles$$($world$$3$$);
   return $world$$3$$;
 };
-$$jscomp$scope$VXQModule$$.prototype.addFlatCanvasWithFlatland = function $$$jscomp$scope$VXQModule$$$$addFlatCanvasWithFlatland$($element$$5$$) {
+$$jscomp$scope$VXQModule$$.prototype.addFlatCanvasWithFlatland = function $$$jscomp$scope$VXQModule$$$$addFlatCanvasWithFlatland$($element$$5_unit1_unit2_unit3$$) {
   var $world$$4$$ = new $vxq$worlds$flatland$World$$(512, 512), $renderer$$2$$ = new $vxq$renderers$FlatCanvas$$($world$$4$$);
-  $element$$5$$.appendChild($renderer$$2$$.$b$);
+  $element$$5_unit1_unit2_unit3$$.appendChild($renderer$$2$$.$b$);
+  $element$$5_unit1_unit2_unit3$$ = new $vxq$worlds$flatland$Unit$$(0, 50, 50);
+  $element$$5_unit1_unit2_unit3$$.$a$ = 50;
+  $element$$5_unit1_unit2_unit3$$.$b$ = 50;
+  $world$$4$$.$a$.add($element$$5_unit1_unit2_unit3$$);
+  $element$$5_unit1_unit2_unit3$$ = new $vxq$worlds$flatland$Unit$$(0, 100, 50);
+  $element$$5_unit1_unit2_unit3$$.$a$ = -8;
+  $element$$5_unit1_unit2_unit3$$.$b$ = 36;
+  $world$$4$$.$a$.add($element$$5_unit1_unit2_unit3$$);
+  $element$$5_unit1_unit2_unit3$$ = new $vxq$worlds$flatland$Unit$$(0, 100, 175);
+  $element$$5_unit1_unit2_unit3$$.$a$ = -4;
+  $element$$5_unit1_unit2_unit3$$.$b$ = -20;
+  $world$$4$$.$a$.add($element$$5_unit1_unit2_unit3$$);
+  $world$$4$$.changeCallbacks.call();
   return $world$$4$$;
 };
 function $JSCompiler_StaticMethods_testTheTurtles$$($i$$13_i$5_world$$5$$) {

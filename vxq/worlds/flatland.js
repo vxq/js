@@ -35,11 +35,11 @@ exports.World = class {
       for (const unit of this.units) {
         unit.tick(dt);
       }
-    }, 100);
+    }, 20);
   }
 
   get agents() {
-    return new Set(...this.units);
+    return new Set(this.units);
   }
 };
 
@@ -85,7 +85,23 @@ exports.Unit = class {
   }
 
   tick(/** number */ dt) {
+    if (dt > 0 && (this.vX != 0 || this.vY != 0)) {
+      this.x += dt * this.vX;
+      this.y += dt * this.vY;
 
+      const speed = Math.sqrt(this.vX * this.vX + this.vY * this.vY);
+      const newSpeed = Math.max(
+          0,
+          speed -
+              dt * this.world.absoluteVelocityLossPerSecond -
+              dt * speed * this.world.proportionalVelocityLossPerSecond);
+
+      // fix me
+      this.vX *= newSpeed / speed;
+      this.vY *= newSpeed / speed;
+
+      this.changeCallbacks.call();
+    }
   }
 
   /** @override */ goTo(x, y, z) {
