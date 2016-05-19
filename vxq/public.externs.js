@@ -11,7 +11,10 @@ let VXQ = class {
   test() {}
 
   /** @return {!VXQ.World} */
-  addBrowserTurtlePlaygroundNextToCurrentScript() {}
+  addFlatCanvasWithTurtles(/** !Element */ el) {}
+
+  /** @return {!VXQ.World} */
+  addFlatCanvasWithFlatland(/** !Element */ el) {}
 };
 
 

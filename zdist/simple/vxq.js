@@ -706,6 +706,7 @@ Object.defineProperties(vxq.worlds.turtles.Turtle.prototype, {xFactor:{configura
 }}});
 vxq.worlds.flatland = {};
 vxq.worlds.flatland.World = function $vxq$worlds$flatland$World$($width$$, $height$$) {
+  var $$jscomp$this$$ = this;
   this.width = $width$$;
   this.height = $height$$;
   this.changeCallbacks = new vxq.util.CallbackList;
@@ -717,7 +718,7 @@ vxq.worlds.flatland.World = function $vxq$worlds$flatland$World$($width$$, $heig
   this.interval = setInterval(function() {
     var $$jscomp$iter$1$$ = +new Date, $dt$$ = ($$jscomp$iter$1$$ - $then$$) / 1E3;
     $then$$ = $$jscomp$iter$1$$;
-    for (var $$jscomp$iter$1$$ = $jscomp.makeIterator(this.units), $$jscomp$key$unit$$ = $$jscomp$iter$1$$.next();!$$jscomp$key$unit$$.done;$$jscomp$key$unit$$ = $$jscomp$iter$1$$.next()) {
+    for (var $$jscomp$iter$1$$ = $jscomp.makeIterator($$jscomp$this$$.units), $$jscomp$key$unit$$ = $$jscomp$iter$1$$.next();!$$jscomp$key$unit$$.done;$$jscomp$key$unit$$ = $$jscomp$iter$1$$.next()) {
       $$jscomp$key$unit$$.value.tick($dt$$);
     }
   }, 100);
@@ -815,10 +816,15 @@ $jscomp.scope.VXQModule.prototype.test = function $$jscomp$scope$VXQModule$$test
   vxq.debug.log("Let's testTheTurtles()!");
   this.testTheTurtles();
 };
-$jscomp.scope.VXQModule.prototype.addBrowserTurtlePlaygroundNextToCurrentScript = function $$jscomp$scope$VXQModule$$addBrowserTurtlePlaygroundNextToCurrentScript$() {
+$jscomp.scope.VXQModule.prototype.addFlatCanvasWithTurtles = function $$jscomp$scope$VXQModule$$addFlatCanvasWithTurtles$($element$$) {
   var $world$$ = new vxq.worlds.turtles.World(512, 512, []), $renderer$$ = new vxq.renderers.FlatCanvas($world$$);
-  document.currentScript.parentNode.appendChild($renderer$$.canvas);
+  $element$$.appendChild($renderer$$.canvas);
   this.testTheTurtles($world$$);
+  return $world$$;
+};
+$jscomp.scope.VXQModule.prototype.addFlatCanvasWithFlatland = function $$jscomp$scope$VXQModule$$addFlatCanvasWithFlatland$($element$$) {
+  var $world$$ = new vxq.worlds.flatland.World(512, 512), $renderer$$ = new vxq.renderers.FlatCanvas($world$$);
+  $element$$.appendChild($renderer$$.canvas);
   return $world$$;
 };
 $jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQModule$$testTheTurtles$($i$$13_i$5_world$$) {

@@ -105,17 +105,19 @@ Object.defineProperties($vxq$worlds$turtles$Turtle$$.prototype, {$xFactor$:{conf
 }}, $yFactor$:{configurable:!0, enumerable:!0, get:function() {
   return Math.cos(2 * this.$a$ * Math.PI);
 }}});
-Object.defineProperties(function($width$$13$$, $height$$12$$) {
+function $vxq$worlds$flatland$World$$($width$$13$$, $height$$12$$) {
+  var $$jscomp$this$$1$$ = this;
   this.width = $width$$13$$;
   this.height = $height$$12$$;
   this.changeCallbacks = new $vxq$util$CallbackList$$;
-  this.units = new Set;
+  this.$a$ = new Set;
   setInterval(function() {
-    for (var $$jscomp$iter$1$$1$$ = $$jscomp$makeIterator$$(this.units), $$jscomp$key$unit$$ = $$jscomp$iter$1$$1$$.next();!$$jscomp$key$unit$$.done;$$jscomp$key$unit$$ = $$jscomp$iter$1$$1$$.next()) {
+    for (var $$jscomp$iter$1$$1$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$), $$jscomp$key$unit$$ = $$jscomp$iter$1$$1$$.next();!$$jscomp$key$unit$$.done;$$jscomp$key$unit$$ = $$jscomp$iter$1$$1$$.next()) {
     }
   }, 100);
-}.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
-  return new (Function.prototype.bind.apply(Set, [null].concat($$jscomp$arrayFromIterable$$(this.units))));
+}
+Object.defineProperties($vxq$worlds$flatland$World$$.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
+  return new (Function.prototype.bind.apply(Set, [null].concat($$jscomp$arrayFromIterable$$(this.$a$))));
 }}});
 function $vxq$testing$assertEquals$$($expected$$, $actual$$) {
   var $message$$inline_13$$ = $expected$$ + " !== " + $actual$$;
@@ -124,23 +126,23 @@ function $vxq$testing$assertEquals$$($expected$$, $actual$$) {
   }
 }
 ;function $$jscomp$scope$AgentRender$$($renderer$$, $agent$$) {
-  var $$jscomp$this$$2$$ = this;
+  var $$jscomp$this$$3$$ = this;
   this.$b$ = 0;
   this.$c$ = 1E3 * Math.random();
   this.$f$ = $renderer$$;
   this.$a$ = $agent$$;
   this.cancel = $agent$$.changeCallbacks.add(function() {
     var $deltaX$$inline_19_g$$inline_22$$ = $agent$$.x - 0, $deltaY$$inline_20$$ = $agent$$.y - 0, $deltaZ$$inline_21$$ = $agent$$.z - 0;
-    $$jscomp$this$$2$$.$b$ += Math.sqrt($deltaX$$inline_19_g$$inline_22$$ * $deltaX$$inline_19_g$$inline_22$$ + $deltaY$$inline_20$$ * $deltaY$$inline_20$$ + $deltaZ$$inline_21$$ * $deltaZ$$inline_21$$);
-    $deltaX$$inline_19_g$$inline_22$$ = $$jscomp$this$$2$$.$f$.$f$;
-    $deltaX$$inline_19_g$$inline_22$$.fillStyle = "hsla(" + ($$jscomp$this$$2$$.$c$ + .05 * $$jscomp$this$$2$$.$b$) + ", 80%, 10%, 0.04)";
+    $$jscomp$this$$3$$.$b$ += Math.sqrt($deltaX$$inline_19_g$$inline_22$$ * $deltaX$$inline_19_g$$inline_22$$ + $deltaY$$inline_20$$ * $deltaY$$inline_20$$ + $deltaZ$$inline_21$$ * $deltaZ$$inline_21$$);
+    $deltaX$$inline_19_g$$inline_22$$ = $$jscomp$this$$3$$.$f$.$f$;
+    $deltaX$$inline_19_g$$inline_22$$.fillStyle = "hsla(" + ($$jscomp$this$$3$$.$c$ + .05 * $$jscomp$this$$3$$.$b$) + ", 80%, 10%, 0.04)";
     $deltaX$$inline_19_g$$inline_22$$.beginPath();
-    $deltaX$$inline_19_g$$inline_22$$.arc($$jscomp$this$$2$$.$a$.x, $$jscomp$this$$2$$.$a$.y, 192, 0, 2 * Math.PI);
+    $deltaX$$inline_19_g$$inline_22$$.arc($$jscomp$this$$3$$.$a$.x, $$jscomp$this$$3$$.$a$.y, 192, 0, 2 * Math.PI);
     $deltaX$$inline_19_g$$inline_22$$.fill();
-    $deltaX$$inline_19_g$$inline_22$$.fillStyle = "hsla(" + ($$jscomp$this$$2$$.$c$ + .05 * $$jscomp$this$$2$$.$b$) + ", 50%, 70%, 1.0)";
+    $deltaX$$inline_19_g$$inline_22$$.fillStyle = "hsla(" + ($$jscomp$this$$3$$.$c$ + .05 * $$jscomp$this$$3$$.$b$) + ", 50%, 70%, 1.0)";
     $deltaX$$inline_19_g$$inline_22$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
     $deltaX$$inline_19_g$$inline_22$$.beginPath();
-    $deltaX$$inline_19_g$$inline_22$$.arc($$jscomp$this$$2$$.$a$.x, $$jscomp$this$$2$$.$a$.y, 6, 0, 2 * Math.PI);
+    $deltaX$$inline_19_g$$inline_22$$.arc($$jscomp$this$$3$$.$a$.x, $$jscomp$this$$3$$.$a$.y, 6, 0, 2 * Math.PI);
     $deltaX$$inline_19_g$$inline_22$$.fill();
     $deltaX$$inline_19_g$$inline_22$$.stroke();
   });
@@ -173,17 +175,22 @@ $$jscomp$scope$VXQModule$$.prototype.test = function $$$jscomp$scope$VXQModule$$
   $vxq$debug$log$$("Let's testTheTurtles()!");
   $JSCompiler_StaticMethods_testTheTurtles$$();
 };
-$$jscomp$scope$VXQModule$$.prototype.addBrowserTurtlePlaygroundNextToCurrentScript = function $$$jscomp$scope$VXQModule$$$$addBrowserTurtlePlaygroundNextToCurrentScript$() {
+$$jscomp$scope$VXQModule$$.prototype.addFlatCanvasWithTurtles = function $$$jscomp$scope$VXQModule$$$$addFlatCanvasWithTurtles$($element$$4$$) {
   var $world$$3$$ = new $vxq$worlds$turtles$World$$(512, 512, []), $renderer$$1$$ = new $vxq$renderers$FlatCanvas$$($world$$3$$);
-  document.currentScript.parentNode.appendChild($renderer$$1$$.$b$);
+  $element$$4$$.appendChild($renderer$$1$$.$b$);
   $JSCompiler_StaticMethods_testTheTurtles$$($world$$3$$);
   return $world$$3$$;
 };
-function $JSCompiler_StaticMethods_testTheTurtles$$($i$$13_i$5_world$$4$$) {
-  $i$$13_i$5_world$$4$$ = void 0 === $i$$13_i$5_world$$4$$ ? new $vxq$worlds$turtles$World$$(512, 512, []) : $i$$13_i$5_world$$4$$;
+$$jscomp$scope$VXQModule$$.prototype.addFlatCanvasWithFlatland = function $$$jscomp$scope$VXQModule$$$$addFlatCanvasWithFlatland$($element$$5$$) {
+  var $world$$4$$ = new $vxq$worlds$flatland$World$$(512, 512), $renderer$$2$$ = new $vxq$renderers$FlatCanvas$$($world$$4$$);
+  $element$$5$$.appendChild($renderer$$2$$.$b$);
+  return $world$$4$$;
+};
+function $JSCompiler_StaticMethods_testTheTurtles$$($i$$13_i$5_world$$5$$) {
+  $i$$13_i$5_world$$5$$ = void 0 === $i$$13_i$5_world$$5$$ ? new $vxq$worlds$turtles$World$$(512, 512, []) : $i$$13_i$5_world$$5$$;
   var $turtle$$ = new $vxq$worlds$turtles$Turtle$$;
-  $i$$13_i$5_world$$4$$.$a$.add($turtle$$);
-  $i$$13_i$5_world$$4$$.changeCallbacks.call();
+  $i$$13_i$5_world$$5$$.$a$.add($turtle$$);
+  $i$$13_i$5_world$$5$$.changeCallbacks.call();
   $vxq$testing$assertEquals$$(50, $turtle$$.x);
   $vxq$testing$assertEquals$$(50, $turtle$$.y);
   $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$forward$$($turtle$$, 50);
@@ -196,13 +203,13 @@ function $JSCompiler_StaticMethods_testTheTurtles$$($i$$13_i$5_world$$4$$) {
   $vxq$testing$assertEquals$$(100, $turtle$$.y);
   $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$left$$($turtle$$, .375);
   $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$forward$$($turtle$$, 100);
-  for ($i$$13_i$5_world$$4$$ = 0;12 > $i$$13_i$5_world$$4$$;$i$$13_i$5_world$$4$$++) {
+  for ($i$$13_i$5_world$$5$$ = 0;12 > $i$$13_i$5_world$$5$$;$i$$13_i$5_world$$5$$++) {
     $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$left$$($turtle$$, .0625), $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$forward$$($turtle$$, 10);
   }
   $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$forward$$($turtle$$, 100);
   $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$left$$($turtle$$, .25);
   $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$forward$$($turtle$$, 200);
-  for ($i$$13_i$5_world$$4$$ = 0;6 > $i$$13_i$5_world$$4$$;$i$$13_i$5_world$$4$$++) {
+  for ($i$$13_i$5_world$$5$$ = 0;6 > $i$$13_i$5_world$$5$$;$i$$13_i$5_world$$5$$++) {
     $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$left$$($turtle$$, .0625), $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$forward$$($turtle$$, 10);
   }
   $JSCompiler_StaticMethods_vxq_worlds_turtles_Turtle_prototype$forward$$($turtle$$, 50);

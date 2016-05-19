@@ -27,7 +27,7 @@ exports.World = class {
     this.proportionalVelocityLossPerSecond = 0.2;
 
     let then = +new Date;
-    this.interval = setInterval(function() {
+    this.interval = setInterval(() => {
       const now = +new Date;
       const dt = (now - then) / 1000;
       then = now;

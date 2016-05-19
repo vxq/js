@@ -14,19 +14,23 @@ class VXQModule {
     this.testTheTurtles();
   }
 
-  /** @override */ addBrowserTurtlePlaygroundNextToCurrentScript() {
+  /** @override */ addFlatCanvasWithTurtles(element) {
     const world = new turtles.World(512, 512, []);
     const renderer = new FlatCanvas(world);
-
-    document.currentScript.parentNode.appendChild(renderer.canvas);
-
+    element.appendChild(renderer.canvas);
     this.testTheTurtles(world);
+    return world;
+  }
 
+  /** @override */ addFlatCanvasWithFlatland(element) {
+    const world = new flatland.World(512, 512);
+    const renderer = new FlatCanvas(world);
+    element.appendChild(renderer.canvas);
     return world;
   }
 
   /** @protected */ testTheTurtles(
-    /** turtles.World= */ world = new turtles.World(512, 512, [])
+    /** !turtles.World= */ world = new turtles.World(512, 512, [])
   ) {
     const turtle = new turtles.Turtle();
     world.turtles.add(turtle);
