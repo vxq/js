@@ -141,8 +141,8 @@ $vxq$worlds$flatland$Unit$$.prototype.goTo = function $$vxq$worlds$flatland$Unit
     };
     return this.$c$.then($f$$4$$, $f$$4$$);
   }
-  return this.$c$ = new Promise(function($resolve$$1$$) {
-    return $resolve$$1$$();
+  return this.$c$ = new Promise(function($resolve$$) {
+    return $resolve$$();
   });
 };
 function $vxq$testing$assertEquals$$($expected$$, $actual$$) {

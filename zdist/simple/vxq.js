@@ -654,11 +654,6 @@ vxq.util.CallbackList.prototype.call = function $vxq$util$CallbackList$$call$() 
     $$jscomp$key$f_f$$ = $$jscomp$key$f_f$$.value, $$jscomp$key$f_f$$();
   }
 };
-vxq.util.waitTimeout = function $vxq$util$waitTimeout$($millis$$) {
-  return new Promise(function($resolve$$) {
-    return setTimeout($resolve$$, $millis$$);
-  });
-};
 vxq.worlds = {};
 vxq.worlds.turtles = {};
 vxq.worlds.turtles.World = function $vxq$worlds$turtles$World$($width$$, $height$$, $turtles$$) {

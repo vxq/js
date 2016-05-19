@@ -14,7 +14,7 @@ exports.CallbackList = class {
   }
 
   /** @override */ add(f) {
-    const token = {}
+    const token = {};
     this.callbackTokens.push(token);
     this.callbacks.push(f);
     return function() {
@@ -31,6 +31,3 @@ exports.CallbackList = class {
     }
   }
 };
-
-exports.waitTimeout = millis =>
-    new Promise(resolve => setTimeout(resolve, millis));
