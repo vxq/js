@@ -16,8 +16,8 @@ const flags = {
   get output_wrapper() {
     return [
       `-function(window, module) {\n`,
-        `%output%`,
-      `\n}.call(`,
+        `%output%\n`,
+      `}.call(`,
           `typeof window == 'object' ? window`,
             `: typeof this == 'object' ? this`,
             `: null,`,
