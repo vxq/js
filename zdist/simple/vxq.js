@@ -711,7 +711,7 @@ vxq.worlds.flatland.World = function $vxq$worlds$flatland$World$($width$$, $heig
   this.height = $height$$;
   this.changeCallbacks = new vxq.util.CallbackList;
   this.units = new Set;
-  this.maxAcceleration = 10;
+  this.gravity = 6.67408E-11;
   this.absoluteVelocityLossPerSecond = 2;
   this.proportionalVelocityLossPerSecond = .2;
   var $then$$ = +new Date;
@@ -731,6 +731,8 @@ vxq.worlds.flatland.Unit = function $vxq$worlds$flatland$Unit$($world$$, $x$$, $
   this.x = void 0 === $x$$ ? 0 : $x$$;
   this.y = void 0 === $y$$ ? 0 : $y$$;
   this.targetY = this.targetX = this.vY = this.vX = this.z = 0;
+  this.radius = 4;
+  this.mass = 1;
   this.targetMaxDistance = 16;
   this.targetMaxSpeed = 4;
   this.currentMove = null;

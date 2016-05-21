@@ -19,10 +19,12 @@ exports.World = class {
     /** @const {!Set<!vxq.worlds.flatland.Unit>} */
     this.units = new Set();
 
-    this.maxAcceleration = 10;
+    /** @const */
+    this.gravity = 0.0000000000667408;
 
     /** @const */
     this.absoluteVelocityLossPerSecond = 2;
+
     /** @const */
     this.proportionalVelocityLossPerSecond = 0.2;
 
@@ -71,6 +73,12 @@ exports.Unit = class {
     this.targetX = 0;
     /** @type {number} */
     this.targetY = 0;
+
+    /** @const */
+    this.radius = 4;
+
+    /** @const */
+    this.mass = 1;
 
     /** @const */
     this.targetMaxDistance = 16;
