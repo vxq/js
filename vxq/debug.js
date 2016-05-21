@@ -6,15 +6,14 @@ goog.module('vxq.debug');
 
 
 /** @define {boolean} Whether to enable debug features. */
-vxq.debug.DEBUG = false;
-const DEBUG = vxq.debug.DEBUG;
+exports.DEBUG = false;
 
 
 /**
  * Raises an Error if the condition is false.
  */
 exports.assert = (/** * */ condition, /** ?string= */ message = null) => {
-  if (DEBUG && !condition) {
+  if (exports.DEBUG && !condition) {
     throw new Error(message || 'Assertion failed');
   }
 };
@@ -25,7 +24,7 @@ exports.assert = (/** * */ condition, /** ?string= */ message = null) => {
  * @param {...*} args
  */
 exports.log = (...args) => {
-  if (DEBUG) {
+  if (exports.DEBUG) {
     console.log(...args);
   }
 };
