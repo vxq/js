@@ -1,11 +1,11 @@
 {
   "name": "vxq",
-  "version": "0.1.0-dev.29",
+  "version": "0.1.0-dev.30",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
   "devDependencies": {
-    "google-closure-compiler": "^20160315.2.0",
+    "google-closure-compiler": "^20160517.1.0",
     "gulp": "^3.9.1",
     "run-sequence": "^1.1.5",
     "semver": "^5.1.0",
