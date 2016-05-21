@@ -8,4 +8,5 @@ TBD. A sketch.
 
 ## Contributing
 
-You should run `scripts/pre-commit` before sending a pull request, but at least run `rm -rf dist/` to avoid merging in stale data.
+You should run `scripts/pre-commit` before sending a pull request, but at least
+run `rm -rf dist/` to avoid merging in stale data.
