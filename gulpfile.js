@@ -60,7 +60,7 @@ gulp.task('build-simple', () =>
     jscomp_warning: [].concat(flags.jscomp_warning, flags.jscomp_error),
     formatting: 'pretty_print',
     debug: true,
-    define: ['vxq.debug.DEBUG=true']
+    define: ['vxq.D.DEBUG=true']
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('build-debug', () =>
@@ -69,7 +69,7 @@ gulp.task('build-debug', () =>
     output_manifest: 'zdist/debug/vxq.manifest',
     formatting: 'pretty_print',
     debug: true,
-    define: ['vxq.debug.DEBUG=true']
+    define: ['vxq.D.DEBUG=true']
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('build-prod', () =>
