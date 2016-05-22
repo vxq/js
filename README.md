@@ -6,7 +6,10 @@ TBD. A sketch.
 
 - [Limited in-browser examples from latest (pre)release](http://vxq.github.io/js/examples/).
 
-## Contributing
+## Developing
+
+After `npm install` you can `gulp watch-simple` then make changes in `vxq/`
+and observe the results in [`examples/index.html`](examples/index.html).
 
 You should run `scripts/pre-commit` before sending a pull request, but at least
 run `rm -rf dist/` to avoid merging in stale data.

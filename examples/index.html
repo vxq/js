@@ -6,33 +6,67 @@
 <style>
   html {
     font-family: "Trebuchet MS", sans-serif;
-    padding: 92px 0;
+    padding: 32px 0;
     background: #666;
     text-align: center;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
   }
 
   section {
     display: inline-block;
     width: 32%;
+    max-width: 400px;
     padding-bottom: 4px;
     background: white;
   }
 
+  section + section {
+    margin-left: 2%;
+  }
+
+  @media(max-width: 400px) {
+    html {
+      padding: 0;
+    }
+    section {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    section + section {
+      margin: 0;
+    }
+  }
+
   section article {
-    border-top: 4px solid #666;
     min-height: 16px;
   }
 
   section article canvas {
     width: 100%;
-    border-bottom: 4px solid #666;
-    background: white;
+  }
+
+  h1, footer {
+    vertical-align: middle;
+    min-height: 32px;
+    padding: 4px;
+    color: white;
+    background: #123;
+    margin-bottom: 16px;
+    margin-top: 16px;
   }
 
   h2 a {
     color: inherit;
   }
 </style>
+
+<h1>
+  Examples
+</h1>
 
 <section>
   <h2><a href="./simple/vxq.js">simple</a></h2>
@@ -43,9 +77,7 @@
     const simpleFlatland =
         vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
   </script></article>
-</section>
-
-<section>
+</section><section>
   <h2><a href="./debug/vxq.js">debug</a></h2>
 
   <article><script src="./debug/vxq.js"></script><script>
@@ -55,9 +87,7 @@
         vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
     delete vxq;
   </script></article>
-</section>
-
-<section>
+</section><section>
   <h2><a href="./prod/vxq.js">prod</a></h2>
 
   <article><script src="./prod/vxq.js"></script><script>
@@ -68,6 +98,10 @@
     delete vxq;
   </script></article>
 </section>
+
+<footer>
+
+</footer>
 
 <script>
   document.body.hidden = false;
