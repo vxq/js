@@ -1,0 +1,42 @@
+#!/bin/bash
+set -veux;
+
+base="$(dirname "$0")";
+
+closure_jar="${base}/../node_modules/google-closure-compiler/compiler.jar";
+output_wrapper="-function(window, module) {
+%output%
+}.call(typeof window=='object'?window:typeof this=='object'?this:null,typeof window=='object'?window:null,typeof module=='object'?module:{})";
+
+java \
+  -jar "${closure_jar}" \
+  --compilation_level=ADVANCED_OPTIMIZATIONS \
+  --use_types_for_optimization=true \
+  --warning_level=VERBOSE \
+  --output_wrapper="${output_wrapper}" \
+  --language_in=ECMASCRIPT6_STRICT \
+  --language_out=ECMASCRIPT5_STRICT \
+  --entry_point=vxq.main \
+  \
+  --jscomp_error=lintChecks \
+  --jscomp_error=fileoverviewTags \
+  --jscomp_error=nonStandardJsDocs \
+  --jscomp_error=suspiciousCode \
+  --jscomp_error=deprecated \
+  --jscomp_error=accessControls \
+  --jscomp_error=undefinedVars \
+  --jscomp_error=undefinedNames \
+  --jscomp_error=visibility \
+  --jscomp_error=externsValidation \
+  --jscomp_error=checkTypes \
+  --jscomp_error=missingReturn \
+  --jscomp_error=checkVars \
+  --jscomp_error=missingProvide \
+  --jscomp_error=missingRequire \
+  --jscomp_error=missingProperties \
+  \
+  --externs=vxq/public.externs.js \
+  --externs=vxq/environment.externs.js \
+  --js_output_file=tmp/prod/vxq.js \
+  \
+  vxq/{*/*,index,debug,testing,util,turtles}.js;
