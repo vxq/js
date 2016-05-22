@@ -1,11 +1,3 @@
-image: node
-
-all_tests:
-  script:
-  # We can't build because the node image doesn't include Java, so just test the
-  # existing known-successful build if it exists.
-  - 'if [ -f zdist/00-SUCCESS ]; then npm run test; else echo "No existing successful build to test."; fi'
-
 pages:
   script:
   - mkdir /p public/
