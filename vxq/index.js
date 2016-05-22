@@ -31,16 +31,22 @@ class VXQModule {
         0.5 + (Math.random() + Math.random() + Math.random()) / 3;
 
     const unit1 = new flatland.Unit(world, 150, 50);
-    unit1.velocity = flatland.V(100, -15);
+    unit1.velocity = flatland.V(200, -5);
     world.units.add(unit1);
 
+    console.log(unit1.goTo(500, 500, 0));
+
     const unit2 = new flatland.Unit(world, 400, 200);
-    unit2.velocity = flatland.V(8, 150);
+    unit2.velocity = flatland.V(-100, 450);
     world.units.add(unit2);
 
+    console.log(unit2.goTo(25, 25, 0));
+
     const unit3 = new flatland.Unit(world, 150, 175);
-    unit3.velocity = flatland.V(-25, 125);
+    unit3.velocity = flatland.V(-65, 125);
     world.units.add(unit3);
+
+    console.log(unit3.goTo(50, 400, 0));
 
     for (let i = 0; i < 4; i++) {
       const planetComponent =

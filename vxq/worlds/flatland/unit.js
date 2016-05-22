@@ -23,6 +23,9 @@ class Unit {
     /** @type {!Vector} */
     this.velocity = V(0, 0);
 
+    /** @type {!Vector} */
+    this.thrust = V(0, 0);
+
     /** @const */
     this.radius = 4;
 
@@ -52,12 +55,12 @@ class Unit {
      * @const The maximum speed this unit may have to be considered to have
      * reached the target position.
      */
-    this.targetMaxSpeed = 4;
+    this.targetMaxSpeed = 1.0;
 
     /**
      * @type {?Promise<void>}
      */
-    this.currentMove = null;
+    this.lastMove = Promise.resolve();
 
     /** @override */
     this.changeCallbacks = new util.CallbackList;
@@ -76,14 +79,33 @@ class Unit {
   }
 
   /** @override */ goTo(x, y, z) {
-    if (this.currentMove) {
-      const f = () => this.goTo(x, y, z);
-      return this.currentMove.then(f, f);
-    } else {
-      return this.currentMove = new Promise(function(resolve, reject) {
-        return resolve();
+    const go = () => new Promise(resolve => {
+      const cancel = this.changeCallbacks.add(() => {
+        updateThrust();
       });
-    }
+
+      const updateThrust = () => {
+        const displacement = V(x, y).subtract(this.position);
+
+        // Mitigate overshooting by thrusting based on position predicted.
+        const projectedPosition =
+            this.position.add(this.velocity.scale(0.5));
+
+        const projectedDisplacement = V(x, y).subtract(projectedPosition);
+
+        if (displacement.magnitude() <= this.targetMaxDistance &&
+            this.velocity.magnitude() <= this.targetMaxSpeed) {
+          this.thrust = V(0, 0);
+          resolve();
+        } else {
+          const deltaA = 175;
+          this.thrust = projectedDisplacement.withMagnitude(
+              deltaA * this.mass * this.interialAmplification);
+        }
+      };
+      updateThrust();
+    });
+    return this.lastMove = this.lastMove.then(go, go);
   }
 }
 

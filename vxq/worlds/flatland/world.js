@@ -37,10 +37,7 @@ class World {
     let then = +new Date;
     /** @type {?number} */
     this.tickInterval = setInterval(() => {
-      const now = +new Date;
-      const dt = (now - then) / 1000;
-      then = now;
-      this.tick(dt);
+      this.tick(20);
     }, 20);
   }
 
@@ -52,12 +49,13 @@ class World {
     // Determine the instantaneous forces acting on each unit.
     const forces = /** !Map<Unit,Vector> */ new Map();
     for (const unit of this.units) {
-      forces.set(unit, V(0, 0));
-    }
+      let force = V(0, 0);
 
-    // Gravity
-    if (this.gravity !== 0) {
-      for (const unit of this.units) {
+      // Magical thrust
+      force = force.add(unit.thrust);
+
+      // Gravity
+      if (this.gravity !== 0) {
         for (const other of this.units) {
           if (unit === other) continue;
 
@@ -69,13 +67,16 @@ class World {
             distance = 40;
           }
 
-          const f = displacement.direction().scale(
+          const fG = displacement.direction().scale(
               this.gravity * unit.mass * other.mass / Math.pow(distance, 2));
 
-          forces.set(unit, forces.get(unit).add(f));
+          force = force.add(fG);
         }
       }
+
+      forces.set(unit, force);
     }
+
 
     const changedUnits = [];
 
@@ -84,7 +85,6 @@ class World {
       const inertia = unit.mass * unit.interialAmplification;
       const f = forces.get(unit);
       const dV = f.scale(dt / inertia);
-      console.log(`dV from forces ${dV}`);
       unit.velocity = unit.velocity.add(dV);
 
       const speed = unit.velocity.magnitude();
@@ -92,8 +92,7 @@ class World {
           0,
           speed - dt * speed * this.proportionalVelocityLossPerSecond);
 
-      if (newSpeed >= this.minNonzeroSpeed || (f.magnitude() / inertia > 10 * this.minNonzeroSpeed)) {
-        console.log(String(newSpeed));
+      if (newSpeed >= this.minNonzeroSpeed || (f.magnitude() / inertia > this.minNonzeroSpeed)) {
         unit.velocity = unit.velocity.withMagnitude(newSpeed);
       } else {
         unit.velocity = V(0, 0);
