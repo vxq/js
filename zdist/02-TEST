@@ -1,5 +1,5 @@
 
-> vxq@0.1.0-dev.44 test /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.45 test /Users/j/src/github.com/vxq/js
 > node test
 
 TAP version 13
@@ -11,6 +11,7 @@ Test complete.
 Let's testTheTurtles()!
 Test complete.
 # prod
+Let's testTheTurtles()!
 Test complete.
 # run index
 Let's testTheTurtles()!

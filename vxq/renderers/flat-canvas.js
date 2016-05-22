@@ -3,6 +3,9 @@ goog.module('vxq.renderers.FlatCanvas');
  * @fileoverview Renders a World on a 2D <canvas>.
  */
 
+const util = goog.require('vxq.util');
+
+
 
 /**
  * An agent being rendered.
@@ -41,6 +44,8 @@ class AgentRender {
   }
 
   update(/** number */ x, /** number */ y, /** number */ z) {
+    if (!util.elementInView(this.renderer.canvas)) return;
+
     const deltaX = x - this.lastX;
     const deltaY = y - this.lastY;
     const deltaZ = z - this.lastZ;
@@ -51,19 +56,17 @@ class AgentRender {
     const g = this.renderer.context;
 
     // slightly dim the surrounding area
-    g.fillStyle =
-        'hsla(' + (this.hueSeed + 0.05 * this.totalDistance) +
-        ', 80%, 10%, 0.04)';
+    g.fillStyle = 'rgba(0, 0, 0, 0.75)';
 
     g.beginPath();
-    g.arc(this.agent.x, this.agent.y, 192, 0, 2 * Math.PI);
+    g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
     g.fill();
 
     // clearly mark current location
     g.fillStyle =
         'hsla(' + (this.hueSeed + 0.05 * this.totalDistance) +
-        ', 50%, 70%, 1.0)';
-    g.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+        ', 50%, 50%, 1.0)';
+    g.strokeStyle = 'rgba(255, 255, 255, 1.0)';
 
     g.beginPath();
     g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
@@ -96,6 +99,25 @@ exports = class {
     this.renders = new Map();
     this.updateRenders();
     this.world.changeCallbacks.add(this.updateRenders.bind(this));
+
+    let then = +new Date;
+    /** @type {?number} */
+    this.tickInterval = setInterval(() => {
+      const now = +new Date;
+      const dt = (now - then) / 1000;
+      then = now;
+      this.tick(dt);
+    }, 100);
+  }
+
+  tick(/** number */ dt) {
+    if (util.elementInView(this.canvas)) {
+      this.context.fillStyle = `rgba(0, 0, 0, ${0.5 * dt})`;
+    } else {
+      this.context.fillStyle = `black`;
+    }
+
+    this.context.fillRect(0, 0, this.world.width, this.world.height);
   }
 
   /** @protected */ updateRenders() {

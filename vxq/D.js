@@ -6,4 +6,4 @@ goog.provide('vxq.D');
 
 
 /** @define {boolean} */
-vxq.D.DEBUG = false;
+vxq.D.DEBUG = true;

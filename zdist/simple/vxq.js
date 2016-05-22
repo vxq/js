@@ -668,6 +668,17 @@ module$exports$vxq$util.CallbackList.prototype.call = function $module$exports$v
     $$jscomp$key$f_f$$ = $$jscomp$key$f_f$$.value, $$jscomp$key$f_f$$();
   }
 };
+module$exports$vxq$util.shuffle = function $module$exports$vxq$util$shuffle$($array$$) {
+  for (var $i$$ = 0;$i$$ < $array$$.length - 1;$i$$++) {
+    var $value$$ = $array$$[$i$$], $randomIndex$$ = $i$$ + Math.floor(Math.random() * $array$$.length - $i$$);
+    $array$$[$i$$] = $array$$[$randomIndex$$];
+    $array$$[$randomIndex$$] = $value$$;
+  }
+};
+module$exports$vxq$util.elementInView = function $module$exports$vxq$util$elementInView$($element$$) {
+  $element$$ = $element$$.getBoundingClientRect();
+  return !(0 > $element$$.bottom || 0 > $element$$.right || $element$$.top > window.innerHeight || $element$$.left > window.innerWidth);
+};
 var module$exports$vxq$worlds$turtles = {World:function($width$$, $height$$, $turtles$$) {
   this.width = $width$$;
   this.height = $height$$;
@@ -716,54 +727,104 @@ Object.defineProperties(module$exports$vxq$worlds$turtles.Turtle.prototype, {xFa
 }}, yFactor:{configurable:!0, enumerable:!0, get:function() {
   return Math.cos(2 * this.rotation * Math.PI);
 }}});
-var module$exports$vxq$worlds$flatland = {World:function($width$$, $height$$) {
+var module$contents$vxq$worlds$flatland_V = function $module$contents$vxq$worlds$flatland_V$($x$$, $y$$) {
+  return new module$contents$vxq$worlds$flatland_Vector($x$$, $y$$);
+}, module$contents$vxq$worlds$flatland_Vector = function $module$contents$vxq$worlds$flatland_Vector$($x$$, $y$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($x$$), "x = " + $x$$ + " must be a finite number");
+  module$exports$vxq$debug.assert(Number.isFinite($y$$), "y = " + $y$$ + " must be a finite number");
+  this.x = $x$$;
+  this.y = $y$$;
+};
+module$contents$vxq$worlds$flatland_Vector.prototype.magnitude = function $module$contents$vxq$worlds$flatland_Vector$$magnitude$() {
+  return Math.sqrt(this.x * this.x + this.y * this.y);
+};
+module$contents$vxq$worlds$flatland_Vector.prototype.direction = function $module$contents$vxq$worlds$flatland_Vector$$direction$() {
+  return this.withMagnitude(1);
+};
+module$contents$vxq$worlds$flatland_Vector.prototype.withMagnitude = function $module$contents$vxq$worlds$flatland_Vector$$withMagnitude$($magnitude$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($magnitude$$), "magnitude = " + $magnitude$$ + " must be a finite number");
+  var $currentMagnitude$$ = this.magnitude();
+  return 0 !== $currentMagnitude$$ ? this.scale($magnitude$$ / $currentMagnitude$$) : module$contents$vxq$worlds$flatland_V(0, 0);
+};
+module$contents$vxq$worlds$flatland_Vector.prototype.scale = function $module$contents$vxq$worlds$flatland_Vector$$scale$($factor$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($factor$$), "magnitude = " + $factor$$ + " must be a finite number");
+  return 0 == $factor$$ || 0 == this.x && 0 == this.y ? module$contents$vxq$worlds$flatland_V(0, 0) : module$contents$vxq$worlds$flatland_V($factor$$ * this.x, $factor$$ * this.y);
+};
+module$contents$vxq$worlds$flatland_Vector.prototype.add = function $module$contents$vxq$worlds$flatland_Vector$$add$($other$$) {
+  return module$contents$vxq$worlds$flatland_V(this.x + $other$$.x, this.y + $other$$.y);
+};
+module$contents$vxq$worlds$flatland_Vector.prototype.subtract = function $module$contents$vxq$worlds$flatland_Vector$$subtract$($other$$) {
+  return module$contents$vxq$worlds$flatland_V(this.x - $other$$.x, this.y - $other$$.y);
+};
+module$contents$vxq$worlds$flatland_Vector.prototype.addXY = function $module$contents$vxq$worlds$flatland_Vector$$addXY$($x$$, $y$$) {
+  return module$contents$vxq$worlds$flatland_V(this.x + $x$$, this.y + $y$$);
+};
+module$contents$vxq$worlds$flatland_Vector.prototype.toString = function $module$contents$vxq$worlds$flatland_Vector$$toString$() {
+  return "V(" + this.x + ", " + this.y + ")";
+};
+var module$contents$vxq$worlds$flatland_World = function $module$contents$vxq$worlds$flatland_World$($width$$, $height$$) {
   var $$jscomp$this$$ = this;
   this.width = $width$$;
   this.height = $height$$;
   this.changeCallbacks = new module$exports$vxq$util.CallbackList;
   this.units = new Set;
   this.gravity = 6.67408E-11;
-  this.absoluteVelocityLossPerSecond = 10;
-  this.proportionalVelocityLossPerSecond = .2;
+  this.proportionalVelocityLossPerSecond = .05;
+  this.minNonzeroSpeed = 10;
   var $then$$ = +new Date;
   this.tickInterval = setInterval(function() {
     var $now$$ = +new Date, $dt$$ = ($now$$ - $then$$) / 1E3;
     $then$$ = $now$$;
     $$jscomp$this$$.tick($dt$$);
   }, 20);
-}};
-module$exports$vxq$worlds$flatland.World.prototype.tick = function $module$exports$vxq$worlds$flatland$World$$tick$($dt$$) {
-  for (var $fX$$ = new Map, $fY$$ = new Map, $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator(this.units), $$jscomp$key$unit_unit_unit$6$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$unit_unit_unit$6$$.done;$$jscomp$key$unit_unit_unit$6$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
-    $$jscomp$key$unit_unit_unit$6$$ = $$jscomp$key$unit_unit_unit$6$$.value, $fX$$.set($$jscomp$key$unit_unit_unit$6$$, 2), $fY$$.set($$jscomp$key$unit_unit_unit$6$$, 0);
-  }
-  $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator(this.units);
-  for ($$jscomp$key$unit_unit_unit$6$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$unit_unit_unit$6$$.done;$$jscomp$key$unit_unit_unit$6$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
-    if ($$jscomp$key$unit_unit_unit$6$$ = $$jscomp$key$unit_unit_unit$6$$.value, $$jscomp$key$unit_unit_unit$6$$.vX += $fX$$.get($$jscomp$key$unit_unit_unit$6$$) / $$jscomp$key$unit_unit_unit$6$$.mass, $$jscomp$key$unit_unit_unit$6$$.vY += $fY$$.get($$jscomp$key$unit_unit_unit$6$$) / $$jscomp$key$unit_unit_unit$6$$.mass, 0 < $dt$$ && (0 != $$jscomp$key$unit_unit_unit$6$$.vX || 0 != $$jscomp$key$unit_unit_unit$6$$.vY)) {
-      $$jscomp$key$unit_unit_unit$6$$.x += $dt$$ * $$jscomp$key$unit_unit_unit$6$$.vX;
-      $$jscomp$key$unit_unit_unit$6$$.y += $dt$$ * $$jscomp$key$unit_unit_unit$6$$.vY;
-      var $speed$$ = Math.sqrt($$jscomp$key$unit_unit_unit$6$$.vX * $$jscomp$key$unit_unit_unit$6$$.vX + $$jscomp$key$unit_unit_unit$6$$.vY * $$jscomp$key$unit_unit_unit$6$$.vY), $newSpeed$$ = Math.max(0, $speed$$ - $dt$$ * $$jscomp$key$unit_unit_unit$6$$.world.absoluteVelocityLossPerSecond - $dt$$ * $speed$$ * $$jscomp$key$unit_unit_unit$6$$.world.proportionalVelocityLossPerSecond);
-      $$jscomp$key$unit_unit_unit$6$$.vX *= $newSpeed$$ / $speed$$;
-      $$jscomp$key$unit_unit_unit$6$$.vY *= $newSpeed$$ / $speed$$;
-      $$jscomp$key$unit_unit_unit$6$$.changeCallbacks.call();
+};
+module$contents$vxq$worlds$flatland_World.prototype.tick = function $module$contents$vxq$worlds$flatland_World$$tick$($$jscomp$iter$5$$1_dt$$) {
+  if (!(0 >= $$jscomp$iter$5$$1_dt$$)) {
+    for (var $forces$$ = new Map, $$jscomp$iter$1$$ = $jscomp.makeIterator(this.units), $$jscomp$iter$2$$ = $$jscomp$iter$1$$.next();!$$jscomp$iter$2$$.done;$$jscomp$iter$2$$ = $$jscomp$iter$1$$.next()) {
+      $forces$$.set($$jscomp$iter$2$$.value, module$contents$vxq$worlds$flatland_V(0, 0));
+    }
+    if (0 !== this.gravity) {
+      for ($$jscomp$iter$1$$ = $jscomp.makeIterator(this.units), $$jscomp$iter$2$$ = $$jscomp$iter$1$$.next();!$$jscomp$iter$2$$.done;$$jscomp$iter$2$$ = $$jscomp$iter$1$$.next()) {
+        for (var $$jscomp$iter$4$$ = $$jscomp$iter$2$$.value, $$jscomp$iter$2$$ = $jscomp.makeIterator(this.units), $$jscomp$key$other_dP_f$$4_f$11_other$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$other_dP_f$$4_f$11_other$$.done;$$jscomp$key$other_dP_f$$4_f$11_other$$ = $$jscomp$iter$2$$.next()) {
+          if ($$jscomp$key$other_dP_f$$4_f$11_other$$ = $$jscomp$key$other_dP_f$$4_f$11_other$$.value, $$jscomp$iter$4$$ !== $$jscomp$key$other_dP_f$$4_f$11_other$$) {
+            var $dV_displacement_newSpeed_speed$$ = $$jscomp$key$other_dP_f$$4_f$11_other$$.position.subtract($$jscomp$iter$4$$.position), $distance$$ = $dV_displacement_newSpeed_speed$$.magnitude();
+            40 > $distance$$ && ($distance$$ = 40);
+            $$jscomp$key$other_dP_f$$4_f$11_other$$ = $dV_displacement_newSpeed_speed$$.direction().scale(this.gravity * $$jscomp$iter$4$$.mass * $$jscomp$key$other_dP_f$$4_f$11_other$$.mass / Math.pow($distance$$, 2));
+            $forces$$.set($$jscomp$iter$4$$, $forces$$.get($$jscomp$iter$4$$).add($$jscomp$key$other_dP_f$$4_f$11_other$$));
+          }
+        }
+      }
+    }
+    $$jscomp$iter$1$$ = [];
+    $$jscomp$iter$4$$ = $jscomp.makeIterator(this.units);
+    for ($$jscomp$iter$2$$ = $$jscomp$iter$4$$.next();!$$jscomp$iter$2$$.done;$$jscomp$iter$2$$ = $$jscomp$iter$4$$.next()) {
+      $$jscomp$iter$2$$ = $$jscomp$iter$2$$.value, $$jscomp$key$other_dP_f$$4_f$11_other$$ = $forces$$.get($$jscomp$iter$2$$), $dV_displacement_newSpeed_speed$$ = $$jscomp$key$other_dP_f$$4_f$11_other$$.scale($$jscomp$iter$5$$1_dt$$ / $$jscomp$iter$2$$.mass), console.log("dV from forces " + $dV_displacement_newSpeed_speed$$), $$jscomp$iter$2$$.velocity = $$jscomp$iter$2$$.velocity.add($dV_displacement_newSpeed_speed$$), $dV_displacement_newSpeed_speed$$ = $$jscomp$iter$2$$.velocity.magnitude(), $dV_displacement_newSpeed_speed$$ = 
+      Math.max(0, $dV_displacement_newSpeed_speed$$ - $$jscomp$iter$5$$1_dt$$ * $dV_displacement_newSpeed_speed$$ * this.proportionalVelocityLossPerSecond), $dV_displacement_newSpeed_speed$$ >= this.minNonzeroSpeed || $$jscomp$key$other_dP_f$$4_f$11_other$$.magnitude() / $$jscomp$iter$2$$.mass > this.minNonzeroSpeed ? (console.log(String($dV_displacement_newSpeed_speed$$)), $$jscomp$iter$2$$.velocity = $$jscomp$iter$2$$.velocity.withMagnitude($dV_displacement_newSpeed_speed$$)) : $$jscomp$iter$2$$.velocity = 
+      module$contents$vxq$worlds$flatland_V(0, 0), 0 < $$jscomp$iter$2$$.velocity.magnitude() && ($$jscomp$key$other_dP_f$$4_f$11_other$$ = $$jscomp$iter$2$$.velocity.scale($$jscomp$iter$5$$1_dt$$), $$jscomp$iter$2$$.position = $$jscomp$iter$2$$.position.add($$jscomp$key$other_dP_f$$4_f$11_other$$), $$jscomp$iter$1$$.push($$jscomp$iter$2$$));
+    }
+    module$exports$vxq$util.shuffle($$jscomp$iter$1$$);
+    $$jscomp$iter$5$$1_dt$$ = $jscomp.makeIterator($$jscomp$iter$1$$);
+    for ($$jscomp$iter$2$$ = $$jscomp$iter$5$$1_dt$$.next();!$$jscomp$iter$2$$.done;$$jscomp$iter$2$$ = $$jscomp$iter$5$$1_dt$$.next()) {
+      $$jscomp$iter$2$$.value.changeCallbacks.call();
     }
   }
 };
-Object.defineProperties(module$exports$vxq$worlds$flatland.World.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
+Object.defineProperties(module$contents$vxq$worlds$flatland_World.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
   return new Set(this.units);
 }}});
-module$exports$vxq$worlds$flatland.Unit = function $module$exports$vxq$worlds$flatland$Unit$($world$$, $x$$, $y$$) {
+var module$contents$vxq$worlds$flatland_Unit = function $module$contents$vxq$worlds$flatland_Unit$($world$$, $x$$, $y$$) {
   this.world = $world$$;
-  this.x = void 0 === $x$$ ? 0 : $x$$;
-  this.y = void 0 === $y$$ ? 0 : $y$$;
-  this.targetY = this.targetX = this.vY = this.vX = this.z = 0;
+  this.position = module$contents$vxq$worlds$flatland_V(void 0 === $x$$ ? 0 : $x$$, void 0 === $y$$ ? 0 : $y$$);
+  this.velocity = module$contents$vxq$worlds$flatland_V(0, 0);
   this.radius = 4;
-  this.mass = 1;
+  this.mass = 1E15;
+  this.targetPosition = null;
   this.targetMaxDistance = 16;
   this.targetMaxSpeed = 4;
   this.currentMove = null;
   this.changeCallbacks = new module$exports$vxq$util.CallbackList;
 };
-module$exports$vxq$worlds$flatland.Unit.prototype.goTo = function $module$exports$vxq$worlds$flatland$Unit$$goTo$($x$$, $y$$, $z$$) {
+module$contents$vxq$worlds$flatland_Unit.prototype.goTo = function $module$contents$vxq$worlds$flatland_Unit$$goTo$($x$$, $y$$, $z$$) {
   var $$jscomp$this$$ = this;
   if (this.currentMove) {
     var $f$$ = function $$f$$$() {
@@ -775,6 +836,14 @@ module$exports$vxq$worlds$flatland.Unit.prototype.goTo = function $module$export
     return $resolve$$();
   });
 };
+Object.defineProperties(module$contents$vxq$worlds$flatland_Unit.prototype, {x:{configurable:!0, enumerable:!0, get:function() {
+  return this.position.x;
+}}, y:{configurable:!0, enumerable:!0, get:function() {
+  return this.position.y;
+}}, z:{configurable:!0, enumerable:!0, get:function() {
+  return 0;
+}}});
+var module$exports$vxq$worlds$flatland = {V:module$contents$vxq$worlds$flatland_V, Vector:module$contents$vxq$worlds$flatland_Vector, Unit:module$contents$vxq$worlds$flatland_Unit, World:module$contents$vxq$worlds$flatland_World};
 var module$exports$vxq$testing = {assert:function($condition$$, $message$$) {
   if (!$condition$$) {
     throw Error((void 0 === $message$$ ? null : $message$$) || "Assertion failed");
@@ -794,23 +863,11 @@ var module$contents$vxq$renderers$FlatCanvas_AgentRender = function $module$cont
   });
 };
 module$contents$vxq$renderers$FlatCanvas_AgentRender.prototype.update = function $module$contents$vxq$renderers$FlatCanvas_AgentRender$$update$($deltaX_x$$, $deltaY_y$$, $deltaZ_g_z$$) {
-  $deltaX_x$$ -= this.lastX;
-  $deltaY_y$$ -= this.lastY;
-  $deltaZ_g_z$$ -= this.lastZ;
-  this.totalDistance += Math.sqrt($deltaX_x$$ * $deltaX_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_g_z$$ * $deltaZ_g_z$$);
-  $deltaZ_g_z$$ = this.renderer.context;
-  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 80%, 10%, 0.04)";
-  $deltaZ_g_z$$.beginPath();
-  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 192, 0, 2 * Math.PI);
-  $deltaZ_g_z$$.fill();
-  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 50%, 70%, 1.0)";
-  $deltaZ_g_z$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
-  $deltaZ_g_z$$.beginPath();
-  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
-  $deltaZ_g_z$$.fill();
-  $deltaZ_g_z$$.stroke();
+  module$exports$vxq$util.elementInView(this.renderer.canvas) && ($deltaX_x$$ -= this.lastX, $deltaY_y$$ -= this.lastY, $deltaZ_g_z$$ -= this.lastZ, this.totalDistance += Math.sqrt($deltaX_x$$ * $deltaX_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_g_z$$ * $deltaZ_g_z$$), $deltaZ_g_z$$ = this.renderer.context, $deltaZ_g_z$$.fillStyle = "rgba(0, 0, 0, 0.75)", $deltaZ_g_z$$.beginPath(), $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI), $deltaZ_g_z$$.fill(), $deltaZ_g_z$$.fillStyle = "hsla(" + 
+  (this.hueSeed + .05 * this.totalDistance) + ", 50%, 50%, 1.0)", $deltaZ_g_z$$.strokeStyle = "rgba(255, 255, 255, 1.0)", $deltaZ_g_z$$.beginPath(), $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI), $deltaZ_g_z$$.fill(), $deltaZ_g_z$$.stroke());
 };
 var module$exports$vxq$renderers$FlatCanvas = function $module$exports$vxq$renderers$FlatCanvas$($world$$) {
+  var $$jscomp$this$$ = this;
   this.world = $world$$;
   this.canvas = document.createElement("canvas");
   this.canvas.width = this.world.width;
@@ -821,14 +878,24 @@ var module$exports$vxq$renderers$FlatCanvas = function $module$exports$vxq$rende
   this.renders = new Map;
   this.updateRenders();
   this.world.changeCallbacks.add(this.updateRenders.bind(this));
+  var $then$$ = +new Date;
+  this.tickInterval = setInterval(function() {
+    var $now$$ = +new Date, $dt$$ = ($now$$ - $then$$) / 1E3;
+    $then$$ = $now$$;
+    $$jscomp$this$$.tick($dt$$);
+  }, 100);
+};
+module$exports$vxq$renderers$FlatCanvas.prototype.tick = function $module$exports$vxq$renderers$FlatCanvas$$tick$($dt$$) {
+  module$exports$vxq$util.elementInView(this.canvas) ? this.context.fillStyle = "rgba(0, 0, 0, " + .5 * $dt$$ + ")" : this.context.fillStyle = "black";
+  this.context.fillRect(0, 0, this.world.width, this.world.height);
 };
 module$exports$vxq$renderers$FlatCanvas.prototype.updateRenders = function $module$exports$vxq$renderers$FlatCanvas$$updateRenders$() {
-  for (var $$jscomp$iter$3_$jscomp$iter$4$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$3_$jscomp$iter$4$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$3_$jscomp$iter$4$$.next()) {
+  for (var $$jscomp$iter$6$$1_$jscomp$iter$7$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$.value.cancel();
   }
   this.renders = new Map;
-  $$jscomp$iter$3_$jscomp$iter$4$$ = $jscomp.makeIterator(this.world.agents);
-  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$3_$jscomp$iter$4$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$3_$jscomp$iter$4$$.next()) {
+  $$jscomp$iter$6$$1_$jscomp$iter$7$$ = $jscomp.makeIterator(this.world.agents);
+  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render_agent$$, new module$contents$vxq$renderers$FlatCanvas_AgentRender(this, $$jscomp$key$agent_$jscomp$key$render_agent$$));
   }
 };
@@ -844,32 +911,33 @@ module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithTurtles = function
   this.testTheTurtles($world$$);
   return $world$$;
 };
-module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithFlatland = function $module$contents$vxq$main_VXQModule$$addFlatCanvasWithFlatland$($element$$5_r$$) {
-  var $world$$ = new module$exports$vxq$worlds$flatland.World(512, 512), $renderer$$ = new module$exports$vxq$renderers$FlatCanvas($world$$);
-  $element$$5_r$$.appendChild($renderer$$.canvas);
-  $element$$5_r$$ = function $$element$$5_r$$$() {
+module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithFlatland = function $module$contents$vxq$main_VXQModule$$addFlatCanvasWithFlatland$($element$$6_r$$) {
+  var $world$$ = new module$exports$vxq$worlds$flatland.World(512, 512), $i$$14_renderer$$ = new module$exports$vxq$renderers$FlatCanvas($world$$);
+  $element$$6_r$$.appendChild($i$$14_renderer$$.canvas);
+  $element$$6_r$$ = function $$element$$6_r$$$() {
     return .5 + (Math.random() + Math.random() + Math.random()) / 3;
   };
-  $renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 50, 50);
-  $renderer$$.vX = 50 * $element$$5_r$$();
-  $renderer$$.vY = 50 * $element$$5_r$$();
-  $world$$.units.add($renderer$$);
-  $renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 100, 50);
-  $renderer$$.vX = -8 * $element$$5_r$$();
-  $renderer$$.vY = 36 * $element$$5_r$$();
-  $world$$.units.add($renderer$$);
-  $renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 100, 175);
-  $renderer$$.vX = -4 * $element$$5_r$$();
-  $renderer$$.vY = -20 * $element$$5_r$$();
-  $world$$.units.add($renderer$$);
+  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 50, 50);
+  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(150 * $element$$6_r$$(), -50 * $element$$6_r$$());
+  $world$$.units.add($i$$14_renderer$$);
+  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 400, 200);
+  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(8 * $element$$6_r$$(), 200 * $element$$6_r$$());
+  $world$$.units.add($i$$14_renderer$$);
+  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 175);
+  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(-4 * $element$$6_r$$(), 100 * $element$$6_r$$());
+  $world$$.units.add($i$$14_renderer$$);
+  for ($i$$14_renderer$$ = 0;40 > $i$$14_renderer$$;$i$$14_renderer$$++) {
+    var $planetComponent$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 200 + 50 * $element$$6_r$$(), 200 + 50 * $element$$6_r$$());
+    $world$$.units.add($planetComponent$$);
+  }
   $world$$.changeCallbacks.call();
   return $world$$;
 };
-module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$contents$vxq$main_VXQModule$$testTheTurtles$($i$$13_i$7_world$$) {
-  $i$$13_i$7_world$$ = void 0 === $i$$13_i$7_world$$ ? new module$exports$vxq$worlds$turtles.World(512, 512, []) : $i$$13_i$7_world$$;
+module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$contents$vxq$main_VXQModule$$testTheTurtles$($i$$15_i$13_world$$) {
+  $i$$15_i$13_world$$ = void 0 === $i$$15_i$13_world$$ ? new module$exports$vxq$worlds$turtles.World(512, 512, []) : $i$$15_i$13_world$$;
   var $turtle$$ = new module$exports$vxq$worlds$turtles.Turtle;
-  $i$$13_i$7_world$$.turtles.add($turtle$$);
-  $i$$13_i$7_world$$.changeCallbacks.call();
+  $i$$15_i$13_world$$.turtles.add($turtle$$);
+  $i$$15_i$13_world$$.changeCallbacks.call();
   module$exports$vxq$testing.assertEquals(50, $turtle$$.x);
   module$exports$vxq$testing.assertEquals(50, $turtle$$.y);
   $turtle$$.forward(50);
@@ -881,13 +949,13 @@ module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$c
   module$exports$vxq$testing.assertEquals(100, $turtle$$.y);
   $turtle$$.left(.375);
   $turtle$$.forward(100);
-  for ($i$$13_i$7_world$$ = 0;12 > $i$$13_i$7_world$$;$i$$13_i$7_world$$++) {
+  for ($i$$15_i$13_world$$ = 0;12 > $i$$15_i$13_world$$;$i$$15_i$13_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(100);
   $turtle$$.left(.25);
   $turtle$$.forward(200);
-  for ($i$$13_i$7_world$$ = 0;6 > $i$$13_i$7_world$$;$i$$13_i$7_world$$++) {
+  for ($i$$15_i$13_world$$ = 0;6 > $i$$15_i$13_world$$;$i$$15_i$13_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(50);
