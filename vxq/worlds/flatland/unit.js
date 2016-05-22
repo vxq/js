@@ -55,7 +55,7 @@ class Unit {
      * @const The maximum speed this unit may have to be considered to have
      * reached the target position.
      */
-    this.targetMaxSpeed = 0;
+    this.targetMaxSpeed = 1.0;
 
     /**
      * @type {?Promise<void>}
@@ -87,13 +87,21 @@ class Unit {
       const updateThrust = () => {
         const displacement = V(x, y).subtract(this.position);
 
+        // Mitigate overshooting by thrusting based on position predicted two
+        // seconds from now.
+        const projectedPosition =
+            this.position.add(this.velocity.scale(2));
+
+        const projectedDisplacement = V(x, y).subtract(projectedPosition);
+
         if (displacement.magnitude() <= this.targetMaxDistance &&
             this.velocity.magnitude() <= this.targetMaxSpeed) {
           this.thrust = V(0, 0);
           resolve();
         } else {
-          this.thrust = displacement.withMagnitude(
-              150 * this.mass * this.interialAmplification);
+          const deltaA = 200;
+          this.thrust = projectedDisplacement.withMagnitude(
+              deltaA * this.mass * this.interialAmplification);
         }
       };
       updateThrust();

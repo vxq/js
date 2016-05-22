@@ -43,7 +43,10 @@ class AgentRender {
         () => void this.update(agent.x, agent.y, agent.z));
   }
 
-  update(/** number */ x, /** number */ y, /** number */ z) {
+  update(
+      /** number= */ x = this.lastX,
+      /** number= */ y = this.lastY,
+      /** number= */ z = this.lastZ) {
     if (!util.elementInView(this.renderer.canvas)) return;
 
     const deltaX = x - this.lastX;
@@ -51,7 +54,7 @@ class AgentRender {
     const deltaZ = z - this.lastZ;
     const distance =
         Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
-    this.totalDistance += distance;
+    const opacity = Math.max(0.2, Math.min(1.0, distance / 100));
 
     const g = this.renderer.context;
 
@@ -63,8 +66,8 @@ class AgentRender {
     g.fill();
 
     // clearly mark current location
-    g.fillStyle = `hsla(${this.hueSeed}, 50%, 50%, 0.5)`;
-    g.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    g.fillStyle = `hsla(${this.hueSeed}, 50%, 50%, ${opacity})`;
+    g.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
 
     g.beginPath();
     g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
@@ -111,11 +114,15 @@ exports = class {
   tick(/** number */ dt) {
     if (util.elementInView(this.canvas)) {
       this.context.fillStyle = `rgba(0, 0, 0, ${0.25 * dt})`;
+      this.context.fillRect(0, 0, this.world.width, this.world.height)
+
+      for (const renderer of this.renders.values()) {
+        renderer.update();
+      }
     } else {
       this.context.fillStyle = `black`;
+      this.context.fillRect(0, 0, this.world.width, this.world.height);
     }
-
-    this.context.fillRect(0, 0, this.world.width, this.world.height);
   }
 
   /** @protected */ updateRenders() {

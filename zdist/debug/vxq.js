@@ -144,38 +144,38 @@ function $module$contents$vxq$worlds$flatland$World_World$$($width$$13$$, $heigh
   this.$a$ = new Set;
   var $then$$ = +new Date;
   setInterval(function() {
-    var $forces$$inline_14_now_value$$inline_52$$ = +new Date, $$jscomp$iter$4$$inline_34_dt_i$$inline_51$$ = ($forces$$inline_14_now_value$$inline_52$$ - $then$$) / 1E3;
-    $then$$ = $forces$$inline_14_now_value$$inline_52$$;
-    if (!(0 >= $$jscomp$iter$4$$inline_34_dt_i$$inline_51$$)) {
-      for (var $forces$$inline_14_now_value$$inline_52$$ = new Map, $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$), $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.next();!$$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.done;$$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.next()) {
-        for (var $$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.value, $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(0, 0), $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.add($$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$.$g$), 
+    var $forces$$inline_14_now_value$$inline_51$$ = +new Date, $$jscomp$iter$4$$inline_34_dt_i$$inline_50$$ = ($forces$$inline_14_now_value$$inline_51$$ - $then$$) / 1E3;
+    $then$$ = $forces$$inline_14_now_value$$inline_51$$;
+    if (!(0 >= $$jscomp$iter$4$$inline_34_dt_i$$inline_50$$)) {
+      for (var $forces$$inline_14_now_value$$inline_51$$ = new Map, $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$), $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.next();!$$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.done;$$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.next()) {
+        for (var $$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.value, $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(0, 0), $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.add($$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$.$g$), 
         $$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$), $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$ = $$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$.next();!$$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$.done;$$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$ = $$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$.next()) {
-          if ($$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$ = $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$.value, $$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$ !== $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$) {
-            var $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ = $JSCompiler_StaticMethods_subtract$$($$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$.$b$, $$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$.$b$), $distance$$inline_23$$ = $JSCompiler_StaticMethods_magnitude$$($dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$);
+          if ($$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$ = $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$.value, $$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$ !== $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$) {
+            var $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ = $JSCompiler_StaticMethods_subtract$$($$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$.$b$, $$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$.$b$), $distance$$inline_23$$ = $JSCompiler_StaticMethods_magnitude$$($dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$);
             40 > $distance$$inline_23$$ && ($distance$$inline_23$$ = 40);
-            $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$ = $JSCompiler_StaticMethods_withMagnitude$$($dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$, 1).scale(6.67408 * $$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$.$c$ * $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$.$c$ / Math.pow($distance$$inline_23$$, 2));
-            $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.add($$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$);
+            $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$ = $JSCompiler_StaticMethods_withMagnitude$$($dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$, 1).scale(6.67408 * $$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$.$c$ * $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$.$c$ / Math.pow($distance$$inline_23$$, 2));
+            $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.add($$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$);
           }
         }
-        $forces$$inline_14_now_value$$inline_52$$.set($$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$, $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$);
+        $forces$$inline_14_now_value$$inline_51$$.set($$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$, $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$);
       }
       $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$ = [];
-      $$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$);
-      for ($$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$.next();!$$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.done;$$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$.next()) {
-        $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.value, $$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$c$ * $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$f$, $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$ = $forces$$inline_14_now_value$$inline_52$$.get($$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$), 
-        $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ = $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$.scale($$jscomp$iter$4$$inline_34_dt_i$$inline_51$$ / $$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$), console.log("dV from forces " + $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$), $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$a$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$a$.add($dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$), 
-        $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ = $JSCompiler_StaticMethods_magnitude$$($$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$a$), $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ = Math.max(0, $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ - $$jscomp$iter$4$$inline_34_dt_i$$inline_51$$ * $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ * .05), 
-        10 <= $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ || 100 < $JSCompiler_StaticMethods_magnitude$$($$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$) / $$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$ ? (console.log(String($dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$)), $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$a$ = $JSCompiler_StaticMethods_withMagnitude$$($$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$a$, 
-        $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$)) : $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(0, 0), 0 < $JSCompiler_StaticMethods_magnitude$$($$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$a$) && ($$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$a$.scale($$jscomp$iter$4$$inline_34_dt_i$$inline_51$$), 
-        $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$b$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.$b$.add($$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$), $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.push($$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$));
+      $$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$);
+      for ($$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$.next();!$$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.done;$$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$.next()) {
+        $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.value, $$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$c$ * $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$f$, $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$ = $forces$$inline_14_now_value$$inline_51$$.get($$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$), 
+        $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ = $$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$.scale($$jscomp$iter$4$$inline_34_dt_i$$inline_50$$ / $$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$), console.log("dV from forces " + $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$), $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$a$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$a$.add($dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$), 
+        $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ = $JSCompiler_StaticMethods_magnitude$$($$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$a$), $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ = Math.max(0, $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ - $$jscomp$iter$4$$inline_34_dt_i$$inline_50$$ * $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ * .05), 
+        10 <= $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$ || 100 < $JSCompiler_StaticMethods_magnitude$$($$jscomp$key$other$$inline_20_f$$inline_29_fG$$inline_24_other$$inline_21$$) / $$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$ ? (console.log(String($dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$)), $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$a$ = $JSCompiler_StaticMethods_withMagnitude$$($$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$a$, 
+        $dV$$inline_30_displacement$$inline_22_newSpeed$$inline_32_speed$$inline_31$$)) : $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(0, 0), 0 < $JSCompiler_StaticMethods_magnitude$$($$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$a$) && ($$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$a$.scale($$jscomp$iter$4$$inline_34_dt_i$$inline_50$$), 
+        $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$b$ = $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.$b$.add($$jscomp$iter$1$$inline_19_dP$$inline_33_inertia$$inline_28$$), $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.push($$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$));
       }
-      for ($$jscomp$iter$4$$inline_34_dt_i$$inline_51$$ = 0;$$jscomp$iter$4$$inline_34_dt_i$$inline_51$$ < $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.length - 1;$$jscomp$iter$4$$inline_34_dt_i$$inline_51$$++) {
-        $forces$$inline_14_now_value$$inline_52$$ = $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$[$$jscomp$iter$4$$inline_34_dt_i$$inline_51$$], $$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$ = $$jscomp$iter$4$$inline_34_dt_i$$inline_51$$ + Math.floor(Math.random() * $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.length - $$jscomp$iter$4$$inline_34_dt_i$$inline_51$$), $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$[$$jscomp$iter$4$$inline_34_dt_i$$inline_51$$] = 
-        $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$[$$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$], $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$[$$jscomp$iter$3$$inline_26_randomIndex$$inline_53_unit$$inline_17$$] = $forces$$inline_14_now_value$$inline_52$$;
+      for ($$jscomp$iter$4$$inline_34_dt_i$$inline_50$$ = 0;$$jscomp$iter$4$$inline_34_dt_i$$inline_50$$ < $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.length - 1;$$jscomp$iter$4$$inline_34_dt_i$$inline_50$$++) {
+        $forces$$inline_14_now_value$$inline_51$$ = $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$[$$jscomp$iter$4$$inline_34_dt_i$$inline_50$$], $$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$ = $$jscomp$iter$4$$inline_34_dt_i$$inline_50$$ + Math.floor(Math.random() * $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$.length - $$jscomp$iter$4$$inline_34_dt_i$$inline_50$$), $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$[$$jscomp$iter$4$$inline_34_dt_i$$inline_50$$] = 
+        $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$[$$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$], $$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$[$$jscomp$iter$3$$inline_26_randomIndex$$inline_52_unit$$inline_17$$] = $forces$$inline_14_now_value$$inline_51$$;
       }
-      $$jscomp$iter$4$$inline_34_dt_i$$inline_51$$ = $$jscomp$makeIterator$$($$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$);
-      for ($$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $$jscomp$iter$4$$inline_34_dt_i$$inline_51$$.next();!$$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.done;$$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$ = $$jscomp$iter$4$$inline_34_dt_i$$inline_51$$.next()) {
-        $$jscomp$key$unit$$inline_16_force$$inline_18_unit$8$$inline_27$$.value.changeCallbacks.call();
+      $$jscomp$iter$4$$inline_34_dt_i$$inline_50$$ = $$jscomp$makeIterator$$($$jscomp$iter$2$$inline_15_changedUnits$$inline_25$$);
+      for ($$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $$jscomp$iter$4$$inline_34_dt_i$$inline_50$$.next();!$$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.done;$$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$ = $$jscomp$iter$4$$inline_34_dt_i$$inline_50$$.next()) {
+        $$jscomp$key$unit$$inline_16_force$$inline_18_unit$9$$inline_27$$.value.changeCallbacks.call();
       }
     }
   }, 20);
@@ -196,8 +196,8 @@ $module$contents$vxq$worlds$flatland$Unit_Unit$$.prototype.goTo = function $$mod
   function $go$$() {
     return new Promise(function($resolve$$) {
       function $updateThrust$$() {
-        var $displacement$$1$$ = $JSCompiler_StaticMethods_subtract$$($module$contents$vxq$worlds$flatland$Vector_Vector$V$$($x$$84$$, $y$$55$$), $$jscomp$this$$2$$.$b$);
-        16 >= $JSCompiler_StaticMethods_magnitude$$($displacement$$1$$) && 0 >= $JSCompiler_StaticMethods_magnitude$$($$jscomp$this$$2$$.$a$) ? ($$jscomp$this$$2$$.$g$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(0, 0), $resolve$$()) : $$jscomp$this$$2$$.$g$ = $JSCompiler_StaticMethods_withMagnitude$$($displacement$$1$$, 150 * $$jscomp$this$$2$$.$c$ * $$jscomp$this$$2$$.$f$);
+        var $displacement$$1$$ = $JSCompiler_StaticMethods_subtract$$($module$contents$vxq$worlds$flatland$Vector_Vector$V$$($x$$84$$, $y$$55$$), $$jscomp$this$$2$$.$b$), $projectedDisplacement_projectedPosition$$ = $$jscomp$this$$2$$.$b$.add($$jscomp$this$$2$$.$a$.scale(2)), $projectedDisplacement_projectedPosition$$ = $JSCompiler_StaticMethods_subtract$$($module$contents$vxq$worlds$flatland$Vector_Vector$V$$($x$$84$$, $y$$55$$), $projectedDisplacement_projectedPosition$$);
+        16 >= $JSCompiler_StaticMethods_magnitude$$($displacement$$1$$) && 1 >= $JSCompiler_StaticMethods_magnitude$$($$jscomp$this$$2$$.$a$) ? ($$jscomp$this$$2$$.$g$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(0, 0), $resolve$$()) : $$jscomp$this$$2$$.$g$ = $JSCompiler_StaticMethods_withMagnitude$$($projectedDisplacement_projectedPosition$$, 200 * $$jscomp$this$$2$$.$c$ * $$jscomp$this$$2$$.$f$);
       }
       $$jscomp$this$$2$$.changeCallbacks.add(function() {
         $updateThrust$$();
@@ -227,20 +227,16 @@ function $module$exports$vxq$testing$assertEquals$$($expected$$, $actual$$) {
   this.$b$ = $renderer$$;
   this.$a$ = $agent$$;
   this.cancel = $agent$$.changeCallbacks.add(function() {
-    if ($module$exports$vxq$util$elementInView$$($$jscomp$this$$3$$.$b$.$b$)) {
-      var $g$$inline_40$$ = $$jscomp$this$$3$$.$b$.$c$;
-      $g$$inline_40$$.fillStyle = "rgba(0, 0, 0, 0.25)";
-      $g$$inline_40$$.beginPath();
-      $g$$inline_40$$.arc($$jscomp$this$$3$$.$a$.x, $$jscomp$this$$3$$.$a$.y, 8, 0, 2 * Math.PI);
-      $g$$inline_40$$.fill();
-      $g$$inline_40$$.fillStyle = "hsla(" + $$jscomp$this$$3$$.$c$ + ", 50%, 50%, 0.5)";
-      $g$$inline_40$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
-      $g$$inline_40$$.beginPath();
-      $g$$inline_40$$.arc($$jscomp$this$$3$$.$a$.x, $$jscomp$this$$3$$.$a$.y, 6, 0, 2 * Math.PI);
-      $g$$inline_40$$.fill();
-      $g$$inline_40$$.stroke();
-    }
+    return void $JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$$($$jscomp$this$$3$$, $agent$$.x, $agent$$.y, $agent$$.z);
   });
+}
+function $JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$$($JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$self$$, $deltaX_g_x$$85$$, $deltaY_y$$56$$, $deltaZ_opacity_z$$15$$) {
+  $deltaX_g_x$$85$$ = void 0 === $deltaX_g_x$$85$$ ? 0 : $deltaX_g_x$$85$$;
+  $deltaY_y$$56$$ = void 0 === $deltaY_y$$56$$ ? 0 : $deltaY_y$$56$$;
+  $deltaZ_opacity_z$$15$$ = void 0 === $deltaZ_opacity_z$$15$$ ? 0 : $deltaZ_opacity_z$$15$$;
+  $module$exports$vxq$util$elementInView$$($JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$self$$.$b$.$b$) && ($deltaX_g_x$$85$$ -= 0, $deltaY_y$$56$$ -= 0, $deltaZ_opacity_z$$15$$ -= 0, $deltaZ_opacity_z$$15$$ = Math.max(.2, Math.min(1, Math.sqrt($deltaX_g_x$$85$$ * $deltaX_g_x$$85$$ + $deltaY_y$$56$$ * $deltaY_y$$56$$ + $deltaZ_opacity_z$$15$$ * $deltaZ_opacity_z$$15$$) / 100)), $deltaX_g_x$$85$$ = $JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$self$$.$b$.$c$, 
+  $deltaX_g_x$$85$$.fillStyle = "rgba(0, 0, 0, 0.25)", $deltaX_g_x$$85$$.beginPath(), $deltaX_g_x$$85$$.arc($JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$self$$.$a$.x, $JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$self$$.$a$.y, 8, 0, 2 * Math.PI), $deltaX_g_x$$85$$.fill(), $deltaX_g_x$$85$$.fillStyle = "hsla(" + $JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$self$$.$c$ + 
+  ", 50%, 50%, " + $deltaZ_opacity_z$$15$$ + ")", $deltaX_g_x$$85$$.strokeStyle = "rgba(255, 255, 255, " + $deltaZ_opacity_z$$15$$ + ")", $deltaX_g_x$$85$$.beginPath(), $deltaX_g_x$$85$$.arc($JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$self$$.$a$.x, $JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$self$$.$a$.y, 6, 0, 2 * Math.PI), $deltaX_g_x$$85$$.fill(), $deltaX_g_x$$85$$.stroke());
 }
 function $module$exports$vxq$renderers$FlatCanvas$$($world$$2$$) {
   var $$jscomp$this$$4$$ = this;
@@ -256,19 +252,24 @@ function $module$exports$vxq$renderers$FlatCanvas$$($world$$2$$) {
   this.$a$.changeCallbacks.add(this.$g$.bind(this));
   var $then$$1$$ = +new Date;
   setInterval(function() {
-    var $now$$1$$ = +new Date, $dt$$2$$ = ($now$$1$$ - $then$$1$$) / 1E3;
-    $then$$1$$ = $now$$1$$;
-    $module$exports$vxq$util$elementInView$$($$jscomp$this$$4$$.$b$) ? $$jscomp$this$$4$$.$c$.fillStyle = "rgba(0, 0, 0, " + .25 * $dt$$2$$ + ")" : $$jscomp$this$$4$$.$c$.fillStyle = "black";
-    $$jscomp$this$$4$$.$c$.fillRect(0, 0, $$jscomp$this$$4$$.$a$.width, $$jscomp$this$$4$$.$a$.height);
+    var $$jscomp$iter$5$$inline_41_now$$1$$ = +new Date, $$jscomp$key$renderer$$inline_42_dt$$2$$ = ($$jscomp$iter$5$$inline_41_now$$1$$ - $then$$1$$) / 1E3;
+    $then$$1$$ = $$jscomp$iter$5$$inline_41_now$$1$$;
+    if ($module$exports$vxq$util$elementInView$$($$jscomp$this$$4$$.$b$)) {
+      for ($$jscomp$this$$4$$.$c$.fillStyle = "rgba(0, 0, 0, " + .25 * $$jscomp$key$renderer$$inline_42_dt$$2$$ + ")", $$jscomp$this$$4$$.$c$.fillRect(0, 0, $$jscomp$this$$4$$.$a$.width, $$jscomp$this$$4$$.$a$.height), $$jscomp$iter$5$$inline_41_now$$1$$ = $$jscomp$makeIterator$$($$jscomp$this$$4$$.$f$.values()), $$jscomp$key$renderer$$inline_42_dt$$2$$ = $$jscomp$iter$5$$inline_41_now$$1$$.next();!$$jscomp$key$renderer$$inline_42_dt$$2$$.done;$$jscomp$key$renderer$$inline_42_dt$$2$$ = $$jscomp$iter$5$$inline_41_now$$1$$.next()) {
+        $JSCompiler_StaticMethods_module$contents$vxq$renderers$FlatCanvas_AgentRender_prototype$update$$($$jscomp$key$renderer$$inline_42_dt$$2$$.value);
+      }
+    } else {
+      $$jscomp$this$$4$$.$c$.fillStyle = "black", $$jscomp$this$$4$$.$c$.fillRect(0, 0, $$jscomp$this$$4$$.$a$.width, $$jscomp$this$$4$$.$a$.height);
+    }
   }, 100);
 }
 $module$exports$vxq$renderers$FlatCanvas$$.prototype.$g$ = function $$module$exports$vxq$renderers$FlatCanvas$$$$$g$$() {
-  for (var $$jscomp$iter$5$$1_$jscomp$iter$6$$1$$ = $$jscomp$makeIterator$$(this.$f$), $$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$5$$1_$jscomp$iter$6$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$5$$1_$jscomp$iter$6$$1$$.next()) {
+  for (var $$jscomp$iter$6$$1_$jscomp$iter$7$$1$$ = $$jscomp$makeIterator$$(this.$f$), $$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$1$$.value.cancel();
   }
   this.$f$ = new Map;
-  $$jscomp$iter$5$$1_$jscomp$iter$6$$1$$ = $$jscomp$makeIterator$$(this.$a$.agents);
-  for ($$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$5$$1_$jscomp$iter$6$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$5$$1_$jscomp$iter$6$$1$$.next()) {
+  $$jscomp$iter$6$$1_$jscomp$iter$7$$1$$ = $$jscomp$makeIterator$$(this.$a$.agents);
+  for ($$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$1$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$1$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$1$$.value, this.$f$.set($$jscomp$key$agent_$jscomp$key$render_agent$$1$$, new $module$contents$vxq$renderers$FlatCanvas_AgentRender$$(this, $$jscomp$key$agent_$jscomp$key$render_agent$$1$$));
   }
 };
@@ -279,8 +280,8 @@ $module$contents$vxq$main_VXQModule$$.prototype.test = function $$module$content
   $JSCompiler_StaticMethods_testTheTurtles$$();
 };
 $module$contents$vxq$main_VXQModule$$.prototype.addFlatCanvasWithTurtles = function $$module$contents$vxq$main_VXQModule$$$$addFlatCanvasWithTurtles$($element$$5$$) {
-  var $world$$3$$ = new $module$exports$vxq$worlds$turtles$World$$(512, 512, []), $renderer$$1$$ = new $module$exports$vxq$renderers$FlatCanvas$$($world$$3$$);
-  $element$$5$$.appendChild($renderer$$1$$.$b$);
+  var $world$$3$$ = new $module$exports$vxq$worlds$turtles$World$$(512, 512, []), $renderer$$2$$ = new $module$exports$vxq$renderers$FlatCanvas$$($world$$3$$);
+  $element$$5$$.appendChild($renderer$$2$$.$b$);
   $JSCompiler_StaticMethods_testTheTurtles$$($world$$3$$);
   return $world$$3$$;
 };
@@ -288,31 +289,31 @@ $module$contents$vxq$main_VXQModule$$.prototype.addFlatCanvasWithFlatland = func
   function $r$$1$$() {
     return .5 + (Math.random() + Math.random() + Math.random()) / 3;
   }
-  var $world$$4$$ = new $module$contents$vxq$worlds$flatland$World_World$$(512, 512), $planetComponent_renderer$$2$$ = new $module$exports$vxq$renderers$FlatCanvas$$($world$$4$$);
-  $element$$6_i$$14_unit1_unit2_unit3$$.appendChild($planetComponent_renderer$$2$$.$b$);
+  var $world$$4$$ = new $module$contents$vxq$worlds$flatland$World_World$$(512, 512), $planetComponent_renderer$$3$$ = new $module$exports$vxq$renderers$FlatCanvas$$($world$$4$$);
+  $element$$6_i$$14_unit1_unit2_unit3$$.appendChild($planetComponent_renderer$$3$$.$b$);
   $element$$6_i$$14_unit1_unit2_unit3$$ = new $module$contents$vxq$worlds$flatland$Unit_Unit$$(0, 150, 50);
-  $element$$6_i$$14_unit1_unit2_unit3$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(100, -15);
+  $element$$6_i$$14_unit1_unit2_unit3$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(200, -15);
   $world$$4$$.$a$.add($element$$6_i$$14_unit1_unit2_unit3$$);
   console.log($element$$6_i$$14_unit1_unit2_unit3$$.goTo(500, 500, 0));
   $element$$6_i$$14_unit1_unit2_unit3$$ = new $module$contents$vxq$worlds$flatland$Unit_Unit$$(0, 400, 200);
-  $element$$6_i$$14_unit1_unit2_unit3$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(8, 150);
+  $element$$6_i$$14_unit1_unit2_unit3$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(100, 650);
   $world$$4$$.$a$.add($element$$6_i$$14_unit1_unit2_unit3$$);
   console.log($element$$6_i$$14_unit1_unit2_unit3$$.goTo(25, 25, 0));
   $element$$6_i$$14_unit1_unit2_unit3$$ = new $module$contents$vxq$worlds$flatland$Unit_Unit$$(0, 150, 175);
-  $element$$6_i$$14_unit1_unit2_unit3$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(-25, 125);
+  $element$$6_i$$14_unit1_unit2_unit3$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(-65, 125);
   $world$$4$$.$a$.add($element$$6_i$$14_unit1_unit2_unit3$$);
-  console.log($element$$6_i$$14_unit1_unit2_unit3$$.goTo(50, 300, 0));
+  console.log($element$$6_i$$14_unit1_unit2_unit3$$.goTo(50, 400, 0));
   for ($element$$6_i$$14_unit1_unit2_unit3$$ = 0;4 > $element$$6_i$$14_unit1_unit2_unit3$$;$element$$6_i$$14_unit1_unit2_unit3$$++) {
-    $planetComponent_renderer$$2$$ = new $module$contents$vxq$worlds$flatland$Unit_Unit$$(0, 200 + 50 * $r$$1$$(), 200 + 50 * $r$$1$$()), $planetComponent_renderer$$2$$.$c$ *= 10, $planetComponent_renderer$$2$$.$f$ *= 10, $planetComponent_renderer$$2$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(5 - 10 * $r$$1$$(), 5 - 10 * $r$$1$$()), $world$$4$$.$a$.add($planetComponent_renderer$$2$$);
+    $planetComponent_renderer$$3$$ = new $module$contents$vxq$worlds$flatland$Unit_Unit$$(0, 200 + 50 * $r$$1$$(), 200 + 50 * $r$$1$$()), $planetComponent_renderer$$3$$.$c$ *= 10, $planetComponent_renderer$$3$$.$f$ *= 10, $planetComponent_renderer$$3$$.$a$ = $module$contents$vxq$worlds$flatland$Vector_Vector$V$$(5 - 10 * $r$$1$$(), 5 - 10 * $r$$1$$()), $world$$4$$.$a$.add($planetComponent_renderer$$3$$);
   }
   $world$$4$$.changeCallbacks.call();
   return $world$$4$$;
 };
-function $JSCompiler_StaticMethods_testTheTurtles$$($i$$15_i$10_world$$5$$) {
-  $i$$15_i$10_world$$5$$ = void 0 === $i$$15_i$10_world$$5$$ ? new $module$exports$vxq$worlds$turtles$World$$(512, 512, []) : $i$$15_i$10_world$$5$$;
+function $JSCompiler_StaticMethods_testTheTurtles$$($i$$15_i$11_world$$5$$) {
+  $i$$15_i$11_world$$5$$ = void 0 === $i$$15_i$11_world$$5$$ ? new $module$exports$vxq$worlds$turtles$World$$(512, 512, []) : $i$$15_i$11_world$$5$$;
   var $turtle$$ = new $module$exports$vxq$worlds$turtles$Turtle$$;
-  $i$$15_i$10_world$$5$$.$a$.add($turtle$$);
-  $i$$15_i$10_world$$5$$.changeCallbacks.call();
+  $i$$15_i$11_world$$5$$.$a$.add($turtle$$);
+  $i$$15_i$11_world$$5$$.changeCallbacks.call();
   $module$exports$vxq$testing$assertEquals$$(50, $turtle$$.x);
   $module$exports$vxq$testing$assertEquals$$(50, $turtle$$.y);
   $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$forward$$($turtle$$, 50);
@@ -325,20 +326,20 @@ function $JSCompiler_StaticMethods_testTheTurtles$$($i$$15_i$10_world$$5$$) {
   $module$exports$vxq$testing$assertEquals$$(100, $turtle$$.y);
   $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$left$$($turtle$$, .375);
   $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$forward$$($turtle$$, 100);
-  for ($i$$15_i$10_world$$5$$ = 0;12 > $i$$15_i$10_world$$5$$;$i$$15_i$10_world$$5$$++) {
+  for ($i$$15_i$11_world$$5$$ = 0;12 > $i$$15_i$11_world$$5$$;$i$$15_i$11_world$$5$$++) {
     $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$left$$($turtle$$, .0625), $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$forward$$($turtle$$, 10);
   }
   $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$forward$$($turtle$$, 100);
   $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$left$$($turtle$$, .25);
   $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$forward$$($turtle$$, 200);
-  for ($i$$15_i$10_world$$5$$ = 0;6 > $i$$15_i$10_world$$5$$;$i$$15_i$10_world$$5$$++) {
+  for ($i$$15_i$11_world$$5$$ = 0;6 > $i$$15_i$11_world$$5$$;$i$$15_i$11_world$$5$$++) {
     $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$left$$($turtle$$, .0625), $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$forward$$($turtle$$, 10);
   }
   $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$forward$$($turtle$$, 50);
   console.log("Test complete.");
 }
-var $JSCompiler_StaticMethods_exportFromClosure$self$$inline_48$$ = new $module$contents$vxq$main_VXQModule$$;
-"object" === typeof module && null != module && (module.exports = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_48$$);
-"object" === typeof window && null != window && (window.vxq = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_48$$);
+var $JSCompiler_StaticMethods_exportFromClosure$self$$inline_47$$ = new $module$contents$vxq$main_VXQModule$$;
+"object" === typeof module && null != module && (module.exports = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_47$$);
+"object" === typeof window && null != window && (window.vxq = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_47$$);
 
 }.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : null)
