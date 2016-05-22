@@ -771,9 +771,9 @@ var $jscomp$destructuring$var0 = module$contents$vxq$worlds$flatland$Vector_Vect
   this.units = new Set;
   this.gravity = 6.67408;
   this.proportionalVelocityLossPerSecond = .05;
-  this.minNonzeroSpeed = 10;
+  this.minNonzeroSpeed = 4;
   this.tickInterval = setInterval(function() {
-    $$jscomp$this$$.tick(20);
+    $$jscomp$this$$.tick(.02);
   }, 20);
 };
 module$contents$vxq$worlds$flatland$World_World.prototype.tick = function $module$contents$vxq$worlds$flatland$World_World$$tick$($$jscomp$iter$4$$) {
@@ -819,8 +819,8 @@ var $jscomp$destructuring$var1 = module$contents$vxq$worlds$flatland$Vector_Vect
   this.mass = 1E4;
   this.interialAmplification = 1;
   this.targetPosition = null;
-  this.targetMaxDistance = 16;
-  this.targetMaxSpeed = 1;
+  this.targetMaxDistance = 32;
+  this.targetMaxSpeed = 10;
   this.lastMove = Promise.resolve();
   this.changeCallbacks = new module$exports$vxq$util.CallbackList;
 };
@@ -832,7 +832,7 @@ module$contents$vxq$worlds$flatland$Unit_Unit.prototype.goTo = function $module$
         $updateThrust$$();
       });
       var $updateThrust$$ = function $$updateThrust$$$() {
-        var $displacement$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($$jscomp$this$$.position), $projectedDisplacement_projectedPosition$$ = $$jscomp$this$$.position.add($$jscomp$this$$.velocity.scale(.5)), $projectedDisplacement_projectedPosition$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($projectedDisplacement_projectedPosition$$);
+        var $displacement$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($$jscomp$this$$.position), $projectedDisplacement_projectedPosition$$ = $$jscomp$this$$.position.add($$jscomp$this$$.velocity.scale(1.5)), $projectedDisplacement_projectedPosition$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($projectedDisplacement_projectedPosition$$);
         $displacement$$.magnitude() <= $$jscomp$this$$.targetMaxDistance && $$jscomp$this$$.velocity.magnitude() <= $$jscomp$this$$.targetMaxSpeed ? ($$jscomp$this$$.thrust = module$contents$vxq$worlds$flatland$Unit_V(0, 0), $resolve$$()) : $$jscomp$this$$.thrust = $projectedDisplacement_projectedPosition$$.withMagnitude(175 * $$jscomp$this$$.mass * $$jscomp$this$$.interialAmplification);
       };
       $updateThrust$$();
@@ -872,7 +872,7 @@ module$contents$vxq$renderers$FlatCanvas_AgentRender.prototype.update = function
   $deltaY_y$$ = void 0 === $deltaY_y$$ ? this.lastY : $deltaY_y$$;
   $deltaZ_opacity_z$$ = void 0 === $deltaZ_opacity_z$$ ? this.lastZ : $deltaZ_opacity_z$$;
   module$exports$vxq$util.elementInView(this.renderer.canvas) && ($deltaX_g_x$$ -= this.lastX, $deltaY_y$$ -= this.lastY, $deltaZ_opacity_z$$ -= this.lastZ, $deltaZ_opacity_z$$ = Math.max(.2, Math.min(1, Math.sqrt($deltaX_g_x$$ * $deltaX_g_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_opacity_z$$ * $deltaZ_opacity_z$$) / 100)), $deltaX_g_x$$ = this.renderer.context, $deltaX_g_x$$.fillStyle = "hsla(" + this.hueSeed + ", 50%, 50%, " + $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.strokeStyle = "rgba(255, 255, 255, " + 
-  $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI), $deltaX_g_x$$.fill(), $deltaX_g_x$$.stroke(), $deltaX_g_x$$.strokeStyle = "rgba(0, 0, 0, " + .5 * $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 7, 0, 2 * Math.PI), $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI), $deltaX_g_x$$.stroke());
+  $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.lineWidth = 1, $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI), $deltaX_g_x$$.fill(), $deltaX_g_x$$.stroke(), $deltaX_g_x$$.strokeStyle = "rgba(0, 0, 0, " + .5 * $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.lineWidth = 2, $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI), $deltaX_g_x$$.stroke());
 };
 var module$contents$vxq$renderers$FlatCanvas_Pointer = function $module$contents$vxq$renderers$FlatCanvas_Pointer$($world$$, $source$$, $x$$, $y$$) {
   this.world = $world$$;
@@ -929,12 +929,7 @@ module$exports$vxq$renderers$FlatCanvas.prototype.tick = function $module$export
     module$exports$vxq$util.shuffle($$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$);
     $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$ = $jscomp.makeIterator($$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$);
     for ($$jscomp$key$pointer_$jscomp$key$renderer_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next();!$$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.done;$$jscomp$key$pointer_$jscomp$key$renderer_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next()) {
-      $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$ = $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.value;
-      debugger;
-      this.context.strokeStyle = "rgba(210, 40, 40, 0.75)";
-      this.context.beginPath();
-      this.context.moveTo($$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.source.x, $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.source.y);
-      this.context.lineTo($$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.x, $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.y);
+      $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$ = $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.value, this.context.strokeStyle = "rgba(210, 40, 40, 0.75)", this.context.beginPath(), this.context.lineWidth = 4, this.context.moveTo($$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.source.x, $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.source.y), this.context.lineTo($$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.x, $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.y), 
       this.context.stroke();
     }
   } else {

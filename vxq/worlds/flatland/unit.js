@@ -49,13 +49,13 @@ class Unit {
      * @const The maximum distance this unit may be from the target position to
      * be considered to have reached it.
      */
-    this.targetMaxDistance = 16;
+    this.targetMaxDistance = 32;
 
     /**
      * @const The maximum speed this unit may have to be considered to have
      * reached the target position.
      */
-    this.targetMaxSpeed = 1.0;
+    this.targetMaxSpeed = 10.0;
 
     /**
      * @type {?Promise<void>}
@@ -89,7 +89,7 @@ class Unit {
 
         // Mitigate overshooting by thrusting based on position predicted.
         const projectedPosition =
-            this.position.add(this.velocity.scale(0.5));
+            this.position.add(this.velocity.scale(1.5));
 
         const projectedDisplacement = V(x, y).subtract(projectedPosition);
 

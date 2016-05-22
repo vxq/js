@@ -32,12 +32,11 @@ class World {
      * unless they're under the influence of a force that will alter their
      * speed by at least this much within a second.
      */
-    this.minNonzeroSpeed = 10.0;
+    this.minNonzeroSpeed = 4.0;
 
-    let then = +new Date;
     /** @type {?number} */
     this.tickInterval = setInterval(() => {
-      this.tick(20);
+      this.tick(0.02);
     }, 20);
   }
 
