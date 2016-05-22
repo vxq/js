@@ -8,7 +8,7 @@
  * @interface
  */
 let VXQ = class {
-  test() {}
+  test(nodeElseBrowser) {}
 
   /** @return {!VXQ.World} */
   addFlatCanvasWithTurtles(/** !Element */ el) {}

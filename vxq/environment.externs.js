@@ -3,3 +3,11 @@
  */
 
 let /** !{exports:?VXQ} */ module;
+
+
+/** @return {*} */
+function require(name) {}
+
+
+/** @interface */
+class IVQWrapperModule {}

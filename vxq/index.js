@@ -9,9 +9,14 @@ const FlatCanvas = goog.require('vxq.renderers.FlatCanvas');
 
 /** @implements {VXQ} */
 class VXQModule {
-  /** @override */ test() {
+  /** @override */ test(nodeElseBrowser=false) {
     debug.log('Let\'s testTheTurtles()!');
     this.testTheTurtles();
+
+    if (nodeElseBrowser) {
+      const {voxelquest} = require('vxq.worlds.voxelquest');
+      console.log("Imported", voxelquest);
+    }
   }
 
   /** @override */ addFlatCanvasWithTurtles(element) {

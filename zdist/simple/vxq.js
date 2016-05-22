@@ -905,9 +905,11 @@ module$exports$vxq$renderers$FlatCanvas.prototype.updateRenders = function $modu
 };
 var module$contents$vxq$main_VXQModule = function $module$contents$vxq$main_VXQModule$() {
 };
-module$contents$vxq$main_VXQModule.prototype.test = function $module$contents$vxq$main_VXQModule$$test$() {
+module$contents$vxq$main_VXQModule.prototype.test = function $module$contents$vxq$main_VXQModule$$test$($nodeElseBrowser$$) {
+  $nodeElseBrowser$$ = void 0 === $nodeElseBrowser$$ ? !1 : $nodeElseBrowser$$;
   module$exports$vxq$debug.log("Let's testTheTurtles()!");
   this.testTheTurtles();
+  $nodeElseBrowser$$ && ($nodeElseBrowser$$ = require("vxq.worlds.voxelquest").voxelquest, console.log("Imported", $nodeElseBrowser$$));
 };
 module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithTurtles = function $module$contents$vxq$main_VXQModule$$addFlatCanvasWithTurtles$($element$$) {
   var $world$$ = new module$exports$vxq$worlds$turtles.World(512, 512, []), $renderer$$ = new module$exports$vxq$renderers$FlatCanvas($world$$);

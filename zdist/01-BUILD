@@ -1,13 +1,16 @@
 
-> vxq@0.1.0-dev.62 build /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.63 build /Users/j/src/github.com/vxq/js
 > gulp build
 
-[05:32:58] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[05:32:58] Starting 'build'...
-[05:32:58] Starting 'build-simple'...
-[05:32:58] Finished 'build' after 10 ms
-[05:33:01] Finished 'build-simple' after 2.74 s
-[05:33:01] Starting 'build-debug'...
-[05:33:04] Finished 'build-debug' after 3.46 s
-[05:33:04] Starting 'build-prod'...
-[05:33:07] Finished 'build-prod' after 3.44 s
+[12:40:36] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[12:40:36] Starting 'build'...
+[12:40:36] Starting 'build-simple'...
+[12:40:36] Finished 'build' after 8.57 ms
+[12:40:39] gulp-google-closure-compiler: /vxq/index.js:17: WARNING - Property voxelquest never defined on $jscomp$destructuring$var3
+      const {voxelquest} = require('vxq.worlds.voxelquest');
+             ^
+
+0 error(s), 1 warning(s), 93.5% typed
+
+[12:40:39] Finished 'build-simple' after 2.64 s
+[12:40:39] Starting 'build-debug'...
