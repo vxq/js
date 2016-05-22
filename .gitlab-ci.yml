@@ -1,3 +1,11 @@
+image: node
+
+all_tests:
+  script:
+   - npm install
+   - npm run test
+   - npm run lint
+
 pages:
   script:
   - mkdir /p public/
