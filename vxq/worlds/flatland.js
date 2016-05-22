@@ -23,7 +23,7 @@ exports.World = class {
     this.gravity = 0.0000000000667408;
 
     /** @const */
-    this.absoluteVelocityLossPerSecond = 2;
+    this.absoluteVelocityLossPerSecond = 10;
 
     /** @const */
     this.proportionalVelocityLossPerSecond = 0.2;
@@ -39,7 +39,18 @@ exports.World = class {
   }
 
   tick(/** number */ dt) {
+    // Determine the instantaneous forces acting on each unit.
+    const fX = /** !Map<exports.Unit,number> */ new Map();
+    const fY = /** !Map<exports.Unit,number> */new Map();
     for (const unit of this.units) {
+      fX.set(unit, 2);
+      fY.set(unit, 0);
+    }
+
+    for (const unit of this.units) {
+      unit.vX += fX.get(unit) / unit.mass;
+      unit.vY += fY.get(unit) / unit.mass;
+
       if (dt > 0 && (unit.vX != 0 || unit.vY != 0)) {
         unit.x += dt * unit.vX;
         unit.y += dt * unit.vY;

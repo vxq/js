@@ -723,7 +723,7 @@ var module$exports$vxq$worlds$flatland = {World:function($width$$, $height$$) {
   this.changeCallbacks = new module$exports$vxq$util.CallbackList;
   this.units = new Set;
   this.gravity = 6.67408E-11;
-  this.absoluteVelocityLossPerSecond = 2;
+  this.absoluteVelocityLossPerSecond = 10;
   this.proportionalVelocityLossPerSecond = .2;
   var $then$$ = +new Date;
   this.tickInterval = setInterval(function() {
@@ -733,14 +733,18 @@ var module$exports$vxq$worlds$flatland = {World:function($width$$, $height$$) {
   }, 20);
 }};
 module$exports$vxq$worlds$flatland.World.prototype.tick = function $module$exports$vxq$worlds$flatland$World$$tick$($dt$$) {
-  for (var $$jscomp$iter$1$$ = $jscomp.makeIterator(this.units), $$jscomp$key$unit_unit$$ = $$jscomp$iter$1$$.next();!$$jscomp$key$unit_unit$$.done;$$jscomp$key$unit_unit$$ = $$jscomp$iter$1$$.next()) {
-    if ($$jscomp$key$unit_unit$$ = $$jscomp$key$unit_unit$$.value, 0 < $dt$$ && (0 != $$jscomp$key$unit_unit$$.vX || 0 != $$jscomp$key$unit_unit$$.vY)) {
-      $$jscomp$key$unit_unit$$.x += $dt$$ * $$jscomp$key$unit_unit$$.vX;
-      $$jscomp$key$unit_unit$$.y += $dt$$ * $$jscomp$key$unit_unit$$.vY;
-      var $speed$$ = Math.sqrt($$jscomp$key$unit_unit$$.vX * $$jscomp$key$unit_unit$$.vX + $$jscomp$key$unit_unit$$.vY * $$jscomp$key$unit_unit$$.vY), $newSpeed$$ = Math.max(0, $speed$$ - $dt$$ * $$jscomp$key$unit_unit$$.world.absoluteVelocityLossPerSecond - $dt$$ * $speed$$ * $$jscomp$key$unit_unit$$.world.proportionalVelocityLossPerSecond);
-      $$jscomp$key$unit_unit$$.vX *= $newSpeed$$ / $speed$$;
-      $$jscomp$key$unit_unit$$.vY *= $newSpeed$$ / $speed$$;
-      $$jscomp$key$unit_unit$$.changeCallbacks.call();
+  for (var $fX$$ = new Map, $fY$$ = new Map, $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator(this.units), $$jscomp$key$unit_unit_unit$6$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$unit_unit_unit$6$$.done;$$jscomp$key$unit_unit_unit$6$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
+    $$jscomp$key$unit_unit_unit$6$$ = $$jscomp$key$unit_unit_unit$6$$.value, $fX$$.set($$jscomp$key$unit_unit_unit$6$$, 2), $fY$$.set($$jscomp$key$unit_unit_unit$6$$, 0);
+  }
+  $$jscomp$iter$1$$1_$jscomp$iter$2$$ = $jscomp.makeIterator(this.units);
+  for ($$jscomp$key$unit_unit_unit$6$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next();!$$jscomp$key$unit_unit_unit$6$$.done;$$jscomp$key$unit_unit_unit$6$$ = $$jscomp$iter$1$$1_$jscomp$iter$2$$.next()) {
+    if ($$jscomp$key$unit_unit_unit$6$$ = $$jscomp$key$unit_unit_unit$6$$.value, $$jscomp$key$unit_unit_unit$6$$.vX += $fX$$.get($$jscomp$key$unit_unit_unit$6$$) / $$jscomp$key$unit_unit_unit$6$$.mass, $$jscomp$key$unit_unit_unit$6$$.vY += $fY$$.get($$jscomp$key$unit_unit_unit$6$$) / $$jscomp$key$unit_unit_unit$6$$.mass, 0 < $dt$$ && (0 != $$jscomp$key$unit_unit_unit$6$$.vX || 0 != $$jscomp$key$unit_unit_unit$6$$.vY)) {
+      $$jscomp$key$unit_unit_unit$6$$.x += $dt$$ * $$jscomp$key$unit_unit_unit$6$$.vX;
+      $$jscomp$key$unit_unit_unit$6$$.y += $dt$$ * $$jscomp$key$unit_unit_unit$6$$.vY;
+      var $speed$$ = Math.sqrt($$jscomp$key$unit_unit_unit$6$$.vX * $$jscomp$key$unit_unit_unit$6$$.vX + $$jscomp$key$unit_unit_unit$6$$.vY * $$jscomp$key$unit_unit_unit$6$$.vY), $newSpeed$$ = Math.max(0, $speed$$ - $dt$$ * $$jscomp$key$unit_unit_unit$6$$.world.absoluteVelocityLossPerSecond - $dt$$ * $speed$$ * $$jscomp$key$unit_unit_unit$6$$.world.proportionalVelocityLossPerSecond);
+      $$jscomp$key$unit_unit_unit$6$$.vX *= $newSpeed$$ / $speed$$;
+      $$jscomp$key$unit_unit_unit$6$$.vY *= $newSpeed$$ / $speed$$;
+      $$jscomp$key$unit_unit_unit$6$$.changeCallbacks.call();
     }
   }
 };
@@ -819,12 +823,12 @@ var module$exports$vxq$renderers$FlatCanvas = function $module$exports$vxq$rende
   this.world.changeCallbacks.add(this.updateRenders.bind(this));
 };
 module$exports$vxq$renderers$FlatCanvas.prototype.updateRenders = function $module$exports$vxq$renderers$FlatCanvas$$updateRenders$() {
-  for (var $$jscomp$iter$2$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$2$$.next()) {
+  for (var $$jscomp$iter$3_$jscomp$iter$4$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$3_$jscomp$iter$4$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$3_$jscomp$iter$4$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$.value.cancel();
   }
   this.renders = new Map;
-  $$jscomp$iter$2$$ = $jscomp.makeIterator(this.world.agents);
-  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$2$$.next()) {
+  $$jscomp$iter$3_$jscomp$iter$4$$ = $jscomp.makeIterator(this.world.agents);
+  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$3_$jscomp$iter$4$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$3_$jscomp$iter$4$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render_agent$$, new module$contents$vxq$renderers$FlatCanvas_AgentRender(this, $$jscomp$key$agent_$jscomp$key$render_agent$$));
   }
 };
@@ -861,11 +865,11 @@ module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithFlatland = functio
   $world$$.changeCallbacks.call();
   return $world$$;
 };
-module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$contents$vxq$main_VXQModule$$testTheTurtles$($i$$13_i$5_world$$) {
-  $i$$13_i$5_world$$ = void 0 === $i$$13_i$5_world$$ ? new module$exports$vxq$worlds$turtles.World(512, 512, []) : $i$$13_i$5_world$$;
+module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$contents$vxq$main_VXQModule$$testTheTurtles$($i$$13_i$7_world$$) {
+  $i$$13_i$7_world$$ = void 0 === $i$$13_i$7_world$$ ? new module$exports$vxq$worlds$turtles.World(512, 512, []) : $i$$13_i$7_world$$;
   var $turtle$$ = new module$exports$vxq$worlds$turtles.Turtle;
-  $i$$13_i$5_world$$.turtles.add($turtle$$);
-  $i$$13_i$5_world$$.changeCallbacks.call();
+  $i$$13_i$7_world$$.turtles.add($turtle$$);
+  $i$$13_i$7_world$$.changeCallbacks.call();
   module$exports$vxq$testing.assertEquals(50, $turtle$$.x);
   module$exports$vxq$testing.assertEquals(50, $turtle$$.y);
   $turtle$$.forward(50);
@@ -877,13 +881,13 @@ module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$c
   module$exports$vxq$testing.assertEquals(100, $turtle$$.y);
   $turtle$$.left(.375);
   $turtle$$.forward(100);
-  for ($i$$13_i$5_world$$ = 0;12 > $i$$13_i$5_world$$;$i$$13_i$5_world$$++) {
+  for ($i$$13_i$7_world$$ = 0;12 > $i$$13_i$7_world$$;$i$$13_i$7_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(100);
   $turtle$$.left(.25);
   $turtle$$.forward(200);
-  for ($i$$13_i$5_world$$ = 0;6 > $i$$13_i$5_world$$;$i$$13_i$5_world$$++) {
+  for ($i$$13_i$7_world$$ = 0;6 > $i$$13_i$7_world$$;$i$$13_i$7_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(50);
