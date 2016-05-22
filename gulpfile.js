@@ -5,62 +5,82 @@ const runSequence = require('run-sequence');
 
 const srcs = [
   '!**/*.externs.js',
-  'vxq/**/*.js',
+  'vxq/**/*.js'
 ];
 const dest = 'zdist';
 
 const flags = {
   compilation_level: 'ADVANCED_OPTIMIZATIONS',
+  use_types_for_optimization: true,
+  dependency_mode: 'STRICT',
   warning_level: 'VERBOSE',
-  output_wrapper: [
-    `-function(window, module) {\n`,
-      `%output%`,
-    `\n}.call(`,
-        `typeof window == 'object' ? window`,
-          `: typeof this == 'object' ? this`,
-          `: null,`,
-        `typeof window == 'object' ? window : null,`,
-        `typeof module == 'object' ? module : {}`,
-    `)`
-  ].join(''),
+  get output_wrapper() {
+    return [
+      `-function(window, module) {\n`,
+        `%output%\n`,
+      `}.call(`,
+          `typeof window == 'object' ? window`,
+            `: typeof this == 'object' ? this`,
+            `: null,`,
+          `typeof window == 'object' ? window : null,`,
+          `typeof module == 'object' ? module : null`,
+      `)`
+    ].join('');
+  },
   language_in: 'ECMASCRIPT6_STRICT',
   language_out: 'ECMASCRIPT5_STRICT',
   entry_point: 'vxq.main',
-  generate_exports: true,
-  jscomp_error: ['checkTypes', 'missingReturn'],
-  jscomp_warning: [],
+  jscomp_error: [
+    'checkTypes', 'missingReturn', 'checkVars', 'missingProvide',
+    'missingRequire', 'missingProperties'
+  ],
+  jscomp_warning: [
+    'accessControls', 'undefinedVars', 'undefinedNames', 'visibility',
+    'externsValidation'
+  ],
   externs: [
     'vxq/public.externs.js',
     'vxq/environment.externs.js'
   ]
 };
+const lintFlags = [
+    'lintChecks', 'fileoverviewTags', 'nonStandardJsDocs', 'suspiciousCode',
+    'deprecated'
+];
 
 gulp.task('pbuild', ['build-simple', 'build-debug', 'build-prod']);
 gulp.task('build', () => runSequence('build-simple', 'build-debug', 'build-prod'));
 
-gulp.task('build-simple', () => {
+gulp.task('watch-simple', ['build-simple'], () =>
+    gulp.watch('vxq/**', ['build-simple']));
+
+gulp.task('build-simple', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     compilation_level: 'SIMPLE_OPTIMIZATIONS',
-    js_output_file: 'simple.js',
-    jscomp_warning: ['checkTypes'],
+    dependency_mode: 'LOOSE',
+    use_types_for_optimization: false,
+    js_output_file: 'simple/vxq.js',
+    output_manifest: 'zdist/simple/vxq.manifest',
     jscomp_error: [],
-    debug: true,
+    jscomp_warning: [].concat(flags.jscomp_warning, flags.jscomp_error),
     formatting: 'pretty_print',
-    define: ['vxq.debug.DEBUG=true']
-  }))).pipe(gulp.dest(dest));
-});
+    debug: true,
+    define: ['vxq.D.DEBUG=true']
+  }))).pipe(gulp.dest(dest)));
 
 gulp.task('build-debug', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    js_output_file: 'debug.js',
-    debug: true,
+    js_output_file: 'debug/vxq.js',
+    output_manifest: 'zdist/debug/vxq.manifest',
     formatting: 'pretty_print',
-    define: ['vxq.debug.DEBUG=true']
+    debug: true,
+    define: ['vxq.D.DEBUG=true']
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    js_output_file: 'prod.js'
+    js_output_file: 'prod/vxq.js',
+    output_manifest: 'zdist/prod/vxq.manifest'
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('lint', () =>
@@ -69,8 +89,9 @@ gulp.task('lint', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     // We need to have an output path, but don't want to save this
     // (it should be identical to prod.js anyway), so we put it here.
-    js_output_file: 'tmp/prod-linted.js',
-    jscomp_error:
-        flags.jscomp_error.concat(['lintChecks', ...flags.jscomp_warning]),
+    js_output_file: 'tmp/prod/vxq.js',
+    dependency_mode: 'LOOSE',
+    jscomp_error: [].concat(
+        lintFlags, flags.jscomp_warning, flags.jscomp_error),
     jscomp_warning: []
   }))).pipe(gulp.dest(dest)));

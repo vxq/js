@@ -1,8 +1,10 @@
+goog.module('vxq.renderers.FlatCanvas');
 /**
- * @fileoverview Renders a world on a 2D <canvas>.
+ * @fileoverview Renders a World on a 2D <canvas>.
  */
 
-goog.module('vxq.CanvasRenderer');
+const util = goog.require('vxq.util');
+
 
 
 /**
@@ -10,7 +12,10 @@ goog.module('vxq.CanvasRenderer');
  * @protected
  */
 class AgentRender {
-  constructor(/** !vxq.CanvasRenderer */ renderer, /** !VXQ.Agent */ agent) {
+  constructor(
+    /** !vxq.renderers.FlatCanvas */ renderer,
+    /** !VXQ.Agent */ agent
+  ) {
     /**
      * An crude estimate of how much the agent has moved.
      * @type {number}
@@ -39,6 +44,8 @@ class AgentRender {
   }
 
   update(/** number */ x, /** number */ y, /** number */ z) {
+    if (!util.elementInView(this.renderer.canvas)) return;
+
     const deltaX = x - this.lastX;
     const deltaY = y - this.lastY;
     const deltaZ = z - this.lastZ;
@@ -49,18 +56,14 @@ class AgentRender {
     const g = this.renderer.context;
 
     // slightly dim the surrounding area
-    g.fillStyle =
-        'hsla(' + (this.hueSeed + 0.05 * this.totalDistance) +
-        ', 80%, 10%, 0.04)';
+    g.fillStyle = 'rgba(0, 0, 0, 0.25)';
 
     g.beginPath();
-    g.arc(this.agent.x, this.agent.y, 192, 0, 2 * Math.PI);
+    g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
     g.fill();
 
     // clearly mark current location
-    g.fillStyle =
-        'hsla(' + (this.hueSeed + 0.05 * this.totalDistance) +
-        ', 50%, 70%, 1.0)';
+    g.fillStyle = `hsla(${this.hueSeed}, 50%, 50%, 0.5)`;
     g.strokeStyle = 'rgba(255, 255, 255, 0.5)';
 
     g.beginPath();
@@ -94,6 +97,25 @@ exports = class {
     this.renders = new Map();
     this.updateRenders();
     this.world.changeCallbacks.add(this.updateRenders.bind(this));
+
+    let then = +new Date;
+    /** @type {?number} */
+    this.tickInterval = setInterval(() => {
+      const now = +new Date;
+      const dt = (now - then) / 1000;
+      then = now;
+      this.tick(dt);
+    }, 100);
+  }
+
+  tick(/** number */ dt) {
+    if (util.elementInView(this.canvas)) {
+      this.context.fillStyle = `rgba(0, 0, 0, ${0.25 * dt})`;
+    } else {
+      this.context.fillStyle = `black`;
+    }
+
+    this.context.fillRect(0, 0, this.world.width, this.world.height);
   }
 
   /** @protected */ updateRenders() {
@@ -102,7 +124,7 @@ exports = class {
     }
     this.renders = new Map();
     for (const agent of this.world.agents) {
-    this.renders.set(agent, new AgentRender(this, agent));
+        this.renders.set(agent, new AgentRender(this, agent));
     }
   }
-}
+};

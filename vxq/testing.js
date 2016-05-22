@@ -11,7 +11,7 @@ exports.assert = function(condition, message=null) {
   if (!condition) {
     throw new Error(message || 'Assertion failed');
   }
-}
+};
 
 /**
  * Asserts that two values are identical.
@@ -20,4 +20,4 @@ exports.assert = function(condition, message=null) {
  */
 exports.assertEquals = function(expected, actual) {
   exports.assert(expected === actual, `${expected} !== ${actual}`);
-}
+};

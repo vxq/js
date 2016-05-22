@@ -1,9 +1,10 @@
 goog.module('vxq.main');
 
-const turtles = goog.require('vxq.turtles');
+const turtles = goog.require('vxq.worlds.turtles');
+const flatland = goog.require('vxq.worlds.flatland');
 const debug = goog.require('vxq.debug');
 const testing = goog.require('vxq.testing');
-const CanvasRenderer = goog.require('vxq.CanvasRenderer');
+const FlatCanvas = goog.require('vxq.renderers.FlatCanvas');
 
 
 /** @implements {VXQ} */
@@ -13,19 +14,51 @@ class VXQModule {
     this.testTheTurtles();
   }
 
-  /** @override */ addBrowserTurtlePlaygroundNextToCurrentScript() {
+  /** @override */ addFlatCanvasWithTurtles(element) {
     const world = new turtles.World(512, 512, []);
-    const renderer = new CanvasRenderer(world);
-
-    document.currentScript.parentNode.appendChild(renderer.canvas);
-
+    const renderer = new FlatCanvas(world);
+    element.appendChild(renderer.canvas);
     this.testTheTurtles(world);
+    return world;
+  }
+
+  /** @override */ addFlatCanvasWithFlatland(element) {
+    const world = new flatland.World(512, 512);
+    const renderer = new FlatCanvas(world);
+    element.appendChild(renderer.canvas);
+
+    const r = () =>
+        0.5 + (Math.random() + Math.random() + Math.random()) / 3;
+
+    const unit1 = new flatland.Unit(world, 150, 50);
+    unit1.velocity = flatland.V(100, -15);
+    world.units.add(unit1);
+
+    const unit2 = new flatland.Unit(world, 400, 200);
+    unit2.velocity = flatland.V(8, 150);
+    world.units.add(unit2);
+
+    const unit3 = new flatland.Unit(world, 150, 175);
+    unit3.velocity = flatland.V(-25, 125);
+    world.units.add(unit3);
+
+    for (let i = 0; i < 4; i++) {
+      const planetComponent =
+          new flatland.Unit(world, 200 + r() * 50, 200 + r() * 50);
+      planetComponent.mass *= 10;
+      planetComponent.interialAmplification *= 10;
+      planetComponent.velocity =
+          flatland.V(5 - 10 * r(), 5 - 10 * r());
+      world.units.add(planetComponent);
+    }
+
+    world.changeCallbacks.call();
 
     return world;
   }
 
   /** @protected */ testTheTurtles(
-    /** turtles.World= */ world = new turtles.World(512, 512, [])
+    /** !turtles.World= */ world = new turtles.World(512, 512, [])
   ) {
     const turtle = new turtles.Turtle();
     world.turtles.add(turtle);

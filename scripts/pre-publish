@@ -2,7 +2,16 @@
 set -veuxo pipefail;
 
 npm run clean;
-npm run build | tee zdist/01-BUILD;
-npm run test  | tee zdist/02-TEST;
-npm run lint  | tee zdist/03-LINT;
+npm run build        | tee zdist/01-BUILD;
+npm run test         | tee zdist/02-TEST;
+if [ -z "${VXQ_SKIP_LINT:-}" ]; then
+  (npm run lint        | tee zdist/03-LINT) || \
+    # It seemed like certain errors messages weren't being passed through
+    # the npm/gulp wrapper correctly, so for now we'll also run Closure
+    # directly whenever there's a lint failure, to ensure that all error
+    # messages are visible.
+    (scripts/closure-lint | tee zdist/04-RELINT && false);
+else
+  echo "${VXQ_SKIP_LINT}" | tee zdist/05-LINT-SKIPPED;
+fi
 echo "exit status 0" | tee zdist/00-SUCCESS;

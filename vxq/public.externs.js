@@ -11,8 +11,11 @@ let VXQ = class {
   test() {}
 
   /** @return {!VXQ.World} */
-  addBrowserTurtlePlaygroundNextToCurrentScript() {}
-}
+  addFlatCanvasWithTurtles(/** !Element */ el) {}
+
+  /** @return {!VXQ.World} */
+  addFlatCanvasWithFlatland(/** !Element */ el) {}
+};
 
 
 /**
@@ -25,7 +28,7 @@ VXQ.CallbackList = class {
    *     this from the callback list.
    */
    add(f) {}
-}
+};
 
 
 /**
@@ -34,7 +37,7 @@ VXQ.CallbackList = class {
  */
 VXQ.Renderer = class {
   constructor(/** !VXQ.World */ world) {}
-}
+};
 
 
 /**
@@ -59,7 +62,7 @@ VXQ.World = class {
    * @return {!VXQ.CallbackList}
    */
   get changeCallbacks() {}
-}
+};
 
 
 /**
@@ -92,4 +95,4 @@ VXQ.Agent = class {
    *     finished attempting to reach the destination.
    */
   goTo(x, y, z) {}
-}
+};

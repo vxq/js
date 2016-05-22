@@ -14,7 +14,7 @@ exports.CallbackList = class {
   }
 
   /** @override */ add(f) {
-    const token = {}
+    const token = {};
     this.callbackTokens.push(token);
     this.callbacks.push(f);
     return function() {
@@ -30,4 +30,28 @@ exports.CallbackList = class {
       f();
     }
   }
-}
+};
+
+
+/** Randomly shuffles the items in an array. */
+exports.shuffle = (/** !Array */ array) => {
+  // Fisher–Yates
+  for (let i = 0; i < array.length - 1; i++) {
+    const value = array[i];
+    const randomIndex = i + Math.floor((Math.random() * array.length - i));
+    array[i] = array[randomIndex];
+    array[randomIndex] = value;
+  }
+};
+
+
+/** @return {boolean} Whether the element is currently in the viewport. */
+exports.elementInView = (/** !Element */ element) => {
+  const rect = element.getBoundingClientRect();
+  return !(
+      rect.bottom < 0 ||
+      rect.right < 0 ||
+      rect.top > window.innerHeight ||
+      rect.left > window.innerWidth
+  );
+};

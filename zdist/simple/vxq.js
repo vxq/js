@@ -116,8 +116,11 @@ $jscomp.array.entries = function $$jscomp$array$entries$() {
     return [$i$$, $v$$];
   });
 };
+$jscomp.array.installHelper_ = function $$jscomp$array$installHelper_$($method$$, $fn$$) {
+  !Array.prototype[$method$$] && Object.defineProperties && Object.defineProperty && Object.defineProperty(Array.prototype, $method$$, {configurable:!0, enumerable:!1, writable:!0, value:$fn$$});
+};
 $jscomp.array.entries$install = function $$jscomp$array$entries$install$() {
-  Array.prototype.entries || (Array.prototype.entries = $jscomp.array.entries);
+  $jscomp.array.installHelper_("entries", $jscomp.array.entries);
 };
 $jscomp.array.keys = function $$jscomp$array$keys$() {
   return $jscomp.array.arrayIterator_(this, function($i$$) {
@@ -125,7 +128,7 @@ $jscomp.array.keys = function $$jscomp$array$keys$() {
   });
 };
 $jscomp.array.keys$install = function $$jscomp$array$keys$install$() {
-  Array.prototype.keys || (Array.prototype.keys = $jscomp.array.keys);
+  $jscomp.array.installHelper_("keys", $jscomp.array.keys);
 };
 $jscomp.array.values = function $$jscomp$array$values$() {
   return $jscomp.array.arrayIterator_(this, function($_$$, $v$$) {
@@ -133,7 +136,7 @@ $jscomp.array.values = function $$jscomp$array$values$() {
   });
 };
 $jscomp.array.values$install = function $$jscomp$array$values$install$() {
-  Array.prototype.values || (Array.prototype.values = $jscomp.array.values);
+  $jscomp.array.installHelper_("values", $jscomp.array.values);
 };
 $jscomp.array.copyWithin = function $$jscomp$array$copyWithin$($target$$, $start$$, $opt_end$$) {
   var $len$$ = this.length;
@@ -152,7 +155,7 @@ $jscomp.array.copyWithin = function $$jscomp$array$copyWithin$($target$$, $start
   return this;
 };
 $jscomp.array.copyWithin$install = function $$jscomp$array$copyWithin$install$() {
-  Array.prototype.copyWithin || (Array.prototype.copyWithin = $jscomp.array.copyWithin);
+  $jscomp.array.installHelper_("copyWithin", $jscomp.array.copyWithin);
 };
 $jscomp.array.fill = function $$jscomp$array$fill$($value$$, $i$$, $opt_end$$) {
   null != $opt_end$$ && $value$$.length || ($opt_end$$ = this.length || 0);
@@ -163,19 +166,19 @@ $jscomp.array.fill = function $$jscomp$array$fill$($value$$, $i$$, $opt_end$$) {
   return this;
 };
 $jscomp.array.fill$install = function $$jscomp$array$fill$install$() {
-  Array.prototype.fill || (Array.prototype.fill = $jscomp.array.fill);
+  $jscomp.array.installHelper_("fill", $jscomp.array.fill);
 };
 $jscomp.array.find = function $$jscomp$array$find$($callback$$, $opt_thisArg$$) {
   return $jscomp.array.findInternal_(this, $callback$$, $opt_thisArg$$).v;
 };
 $jscomp.array.find$install = function $$jscomp$array$find$install$() {
-  Array.prototype.find || (Array.prototype.find = $jscomp.array.find);
+  $jscomp.array.installHelper_("find", $jscomp.array.find);
 };
 $jscomp.array.findIndex = function $$jscomp$array$findIndex$($callback$$, $opt_thisArg$$) {
   return $jscomp.array.findInternal_(this, $callback$$, $opt_thisArg$$).i;
 };
 $jscomp.array.findIndex$install = function $$jscomp$array$findIndex$install$() {
-  Array.prototype.findIndex || (Array.prototype.findIndex = $jscomp.array.findIndex);
+  $jscomp.array.installHelper_("findIndex", $jscomp.array.findIndex);
 };
 $jscomp.Map = function $$jscomp$Map$($$jscomp$iter$1_opt_iterable$$) {
   $$jscomp$iter$1_opt_iterable$$ = void 0 === $$jscomp$iter$1_opt_iterable$$ ? [] : $$jscomp$iter$1_opt_iterable$$;
@@ -221,16 +224,16 @@ $jscomp.Map.getId_ = function $$jscomp$Map$getId_$($obj$$) {
   return $jscomp.Map.key_ in $obj$$ ? $obj$$[$jscomp.Map.key_] : " " + $obj$$;
 };
 $jscomp.Map.prototype.set = function $$jscomp$Map$$set$($key$$, $value$$) {
-  var $$jscomp$destructuring$var0_entry$$ = this.maybeGetEntry_($key$$), $id$$ = $$jscomp$destructuring$var0_entry$$.id, $list$$ = $$jscomp$destructuring$var0_entry$$.list, $$jscomp$destructuring$var0_entry$$ = $$jscomp$destructuring$var0_entry$$.entry;
+  var $$jscomp$destructuring$var0$$ = this.maybeGetEntry_($key$$), $id$$ = $$jscomp$destructuring$var0$$.id, $list$$ = $$jscomp$destructuring$var0$$.list, $$jscomp$destructuring$var0$$ = $$jscomp$destructuring$var0$$.entry;
   $list$$ || ($list$$ = this.data_[$id$$] = []);
-  $$jscomp$destructuring$var0_entry$$ ? $$jscomp$destructuring$var0_entry$$.value = $value$$ : ($$jscomp$destructuring$var0_entry$$ = {next:this.head_, previous:this.head_.previous, head:this.head_, key:$key$$, value:$value$$}, $list$$.push($$jscomp$destructuring$var0_entry$$), this.head_.previous.next = $$jscomp$destructuring$var0_entry$$, this.head_.previous = $$jscomp$destructuring$var0_entry$$, this.size++);
+  $$jscomp$destructuring$var0$$ ? $$jscomp$destructuring$var0$$.value = $value$$ : ($$jscomp$destructuring$var0$$ = {next:this.head_, previous:this.head_.previous, head:this.head_, key:$key$$, value:$value$$}, $list$$.push($$jscomp$destructuring$var0$$), this.head_.previous.next = $$jscomp$destructuring$var0$$, this.head_.previous = $$jscomp$destructuring$var0$$, this.size++);
   return this;
 };
 $jscomp.Map.prototype.delete = function $$jscomp$Map$$delete$($id$$5_key$$) {
-  var $$jscomp$destructuring$var1_entry$$ = this.maybeGetEntry_($id$$5_key$$);
-  $id$$5_key$$ = $$jscomp$destructuring$var1_entry$$.id;
-  var $list$$ = $$jscomp$destructuring$var1_entry$$.list, $index$$ = $$jscomp$destructuring$var1_entry$$.index;
-  return ($$jscomp$destructuring$var1_entry$$ = $$jscomp$destructuring$var1_entry$$.entry) && $list$$ ? ($list$$.splice($index$$, 1), $list$$.length || delete this.data_[$id$$5_key$$], $$jscomp$destructuring$var1_entry$$.previous.next = $$jscomp$destructuring$var1_entry$$.next, $$jscomp$destructuring$var1_entry$$.next.previous = $$jscomp$destructuring$var1_entry$$.previous, $$jscomp$destructuring$var1_entry$$.head = null, this.size--, !0) : !1;
+  var $$jscomp$destructuring$var1$$1_entry$$ = this.maybeGetEntry_($id$$5_key$$);
+  $id$$5_key$$ = $$jscomp$destructuring$var1$$1_entry$$.id;
+  var $list$$ = $$jscomp$destructuring$var1$$1_entry$$.list, $index$$ = $$jscomp$destructuring$var1$$1_entry$$.index;
+  return ($$jscomp$destructuring$var1$$1_entry$$ = $$jscomp$destructuring$var1$$1_entry$$.entry) && $list$$ ? ($list$$.splice($index$$, 1), $list$$.length || delete this.data_[$id$$5_key$$], $$jscomp$destructuring$var1$$1_entry$$.previous.next = $$jscomp$destructuring$var1$$1_entry$$.next, $$jscomp$destructuring$var1$$1_entry$$.next.previous = $$jscomp$destructuring$var1$$1_entry$$.previous, $$jscomp$destructuring$var1$$1_entry$$.head = null, this.size--, !0) : !1;
 };
 $jscomp.Map.prototype.clear = function $$jscomp$Map$$clear$() {
   this.data_ = {};
@@ -532,6 +535,11 @@ $jscomp.Set$install = function $$jscomp$Set$install$() {
   };
 };
 $jscomp.string = $jscomp.string || {};
+$jscomp.string.noNullOrUndefined_ = function $$jscomp$string$noNullOrUndefined_$($str$$, $func$$) {
+  if (null == $str$$) {
+    throw new TypeError("The 'this' value for String.prototype." + $func$$ + " must not be null or undefined");
+  }
+};
 $jscomp.string.noRegExp_ = function $$jscomp$string$noRegExp_$($str$$, $func$$) {
   if ($str$$ instanceof RegExp) {
     throw new TypeError("First argument to String.prototype." + $func$$ + " must not be a regular expression");
@@ -552,7 +560,8 @@ $jscomp.string.fromCodePoint = function $$jscomp$string$fromCodePoint$($codepoin
   return $$jscomp$restIndex$$3_result$$;
 };
 $jscomp.string.repeat = function $$jscomp$string$repeat$($copies$$) {
-  var $string$$ = this.toString();
+  $jscomp.string.noNullOrUndefined_(this, "repeat");
+  var $string$$ = String(this);
   if (0 > $copies$$ || 1342177279 < $copies$$) {
     throw new RangeError("Invalid count value");
   }
@@ -568,7 +577,8 @@ $jscomp.string.repeat$install = function $$jscomp$string$repeat$install$() {
   String.prototype.repeat || (String.prototype.repeat = $jscomp.string.repeat);
 };
 $jscomp.string.codePointAt = function $$jscomp$string$codePointAt$($position_second$$) {
-  var $string$$ = this.toString(), $size$$ = $string$$.length;
+  $jscomp.string.noNullOrUndefined_(this, "codePointAt");
+  var $string$$ = String(this), $size$$ = $string$$.length;
   $position_second$$ = Number($position_second$$) || 0;
   if (0 <= $position_second$$ && $position_second$$ < $size$$) {
     $position_second$$ |= 0;
@@ -586,18 +596,22 @@ $jscomp.string.codePointAt$install = function $$jscomp$string$codePointAt$instal
 $jscomp.string.includes = function $$jscomp$string$includes$($searchString$$, $opt_position$$) {
   $opt_position$$ = void 0 === $opt_position$$ ? 0 : $opt_position$$;
   $jscomp.string.noRegExp_($searchString$$, "includes");
-  return -1 !== this.toString().indexOf($searchString$$, $opt_position$$);
+  $jscomp.string.noNullOrUndefined_(this, "includes");
+  return -1 !== String(this).indexOf($searchString$$, $opt_position$$);
 };
 $jscomp.string.includes$install = function $$jscomp$string$includes$install$() {
   String.prototype.includes || (String.prototype.includes = $jscomp.string.includes);
 };
-$jscomp.string.startsWith = function $$jscomp$string$startsWith$($searchString$$, $opt_position$$) {
-  $opt_position$$ = void 0 === $opt_position$$ ? 0 : $opt_position$$;
+$jscomp.string.startsWith = function $$jscomp$string$startsWith$($searchString$$, $i$$10_opt_position$$) {
+  $i$$10_opt_position$$ = void 0 === $i$$10_opt_position$$ ? 0 : $i$$10_opt_position$$;
   $jscomp.string.noRegExp_($searchString$$, "startsWith");
-  var $string$$ = this.toString();
+  $jscomp.string.noNullOrUndefined_(this, "startsWith");
+  var $string$$ = String(this);
   $searchString$$ += "";
-  for (var $strLen$$ = $string$$.length, $searchLen$$ = $searchString$$.length, $i$$ = Math.max(0, Math.min($opt_position$$ | 0, $string$$.length)), $j$$ = 0;$j$$ < $searchLen$$ && $i$$ < $strLen$$;) {
-    if ($string$$[$i$$++] != $searchString$$[$j$$++]) {
+  var $strLen$$ = $string$$.length, $searchLen$$ = $searchString$$.length;
+  $i$$10_opt_position$$ = Math.max(0, Math.min($i$$10_opt_position$$ | 0, $string$$.length));
+  for (var $j$$ = 0;$j$$ < $searchLen$$ && $i$$10_opt_position$$ < $strLen$$;) {
+    if ($string$$[$i$$10_opt_position$$++] != $searchString$$[$j$$++]) {
       return !1;
     }
   }
@@ -606,13 +620,15 @@ $jscomp.string.startsWith = function $$jscomp$string$startsWith$($searchString$$
 $jscomp.string.startsWith$install = function $$jscomp$string$startsWith$install$() {
   String.prototype.startsWith || (String.prototype.startsWith = $jscomp.string.startsWith);
 };
-$jscomp.string.endsWith = function $$jscomp$string$endsWith$($searchString$$, $opt_position$$) {
+$jscomp.string.endsWith = function $$jscomp$string$endsWith$($searchString$$, $i$$11_opt_position$$) {
   $jscomp.string.noRegExp_($searchString$$, "endsWith");
-  var $string$$ = this.toString();
+  $jscomp.string.noNullOrUndefined_(this, "endsWith");
+  var $string$$ = String(this);
   $searchString$$ += "";
-  void 0 === $opt_position$$ && ($opt_position$$ = $string$$.length);
-  for (var $i$$ = Math.max(0, Math.min($opt_position$$ | 0, $string$$.length)), $j$$ = $searchString$$.length;0 < $j$$ && 0 < $i$$;) {
-    if ($string$$[--$i$$] != $searchString$$[--$j$$]) {
+  void 0 === $i$$11_opt_position$$ && ($i$$11_opt_position$$ = $string$$.length);
+  $i$$11_opt_position$$ = Math.max(0, Math.min($i$$11_opt_position$$ | 0, $string$$.length));
+  for (var $j$$ = $searchString$$.length;0 < $j$$ && 0 < $i$$11_opt_position$$;) {
+    if ($string$$[--$i$$11_opt_position$$] != $searchString$$[--$j$$]) {
       return !1;
     }
   }
@@ -621,8 +637,225 @@ $jscomp.string.endsWith = function $$jscomp$string$endsWith$($searchString$$, $o
 $jscomp.string.endsWith$install = function $$jscomp$string$endsWith$install$() {
   String.prototype.endsWith || (String.prototype.endsWith = $jscomp.string.endsWith);
 };
-var vxq = {};
-$jscomp.scope.AgentRender = function $$jscomp$scope$AgentRender$($renderer$$, $agent$$) {
+var vxq = {D:{}};
+vxq.D.DEBUG = !0;
+var module$exports$vxq$debug = {assert:function($condition$$, $message$$) {
+  if (vxq.D.DEBUG && !$condition$$) {
+    throw Error((void 0 === $message$$ ? null : $message$$) || "Assertion failed");
+  }
+}, log:function($args$$) {
+  for (var $$jscomp$restParams$$ = [], $$jscomp$restIndex$$ = 0;$$jscomp$restIndex$$ < arguments.length;++$$jscomp$restIndex$$) {
+    $$jscomp$restParams$$[$$jscomp$restIndex$$ - 0] = arguments[$$jscomp$restIndex$$];
+  }
+  vxq.D.DEBUG && console.log.apply(console, [].concat($jscomp.arrayFromIterable($$jscomp$restParams$$)));
+}};
+var module$exports$vxq$util = {CallbackList:function() {
+  this.callbacks = [];
+  this.callbackTokens = [];
+}};
+module$exports$vxq$util.CallbackList.prototype.add = function $module$exports$vxq$util$CallbackList$$add$($f$$) {
+  var $token$$ = {};
+  this.callbackTokens.push($token$$);
+  this.callbacks.push($f$$);
+  return function() {
+    var $index$$ = this.callbackTokens.indexOf($token$$);
+    this.callbacks.splice($index$$, 1);
+    this.callbackTokens.splice($index$$, 1);
+  }.bind(this);
+};
+module$exports$vxq$util.CallbackList.prototype.call = function $module$exports$vxq$util$CallbackList$$call$() {
+  for (var $$jscomp$iter$0$$ = $jscomp.makeIterator(this.callbacks), $$jscomp$key$f_f$$ = $$jscomp$iter$0$$.next();!$$jscomp$key$f_f$$.done;$$jscomp$key$f_f$$ = $$jscomp$iter$0$$.next()) {
+    $$jscomp$key$f_f$$ = $$jscomp$key$f_f$$.value, $$jscomp$key$f_f$$();
+  }
+};
+module$exports$vxq$util.shuffle = function $module$exports$vxq$util$shuffle$($array$$) {
+  for (var $i$$ = 0;$i$$ < $array$$.length - 1;$i$$++) {
+    var $value$$ = $array$$[$i$$], $randomIndex$$ = $i$$ + Math.floor(Math.random() * $array$$.length - $i$$);
+    $array$$[$i$$] = $array$$[$randomIndex$$];
+    $array$$[$randomIndex$$] = $value$$;
+  }
+};
+module$exports$vxq$util.elementInView = function $module$exports$vxq$util$elementInView$($element$$) {
+  $element$$ = $element$$.getBoundingClientRect();
+  return !(0 > $element$$.bottom || 0 > $element$$.right || $element$$.top > window.innerHeight || $element$$.left > window.innerWidth);
+};
+var module$exports$vxq$worlds$turtles = {World:function($width$$, $height$$, $turtles$$) {
+  this.width = $width$$;
+  this.height = $height$$;
+  this.turtles = new Set($turtles$$);
+  this.changeCallbacks = new module$exports$vxq$util.CallbackList;
+}};
+Object.defineProperties(module$exports$vxq$worlds$turtles.World.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
+  return this.turtles;
+}}});
+module$exports$vxq$worlds$turtles.Turtle = function $module$exports$vxq$worlds$turtles$Turtle$() {
+  this.y = this.x = 50;
+  this.rotation = this.z = 0;
+  this.changeCallbacks = new module$exports$vxq$util.CallbackList;
+};
+module$exports$vxq$worlds$turtles.Turtle.prototype.right = function $module$exports$vxq$worlds$turtles$Turtle$$right$($turns$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($turns$$));
+  this.rotation += $turns$$;
+};
+module$exports$vxq$worlds$turtles.Turtle.prototype.left = function $module$exports$vxq$worlds$turtles$Turtle$$left$($turns$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($turns$$));
+  this.rotation -= $turns$$;
+};
+module$exports$vxq$worlds$turtles.Turtle.prototype.forward = function $module$exports$vxq$worlds$turtles$Turtle$$forward$($distance$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($distance$$));
+  this.goTo(this.x + $distance$$ * this.xFactor, this.y + $distance$$ * this.yFactor, this.z);
+};
+module$exports$vxq$worlds$turtles.Turtle.prototype.backward = function $module$exports$vxq$worlds$turtles$Turtle$$backward$($distance$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($distance$$));
+  this.goTo(this.x + -$distance$$ * this.xFactor, this.y + -$distance$$ * this.yFactor, this.z);
+};
+module$exports$vxq$worlds$turtles.Turtle.prototype.goTo = function $module$exports$vxq$worlds$turtles$Turtle$$goTo$($x$$, $y$$, $xDelta_z$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($x$$));
+  module$exports$vxq$debug.assert(Number.isFinite($y$$));
+  module$exports$vxq$debug.assert(Number.isFinite($xDelta_z$$));
+  $xDelta_z$$ = $x$$ - this.x;
+  for (var $yDelta$$ = $y$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta_z$$ * $xDelta_z$$ + $yDelta$$ * $yDelta$$) / 4), $i$$ = 0;$i$$ < $steps$$;$i$$++) {
+    this.x += $xDelta_z$$ / $steps$$, this.y += $yDelta$$ / $steps$$, this.changeCallbacks.call();
+  }
+  this.x = $x$$;
+  this.y = $y$$;
+  this.changeCallbacks.call();
+  return Promise.resolve();
+};
+Object.defineProperties(module$exports$vxq$worlds$turtles.Turtle.prototype, {xFactor:{configurable:!0, enumerable:!0, get:function() {
+  return -Math.sin(2 * this.rotation * Math.PI);
+}}, yFactor:{configurable:!0, enumerable:!0, get:function() {
+  return Math.cos(2 * this.rotation * Math.PI);
+}}});
+var module$contents$vxq$worlds$flatland$Vector_Vector = function $module$contents$vxq$worlds$flatland$Vector_Vector$($x$$, $y$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($x$$), "x = " + $x$$ + " must be a finite number");
+  module$exports$vxq$debug.assert(Number.isFinite($y$$), "y = " + $y$$ + " must be a finite number");
+  this.x = $x$$;
+  this.y = $y$$;
+};
+module$contents$vxq$worlds$flatland$Vector_Vector.prototype.magnitude = function $module$contents$vxq$worlds$flatland$Vector_Vector$$magnitude$() {
+  return Math.sqrt(this.x * this.x + this.y * this.y);
+};
+module$contents$vxq$worlds$flatland$Vector_Vector.prototype.direction = function $module$contents$vxq$worlds$flatland$Vector_Vector$$direction$() {
+  return this.withMagnitude(1);
+};
+module$contents$vxq$worlds$flatland$Vector_Vector.prototype.withMagnitude = function $module$contents$vxq$worlds$flatland$Vector_Vector$$withMagnitude$($magnitude$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($magnitude$$), "magnitude = " + $magnitude$$ + " must be a finite number");
+  var $currentMagnitude$$ = this.magnitude();
+  return 0 !== $currentMagnitude$$ ? this.scale($magnitude$$ / $currentMagnitude$$) : module$contents$vxq$worlds$flatland$Vector_V(0, 0);
+};
+module$contents$vxq$worlds$flatland$Vector_Vector.prototype.scale = function $module$contents$vxq$worlds$flatland$Vector_Vector$$scale$($factor$$) {
+  module$exports$vxq$debug.assert(Number.isFinite($factor$$), "magnitude = " + $factor$$ + " must be a finite number");
+  return 0 == $factor$$ || 0 == this.x && 0 == this.y ? module$contents$vxq$worlds$flatland$Vector_V(0, 0) : module$contents$vxq$worlds$flatland$Vector_V($factor$$ * this.x, $factor$$ * this.y);
+};
+module$contents$vxq$worlds$flatland$Vector_Vector.prototype.add = function $module$contents$vxq$worlds$flatland$Vector_Vector$$add$($other$$) {
+  return module$contents$vxq$worlds$flatland$Vector_V(this.x + $other$$.x, this.y + $other$$.y);
+};
+module$contents$vxq$worlds$flatland$Vector_Vector.prototype.subtract = function $module$contents$vxq$worlds$flatland$Vector_Vector$$subtract$($other$$) {
+  return module$contents$vxq$worlds$flatland$Vector_V(this.x - $other$$.x, this.y - $other$$.y);
+};
+module$contents$vxq$worlds$flatland$Vector_Vector.prototype.addXY = function $module$contents$vxq$worlds$flatland$Vector_Vector$$addXY$($x$$, $y$$) {
+  return module$contents$vxq$worlds$flatland$Vector_V(this.x + $x$$, this.y + $y$$);
+};
+module$contents$vxq$worlds$flatland$Vector_Vector.prototype.toString = function $module$contents$vxq$worlds$flatland$Vector_Vector$$toString$() {
+  return "V(" + this.x + ", " + this.y + ")";
+};
+var module$contents$vxq$worlds$flatland$Vector_V = module$contents$vxq$worlds$flatland$Vector_Vector.V = function $module$contents$vxq$worlds$flatland$Vector_Vector$V$($x$$, $y$$) {
+  return new module$contents$vxq$worlds$flatland$Vector_Vector($x$$, $y$$);
+}, module$exports$vxq$worlds$flatland$Vector = module$contents$vxq$worlds$flatland$Vector_Vector;
+var $jscomp$destructuring$var0 = module$contents$vxq$worlds$flatland$Vector_Vector, module$contents$vxq$worlds$flatland$World_V = module$contents$vxq$worlds$flatland$Vector_Vector.V, module$contents$vxq$worlds$flatland$World_World = function $module$contents$vxq$worlds$flatland$World_World$($width$$, $height$$) {
+  var $$jscomp$this$$ = this;
+  this.width = $width$$;
+  this.height = $height$$;
+  this.changeCallbacks = new module$exports$vxq$util.CallbackList;
+  this.units = new Set;
+  this.gravity = 6.67408;
+  this.proportionalVelocityLossPerSecond = .05;
+  this.minNonzeroSpeed = 10;
+  var $then$$ = +new Date;
+  this.tickInterval = setInterval(function() {
+    var $now$$ = +new Date, $dt$$ = ($now$$ - $then$$) / 1E3;
+    $then$$ = $now$$;
+    $$jscomp$this$$.tick($dt$$);
+  }, 20);
+};
+module$contents$vxq$worlds$flatland$World_World.prototype.tick = function $module$contents$vxq$worlds$flatland$World_World$$tick$($$jscomp$iter$5$$1_dt$$) {
+  if (!(0 >= $$jscomp$iter$5$$1_dt$$)) {
+    for (var $forces$$ = new Map, $$jscomp$iter$1$$ = $jscomp.makeIterator(this.units), $$jscomp$iter$2$$ = $$jscomp$iter$1$$.next();!$$jscomp$iter$2$$.done;$$jscomp$iter$2$$ = $$jscomp$iter$1$$.next()) {
+      $forces$$.set($$jscomp$iter$2$$.value, module$contents$vxq$worlds$flatland$World_V(0, 0));
+    }
+    if (0 !== this.gravity) {
+      for ($$jscomp$iter$1$$ = $jscomp.makeIterator(this.units), $$jscomp$iter$2$$ = $$jscomp$iter$1$$.next();!$$jscomp$iter$2$$.done;$$jscomp$iter$2$$ = $$jscomp$iter$1$$.next()) {
+        for (var $$jscomp$iter$4$$ = $$jscomp$iter$2$$.value, $$jscomp$iter$2$$ = $jscomp.makeIterator(this.units), $$jscomp$key$other_dP_f$$4_inertia_other$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$other_dP_f$$4_inertia_other$$.done;$$jscomp$key$other_dP_f$$4_inertia_other$$ = $$jscomp$iter$2$$.next()) {
+          if ($$jscomp$key$other_dP_f$$4_inertia_other$$ = $$jscomp$key$other_dP_f$$4_inertia_other$$.value, $$jscomp$iter$4$$ !== $$jscomp$key$other_dP_f$$4_inertia_other$$) {
+            var $displacement_f$11$$ = $$jscomp$key$other_dP_f$$4_inertia_other$$.position.subtract($$jscomp$iter$4$$.position), $dV_distance$$ = $displacement_f$11$$.magnitude();
+            40 > $dV_distance$$ && ($dV_distance$$ = 40);
+            $$jscomp$key$other_dP_f$$4_inertia_other$$ = $displacement_f$11$$.direction().scale(this.gravity * $$jscomp$iter$4$$.mass * $$jscomp$key$other_dP_f$$4_inertia_other$$.mass / Math.pow($dV_distance$$, 2));
+            $forces$$.set($$jscomp$iter$4$$, $forces$$.get($$jscomp$iter$4$$).add($$jscomp$key$other_dP_f$$4_inertia_other$$));
+          }
+        }
+      }
+    }
+    $$jscomp$iter$1$$ = [];
+    $$jscomp$iter$4$$ = $jscomp.makeIterator(this.units);
+    for ($$jscomp$iter$2$$ = $$jscomp$iter$4$$.next();!$$jscomp$iter$2$$.done;$$jscomp$iter$2$$ = $$jscomp$iter$4$$.next()) {
+      $$jscomp$iter$2$$ = $$jscomp$iter$2$$.value, $$jscomp$key$other_dP_f$$4_inertia_other$$ = $$jscomp$iter$2$$.mass * $$jscomp$iter$2$$.interialAmplification, $displacement_f$11$$ = $forces$$.get($$jscomp$iter$2$$), $dV_distance$$ = $displacement_f$11$$.scale($$jscomp$iter$5$$1_dt$$ / $$jscomp$key$other_dP_f$$4_inertia_other$$), console.log("dV from forces " + $dV_distance$$), $$jscomp$iter$2$$.velocity = $$jscomp$iter$2$$.velocity.add($dV_distance$$), $dV_distance$$ = $$jscomp$iter$2$$.velocity.magnitude(), 
+      $dV_distance$$ = Math.max(0, $dV_distance$$ - $$jscomp$iter$5$$1_dt$$ * $dV_distance$$ * this.proportionalVelocityLossPerSecond), $dV_distance$$ >= this.minNonzeroSpeed || $displacement_f$11$$.magnitude() / $$jscomp$key$other_dP_f$$4_inertia_other$$ > 10 * this.minNonzeroSpeed ? (console.log(String($dV_distance$$)), $$jscomp$iter$2$$.velocity = $$jscomp$iter$2$$.velocity.withMagnitude($dV_distance$$)) : $$jscomp$iter$2$$.velocity = module$contents$vxq$worlds$flatland$World_V(0, 0), 0 < $$jscomp$iter$2$$.velocity.magnitude() && 
+      ($$jscomp$key$other_dP_f$$4_inertia_other$$ = $$jscomp$iter$2$$.velocity.scale($$jscomp$iter$5$$1_dt$$), $$jscomp$iter$2$$.position = $$jscomp$iter$2$$.position.add($$jscomp$key$other_dP_f$$4_inertia_other$$), $$jscomp$iter$1$$.push($$jscomp$iter$2$$));
+    }
+    module$exports$vxq$util.shuffle($$jscomp$iter$1$$);
+    $$jscomp$iter$5$$1_dt$$ = $jscomp.makeIterator($$jscomp$iter$1$$);
+    for ($$jscomp$iter$2$$ = $$jscomp$iter$5$$1_dt$$.next();!$$jscomp$iter$2$$.done;$$jscomp$iter$2$$ = $$jscomp$iter$5$$1_dt$$.next()) {
+      $$jscomp$iter$2$$.value.changeCallbacks.call();
+    }
+  }
+};
+Object.defineProperties(module$contents$vxq$worlds$flatland$World_World.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
+  return new Set(this.units);
+}}});
+var module$exports$vxq$worlds$flatland$World = module$contents$vxq$worlds$flatland$World_World;
+var $jscomp$destructuring$var1 = module$contents$vxq$worlds$flatland$Vector_Vector, module$contents$vxq$worlds$flatland$Unit_V = module$contents$vxq$worlds$flatland$Vector_Vector.V, module$contents$vxq$worlds$flatland$Unit_Unit = function $module$contents$vxq$worlds$flatland$Unit_Unit$($world$$, $x$$, $y$$) {
+  this.world = $world$$;
+  this.position = module$contents$vxq$worlds$flatland$Unit_V(void 0 === $x$$ ? 0 : $x$$, void 0 === $y$$ ? 0 : $y$$);
+  this.velocity = module$contents$vxq$worlds$flatland$Unit_V(0, 0);
+  this.radius = 4;
+  this.mass = 1E4;
+  this.interialAmplification = 1;
+  this.targetPosition = null;
+  this.targetMaxDistance = 16;
+  this.targetMaxSpeed = 4;
+  this.currentMove = null;
+  this.changeCallbacks = new module$exports$vxq$util.CallbackList;
+};
+module$contents$vxq$worlds$flatland$Unit_Unit.prototype.goTo = function $module$contents$vxq$worlds$flatland$Unit_Unit$$goTo$($x$$, $y$$, $z$$) {
+  var $$jscomp$this$$ = this;
+  if (this.currentMove) {
+    var $f$$ = function $$f$$$() {
+      return $$jscomp$this$$.goTo($x$$, $y$$, $z$$);
+    };
+    return this.currentMove.then($f$$, $f$$);
+  }
+  return this.currentMove = new Promise(function($resolve$$, $reject$$) {
+    return $resolve$$();
+  });
+};
+Object.defineProperties(module$contents$vxq$worlds$flatland$Unit_Unit.prototype, {x:{configurable:!0, enumerable:!0, get:function() {
+  return this.position.x;
+}}, y:{configurable:!0, enumerable:!0, get:function() {
+  return this.position.y;
+}}, z:{configurable:!0, enumerable:!0, get:function() {
+  return 0;
+}}});
+var module$exports$vxq$worlds$flatland$Unit = module$contents$vxq$worlds$flatland$Unit_Unit;
+var $jscomp$destructuring$var2 = module$contents$vxq$worlds$flatland$Vector_Vector, module$contents$vxq$worlds$flatland_V = module$contents$vxq$worlds$flatland$Vector_Vector.V, module$exports$vxq$worlds$flatland = {World:module$contents$vxq$worlds$flatland$World_World, Unit:module$contents$vxq$worlds$flatland$Unit_Unit, Vector:module$contents$vxq$worlds$flatland$Vector_Vector, V:module$contents$vxq$worlds$flatland_V};
+var module$exports$vxq$testing = {assert:function($condition$$, $message$$) {
+  if (!$condition$$) {
+    throw Error((void 0 === $message$$ ? null : $message$$) || "Assertion failed");
+  }
+}, assertEquals:function($expected$$, $actual$$) {
+  module$exports$vxq$testing.assert($expected$$ === $actual$$, $expected$$ + " !== " + $actual$$);
+}};
+var module$contents$vxq$renderers$FlatCanvas_AgentRender = function $module$contents$vxq$renderers$FlatCanvas_AgentRender$($renderer$$, $agent$$) {
   var $$jscomp$this$$ = this;
   this.totalDistance = 0;
   this.hueSeed = 1E3 * Math.random();
@@ -633,24 +866,12 @@ $jscomp.scope.AgentRender = function $$jscomp$scope$AgentRender$($renderer$$, $a
     return void $$jscomp$this$$.update($agent$$.x, $agent$$.y, $agent$$.z);
   });
 };
-$jscomp.scope.AgentRender.prototype.update = function $$jscomp$scope$AgentRender$$update$($deltaX_x$$, $deltaY_y$$, $deltaZ_g_z$$) {
-  $deltaX_x$$ -= this.lastX;
-  $deltaY_y$$ -= this.lastY;
-  $deltaZ_g_z$$ -= this.lastZ;
-  this.totalDistance += Math.sqrt($deltaX_x$$ * $deltaX_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_g_z$$ * $deltaZ_g_z$$);
-  $deltaZ_g_z$$ = this.renderer.context;
-  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 80%, 10%, 0.04)";
-  $deltaZ_g_z$$.beginPath();
-  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 192, 0, 2 * Math.PI);
-  $deltaZ_g_z$$.fill();
-  $deltaZ_g_z$$.fillStyle = "hsla(" + (this.hueSeed + .05 * this.totalDistance) + ", 50%, 70%, 1.0)";
-  $deltaZ_g_z$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
-  $deltaZ_g_z$$.beginPath();
-  $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
-  $deltaZ_g_z$$.fill();
-  $deltaZ_g_z$$.stroke();
+module$contents$vxq$renderers$FlatCanvas_AgentRender.prototype.update = function $module$contents$vxq$renderers$FlatCanvas_AgentRender$$update$($deltaX_x$$, $deltaY_y$$, $deltaZ_g_z$$) {
+  module$exports$vxq$util.elementInView(this.renderer.canvas) && ($deltaX_x$$ -= this.lastX, $deltaY_y$$ -= this.lastY, $deltaZ_g_z$$ -= this.lastZ, this.totalDistance += Math.sqrt($deltaX_x$$ * $deltaX_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_g_z$$ * $deltaZ_g_z$$), $deltaZ_g_z$$ = this.renderer.context, $deltaZ_g_z$$.fillStyle = "rgba(0, 0, 0, 0.25)", $deltaZ_g_z$$.beginPath(), $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI), $deltaZ_g_z$$.fill(), $deltaZ_g_z$$.fillStyle = "hsla(" + 
+  this.hueSeed + ", 50%, 50%, 0.5)", $deltaZ_g_z$$.strokeStyle = "rgba(255, 255, 255, 0.5)", $deltaZ_g_z$$.beginPath(), $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI), $deltaZ_g_z$$.fill(), $deltaZ_g_z$$.stroke());
 };
-vxq.CanvasRenderer = function $vxq$CanvasRenderer$($world$$) {
+var module$exports$vxq$renderers$FlatCanvas = function $module$exports$vxq$renderers$FlatCanvas$($world$$) {
+  var $$jscomp$this$$ = this;
   this.world = $world$$;
   this.canvas = document.createElement("canvas");
   this.canvas.width = this.world.width;
@@ -661,153 +882,97 @@ vxq.CanvasRenderer = function $vxq$CanvasRenderer$($world$$) {
   this.renders = new Map;
   this.updateRenders();
   this.world.changeCallbacks.add(this.updateRenders.bind(this));
+  var $then$$ = +new Date;
+  this.tickInterval = setInterval(function() {
+    var $now$$ = +new Date, $dt$$ = ($now$$ - $then$$) / 1E3;
+    $then$$ = $now$$;
+    $$jscomp$this$$.tick($dt$$);
+  }, 100);
 };
-vxq.CanvasRenderer.prototype.updateRenders = function $vxq$CanvasRenderer$$updateRenders$() {
-  for (var $$jscomp$iter$0_$jscomp$iter$1$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next()) {
+module$exports$vxq$renderers$FlatCanvas.prototype.tick = function $module$exports$vxq$renderers$FlatCanvas$$tick$($dt$$) {
+  module$exports$vxq$util.elementInView(this.canvas) ? this.context.fillStyle = "rgba(0, 0, 0, " + .25 * $dt$$ + ")" : this.context.fillStyle = "black";
+  this.context.fillRect(0, 0, this.world.width, this.world.height);
+};
+module$exports$vxq$renderers$FlatCanvas.prototype.updateRenders = function $module$exports$vxq$renderers$FlatCanvas$$updateRenders$() {
+  for (var $$jscomp$iter$6$$1_$jscomp$iter$7$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$.next()) {
     $$jscomp$key$agent_$jscomp$key$render_agent$$.value.cancel();
   }
   this.renders = new Map;
-  $$jscomp$iter$0_$jscomp$iter$1$$ = $jscomp.makeIterator(this.world.agents);
-  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$0_$jscomp$iter$1$$.next()) {
-    $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render_agent$$, new $jscomp.scope.AgentRender(this, $$jscomp$key$agent_$jscomp$key$render_agent$$));
+  $$jscomp$iter$6$$1_$jscomp$iter$7$$ = $jscomp.makeIterator(this.world.agents);
+  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$.next()) {
+    $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render_agent$$, new module$contents$vxq$renderers$FlatCanvas_AgentRender(this, $$jscomp$key$agent_$jscomp$key$render_agent$$));
   }
 };
-vxq.debug = {};
-vxq.debug.DEBUG = !0;
-vxq.debug.assert = function $vxq$debug$assert$($condition$$, $message$$) {
-  if (vxq.debug.DEBUG && !$condition$$) {
-    throw Error((void 0 === $message$$ ? null : $message$$) || "Assertion failed");
-  }
+var module$contents$vxq$main_VXQModule = function $module$contents$vxq$main_VXQModule$() {
 };
-vxq.debug.log = function $vxq$debug$log$($args$$) {
-  for (var $$jscomp$restParams$$ = [], $$jscomp$restIndex$$ = 0;$$jscomp$restIndex$$ < arguments.length;++$$jscomp$restIndex$$) {
-    $$jscomp$restParams$$[$$jscomp$restIndex$$ - 0] = arguments[$$jscomp$restIndex$$];
-  }
-  vxq.debug.DEBUG && console.log.apply(console, [].concat($jscomp.arrayFromIterable($$jscomp$restParams$$)));
-};
-vxq.util = {};
-vxq.util.CallbackList = function $vxq$util$CallbackList$() {
-  this.callbacks = [];
-  this.callbackTokens = [];
-};
-vxq.util.CallbackList.prototype.add = function $vxq$util$CallbackList$$add$($f$$) {
-  var $token$$ = {};
-  this.callbackTokens.push($token$$);
-  this.callbacks.push($f$$);
-  return function() {
-    var $index$$ = this.callbackTokens.indexOf($token$$);
-    this.callbacks.splice($index$$, 1);
-    this.callbackTokens.splice($index$$, 1);
-  }.bind(this);
-};
-vxq.util.CallbackList.prototype.call = function $vxq$util$CallbackList$$call$() {
-  for (var $$jscomp$iter$2$$ = $jscomp.makeIterator(this.callbacks), $$jscomp$key$f_f$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$f_f$$.done;$$jscomp$key$f_f$$ = $$jscomp$iter$2$$.next()) {
-    $$jscomp$key$f_f$$ = $$jscomp$key$f_f$$.value, $$jscomp$key$f_f$$();
-  }
-};
-vxq.turtles = {};
-vxq.turtles.World = function $vxq$turtles$World$($width$$, $height$$, $turtles$$) {
-  this.width = $width$$;
-  this.height = $height$$;
-  this.turtles = new Set($turtles$$);
-  this.changeCallbacks = new vxq.util.CallbackList;
-};
-Object.defineProperties(vxq.turtles.World.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
-  return this.turtles;
-}}});
-vxq.turtles.Turtle = function $vxq$turtles$Turtle$() {
-  this.y = this.x = 50;
-  this.rotation = this.z = 0;
-  this.changeCallbacks = new vxq.util.CallbackList;
-};
-vxq.turtles.Turtle.prototype.right = function $vxq$turtles$Turtle$$right$($turns$$) {
-  vxq.debug.assert(Number.isFinite($turns$$));
-  this.rotation += $turns$$;
-};
-vxq.turtles.Turtle.prototype.left = function $vxq$turtles$Turtle$$left$($turns$$) {
-  vxq.debug.assert(Number.isFinite($turns$$));
-  this.rotation -= $turns$$;
-};
-vxq.turtles.Turtle.prototype.forward = function $vxq$turtles$Turtle$$forward$($distance$$) {
-  vxq.debug.assert(Number.isFinite($distance$$));
-  this.goTo(this.x + $distance$$ * this.xFactor, this.y + $distance$$ * this.yFactor, this.z);
-};
-vxq.turtles.Turtle.prototype.backward = function $vxq$turtles$Turtle$$backward$($distance$$) {
-  vxq.debug.assert(Number.isFinite($distance$$));
-  this.goTo(this.x + -$distance$$ * this.xFactor, this.y + -$distance$$ * this.yFactor, this.z);
-};
-vxq.turtles.Turtle.prototype.goTo = function $vxq$turtles$Turtle$$goTo$($x$$, $y$$, $xDelta_z$$) {
-  vxq.debug.assert(Number.isFinite($x$$));
-  vxq.debug.assert(Number.isFinite($y$$));
-  vxq.debug.assert(Number.isFinite($xDelta_z$$));
-  $xDelta_z$$ = $x$$ - this.x;
-  for (var $yDelta$$ = $y$$ - this.y, $steps$$ = Math.ceil(Math.sqrt($xDelta_z$$ * $xDelta_z$$ + $yDelta$$ * $yDelta$$) / 4), $i$$ = 0;$i$$ < $steps$$;$i$$++) {
-    this.x += $xDelta_z$$ / $steps$$, this.y += $yDelta$$ / $steps$$, this.changeCallbacks.call();
-  }
-  this.x = $x$$;
-  this.y = $y$$;
-  this.changeCallbacks.call();
-  return Promise.resolve();
-};
-Object.defineProperties(vxq.turtles.Turtle.prototype, {xFactor:{configurable:!0, enumerable:!0, get:function() {
-  return -Math.sin(2 * this.rotation * Math.PI);
-}}, yFactor:{configurable:!0, enumerable:!0, get:function() {
-  return Math.cos(2 * this.rotation * Math.PI);
-}}});
-vxq.testing = {};
-vxq.testing.assert = function $vxq$testing$assert$($condition$$, $message$$) {
-  if (!$condition$$) {
-    throw Error((void 0 === $message$$ ? null : $message$$) || "Assertion failed");
-  }
-};
-vxq.testing.assertEquals = function $vxq$testing$assertEquals$($expected$$, $actual$$) {
-  vxq.testing.assert($expected$$ === $actual$$, $expected$$ + " !== " + $actual$$);
-};
-$jscomp.scope.VXQModule = function $$jscomp$scope$VXQModule$() {
-};
-$jscomp.scope.VXQModule.prototype.test = function $$jscomp$scope$VXQModule$$test$() {
-  vxq.debug.log("Let's testTheTurtles()!");
+module$contents$vxq$main_VXQModule.prototype.test = function $module$contents$vxq$main_VXQModule$$test$() {
+  module$exports$vxq$debug.log("Let's testTheTurtles()!");
   this.testTheTurtles();
 };
-$jscomp.scope.VXQModule.prototype.addBrowserTurtlePlaygroundNextToCurrentScript = function $$jscomp$scope$VXQModule$$addBrowserTurtlePlaygroundNextToCurrentScript$() {
-  var $world$$ = new vxq.turtles.World(512, 512, []), $renderer$$ = new vxq.CanvasRenderer($world$$);
-  document.currentScript.parentNode.appendChild($renderer$$.canvas);
+module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithTurtles = function $module$contents$vxq$main_VXQModule$$addFlatCanvasWithTurtles$($element$$) {
+  var $world$$ = new module$exports$vxq$worlds$turtles.World(512, 512, []), $renderer$$ = new module$exports$vxq$renderers$FlatCanvas($world$$);
+  $element$$.appendChild($renderer$$.canvas);
   this.testTheTurtles($world$$);
   return $world$$;
 };
-$jscomp.scope.VXQModule.prototype.testTheTurtles = function $$jscomp$scope$VXQModule$$testTheTurtles$($i$$13_i$4_world$$) {
-  $i$$13_i$4_world$$ = void 0 === $i$$13_i$4_world$$ ? new vxq.turtles.World(512, 512, []) : $i$$13_i$4_world$$;
-  var $turtle$$ = new vxq.turtles.Turtle;
-  $i$$13_i$4_world$$.turtles.add($turtle$$);
-  $i$$13_i$4_world$$.changeCallbacks.call();
-  vxq.testing.assertEquals(50, $turtle$$.x);
-  vxq.testing.assertEquals(50, $turtle$$.y);
+module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithFlatland = function $module$contents$vxq$main_VXQModule$$addFlatCanvasWithFlatland$($element$$6_r$$) {
+  var $world$$ = new module$exports$vxq$worlds$flatland.World(512, 512), $i$$14_renderer$$ = new module$exports$vxq$renderers$FlatCanvas($world$$);
+  $element$$6_r$$.appendChild($i$$14_renderer$$.canvas);
+  $element$$6_r$$ = function $$element$$6_r$$$() {
+    return .5 + (Math.random() + Math.random() + Math.random()) / 3;
+  };
+  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 50);
+  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(100, -15);
+  $world$$.units.add($i$$14_renderer$$);
+  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 400, 200);
+  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(8, 150);
+  $world$$.units.add($i$$14_renderer$$);
+  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 175);
+  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(-25, 125);
+  $world$$.units.add($i$$14_renderer$$);
+  for ($i$$14_renderer$$ = 0;4 > $i$$14_renderer$$;$i$$14_renderer$$++) {
+    var $planetComponent$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 200 + 50 * $element$$6_r$$(), 200 + 50 * $element$$6_r$$());
+    $planetComponent$$.mass *= 10;
+    $planetComponent$$.interialAmplification *= 10;
+    $planetComponent$$.velocity = module$exports$vxq$worlds$flatland.V(5 - 10 * $element$$6_r$$(), 5 - 10 * $element$$6_r$$());
+    $world$$.units.add($planetComponent$$);
+  }
+  $world$$.changeCallbacks.call();
+  return $world$$;
+};
+module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$contents$vxq$main_VXQModule$$testTheTurtles$($i$$15_i$13_world$$) {
+  $i$$15_i$13_world$$ = void 0 === $i$$15_i$13_world$$ ? new module$exports$vxq$worlds$turtles.World(512, 512, []) : $i$$15_i$13_world$$;
+  var $turtle$$ = new module$exports$vxq$worlds$turtles.Turtle;
+  $i$$15_i$13_world$$.turtles.add($turtle$$);
+  $i$$15_i$13_world$$.changeCallbacks.call();
+  module$exports$vxq$testing.assertEquals(50, $turtle$$.x);
+  module$exports$vxq$testing.assertEquals(50, $turtle$$.y);
   $turtle$$.forward(50);
-  vxq.testing.assertEquals(50, $turtle$$.x);
-  vxq.testing.assertEquals(100, $turtle$$.y);
+  module$exports$vxq$testing.assertEquals(50, $turtle$$.x);
+  module$exports$vxq$testing.assertEquals(100, $turtle$$.y);
   $turtle$$.right(.25);
   $turtle$$.forward(25);
-  vxq.testing.assertEquals(25, $turtle$$.x);
-  vxq.testing.assertEquals(100, $turtle$$.y);
+  module$exports$vxq$testing.assertEquals(25, $turtle$$.x);
+  module$exports$vxq$testing.assertEquals(100, $turtle$$.y);
   $turtle$$.left(.375);
   $turtle$$.forward(100);
-  for ($i$$13_i$4_world$$ = 0;12 > $i$$13_i$4_world$$;$i$$13_i$4_world$$++) {
+  for ($i$$15_i$13_world$$ = 0;12 > $i$$15_i$13_world$$;$i$$15_i$13_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(100);
   $turtle$$.left(.25);
   $turtle$$.forward(200);
-  for ($i$$13_i$4_world$$ = 0;6 > $i$$13_i$4_world$$;$i$$13_i$4_world$$++) {
+  for ($i$$15_i$13_world$$ = 0;6 > $i$$15_i$13_world$$;$i$$15_i$13_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(50);
   console.log("Test complete.");
 };
-$jscomp.scope.VXQModule.prototype.exportFromClosure = function $$jscomp$scope$VXQModule$$exportFromClosure$() {
+module$contents$vxq$main_VXQModule.prototype.exportFromClosure = function $module$contents$vxq$main_VXQModule$$exportFromClosure$() {
   "object" === typeof module && null != module && (module.exports = this);
   "object" === typeof window && null != window && (window.vxq = this);
 };
-vxq.main = new $jscomp.scope.VXQModule;
-vxq.main.exportFromClosure();
+var module$exports$vxq$main = new module$contents$vxq$main_VXQModule;
+module$exports$vxq$main.exportFromClosure();
 
-}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})
+}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : null)
