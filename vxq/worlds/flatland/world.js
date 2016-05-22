@@ -52,12 +52,13 @@ class World {
     // Determine the instantaneous forces acting on each unit.
     const forces = /** !Map<Unit,Vector> */ new Map();
     for (const unit of this.units) {
-      forces.set(unit, V(0, 0));
-    }
+      let force = V(0, 0);
 
-    // Gravity
-    if (this.gravity !== 0) {
-      for (const unit of this.units) {
+      // Magical thrust
+      force = force.add(unit.thrust);
+
+      // Gravity
+      if (this.gravity !== 0) {
         for (const other of this.units) {
           if (unit === other) continue;
 
@@ -69,13 +70,16 @@ class World {
             distance = 40;
           }
 
-          const f = displacement.direction().scale(
+          const fG = displacement.direction().scale(
               this.gravity * unit.mass * other.mass / Math.pow(distance, 2));
 
-          forces.set(unit, forces.get(unit).add(f));
+          force = force.add(fG);
         }
       }
+
+      forces.set(unit, force);
     }
+
 
     const changedUnits = [];
 
