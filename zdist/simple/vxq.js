@@ -771,9 +771,9 @@ var $jscomp$destructuring$var0 = module$contents$vxq$worlds$flatland$Vector_Vect
   this.units = new Set;
   this.gravity = 6.67408;
   this.proportionalVelocityLossPerSecond = .05;
-  this.minNonzeroSpeed = 10;
+  this.minNonzeroSpeed = 4;
   this.tickInterval = setInterval(function() {
-    $$jscomp$this$$.tick(20);
+    $$jscomp$this$$.tick(.02);
   }, 20);
 };
 module$contents$vxq$worlds$flatland$World_World.prototype.tick = function $module$contents$vxq$worlds$flatland$World_World$$tick$($$jscomp$iter$4$$) {
@@ -819,8 +819,8 @@ var $jscomp$destructuring$var1 = module$contents$vxq$worlds$flatland$Vector_Vect
   this.mass = 1E4;
   this.interialAmplification = 1;
   this.targetPosition = null;
-  this.targetMaxDistance = 16;
-  this.targetMaxSpeed = 1;
+  this.targetMaxDistance = 32;
+  this.targetMaxSpeed = 10;
   this.lastMove = Promise.resolve();
   this.changeCallbacks = new module$exports$vxq$util.CallbackList;
 };
@@ -832,7 +832,7 @@ module$contents$vxq$worlds$flatland$Unit_Unit.prototype.goTo = function $module$
         $updateThrust$$();
       });
       var $updateThrust$$ = function $$updateThrust$$$() {
-        var $displacement$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($$jscomp$this$$.position), $projectedDisplacement_projectedPosition$$ = $$jscomp$this$$.position.add($$jscomp$this$$.velocity.scale(.5)), $projectedDisplacement_projectedPosition$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($projectedDisplacement_projectedPosition$$);
+        var $displacement$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($$jscomp$this$$.position), $projectedDisplacement_projectedPosition$$ = $$jscomp$this$$.position.add($$jscomp$this$$.velocity.scale(1.5)), $projectedDisplacement_projectedPosition$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($projectedDisplacement_projectedPosition$$);
         $displacement$$.magnitude() <= $$jscomp$this$$.targetMaxDistance && $$jscomp$this$$.velocity.magnitude() <= $$jscomp$this$$.targetMaxSpeed ? ($$jscomp$this$$.thrust = module$contents$vxq$worlds$flatland$Unit_V(0, 0), $resolve$$()) : $$jscomp$this$$.thrust = $projectedDisplacement_projectedPosition$$.withMagnitude(175 * $$jscomp$this$$.mass * $$jscomp$this$$.interialAmplification);
       };
       $updateThrust$$();
