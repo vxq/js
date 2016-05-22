@@ -864,7 +864,7 @@ var module$contents$vxq$renderers$FlatCanvas_AgentRender = function $module$cont
 };
 module$contents$vxq$renderers$FlatCanvas_AgentRender.prototype.update = function $module$contents$vxq$renderers$FlatCanvas_AgentRender$$update$($deltaX_x$$, $deltaY_y$$, $deltaZ_g_z$$) {
   module$exports$vxq$util.elementInView(this.renderer.canvas) && ($deltaX_x$$ -= this.lastX, $deltaY_y$$ -= this.lastY, $deltaZ_g_z$$ -= this.lastZ, this.totalDistance += Math.sqrt($deltaX_x$$ * $deltaX_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_g_z$$ * $deltaZ_g_z$$), $deltaZ_g_z$$ = this.renderer.context, $deltaZ_g_z$$.fillStyle = "rgba(0, 0, 0, 0.75)", $deltaZ_g_z$$.beginPath(), $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI), $deltaZ_g_z$$.fill(), $deltaZ_g_z$$.fillStyle = "hsla(" + 
-  (this.hueSeed + .05 * this.totalDistance) + ", 50%, 50%, 1.0)", $deltaZ_g_z$$.strokeStyle = "rgba(255, 255, 255, 1.0)", $deltaZ_g_z$$.beginPath(), $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI), $deltaZ_g_z$$.fill(), $deltaZ_g_z$$.stroke());
+  this.hueSeed + ", 50%, 50%, 1.0)", $deltaZ_g_z$$.strokeStyle = "rgba(255, 255, 255, 1.0)", $deltaZ_g_z$$.beginPath(), $deltaZ_g_z$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI), $deltaZ_g_z$$.fill(), $deltaZ_g_z$$.stroke());
 };
 var module$exports$vxq$renderers$FlatCanvas = function $module$exports$vxq$renderers$FlatCanvas$($world$$) {
   var $$jscomp$this$$ = this;

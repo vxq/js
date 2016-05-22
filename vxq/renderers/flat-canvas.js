@@ -63,9 +63,7 @@ class AgentRender {
     g.fill();
 
     // clearly mark current location
-    g.fillStyle =
-        'hsla(' + (this.hueSeed + 0.05 * this.totalDistance) +
-        ', 50%, 50%, 1.0)';
+    g.fillStyle = `hsla(${this.hueSeed}, 50%, 50%, 1.0)`;
     g.strokeStyle = 'rgba(255, 255, 255, 1.0)';
 
     g.beginPath();

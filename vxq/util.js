@@ -46,7 +46,7 @@ exports.shuffle = (/** !Array */ array) => {
 
 
 /** @return {boolean} Whether the element is currently in the viewport. */
-exports.elementInView = element => {
+exports.elementInView = (/** !Element */ element) => {
   const rect = element.getBoundingClientRect();
   return !(
       rect.bottom < 0 ||
