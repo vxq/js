@@ -799,9 +799,9 @@ module$contents$vxq$worlds$flatland$World_World.prototype.tick = function $modul
     $$jscomp$iter$3_unit$$ = $jscomp.makeIterator(this.units);
     for ($$jscomp$key$unit_force_unit$9$$ = $$jscomp$iter$3_unit$$.next();!$$jscomp$key$unit_force_unit$9$$.done;$$jscomp$key$unit_force_unit$9$$ = $$jscomp$iter$3_unit$$.next()) {
       $$jscomp$key$unit_force_unit$9$$ = $$jscomp$key$unit_force_unit$9$$.value, $$jscomp$iter$1$$ = $$jscomp$key$unit_force_unit$9$$.mass * $$jscomp$key$unit_force_unit$9$$.interialAmplification, $$jscomp$key$other_f$$4_fG_other$$ = $forces$$.get($$jscomp$key$unit_force_unit$9$$), $dV_displacement_newSpeed_speed$$ = $$jscomp$key$other_f$$4_fG_other$$.scale($$jscomp$iter$4$$1_dt$$ / $$jscomp$iter$1$$), console.log("dV from forces " + $dV_displacement_newSpeed_speed$$), $$jscomp$key$unit_force_unit$9$$.velocity = 
-      $$jscomp$key$unit_force_unit$9$$.velocity.add($dV_displacement_newSpeed_speed$$), $dV_displacement_newSpeed_speed$$ = $$jscomp$key$unit_force_unit$9$$.velocity.magnitude(), $dV_displacement_newSpeed_speed$$ = Math.max(0, $dV_displacement_newSpeed_speed$$ - $$jscomp$iter$4$$1_dt$$ * $dV_displacement_newSpeed_speed$$ * this.proportionalVelocityLossPerSecond), $dV_displacement_newSpeed_speed$$ >= this.minNonzeroSpeed || $$jscomp$key$other_f$$4_fG_other$$.magnitude() / $$jscomp$iter$1$$ > 10 * 
-      this.minNonzeroSpeed ? (console.log(String($dV_displacement_newSpeed_speed$$)), $$jscomp$key$unit_force_unit$9$$.velocity = $$jscomp$key$unit_force_unit$9$$.velocity.withMagnitude($dV_displacement_newSpeed_speed$$)) : $$jscomp$key$unit_force_unit$9$$.velocity = module$contents$vxq$worlds$flatland$World_V(0, 0), 0 < $$jscomp$key$unit_force_unit$9$$.velocity.magnitude() && ($$jscomp$iter$1$$ = $$jscomp$key$unit_force_unit$9$$.velocity.scale($$jscomp$iter$4$$1_dt$$), $$jscomp$key$unit_force_unit$9$$.position = 
-      $$jscomp$key$unit_force_unit$9$$.position.add($$jscomp$iter$1$$), $$jscomp$iter$2$$.push($$jscomp$key$unit_force_unit$9$$));
+      $$jscomp$key$unit_force_unit$9$$.velocity.add($dV_displacement_newSpeed_speed$$), $dV_displacement_newSpeed_speed$$ = $$jscomp$key$unit_force_unit$9$$.velocity.magnitude(), $dV_displacement_newSpeed_speed$$ = Math.max(0, $dV_displacement_newSpeed_speed$$ - $$jscomp$iter$4$$1_dt$$ * $dV_displacement_newSpeed_speed$$ * this.proportionalVelocityLossPerSecond), $dV_displacement_newSpeed_speed$$ >= this.minNonzeroSpeed || $$jscomp$key$other_f$$4_fG_other$$.magnitude() / $$jscomp$iter$1$$ > this.minNonzeroSpeed ? 
+      (console.log(String($dV_displacement_newSpeed_speed$$)), $$jscomp$key$unit_force_unit$9$$.velocity = $$jscomp$key$unit_force_unit$9$$.velocity.withMagnitude($dV_displacement_newSpeed_speed$$)) : $$jscomp$key$unit_force_unit$9$$.velocity = module$contents$vxq$worlds$flatland$World_V(0, 0), 0 < $$jscomp$key$unit_force_unit$9$$.velocity.magnitude() && ($$jscomp$iter$1$$ = $$jscomp$key$unit_force_unit$9$$.velocity.scale($$jscomp$iter$4$$1_dt$$), $$jscomp$key$unit_force_unit$9$$.position = $$jscomp$key$unit_force_unit$9$$.position.add($$jscomp$iter$1$$), 
+      $$jscomp$iter$2$$.push($$jscomp$key$unit_force_unit$9$$));
     }
     module$exports$vxq$util.shuffle($$jscomp$iter$2$$);
     $$jscomp$iter$4$$1_dt$$ = $jscomp.makeIterator($$jscomp$iter$2$$);
@@ -837,7 +837,7 @@ module$contents$vxq$worlds$flatland$Unit_Unit.prototype.goTo = function $module$
       });
       var $updateThrust$$ = function $$updateThrust$$$() {
         var $displacement$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($$jscomp$this$$.position), $projectedDisplacement_projectedPosition$$ = $$jscomp$this$$.position.add($$jscomp$this$$.velocity.scale(2)), $projectedDisplacement_projectedPosition$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($projectedDisplacement_projectedPosition$$);
-        $displacement$$.magnitude() <= $$jscomp$this$$.targetMaxDistance && $$jscomp$this$$.velocity.magnitude() <= $$jscomp$this$$.targetMaxSpeed ? ($$jscomp$this$$.thrust = module$contents$vxq$worlds$flatland$Unit_V(0, 0), $resolve$$()) : $$jscomp$this$$.thrust = $projectedDisplacement_projectedPosition$$.withMagnitude(200 * $$jscomp$this$$.mass * $$jscomp$this$$.interialAmplification);
+        $displacement$$.magnitude() <= $$jscomp$this$$.targetMaxDistance && $$jscomp$this$$.velocity.magnitude() <= $$jscomp$this$$.targetMaxSpeed ? ($$jscomp$this$$.thrust = module$contents$vxq$worlds$flatland$Unit_V(0, 0), $resolve$$()) : $$jscomp$this$$.thrust = $projectedDisplacement_projectedPosition$$.withMagnitude(175 * $$jscomp$this$$.mass * $$jscomp$this$$.interialAmplification);
       };
       $updateThrust$$();
     });
@@ -875,8 +875,8 @@ module$contents$vxq$renderers$FlatCanvas_AgentRender.prototype.update = function
   $deltaX_g_x$$ = void 0 === $deltaX_g_x$$ ? this.lastX : $deltaX_g_x$$;
   $deltaY_y$$ = void 0 === $deltaY_y$$ ? this.lastY : $deltaY_y$$;
   $deltaZ_opacity_z$$ = void 0 === $deltaZ_opacity_z$$ ? this.lastZ : $deltaZ_opacity_z$$;
-  module$exports$vxq$util.elementInView(this.renderer.canvas) && ($deltaX_g_x$$ -= this.lastX, $deltaY_y$$ -= this.lastY, $deltaZ_opacity_z$$ -= this.lastZ, $deltaZ_opacity_z$$ = Math.max(.2, Math.min(1, Math.sqrt($deltaX_g_x$$ * $deltaX_g_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_opacity_z$$ * $deltaZ_opacity_z$$) / 100)), $deltaX_g_x$$ = this.renderer.context, $deltaX_g_x$$.fillStyle = "rgba(0, 0, 0, 0.25)", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI), 
-  $deltaX_g_x$$.fill(), $deltaX_g_x$$.fillStyle = "hsla(" + this.hueSeed + ", 50%, 50%, " + $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.strokeStyle = "rgba(255, 255, 255, " + $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI), $deltaX_g_x$$.fill(), $deltaX_g_x$$.stroke());
+  module$exports$vxq$util.elementInView(this.renderer.canvas) && ($deltaX_g_x$$ -= this.lastX, $deltaY_y$$ -= this.lastY, $deltaZ_opacity_z$$ -= this.lastZ, $deltaZ_opacity_z$$ = Math.max(.2, Math.min(1, Math.sqrt($deltaX_g_x$$ * $deltaX_g_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_opacity_z$$ * $deltaZ_opacity_z$$) / 100)), $deltaX_g_x$$ = this.renderer.context, $deltaX_g_x$$.fillStyle = "hsla(" + this.hueSeed + ", 50%, 50%, " + $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.strokeStyle = "rgba(255, 255, 255, " + 
+  $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI), $deltaX_g_x$$.fill(), $deltaX_g_x$$.stroke(), $deltaX_g_x$$.strokeStyle = "rgba(0, 0, 0, " + .5 * $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 7, 0, 2 * Math.PI), $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI), $deltaX_g_x$$.stroke());
 };
 var module$exports$vxq$renderers$FlatCanvas = function $module$exports$vxq$renderers$FlatCanvas$($world$$) {
   var $$jscomp$this$$ = this;
@@ -901,7 +901,9 @@ module$exports$vxq$renderers$FlatCanvas.prototype.tick = function $module$export
   if (module$exports$vxq$util.elementInView(this.canvas)) {
     this.context.fillStyle = "rgba(0, 0, 0, " + .25 * $$jscomp$iter$5$$1_dt$$ + ")";
     this.context.fillRect(0, 0, this.world.width, this.world.height);
-    $$jscomp$iter$5$$1_dt$$ = $jscomp.makeIterator(this.renders.values());
+    $$jscomp$iter$5$$1_dt$$ = Array.from(this.renders.values());
+    module$exports$vxq$util.shuffle($$jscomp$iter$5$$1_dt$$);
+    $$jscomp$iter$5$$1_dt$$ = $jscomp.makeIterator($$jscomp$iter$5$$1_dt$$);
     for (var $$jscomp$key$renderer$$ = $$jscomp$iter$5$$1_dt$$.next();!$$jscomp$key$renderer$$.done;$$jscomp$key$renderer$$ = $$jscomp$iter$5$$1_dt$$.next()) {
       $$jscomp$key$renderer$$.value.update();
     }
@@ -938,11 +940,11 @@ module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithFlatland = functio
     return .5 + (Math.random() + Math.random() + Math.random()) / 3;
   };
   $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 50);
-  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(200, -15);
+  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(200, -50);
   $world$$.units.add($i$$14_renderer$$);
   console.log($i$$14_renderer$$.goTo(500, 500, 0));
   $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 400, 200);
-  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(100, 650);
+  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(-100, 450);
   $world$$.units.add($i$$14_renderer$$);
   console.log($i$$14_renderer$$.goTo(25, 25, 0));
   $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 175);

@@ -99,7 +99,7 @@ class Unit {
           this.thrust = V(0, 0);
           resolve();
         } else {
-          const deltaA = 200;
+          const deltaA = 175;
           this.thrust = projectedDisplacement.withMagnitude(
               deltaA * this.mass * this.interialAmplification);
         }

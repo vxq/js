@@ -58,21 +58,19 @@ class AgentRender {
 
     const g = this.renderer.context;
 
-    // slightly dim the surrounding area
-    g.fillStyle = 'rgba(0, 0, 0, 0.25)';
-
-    g.beginPath();
-    g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
-    g.fill();
-
-    // clearly mark current location
     g.fillStyle = `hsla(${this.hueSeed}, 50%, 50%, ${opacity})`;
     g.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-
     g.beginPath();
     g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
     g.fill();
     g.stroke();
+
+    g.strokeStyle = `rgba(0, 0, 0, ${0.5 * opacity})`;
+    g.beginPath();
+    g.arc(this.agent.x, this.agent.y, 7, 0, 2 * Math.PI);
+    g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
+    g.stroke();
+
   }
 }
 
@@ -116,7 +114,9 @@ exports = class {
       this.context.fillStyle = `rgba(0, 0, 0, ${0.25 * dt})`;
       this.context.fillRect(0, 0, this.world.width, this.world.height)
 
-      for (const renderer of this.renders.values()) {
+      const renderers = Array.from(this.renders.values());
+      util.shuffle(renderers);
+      for (const renderer of renderers) {
         renderer.update();
       }
     } else {

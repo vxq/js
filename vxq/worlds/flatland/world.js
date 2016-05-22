@@ -96,7 +96,7 @@ class World {
           0,
           speed - dt * speed * this.proportionalVelocityLossPerSecond);
 
-      if (newSpeed >= this.minNonzeroSpeed || (f.magnitude() / inertia > 10 * this.minNonzeroSpeed)) {
+      if (newSpeed >= this.minNonzeroSpeed || (f.magnitude() / inertia > this.minNonzeroSpeed)) {
         console.log(String(newSpeed));
         unit.velocity = unit.velocity.withMagnitude(newSpeed);
       } else {

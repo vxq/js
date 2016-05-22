@@ -31,13 +31,13 @@ class VXQModule {
         0.5 + (Math.random() + Math.random() + Math.random()) / 3;
 
     const unit1 = new flatland.Unit(world, 150, 50);
-    unit1.velocity = flatland.V(200, -15);
+    unit1.velocity = flatland.V(200, -50);
     world.units.add(unit1);
 
     console.log(unit1.goTo(500, 500, 0));
 
     const unit2 = new flatland.Unit(world, 400, 200);
-    unit2.velocity = flatland.V(100, 650);
+    unit2.velocity = flatland.V(-100, 450);
     world.units.add(unit2);
 
     console.log(unit2.goTo(25, 25, 0));
