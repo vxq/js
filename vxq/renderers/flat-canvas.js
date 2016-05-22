@@ -61,13 +61,14 @@ class AgentRender {
     g.fillStyle = `hsla(${this.hueSeed}, 50%, 50%, ${opacity})`;
     g.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
     g.beginPath();
+    g.lineWidth = 1;
     g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
     g.fill();
     g.stroke();
 
     g.strokeStyle = `rgba(0, 0, 0, ${0.5 * opacity})`;
     g.beginPath();
-    g.arc(this.agent.x, this.agent.y, 7, 0, 2 * Math.PI);
+    g.lineWidth = 2;
     g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
     g.stroke();
 
@@ -170,10 +171,9 @@ exports = class {
       const pointers = Array.from(this.pointers);
       util.shuffle(pointers);
       for (const pointer of pointers) {
-        debugger;
-
         this.context.strokeStyle = 'rgba(210, 40, 40, 0.75)';
         this.context.beginPath();
+        this.context.lineWidth = 4;
         this.context.moveTo(pointer.source.x, pointer.source.y);
         this.context.lineTo(pointer.x, pointer.y);
         this.context.stroke();

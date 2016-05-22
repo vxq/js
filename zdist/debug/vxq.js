@@ -233,7 +233,7 @@ $module$contents$vxq$renderers$FlatCanvas_AgentRender$$.prototype.update = funct
   $deltaY_y$$56$$ = void 0 === $deltaY_y$$56$$ ? 0 : $deltaY_y$$56$$;
   $deltaZ_opacity_z$$15$$ = void 0 === $deltaZ_opacity_z$$15$$ ? 0 : $deltaZ_opacity_z$$15$$;
   $module$exports$vxq$util$elementInView$$(this.$b$.$a$) && ($deltaX_g_x$$85$$ -= 0, $deltaY_y$$56$$ -= 0, $deltaZ_opacity_z$$15$$ -= 0, $deltaZ_opacity_z$$15$$ = Math.max(.2, Math.min(1, Math.sqrt($deltaX_g_x$$85$$ * $deltaX_g_x$$85$$ + $deltaY_y$$56$$ * $deltaY_y$$56$$ + $deltaZ_opacity_z$$15$$ * $deltaZ_opacity_z$$15$$) / 100)), $deltaX_g_x$$85$$ = this.$b$.$b$, $deltaX_g_x$$85$$.fillStyle = "hsla(" + this.$c$ + ", 50%, 50%, " + $deltaZ_opacity_z$$15$$ + ")", $deltaX_g_x$$85$$.strokeStyle = "rgba(255, 255, 255, " + 
-  $deltaZ_opacity_z$$15$$ + ")", $deltaX_g_x$$85$$.beginPath(), $deltaX_g_x$$85$$.arc(this.$a$.x, this.$a$.y, 6, 0, 2 * Math.PI), $deltaX_g_x$$85$$.fill(), $deltaX_g_x$$85$$.stroke(), $deltaX_g_x$$85$$.strokeStyle = "rgba(0, 0, 0, " + .5 * $deltaZ_opacity_z$$15$$ + ")", $deltaX_g_x$$85$$.beginPath(), $deltaX_g_x$$85$$.arc(this.$a$.x, this.$a$.y, 7, 0, 2 * Math.PI), $deltaX_g_x$$85$$.arc(this.$a$.x, this.$a$.y, 8, 0, 2 * Math.PI), $deltaX_g_x$$85$$.stroke());
+  $deltaZ_opacity_z$$15$$ + ")", $deltaX_g_x$$85$$.beginPath(), $deltaX_g_x$$85$$.lineWidth = 1, $deltaX_g_x$$85$$.arc(this.$a$.x, this.$a$.y, 6, 0, 2 * Math.PI), $deltaX_g_x$$85$$.fill(), $deltaX_g_x$$85$$.stroke(), $deltaX_g_x$$85$$.strokeStyle = "rgba(0, 0, 0, " + .5 * $deltaZ_opacity_z$$15$$ + ")", $deltaX_g_x$$85$$.beginPath(), $deltaX_g_x$$85$$.lineWidth = 2, $deltaX_g_x$$85$$.arc(this.$a$.x, this.$a$.y, 8, 0, 2 * Math.PI), $deltaX_g_x$$85$$.stroke());
 };
 function $module$contents$vxq$renderers$FlatCanvas_Pointer$$($source$$12$$, $x$$86$$, $y$$57$$) {
   this.source = $source$$12$$;
@@ -268,10 +268,10 @@ function $module$exports$vxq$renderers$FlatCanvas$$($world$$3$$) {
   this.$f$ = new Map;
   this.$h$();
   this.$c$.changeCallbacks.add(this.$h$.bind(this));
-  var $then$$1$$ = +new Date;
+  var $then$$ = +new Date;
   setInterval(function() {
-    var $$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$ = +new Date, $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$ = ($$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$ - $then$$1$$) / 1E3;
-    $then$$1$$ = $$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$;
+    var $$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$ = +new Date, $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$ = ($$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$ - $then$$) / 1E3;
+    $then$$ = $$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$;
     if ($module$exports$vxq$util$elementInView$$($$jscomp$this$$4$$.$a$)) {
       $$jscomp$this$$4$$.$b$.fillStyle = "rgba(0, 0, 0, " + .25 * $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$ + ")";
       $$jscomp$this$$4$$.$b$.fillRect(0, 0, $$jscomp$this$$4$$.$c$.width, $$jscomp$this$$4$$.$c$.height);
@@ -285,13 +285,8 @@ function $module$exports$vxq$renderers$FlatCanvas$$($world$$3$$) {
       $module$exports$vxq$util$shuffle$$($$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$);
       $$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$ = $$jscomp$makeIterator$$($$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$);
       for ($$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$ = $$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$.next();!$$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.done;$$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$ = $$jscomp$iter$6$$inline_44_$jscomp$iter$7$$inline_47_now_pointers$$inline_46_renderers$$inline_43$$.next()) {
-        $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$ = $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.value;
-        debugger;
-        $$jscomp$this$$4$$.$b$.strokeStyle = "rgba(210, 40, 40, 0.75)";
-        $$jscomp$this$$4$$.$b$.beginPath();
-        $$jscomp$this$$4$$.$b$.moveTo($$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.source.x, $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.source.y);
-        $$jscomp$this$$4$$.$b$.lineTo($$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.x, $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.y);
-        $$jscomp$this$$4$$.$b$.stroke();
+        $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$ = $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.value, $$jscomp$this$$4$$.$b$.strokeStyle = "rgba(210, 40, 40, 0.75)", $$jscomp$this$$4$$.$b$.beginPath(), $$jscomp$this$$4$$.$b$.lineWidth = 4, $$jscomp$this$$4$$.$b$.moveTo($$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.source.x, $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.source.y), 
+        $$jscomp$this$$4$$.$b$.lineTo($$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.x, $$jscomp$key$pointer$$inline_48_$jscomp$key$renderer$$inline_45_dt$$1_pointer$$inline_49$$.y), $$jscomp$this$$4$$.$b$.stroke();
       }
     } else {
       $$jscomp$this$$4$$.$b$.fillStyle = "black", $$jscomp$this$$4$$.$b$.fillRect(0, 0, $$jscomp$this$$4$$.$c$.width, $$jscomp$this$$4$$.$c$.height);

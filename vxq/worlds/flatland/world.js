@@ -34,7 +34,6 @@ class World {
      */
     this.minNonzeroSpeed = 10.0;
 
-    let then = +new Date;
     /** @type {?number} */
     this.tickInterval = setInterval(() => {
       this.tick(20);
