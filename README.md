@@ -1,10 +1,11 @@
 # `vxq/js#goto`
 
 The purpose of this branch is to implement the .goTo() method for
-flatland.Units, allowing them to thrust their way towards a target.
-FlatCanvasRenderer will need to gain the ability to accept clicks to order some
-unit around. Initially we may simply use the first unit -- and highlight it in
-green.
+`flatland.Units`, allowing them to thrust their way towards a target.
+`FlatCanvasRenderer` will need to gain the ability to accept clicks to order
+some unit around. Initially we may simply use the first unit -- and highlight
+it in green. We may also want to extend the `VXQ.Agent` interface with an array
+of known waypoints.
 
 ---
 
