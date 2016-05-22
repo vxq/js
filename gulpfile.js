@@ -12,6 +12,7 @@ const dest = 'zdist';
 const flags = {
   compilation_level: 'ADVANCED_OPTIMIZATIONS',
   use_types_for_optimization: true,
+  dependency_mode: 'STRICT',
   warning_level: 'VERBOSE',
   get output_wrapper() {
     return [
@@ -53,6 +54,7 @@ gulp.task('build', () => runSequence('build-simple', 'build-debug', 'build-prod'
 gulp.task('build-simple', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     compilation_level: 'SIMPLE_OPTIMIZATIONS',
+    dependency_mode: 'LOOSE',
     use_types_for_optimization: false,
     js_output_file: 'simple/vxq.js',
     output_manifest: 'zdist/simple/vxq.manifest',
@@ -74,7 +76,8 @@ gulp.task('build-debug', () =>
 
 gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    js_output_file: 'prod/vxq.js'
+    js_output_file: 'prod/vxq.js',
+    output_manifest: 'zdist/prod/vxq.manifest'
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('lint', () =>
@@ -84,6 +87,7 @@ gulp.task('lint', () =>
     // We need to have an output path, but don't want to save this
     // (it should be identical to prod.js anyway), so we put it here.
     js_output_file: 'tmp/prod/vxq.js',
+    dependency_mode: 'LOOSE',
     jscomp_error: [].concat(
         lintFlags, flags.jscomp_warning, flags.jscomp_error),
     jscomp_warning: []
