@@ -4,7 +4,7 @@ TBD. A sketch.
 
 ## Examples
 
-- [Limited in-browser examples from latest (pre)release](https://vxq.github.io/js/examples/).
+- [Limited in-browser examples from latest (pre)release](https://vxq.github.io/js/examples/) ([mirror](https://vxq.gitlab.io/js/examples/)).
 
 ## Developing
 
