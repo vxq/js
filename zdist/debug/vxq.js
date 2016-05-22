@@ -110,16 +110,16 @@ function $module$exports$vxq$worlds$flatland$World$$($width$$13$$, $height$$12$$
   this.$a$ = new Set;
   var $then$$ = +new Date;
   setInterval(function() {
-    var $$jscomp$iter$1$$1_now$$ = +new Date, $dt$$ = ($$jscomp$iter$1$$1_now$$ - $then$$) / 1E3;
-    $then$$ = $$jscomp$iter$1$$1_now$$;
-    for (var $$jscomp$iter$1$$1_now$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$), $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$ = $$jscomp$iter$1$$1_now$$.next();!$$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.done;$$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$ = $$jscomp$iter$1$$1_now$$.next()) {
-      if ($$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$ = $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.value, 0 < $dt$$ && (0 != $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$ || 0 != $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$)) {
-        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.x += $dt$$ * $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$;
-        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.y += $dt$$ * $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$;
-        var $speed$$inline_9$$ = Math.sqrt($$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$ * $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$ + $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$ * $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$), $newSpeed$$inline_10$$ = Math.max(0, $speed$$inline_9$$ - 2 * $dt$$ - $dt$$ * $speed$$inline_9$$ * .2);
-        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$a$ *= $newSpeed$$inline_10$$ / $speed$$inline_9$$;
-        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.$b$ *= $newSpeed$$inline_10$$ / $speed$$inline_9$$;
-        $$jscomp$key$unit_JSCompiler_StaticMethods_tick$self$$inline_7$$.changeCallbacks.call();
+    var $$jscomp$iter$1$$inline_9_now$$ = +new Date, $dt$$ = ($$jscomp$iter$1$$inline_9_now$$ - $then$$) / 1E3;
+    $then$$ = $$jscomp$iter$1$$inline_9_now$$;
+    for (var $$jscomp$iter$1$$inline_9_now$$ = $$jscomp$makeIterator$$($$jscomp$this$$1$$.$a$), $$jscomp$key$unit$$inline_10_unit$$inline_11$$ = $$jscomp$iter$1$$inline_9_now$$.next();!$$jscomp$key$unit$$inline_10_unit$$inline_11$$.done;$$jscomp$key$unit$$inline_10_unit$$inline_11$$ = $$jscomp$iter$1$$inline_9_now$$.next()) {
+      if ($$jscomp$key$unit$$inline_10_unit$$inline_11$$ = $$jscomp$key$unit$$inline_10_unit$$inline_11$$.value, 0 < $dt$$ && (0 != $$jscomp$key$unit$$inline_10_unit$$inline_11$$.$a$ || 0 != $$jscomp$key$unit$$inline_10_unit$$inline_11$$.$b$)) {
+        $$jscomp$key$unit$$inline_10_unit$$inline_11$$.x += $dt$$ * $$jscomp$key$unit$$inline_10_unit$$inline_11$$.$a$;
+        $$jscomp$key$unit$$inline_10_unit$$inline_11$$.y += $dt$$ * $$jscomp$key$unit$$inline_10_unit$$inline_11$$.$b$;
+        var $speed$$inline_12$$ = Math.sqrt($$jscomp$key$unit$$inline_10_unit$$inline_11$$.$a$ * $$jscomp$key$unit$$inline_10_unit$$inline_11$$.$a$ + $$jscomp$key$unit$$inline_10_unit$$inline_11$$.$b$ * $$jscomp$key$unit$$inline_10_unit$$inline_11$$.$b$), $newSpeed$$inline_13$$ = Math.max(0, $speed$$inline_12$$ - 2 * $dt$$ - $dt$$ * $speed$$inline_12$$ * .2);
+        $$jscomp$key$unit$$inline_10_unit$$inline_11$$.$a$ *= $newSpeed$$inline_13$$ / $speed$$inline_12$$;
+        $$jscomp$key$unit$$inline_10_unit$$inline_11$$.$b$ *= $newSpeed$$inline_13$$ / $speed$$inline_12$$;
+        $$jscomp$key$unit$$inline_10_unit$$inline_11$$.changeCallbacks.call();
       }
     }
   }, 20);
@@ -147,9 +147,9 @@ $module$exports$vxq$worlds$flatland$Unit$$.prototype.goTo = function $$module$ex
   });
 };
 function $module$exports$vxq$testing$assertEquals$$($expected$$, $actual$$) {
-  var $message$$inline_13$$ = $expected$$ + " !== " + $actual$$;
+  var $message$$inline_16$$ = $expected$$ + " !== " + $actual$$;
   if ($expected$$ !== $actual$$) {
-    throw Error((void 0 === $message$$inline_13$$ ? null : $message$$inline_13$$) || "Assertion failed");
+    throw Error((void 0 === $message$$inline_16$$ ? null : $message$$inline_16$$) || "Assertion failed");
   }
 }
 ;function $module$contents$vxq$renderers$FlatCanvas_AgentRender$$($renderer$$, $agent$$) {
@@ -159,19 +159,19 @@ function $module$exports$vxq$testing$assertEquals$$($expected$$, $actual$$) {
   this.$f$ = $renderer$$;
   this.$a$ = $agent$$;
   this.cancel = $agent$$.changeCallbacks.add(function() {
-    var $deltaX$$inline_19_g$$inline_22$$ = $agent$$.x - 0, $deltaY$$inline_20$$ = $agent$$.y - 0, $deltaZ$$inline_21$$ = $agent$$.z - 0;
-    $$jscomp$this$$3$$.$b$ += Math.sqrt($deltaX$$inline_19_g$$inline_22$$ * $deltaX$$inline_19_g$$inline_22$$ + $deltaY$$inline_20$$ * $deltaY$$inline_20$$ + $deltaZ$$inline_21$$ * $deltaZ$$inline_21$$);
-    $deltaX$$inline_19_g$$inline_22$$ = $$jscomp$this$$3$$.$f$.$c$;
-    $deltaX$$inline_19_g$$inline_22$$.fillStyle = "hsla(" + ($$jscomp$this$$3$$.$c$ + .05 * $$jscomp$this$$3$$.$b$) + ", 80%, 10%, 0.04)";
-    $deltaX$$inline_19_g$$inline_22$$.beginPath();
-    $deltaX$$inline_19_g$$inline_22$$.arc($$jscomp$this$$3$$.$a$.x, $$jscomp$this$$3$$.$a$.y, 192, 0, 2 * Math.PI);
-    $deltaX$$inline_19_g$$inline_22$$.fill();
-    $deltaX$$inline_19_g$$inline_22$$.fillStyle = "hsla(" + ($$jscomp$this$$3$$.$c$ + .05 * $$jscomp$this$$3$$.$b$) + ", 50%, 70%, 1.0)";
-    $deltaX$$inline_19_g$$inline_22$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
-    $deltaX$$inline_19_g$$inline_22$$.beginPath();
-    $deltaX$$inline_19_g$$inline_22$$.arc($$jscomp$this$$3$$.$a$.x, $$jscomp$this$$3$$.$a$.y, 6, 0, 2 * Math.PI);
-    $deltaX$$inline_19_g$$inline_22$$.fill();
-    $deltaX$$inline_19_g$$inline_22$$.stroke();
+    var $deltaX$$inline_22_g$$inline_25$$ = $agent$$.x - 0, $deltaY$$inline_23$$ = $agent$$.y - 0, $deltaZ$$inline_24$$ = $agent$$.z - 0;
+    $$jscomp$this$$3$$.$b$ += Math.sqrt($deltaX$$inline_22_g$$inline_25$$ * $deltaX$$inline_22_g$$inline_25$$ + $deltaY$$inline_23$$ * $deltaY$$inline_23$$ + $deltaZ$$inline_24$$ * $deltaZ$$inline_24$$);
+    $deltaX$$inline_22_g$$inline_25$$ = $$jscomp$this$$3$$.$f$.$c$;
+    $deltaX$$inline_22_g$$inline_25$$.fillStyle = "hsla(" + ($$jscomp$this$$3$$.$c$ + .05 * $$jscomp$this$$3$$.$b$) + ", 80%, 10%, 0.04)";
+    $deltaX$$inline_22_g$$inline_25$$.beginPath();
+    $deltaX$$inline_22_g$$inline_25$$.arc($$jscomp$this$$3$$.$a$.x, $$jscomp$this$$3$$.$a$.y, 192, 0, 2 * Math.PI);
+    $deltaX$$inline_22_g$$inline_25$$.fill();
+    $deltaX$$inline_22_g$$inline_25$$.fillStyle = "hsla(" + ($$jscomp$this$$3$$.$c$ + .05 * $$jscomp$this$$3$$.$b$) + ", 50%, 70%, 1.0)";
+    $deltaX$$inline_22_g$$inline_25$$.strokeStyle = "rgba(255, 255, 255, 0.5)";
+    $deltaX$$inline_22_g$$inline_25$$.beginPath();
+    $deltaX$$inline_22_g$$inline_25$$.arc($$jscomp$this$$3$$.$a$.x, $$jscomp$this$$3$$.$a$.y, 6, 0, 2 * Math.PI);
+    $deltaX$$inline_22_g$$inline_25$$.fill();
+    $deltaX$$inline_22_g$$inline_25$$.stroke();
   });
 }
 function $module$exports$vxq$renderers$FlatCanvas$$($world$$2$$) {
@@ -258,8 +258,8 @@ function $JSCompiler_StaticMethods_testTheTurtles$$($i$$13_i$5_world$$5$$) {
   $JSCompiler_StaticMethods_module$exports$vxq$worlds$turtles_Turtle_prototype$forward$$($turtle$$, 50);
   console.log("Test complete.");
 }
-var $JSCompiler_StaticMethods_exportFromClosure$self$$inline_27$$ = new $module$contents$vxq$main_VXQModule$$;
-"object" === typeof module && null != module && (module.exports = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_27$$);
-"object" === typeof window && null != window && (window.vxq = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_27$$);
+var $JSCompiler_StaticMethods_exportFromClosure$self$$inline_30$$ = new $module$contents$vxq$main_VXQModule$$;
+"object" === typeof module && null != module && (module.exports = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_30$$);
+"object" === typeof window && null != window && (window.vxq = $JSCompiler_StaticMethods_exportFromClosure$self$$inline_30$$);
 
 }.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : null)

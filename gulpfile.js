@@ -51,6 +51,8 @@ const lintFlags = [
 gulp.task('pbuild', ['build-simple', 'build-debug', 'build-prod']);
 gulp.task('build', () => runSequence('build-simple', 'build-debug', 'build-prod'));
 
+gulp.task('watch-simple', () => gulp.watch('vxq/**', ['build-simple']));
+
 gulp.task('build-simple', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     compilation_level: 'SIMPLE_OPTIMIZATIONS',

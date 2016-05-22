@@ -29,15 +29,35 @@ exports.World = class {
     this.proportionalVelocityLossPerSecond = 0.2;
 
     let then = +new Date;
-    this.interval = setInterval(() => {
+    /** @type {?number} */
+    this.tickInterval = setInterval(() => {
       const now = +new Date;
       const dt = (now - then) / 1000;
       then = now;
-
-      for (const unit of this.units) {
-        unit.tick(dt);
-      }
+      this.tick(dt);
     }, 20);
+  }
+
+  tick(/** number */ dt) {
+    for (const unit of this.units) {
+      if (dt > 0 && (unit.vX != 0 || unit.vY != 0)) {
+        unit.x += dt * unit.vX;
+        unit.y += dt * unit.vY;
+
+        const speed = Math.sqrt(unit.vX * unit.vX + unit.vY * unit.vY);
+        const newSpeed = Math.max(
+            0,
+            speed -
+            dt * unit.world.absoluteVelocityLossPerSecond -
+            dt * speed * unit.world.proportionalVelocityLossPerSecond);
+
+        // fix me
+        unit.vX *= newSpeed / speed;
+        unit.vY *= newSpeed / speed;
+
+        unit.changeCallbacks.call();
+      }
+    }
   }
 
   /** @override */ get agents() {
@@ -90,26 +110,6 @@ exports.Unit = class {
 
     /** @const */
     this.changeCallbacks = new util.CallbackList;
-  }
-
-  tick(/** number */ dt) {
-    if (dt > 0 && (this.vX != 0 || this.vY != 0)) {
-      this.x += dt * this.vX;
-      this.y += dt * this.vY;
-
-      const speed = Math.sqrt(this.vX * this.vX + this.vY * this.vY);
-      const newSpeed = Math.max(
-          0,
-          speed -
-              dt * this.world.absoluteVelocityLossPerSecond -
-              dt * speed * this.world.proportionalVelocityLossPerSecond);
-
-      // fix me
-      this.vX *= newSpeed / speed;
-      this.vY *= newSpeed / speed;
-
-      this.changeCallbacks.call();
-    }
   }
 
   /** @override */ goTo(x, y, z) {

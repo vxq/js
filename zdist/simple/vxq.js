@@ -726,14 +726,24 @@ var module$exports$vxq$worlds$flatland = {World:function($width$$, $height$$) {
   this.absoluteVelocityLossPerSecond = 2;
   this.proportionalVelocityLossPerSecond = .2;
   var $then$$ = +new Date;
-  this.interval = setInterval(function() {
-    var $$jscomp$iter$1$$ = +new Date, $dt$$ = ($$jscomp$iter$1$$ - $then$$) / 1E3;
-    $then$$ = $$jscomp$iter$1$$;
-    for (var $$jscomp$iter$1$$ = $jscomp.makeIterator($$jscomp$this$$.units), $$jscomp$key$unit$$ = $$jscomp$iter$1$$.next();!$$jscomp$key$unit$$.done;$$jscomp$key$unit$$ = $$jscomp$iter$1$$.next()) {
-      $$jscomp$key$unit$$.value.tick($dt$$);
-    }
+  this.tickInterval = setInterval(function() {
+    var $now$$ = +new Date, $dt$$ = ($now$$ - $then$$) / 1E3;
+    $then$$ = $now$$;
+    $$jscomp$this$$.tick($dt$$);
   }, 20);
 }};
+module$exports$vxq$worlds$flatland.World.prototype.tick = function $module$exports$vxq$worlds$flatland$World$$tick$($dt$$) {
+  for (var $$jscomp$iter$1$$ = $jscomp.makeIterator(this.units), $$jscomp$key$unit_unit$$ = $$jscomp$iter$1$$.next();!$$jscomp$key$unit_unit$$.done;$$jscomp$key$unit_unit$$ = $$jscomp$iter$1$$.next()) {
+    if ($$jscomp$key$unit_unit$$ = $$jscomp$key$unit_unit$$.value, 0 < $dt$$ && (0 != $$jscomp$key$unit_unit$$.vX || 0 != $$jscomp$key$unit_unit$$.vY)) {
+      $$jscomp$key$unit_unit$$.x += $dt$$ * $$jscomp$key$unit_unit$$.vX;
+      $$jscomp$key$unit_unit$$.y += $dt$$ * $$jscomp$key$unit_unit$$.vY;
+      var $speed$$ = Math.sqrt($$jscomp$key$unit_unit$$.vX * $$jscomp$key$unit_unit$$.vX + $$jscomp$key$unit_unit$$.vY * $$jscomp$key$unit_unit$$.vY), $newSpeed$$ = Math.max(0, $speed$$ - $dt$$ * $$jscomp$key$unit_unit$$.world.absoluteVelocityLossPerSecond - $dt$$ * $speed$$ * $$jscomp$key$unit_unit$$.world.proportionalVelocityLossPerSecond);
+      $$jscomp$key$unit_unit$$.vX *= $newSpeed$$ / $speed$$;
+      $$jscomp$key$unit_unit$$.vY *= $newSpeed$$ / $speed$$;
+      $$jscomp$key$unit_unit$$.changeCallbacks.call();
+    }
+  }
+};
 Object.defineProperties(module$exports$vxq$worlds$flatland.World.prototype, {agents:{configurable:!0, enumerable:!0, get:function() {
   return new Set(this.units);
 }}});
@@ -748,17 +758,6 @@ module$exports$vxq$worlds$flatland.Unit = function $module$exports$vxq$worlds$fl
   this.targetMaxSpeed = 4;
   this.currentMove = null;
   this.changeCallbacks = new module$exports$vxq$util.CallbackList;
-};
-module$exports$vxq$worlds$flatland.Unit.prototype.tick = function $module$exports$vxq$worlds$flatland$Unit$$tick$($dt$$) {
-  if (0 < $dt$$ && (0 != this.vX || 0 != this.vY)) {
-    this.x += $dt$$ * this.vX;
-    this.y += $dt$$ * this.vY;
-    var $speed$$ = Math.sqrt(this.vX * this.vX + this.vY * this.vY);
-    $dt$$ = Math.max(0, $speed$$ - $dt$$ * this.world.absoluteVelocityLossPerSecond - $dt$$ * $speed$$ * this.world.proportionalVelocityLossPerSecond);
-    this.vX *= $dt$$ / $speed$$;
-    this.vY *= $dt$$ / $speed$$;
-    this.changeCallbacks.call();
-  }
 };
 module$exports$vxq$worlds$flatland.Unit.prototype.goTo = function $module$exports$vxq$worlds$flatland$Unit$$goTo$($x$$, $y$$, $z$$) {
   var $$jscomp$this$$ = this;
