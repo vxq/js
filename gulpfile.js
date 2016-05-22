@@ -22,7 +22,7 @@ const flags = {
             `: typeof this == 'object' ? this`,
             `: null,`,
           `typeof window == 'object' ? window : null,`,
-          `typeof module == 'object' ? module : {}`,
+          `typeof module == 'object' ? module : null`,
       `)`
     ].join('');
   },

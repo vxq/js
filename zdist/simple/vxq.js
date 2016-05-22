@@ -897,4 +897,4 @@ module$contents$vxq$main_VXQModule.prototype.exportFromClosure = function $modul
 var module$exports$vxq$main = new module$contents$vxq$main_VXQModule;
 module$exports$vxq$main.exportFromClosure();
 
-}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : {})
+}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : null)

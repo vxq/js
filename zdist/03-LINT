@@ -1,6 +1,6 @@
 
-> vxq@0.1.0-dev.37 lint /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.38 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-[20:37:32] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[20:37:32] Starting 'lint'...
+[22:15:25] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[22:15:25] Starting 'lint'...
