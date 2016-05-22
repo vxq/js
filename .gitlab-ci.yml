@@ -1,0 +1,9 @@
+pages:
+  script:
+  - mkdir /p public/
+  - cp -r zdist/ examples/ test/ public/
+  artifacts:
+    paths:
+    - public/
+  only:
+  - gh-pages
