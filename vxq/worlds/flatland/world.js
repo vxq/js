@@ -88,7 +88,6 @@ class World {
       const inertia = unit.mass * unit.interialAmplification;
       const f = forces.get(unit);
       const dV = f.scale(dt / inertia);
-      console.log(`dV from forces ${dV}`);
       unit.velocity = unit.velocity.add(dV);
 
       const speed = unit.velocity.magnitude();
@@ -97,7 +96,6 @@ class World {
           speed - dt * speed * this.proportionalVelocityLossPerSecond);
 
       if (newSpeed >= this.minNonzeroSpeed || (f.magnitude() / inertia > this.minNonzeroSpeed)) {
-        console.log(String(newSpeed));
         unit.velocity = unit.velocity.withMagnitude(newSpeed);
       } else {
         unit.velocity = V(0, 0);

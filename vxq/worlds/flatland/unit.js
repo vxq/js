@@ -90,7 +90,7 @@ class Unit {
         // Mitigate overshooting by thrusting based on position predicted two
         // seconds from now.
         const projectedPosition =
-            this.position.add(this.velocity.scale(2));
+            this.position.add(this.velocity.scale(1));
 
         const projectedDisplacement = V(x, y).subtract(projectedPosition);
 

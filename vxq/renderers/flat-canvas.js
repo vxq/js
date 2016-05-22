@@ -75,6 +75,27 @@ class AgentRender {
 }
 
 
+class Pointer {
+  constructor(
+      /** !VXQ.World */ world,
+      /** !VXQ.Agent */ source,
+      /** number */ x,
+      /** number */ y
+  ) {
+    /** @const */
+    this.world = world;
+    /** @const */
+    this.source = source;
+    /** @const */
+    this.x = x;
+    /** @const */
+    this.y = y;
+    /** @type {boolean} */
+    this.active = false;
+  }
+}
+
+
 /** @implements {VXQ.Renderer} */
 exports = class {
   constructor(/** !VXQ.World */ world) {
@@ -87,6 +108,32 @@ exports = class {
 
     this.canvas.width = this.world.width;
     this.canvas.height = this.world.height;
+
+    this.canvas.style.cursor = 'crosshair';
+
+    /** @const {!Set<!Pointer>} */
+    this.pointers = new Set();
+
+    this.canvas.addEventListener('click', event => {
+      const x =
+          this.canvas.width * (
+              event.pageX - this.canvas.offsetLeft
+          ) / this.canvas.offsetWidth;
+      const y =
+          this.canvas.height * (
+              event.pageY - this.canvas.offsetTop
+          ) / this.canvas.offsetHeight;
+
+      let lastAgent;
+      for (lastAgent of this.world.agents) {}
+      if (lastAgent) {
+        const pointer = new Pointer(this.world, lastAgent, x, y);
+        this.pointers.add(pointer);
+        lastAgent.goTo(x, y, 0).then(() => {
+          this.pointers.delete(pointer);
+        });
+      }
+    });
 
     /** @const */
     this.context = this.canvas.getContext('2d');
@@ -118,6 +165,18 @@ exports = class {
       util.shuffle(renderers);
       for (const renderer of renderers) {
         renderer.update();
+      }
+
+      const pointers = Array.from(this.pointers);
+      util.shuffle(pointers);
+      for (const pointer of pointers) {
+        debugger;
+
+        this.context.strokeStyle = 'rgba(210, 40, 40, 0.75)';
+        this.context.beginPath();
+        this.context.moveTo(pointer.source.x, pointer.source.y);
+        this.context.lineTo(pointer.x, pointer.y);
+        this.context.stroke();
       }
     } else {
       this.context.fillStyle = `black`;
