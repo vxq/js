@@ -48,10 +48,16 @@ const lintFlags = [
     'deprecated'
 ];
 
-gulp.task('pbuild', ['build-simple', 'build-debug', 'build-prod']);
-gulp.task('build', () => runSequence('build-simple', 'build-debug', 'build-prod'));
+gulp.task('pbuild', ['copy-deps', 'build-simple', 'build-debug', 'build-prod']);
+gulp.task('build', () => runSequence(
+    'copy-deps', 'build-simple', 'build-debug', 'build-prod'));
 
-gulp.task('watch-simple', ['build-simple'], () =>
+gulp.task('copy-deps', () => gulp.src(
+    'node_modules/sw-toolbox/sw-toolbox.js',
+    {base: 'node_modules/sw-toolbox/'}
+).pipe(gulp.dest('zdist')));
+
+gulp.task('watch-simple', ['copy-deps', 'build-simple'], () =>
     gulp.watch('vxq/**', ['build-simple']));
 
 gulp.task('build-simple', () =>

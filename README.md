@@ -6,7 +6,7 @@ TBD. A sketch.
 
 ## Examples
 
-- [Limited in-browser examples from latest (pre)release](http://www.vxq.ca/js/examples/).
+- [Limited in-browser examples from latest (pre)release](https://vxq.github.io/js/examples/).
 
 ## Developing
 
