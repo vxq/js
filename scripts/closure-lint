@@ -39,4 +39,5 @@ java \
   --externs=vxq/environment.externs.js \
   --js_output_file=tmp/prod/vxq.js \
   \
-  vxq/{*/*,index,debug,testing,util,turtles}.js;
+  vxq/*/*.js \
+  vxq/{index,debug,testing,util,D}.js;

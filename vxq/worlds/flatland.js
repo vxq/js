@@ -40,13 +40,13 @@ exports.World = class {
     }, 20);
   }
 
-  get agents() {
+  /** @override */ get agents() {
     return new Set(this.units);
   }
 };
 
 
-/**@implements {VXQ.Agent} */
+/** @implements {VXQ.Agent} */
 exports.Unit = class {
   constructor(
     /** !vxq.worlds.flatland.World */ world,
