@@ -37,10 +37,7 @@ class World {
     let then = +new Date;
     /** @type {?number} */
     this.tickInterval = setInterval(() => {
-      const now = +new Date;
-      const dt = (now - then) / 1000;
-      then = now;
-      this.tick(dt);
+      this.tick(20);
     }, 20);
   }
 

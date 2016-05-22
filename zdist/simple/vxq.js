@@ -772,15 +772,12 @@ var $jscomp$destructuring$var0 = module$contents$vxq$worlds$flatland$Vector_Vect
   this.gravity = 6.67408;
   this.proportionalVelocityLossPerSecond = .05;
   this.minNonzeroSpeed = 10;
-  var $then$$ = +new Date;
   this.tickInterval = setInterval(function() {
-    var $now$$ = +new Date, $dt$$ = ($now$$ - $then$$) / 1E3;
-    $then$$ = $now$$;
-    $$jscomp$this$$.tick($dt$$);
+    $$jscomp$this$$.tick(20);
   }, 20);
 };
-module$contents$vxq$worlds$flatland$World_World.prototype.tick = function $module$contents$vxq$worlds$flatland$World_World$$tick$($$jscomp$iter$4$$1_dt$$) {
-  if (!(0 >= $$jscomp$iter$4$$1_dt$$)) {
+module$contents$vxq$worlds$flatland$World_World.prototype.tick = function $module$contents$vxq$worlds$flatland$World_World$$tick$($$jscomp$iter$4$$) {
+  if (!(0 >= $$jscomp$iter$4$$)) {
     for (var $forces$$ = new Map, $$jscomp$iter$2$$ = $jscomp.makeIterator(this.units), $$jscomp$key$unit_force_unit$11$$ = $$jscomp$iter$2$$.next();!$$jscomp$key$unit_force_unit$11$$.done;$$jscomp$key$unit_force_unit$11$$ = $$jscomp$iter$2$$.next()) {
       var $$jscomp$iter$3_unit$$ = $$jscomp$key$unit_force_unit$11$$.value, $$jscomp$key$unit_force_unit$11$$ = module$contents$vxq$worlds$flatland$World_V(0, 0), $$jscomp$key$unit_force_unit$11$$ = $$jscomp$key$unit_force_unit$11$$.add($$jscomp$iter$3_unit$$.thrust);
       if (0 !== this.gravity) {
@@ -798,13 +795,13 @@ module$contents$vxq$worlds$flatland$World_World.prototype.tick = function $modul
     $$jscomp$iter$2$$ = [];
     $$jscomp$iter$3_unit$$ = $jscomp.makeIterator(this.units);
     for ($$jscomp$key$unit_force_unit$11$$ = $$jscomp$iter$3_unit$$.next();!$$jscomp$key$unit_force_unit$11$$.done;$$jscomp$key$unit_force_unit$11$$ = $$jscomp$iter$3_unit$$.next()) {
-      $$jscomp$key$unit_force_unit$11$$ = $$jscomp$key$unit_force_unit$11$$.value, $$jscomp$iter$1$$ = $$jscomp$key$unit_force_unit$11$$.mass * $$jscomp$key$unit_force_unit$11$$.interialAmplification, $$jscomp$key$other_f$$4_fG_other$$ = $forces$$.get($$jscomp$key$unit_force_unit$11$$), $dV_displacement_newSpeed_speed$$ = $$jscomp$key$other_f$$4_fG_other$$.scale($$jscomp$iter$4$$1_dt$$ / $$jscomp$iter$1$$), $$jscomp$key$unit_force_unit$11$$.velocity = $$jscomp$key$unit_force_unit$11$$.velocity.add($dV_displacement_newSpeed_speed$$), 
-      $dV_displacement_newSpeed_speed$$ = $$jscomp$key$unit_force_unit$11$$.velocity.magnitude(), $dV_displacement_newSpeed_speed$$ = Math.max(0, $dV_displacement_newSpeed_speed$$ - $$jscomp$iter$4$$1_dt$$ * $dV_displacement_newSpeed_speed$$ * this.proportionalVelocityLossPerSecond), $dV_displacement_newSpeed_speed$$ >= this.minNonzeroSpeed || $$jscomp$key$other_f$$4_fG_other$$.magnitude() / $$jscomp$iter$1$$ > this.minNonzeroSpeed ? $$jscomp$key$unit_force_unit$11$$.velocity = $$jscomp$key$unit_force_unit$11$$.velocity.withMagnitude($dV_displacement_newSpeed_speed$$) : 
-      $$jscomp$key$unit_force_unit$11$$.velocity = module$contents$vxq$worlds$flatland$World_V(0, 0), 0 < $$jscomp$key$unit_force_unit$11$$.velocity.magnitude() && ($$jscomp$iter$1$$ = $$jscomp$key$unit_force_unit$11$$.velocity.scale($$jscomp$iter$4$$1_dt$$), $$jscomp$key$unit_force_unit$11$$.position = $$jscomp$key$unit_force_unit$11$$.position.add($$jscomp$iter$1$$), $$jscomp$iter$2$$.push($$jscomp$key$unit_force_unit$11$$));
+      $$jscomp$key$unit_force_unit$11$$ = $$jscomp$key$unit_force_unit$11$$.value, $$jscomp$iter$1$$ = $$jscomp$key$unit_force_unit$11$$.mass * $$jscomp$key$unit_force_unit$11$$.interialAmplification, $$jscomp$key$other_f$$4_fG_other$$ = $forces$$.get($$jscomp$key$unit_force_unit$11$$), $dV_displacement_newSpeed_speed$$ = $$jscomp$key$other_f$$4_fG_other$$.scale($$jscomp$iter$4$$ / $$jscomp$iter$1$$), $$jscomp$key$unit_force_unit$11$$.velocity = $$jscomp$key$unit_force_unit$11$$.velocity.add($dV_displacement_newSpeed_speed$$), 
+      $dV_displacement_newSpeed_speed$$ = $$jscomp$key$unit_force_unit$11$$.velocity.magnitude(), $dV_displacement_newSpeed_speed$$ = Math.max(0, $dV_displacement_newSpeed_speed$$ - $$jscomp$iter$4$$ * $dV_displacement_newSpeed_speed$$ * this.proportionalVelocityLossPerSecond), $dV_displacement_newSpeed_speed$$ >= this.minNonzeroSpeed || $$jscomp$key$other_f$$4_fG_other$$.magnitude() / $$jscomp$iter$1$$ > this.minNonzeroSpeed ? $$jscomp$key$unit_force_unit$11$$.velocity = $$jscomp$key$unit_force_unit$11$$.velocity.withMagnitude($dV_displacement_newSpeed_speed$$) : 
+      $$jscomp$key$unit_force_unit$11$$.velocity = module$contents$vxq$worlds$flatland$World_V(0, 0), 0 < $$jscomp$key$unit_force_unit$11$$.velocity.magnitude() && ($$jscomp$iter$1$$ = $$jscomp$key$unit_force_unit$11$$.velocity.scale($$jscomp$iter$4$$), $$jscomp$key$unit_force_unit$11$$.position = $$jscomp$key$unit_force_unit$11$$.position.add($$jscomp$iter$1$$), $$jscomp$iter$2$$.push($$jscomp$key$unit_force_unit$11$$));
     }
     module$exports$vxq$util.shuffle($$jscomp$iter$2$$);
-    $$jscomp$iter$4$$1_dt$$ = $jscomp.makeIterator($$jscomp$iter$2$$);
-    for ($$jscomp$key$unit_force_unit$11$$ = $$jscomp$iter$4$$1_dt$$.next();!$$jscomp$key$unit_force_unit$11$$.done;$$jscomp$key$unit_force_unit$11$$ = $$jscomp$iter$4$$1_dt$$.next()) {
+    $$jscomp$iter$4$$ = $jscomp.makeIterator($$jscomp$iter$2$$);
+    for ($$jscomp$key$unit_force_unit$11$$ = $$jscomp$iter$4$$.next();!$$jscomp$key$unit_force_unit$11$$.done;$$jscomp$key$unit_force_unit$11$$ = $$jscomp$iter$4$$.next()) {
       $$jscomp$key$unit_force_unit$11$$.value.changeCallbacks.call();
     }
   }
@@ -835,7 +832,7 @@ module$contents$vxq$worlds$flatland$Unit_Unit.prototype.goTo = function $module$
         $updateThrust$$();
       });
       var $updateThrust$$ = function $$updateThrust$$$() {
-        var $displacement$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($$jscomp$this$$.position), $projectedDisplacement_projectedPosition$$ = $$jscomp$this$$.position.add($$jscomp$this$$.velocity.scale(1)), $projectedDisplacement_projectedPosition$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($projectedDisplacement_projectedPosition$$);
+        var $displacement$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($$jscomp$this$$.position), $projectedDisplacement_projectedPosition$$ = $$jscomp$this$$.position.add($$jscomp$this$$.velocity.scale(.5)), $projectedDisplacement_projectedPosition$$ = module$contents$vxq$worlds$flatland$Unit_V($x$$, $y$$).subtract($projectedDisplacement_projectedPosition$$);
         $displacement$$.magnitude() <= $$jscomp$this$$.targetMaxDistance && $$jscomp$this$$.velocity.magnitude() <= $$jscomp$this$$.targetMaxSpeed ? ($$jscomp$this$$.thrust = module$contents$vxq$worlds$flatland$Unit_V(0, 0), $resolve$$()) : $$jscomp$this$$.thrust = $projectedDisplacement_projectedPosition$$.withMagnitude(175 * $$jscomp$this$$.mass * $$jscomp$this$$.interialAmplification);
       };
       $updateThrust$$();
