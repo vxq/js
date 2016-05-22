@@ -166,8 +166,9 @@ class World {
 
     // Apply forces and artificial friction.
     for (const unit of this.units) {
+      const inertia = unit.mass * unit.interialAmplification;
       const f = forces.get(unit);
-      const dV = f.scale(dt / unit.mass);
+      const dV = f.scale(dt / inertia);
       console.log(`dV from forces ${dV}`);
       unit.velocity = unit.velocity.add(dV);
 
@@ -176,7 +177,7 @@ class World {
           0,
           speed - dt * speed * this.proportionalVelocityLossPerSecond);
 
-      if (newSpeed >= this.minNonzeroSpeed || (f.magnitude() / unit.mass > this.minNonzeroSpeed)) {
+      if (newSpeed >= this.minNonzeroSpeed || (f.magnitude() / inertia > 10 * this.minNonzeroSpeed)) {
         console.log(String(newSpeed));
         unit.velocity = unit.velocity.withMagnitude(newSpeed);
       } else {
@@ -222,8 +223,15 @@ class Unit {
     /** @const */
     this.radius = 4;
 
-    /** @const */
+    /** @type {number} */
     this.mass = 1000000000000000;
+
+    /**
+     * @type {number} A factor by which to multiply the mass of the object
+     * when determining its resistance to force. Infinity indicates an
+     * immovable object.
+     */
+    this.interialAmplification = 1.0;
 
     /**
      * @type {?Vector} The position this unit is currently trying to remain

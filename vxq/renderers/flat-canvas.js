@@ -56,15 +56,15 @@ class AgentRender {
     const g = this.renderer.context;
 
     // slightly dim the surrounding area
-    g.fillStyle = 'rgba(0, 0, 0, 0.75)';
+    g.fillStyle = 'rgba(0, 0, 0, 0.25)';
 
     g.beginPath();
     g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
     g.fill();
 
     // clearly mark current location
-    g.fillStyle = `hsla(${this.hueSeed}, 50%, 50%, 1.0)`;
-    g.strokeStyle = 'rgba(255, 255, 255, 1.0)';
+    g.fillStyle = `hsla(${this.hueSeed}, 50%, 50%, 0.5)`;
+    g.strokeStyle = 'rgba(255, 255, 255, 0.5)';
 
     g.beginPath();
     g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
@@ -110,7 +110,7 @@ exports = class {
 
   tick(/** number */ dt) {
     if (util.elementInView(this.canvas)) {
-      this.context.fillStyle = `rgba(0, 0, 0, ${0.5 * dt})`;
+      this.context.fillStyle = `rgba(0, 0, 0, ${0.25 * dt})`;
     } else {
       this.context.fillStyle = `black`;
     }

@@ -30,21 +30,25 @@ class VXQModule {
     const r = () =>
         0.5 + (Math.random() + Math.random() + Math.random()) / 3;
 
-    const unit1 = new flatland.Unit(world, 50, 50);
-    unit1.velocity = flatland.V(150 * r(), -50 * r());
+    const unit1 = new flatland.Unit(world, 150, 50);
+    unit1.velocity = flatland.V(100, -15);
     world.units.add(unit1);
 
     const unit2 = new flatland.Unit(world, 400, 200);
-    unit2.velocity = flatland.V(8 * r(), 200 * r());
+    unit2.velocity = flatland.V(8, 150);
     world.units.add(unit2);
 
     const unit3 = new flatland.Unit(world, 150, 175);
-    unit3.velocity = flatland.V(-4 * r(), 100 * r());
+    unit3.velocity = flatland.V(-25, 125);
     world.units.add(unit3);
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 4; i++) {
       const planetComponent =
           new flatland.Unit(world, 200 + r() * 50, 200 + r() * 50);
+      planetComponent.mass *= 10;
+      planetComponent.interialAmplification *= 10;
+      planetComponent.velocity =
+          flatland.V(5 - 10 * r(), 5 - 10 * r());
       world.units.add(planetComponent);
     }
 
