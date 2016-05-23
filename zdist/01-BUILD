@@ -1,13 +1,20 @@
 
-> vxq@0.1.0-dev.72 build /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.73 build /Users/j/src/github.com/vxq/js
 > gulp build
 
-[11:26:31] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[11:26:31] Starting 'build'...
-[11:26:31] Starting 'build-simple'...
-[11:26:31] Finished 'build' after 10 ms
-[11:26:34] Finished 'build-simple' after 2.63 s
-[11:26:34] Starting 'build-debug'...
-[11:26:37] Finished 'build-debug' after 3.4 s
-[11:26:37] Starting 'build-prod'...
-[11:26:40] Finished 'build-prod' after 3.48 s
+[19:50:18] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[19:50:18] Starting 'build'...
+[19:50:18] Starting 'build-simple'...
+[19:50:18] Finished 'build' after 9.52 ms
+[19:50:21] gulp-google-closure-compiler: /vxq/worlds/flatland/unit.js:12: WARNING - property commandQueue on interface VXQ.Agent is not implemented by type module$contents$vxq$worlds$flatland$Unit_Unit
+  constructor(
+  ^
+
+/vxq/worlds/turtles.js:36: WARNING - property commandQueue on interface VXQ.Agent is not implemented by type module$exports$vxq$worlds$turtles.Turtle
+  constructor() {
+  ^
+
+0 error(s), 2 warning(s), 93.3% typed
+
+[19:50:21] Finished 'build-simple' after 2.98 s
+[19:50:21] Starting 'build-debug'...

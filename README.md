@@ -7,6 +7,9 @@ some unit around. Initially we may simply use the first unit -- and highlight
 it in green. We may also want to extend the `VXQ.Agent` interface with an array
 of known waypoints.
 
+Instead of having opaque changed promises, we may want the waypoint system to
+be transparent, and support the replace/append operations like in an RST game.
+
 ---
 
 [![vxq/js on github (code and issues)](https://img.shields.io/github/commits-since/vxq/js/9468d4c1.svg?label=vxq/js+on+github)](https://github.com/vxq/js) [![and on gitlab (code)](https://img.shields.io/badge/gitlab-also-blue.png)](https://gitlab.com/vxq/js) [![and on bitbucket (code)](https://img.shields.io/badge/bitbucket-also-blue.png)](https://bitbucket.org/vxq/js) [![and vxq on npm (package manager)](https://img.shields.io/npm/v/vxq.svg?label=vxq+on+npm)](https://www.npmjs.com/package/vxq) [![and on travis (continuous integration)](https://img.shields.io/travis/vxq/js/master.svg?label=travis)](https://travis-ci.org/vxq/js/branches) [![and on gemnasium (dependency monitor)](https://img.shields.io/gemnasium/vxq/js.svg)](https://gemnasium.com/github.com/vxq/js)

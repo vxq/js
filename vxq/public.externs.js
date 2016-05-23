@@ -95,4 +95,37 @@ VXQ.Agent = class {
    *     finished attempting to reach the destination.
    */
   goTo(x, y, z) {}
+
+  /**
+   * An array of commands currently queued for this Agent.
+   * @return {!Array<!VXQ.AgentCommand>}
+   */
+  get commandQueue() {}
+};
+
+
+/**
+ * A command that has been given to an agent.
+ */
+VXQ.AgentCommand = class {
+  /** @return {?VXQ.CommandTarget} */
+  get precedingCommand() {}
+
+  /** @return {!VXQ.CommandTarget} */
+  get target() {}
+
+  /** @return {!Promise<!VXQ.AgentCommand>} */
+  get done() {}
+};
+
+
+/**
+ * The target of command, with associated coordinates.
+ */
+VXQ.CommandTarget = class {
+  /** @return {number} */
+  get x() {}
+
+  /** @return {number} */
+  get y() {}
 };
