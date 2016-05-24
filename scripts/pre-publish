@@ -5,12 +5,7 @@ npm run clean;
 npm run build             2>&1 | tee zdist/01-BUILD;
 npm run test              2>&1 | tee zdist/02-TEST;
 if [ -z "${VXQ_SKIP_LINT:-}" ]; then
-  (npm run lint           2>&1 | tee zdist/03-LINT) || \
-    # It seemed like certain errors messages weren't being passed through
-    # the npm/gulp wrapper correctly, so for now we'll also run Closure
-    # directly whenever there's a lint failure, to ensure that all error
-    # messages are visible.
-    (scripts/closure-lint 2>&1 | tee zdist/04-RELINT && false);
+npm run lint              2>&1 | tee zdist/03-LINT;
 else
   echo "${VXQ_SKIP_LINT}" 2>&1 | tee zdist/05-LINT-SKIPPED;
 fi
