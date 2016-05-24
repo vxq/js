@@ -43,9 +43,12 @@ const flags = {
     'vxq/environment.externs.js'
   ]
 };
-const lintFlags = [
-    'lintChecks', 'fileoverviewTags', 'nonStandardJsDocs', 'suspiciousCode',
-    'deprecated'
+
+const lintErrors = [].concat(flags.jscomp_error, flags.jscomp_warning, [
+  'fileoverviewTags', 'nonStandardJsDocs', 'deprecated'
+]);
+const lintWarnings = [
+  'lintChecks', 'suspiciousCode'
 ];
 
 gulp.task('pbuild', ['copy-deps', 'build-simple', 'build-debug', 'build-prod']);
@@ -97,7 +100,6 @@ gulp.task('lint', () =>
     // (it should be identical to prod.js anyway), so we put it here.
     js_output_file: 'tmp/prod/vxq.js',
     dependency_mode: 'LOOSE',
-    jscomp_error: [].concat(
-        lintFlags, flags.jscomp_warning, flags.jscomp_error),
-    jscomp_warning: []
+    jscomp_error: lintErrors,
+    jscomp_warning: lintWarnings
   }))).pipe(gulp.dest(dest)));

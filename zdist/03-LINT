@@ -1,48 +1,42 @@
 
-> vxq@0.1.0-dev.80 lint /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.81 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-(node:3329) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
-[00:08:43] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[00:08:43] Starting 'lint'...
+(node:4025) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
+[00:20:11] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[00:20:11] Starting 'lint'...
+[00:20:15] gulp-google-closure-compiler: /vxq/index.js:13: WARNING - missing require: 'module$exports$vxq$debug'
+    debug.log('Let\'s testTheTurtles()!');
+    ^
 
-events.js:160
-      throw er; // Unhandled 'error' event
-      ^
-Error: Compilation error: 
+/vxq/index.js:57: WARNING - missing require: 'module$exports$vxq$worlds$flatland'
+          flatland.V(5 - 10 * r(), 5 - 10 * r());
+          ^
 
-java -jar /Users/j/src/github.com/vxq/js/node_modules/google-closure-compiler/compiler.jar --compilation_level=ADVANCED_OPTIMIZATIONS --use_types_for_optimization=true --dependency_mode=LOOSE --warning_level=VERBOSE --output_wrapper=-function(window, module) {
-%output%
-}.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : null) --language_in=ECMASCRIPT6_STRICT --language_out=ECMASCRIPT5_STRICT --entry_point=vxq.main --jscomp_error=lintChecks --jscomp_error=fileoverviewTags --jscomp_error=nonStandardJsDocs --jscomp_error=suspiciousCode --jscomp_error=deprecated --jscomp_error=accessControls --jscomp_error=undefinedVars --jscomp_error=undefinedNames --jscomp_error=visibility --jscomp_error=externsValidation --jscomp_error=checkTypes --jscomp_error=missingReturn --jscomp_error=checkVars --jscomp_error=missingProvide --jscomp_error=missingRequire --jscomp_error=missingProperties --externs=vxq/public.externs.js --externs=vxq/environment.externs.js --js_output_file=tmp/prod/vxq.js --json_streams BOTH
+/vxq/index.js:85: WARNING - missing require: 'module$exports$vxq$testing'
+    testing.assertEquals(100, turtle.y);
+    ^
 
-/vxq/worlds/flatland/vector.js:89: ERROR - Function must have JSDoc.
-const V = Vector.V = (x, y) => new Vector(x, y);
-                     ^
+/vxq/renderers/flat-canvas.js:101: WARNING - missing require: 'module$exports$vxq$util'
+exports = class {
+^
 
-1 error(s), 0 warning(s)
+/vxq/worlds/flatland/unit.js:83: WARNING - Value assigned to local variable cancel is never read
+      const cancel = this.changeCallbacks.add(() => {
+            ^
 
+/vxq/worlds/flatland/vector.js:54: WARNING - missing require: 'module$exports$vxq$debug'
+    debug.assert(
+    ^
 
+/vxq/worlds/flatland/world.js:108: WARNING - missing require: 'module$exports$vxq$util'
+    util.shuffle(changedUnits);
+    ^
 
+/vxq/worlds/turtles.js:93: WARNING - missing require: 'module$exports$vxq$debug'
+    debug.assert(Number.isFinite(z));
+    ^
 
-npm ERR! Darwin 15.4.0
-npm ERR! argv "/usr/local/bin/node" "/Users/j/src/github.com/vxq/js/node_modules/.bin/npm" "run" "lint"
-npm ERR! node v6.1.0
-npm ERR! npm  v3.9.2
-npm ERR! code ELIFECYCLE
-npm ERR! vxq@0.1.0-dev.80 lint: `gulp lint`
-npm ERR! Exit status 1
-npm ERR! 
-npm ERR! Failed at the vxq@0.1.0-dev.80 lint script 'gulp lint'.
-npm ERR! Make sure you have the latest version of node.js and npm installed.
-npm ERR! If you do, this is most likely a problem with the vxq package,
-npm ERR! not with npm itself.
-npm ERR! Tell the author that this fails on your system:
-npm ERR!     gulp lint
-npm ERR! You can get information on how to open an issue for this project with:
-npm ERR!     npm bugs vxq
-npm ERR! Or if that isn't available, you can get their info via:
-npm ERR!     npm owner ls vxq
-npm ERR! There is likely additional logging output above.
+0 error(s), 8 warning(s), 94.0% typed
 
-npm ERR! Please include the following file with any support request:
-npm ERR!     /Users/j/src/github.com/vxq/js/npm-debug.log
+[00:20:15] Finished 'lint' after 3.51 s
