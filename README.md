@@ -1,16 +1,16 @@
 TBD
 ===
 
-  [github]:       https://github.com/vxq/js.git
-  [gitlab]:       https://gitlab.com/vxq/js.git
-  [bitbucket]:    https://bitbucket.org/vxq/js.git
-  [npm]:          https://www.npmjs.com/package/vxq
+  [github]:        https://github.com/vxq/js.git
+  [gitlab]:        https://gitlab.com/vxq/js.git
+  [bitbucket]:     https://bitbucket.org/vxq/js.git
+  [npm]:           https://www.npmjs.com/package/vxq
 
-  [travis]:       https://travis-ci.org/vxq/js/branches
-  [dep-monitor]:  https://gemnasium.com/github.com/vxq/js
+  [travis]:        https://travis-ci.org/vxq/js/branches
+  [dep-monitor]:   https://gemnasium.com/github.com/vxq/js
   
-  [examples.gh]:  https://vxq.github.io/js/examples/
-  [examples.gl]:  https://vxq.gitlab.io/js/examples/
+  [examples.gh]:   https://vxq.github.io/js/examples/
+  [examples.gl]:   https://vxq.gitlab.io/js/examples/
   
   [local-example]: examples/index.html
 
