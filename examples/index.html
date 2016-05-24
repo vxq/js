@@ -1,7 +1,17 @@
 <!doctype html>
 <body hidden>
 
-<base href="../zdist/" />
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../sw.js').then(function() {
+      console.info('ServiceWorker registered.');
+    }, function(error) {
+      console.warn(error);
+    });
+  } else {
+    console.info('ServiceWorker unavailable.');
+  }
+</script>
 
 <style>
   html {
@@ -69,9 +79,9 @@
 </h1>
 
 <section>
-  <h2><a href="./simple/vxq.js">simple</a></h2>
+  <h2><a href="../zdist/simple/vxq.js">simple</a></h2>
 
-  <article><script src="./simple/vxq.js"></script><script>
+  <article><script src="../zdist/simple/vxq.js"></script><script>
     const simpleFlatland =
         vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
     const simpleTurtles =
@@ -79,9 +89,9 @@
     delete vxq;
   </script></article>
 </section><section>
-  <h2><a href="./debug/vxq.js">debug</a></h2>
+  <h2><a href="../zdist/debug/vxq.js">debug</a></h2>
 
-  <article><script src="./debug/vxq.js"></script><script>
+  <article><script src="../zdist/debug/vxq.js"></script><script>
     const debugFlatland =
         vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
     const debugTurtles =
@@ -89,9 +99,9 @@
     delete vxq;
   </script></article>
 </section><section>
-  <h2><a href="./prod/vxq.js">prod</a></h2>
+  <h2><a href="../zdist/prod/vxq.js">prod</a></h2>
 
-  <article><script src="./prod/vxq.js"></script><script>
+  <article><script src="../zdist/prod/vxq.js"></script><script>
     const prodFlatland =
         vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
     const prodTurtles =

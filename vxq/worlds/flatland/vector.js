@@ -86,7 +86,8 @@ class Vector {
 }
 
 
-const V = Vector.V = (x, y) => new Vector(x, y);
+/** @return {!Vector} A new vector with the specified coordinates. */
+const V = Vector.V = (/** number */ x, /** number */ y) => new Vector(x, y);
 
 
 exports = Vector;
