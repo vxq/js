@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.1.0-dev.83",
+  "version": "0.1.0-dev.87",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -17,7 +17,9 @@
     "zdist/",
     "vxq/",
     "scripts/",
-    "test/"
+    "test/",
+    "*.js/",
+    "*.md"
   ],
   "scripts": {
     "prepublish": "scripts/pre-publish",
