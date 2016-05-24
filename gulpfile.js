@@ -69,7 +69,6 @@ gulp.task('build-simple', () =>
     dependency_mode: 'LOOSE',
     use_types_for_optimization: false,
     js_output_file: 'simple/vxq.js',
-    output_manifest: 'zdist/simple/vxq.manifest',
     jscomp_error: [],
     jscomp_warning: [].concat(flags.jscomp_warning, flags.jscomp_error),
     formatting: 'pretty_print',
@@ -80,7 +79,6 @@ gulp.task('build-simple', () =>
 gulp.task('build-debug', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'debug/vxq.js',
-    output_manifest: 'zdist/debug/vxq.manifest',
     formatting: 'pretty_print',
     debug: true,
     define: ['vxq.D.DEBUG=true']
@@ -88,8 +86,7 @@ gulp.task('build-debug', () =>
 
 gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    js_output_file: 'prod/vxq.js',
-    output_manifest: 'zdist/prod/vxq.manifest'
+    js_output_file: 'prod/vxq.js'
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('lint', () =>
