@@ -1,0 +1,22 @@
+++ dirname scripts/closure-lint
++ base=scripts
++ closure_jar=scripts/../node_modules/google-closure-compiler/compiler.jar
++ output_wrapper='-function(window,module){
+%output%
+}.call(typeof
+window=='\''object'\''?window:typeof
+this=='\''object'\''?this:null,typeof
+window=='\''object'\''?window:null,typeof
+module=='\''object'\''?module:null)'
++ java -jar scripts/../node_modules/google-closure-compiler/compiler.jar --js 'vxq/**.js' --js '!vxq/**.externs.js' --externs=vxq/public.externs.js --externs=vxq/environment.externs.js --entry_point=vxq.main '--output_wrapper=-function(window,module){
+%output%
+}.call(typeof
+window=='\''object'\''?window:typeof
+this=='\''object'\''?this:null,typeof
+window=='\''object'\''?window:null,typeof
+module=='\''object'\''?module:null)' --js_output_file=tmp/prod/vxq.js --language_in=ECMASCRIPT6_STRICT --language_out=ECMASCRIPT5_STRICT --compilation_level=ADVANCED_OPTIMIZATIONS --use_types_for_optimization=true --warning_level=VERBOSE --jscomp_error=lintChecks --jscomp_error=fileoverviewTags --jscomp_error=nonStandardJsDocs --jscomp_error=suspiciousCode --jscomp_error=deprecated --jscomp_error=accessControls --jscomp_error=undefinedVars --jscomp_error=undefinedNames --jscomp_error=visibility --jscomp_error=externsValidation --jscomp_error=checkTypes --jscomp_error=missingReturn --jscomp_error=checkVars --jscomp_error=missingProvide --jscomp_error=missingRequire --jscomp_error=missingProperties
+vxq/worlds/flatland/vector.js:89: ERROR - Function must have JSDoc.
+const V = Vector.V = (x, y) => new Vector(x, y);
+                     ^
+
+1 error(s), 0 warning(s)
