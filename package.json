@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.1.0-dev.90",
+  "version": "0.1.0-dev.91",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -10,7 +10,8 @@
     "npm-check-updates": "^2.6.5",
     "run-sequence": "^1.1.5",
     "semver": "^5.1.0",
-    "tape": "^4.5.1"
+    "tape": "^4.5.1",
+    "sw-toolbox": "^3.1.1"
   },
   "files": [
     "index.js",
@@ -28,8 +29,5 @@
     "build": "gulp build",
     "test": "node test",
     "lint": "gulp lint"
-  },
-  "dependencies": {
-    "sw-toolbox": "^3.1.1"
   }
 }
