@@ -1,4 +1,5 @@
-# `vxq/js#goto`
+`vxq/js#goto` branch
+====================
 
 The purpose of this branch is to implement the .goTo() method for
 `flatland.Units`, allowing them to thrust their way towards a target.
@@ -11,12 +12,11 @@ Instead of having opaque changed promises, we may want the waypoint system to
 be transparent, and support the replace/append operations like in an RST game.
 
 Brainstorming
+-------------
 
 - Default Left Click - Select Unit
 - Right Click - Move to Location
 - M, Left Click - Move to Location
-
-
 - H, Left Click - Hold position permanently.
 - W, Left Click - Hold position until another unit comes within TBD.
   (Useful for delaying other commands.)
@@ -42,18 +42,44 @@ a unique visual element... but it could be too distracting.
 
 ---
 
-[![vxq/js on github (code and issues)](https://img.shields.io/github/commits-since/vxq/js/9468d4c1.svg?label=vxq/js+on+github)](https://github.com/vxq/js) [![and on gitlab (code)](https://img.shields.io/badge/gitlab-also-blue.png)](https://gitlab.com/vxq/js) [![and on bitbucket (code)](https://img.shields.io/badge/bitbucket-also-blue.png)](https://bitbucket.org/vxq/js) [![and vxq on npm (package manager)](https://img.shields.io/npm/v/vxq.svg?label=vxq+on+npm)](https://www.npmjs.com/package/vxq) [![and on travis (continuous integration)](https://img.shields.io/travis/vxq/js/master.svg?label=travis)](https://travis-ci.org/vxq/js/branches) [![and on gemnasium (dependency monitor)](https://img.shields.io/gemnasium/vxq/js.svg)](https://gemnasium.com/github.com/vxq/js)
+<!-- end of branch section -->
 
-TBD. A sketch.
+---
 
-## Examples
+TBD
+===
 
-- [Limited in-browser examples from latest (pre)release](https://vxq.github.io/js/examples/) ([mirror](https://vxq.gitlab.io/js/examples/)).
+  [github]:        https://github.com/vxq/js.git
+  [gitlab]:        https://gitlab.com/vxq/js.git
+  [bitbucket]:     https://bitbucket.org/vxq/js.git
+  [npm]:           https://www.npmjs.com/package/vxq
 
-## Developing
+  [travis]:        https://travis-ci.org/vxq/js/branches
+  [dep-monitor]:   https://gemnasium.com/github.com/vxq/js
+  
+  [examples.gh]:   https://vxq.github.io/js/examples/
+  [examples.gl]:   https://vxq.gitlab.io/js/examples/
+  
+  [local-example]: examples/index.html
 
-After `npm install` you can `gulp watch-simple` then make changes in `vxq/`
-and observe the results in [`examples/index.html`](examples/index.html).
+[![vxq/js on github (code and issues)](https://img.shields.io/github/commits-since/vxq/js/9468d4c1.svg?label=vxq/js+on+github)][github]
+[![and on gitlab (code)](https://img.shields.io/badge/&-gitlab-grey.png)][gitlab]
+[![and on bitbucket (code)](https://img.shields.io/badge/&-bitbucket-grey.png)][bitbucket]
+[![and vxq on npm (package manager)](https://img.shields.io/npm/v/vxq.svg?label=vxq+on+npm)][npm]
+[![and on travis (continuous integration)](https://img.shields.io/travis/vxq/js/master.svg?label=travis)][travis]
+[![and on gemnasium (dependency monitor)](https://img.shields.io/gemnasium/vxq/js.svg)][dep-monitor]
+
+Examples
+--------
+
+- [Browser-only examples from latest (pre)release][examples.gh]
+  ([mirror][examples.gl]).
+
+Developing
+----------
+
+After `npm install` you can `gulp watch-simple` then make changes in `vxq/` and
+observe the results in [`examples/index.html`][local-example].
 
 You should run `scripts/pre-commit` before sending a pull request, but at least
 run `rm -rf dist/` to avoid merging in stale data.
