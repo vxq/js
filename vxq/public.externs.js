@@ -72,11 +72,12 @@ VXQ.World = class {
 VXQ.Agent = class {
   /** @return {number} */
   get x() {}
+
   /** @return {number} */
   get y() {}
+
   /** @return {number} */
   get z() {}
-
 
   /**
    * A callback list that will be called eventually after any changes to the

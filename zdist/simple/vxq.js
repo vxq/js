@@ -649,6 +649,30 @@ var module$exports$vxq$debug = {assert:function($condition$$, $message$$) {
   }
   vxq.D.DEBUG && console.log.apply(console, [].concat($jscomp.arrayFromIterable($$jscomp$restParams$$)));
 }};
+var goog = goog || {};
+function getGlobal_() {
+  return "object" === typeof window && window ? window : "object" === typeof global && global ? global : "object" === typeof this && this ? this : {};
+}
+goog.global = getGlobal_();
+goog.exportProperty = function $goog$exportProperty$($object$$, $name$$, $value$$) {
+  $object$$[$name$$] = $value$$;
+};
+goog.exportSymbol = function $goog$exportSymbol$($delimitedName_names$$, $value$$, $object$$1_target$$) {
+  $delimitedName_names$$ = $delimitedName_names$$.split(".");
+  $object$$1_target$$ = $object$$1_target$$ || goog.global;
+  if (!$object$$1_target$$) {
+    throw Error("Cannot exportSymbol on " + $object$$1_target$$ + ".");
+  }
+  for (var $i$$ = 0;$i$$ < $delimitedName_names$$.length;$i$$++) {
+    var $name$$ = $delimitedName_names$$[$i$$];
+    if ($i$$ === $delimitedName_names$$.length - 1) {
+      $object$$1_target$$[$name$$] = $value$$;
+      break;
+    }
+    "object" === typeof $object$$1_target$$[$name$$] && $object$$1_target$$[$name$$] || ($object$$1_target$$[$name$$] = {});
+    $object$$1_target$$ = $object$$1_target$$[$name$$];
+  }
+};
 var module$exports$vxq$util = {CallbackList:function() {
   this.callbacks = [];
   this.callbackTokens = [];
@@ -959,24 +983,24 @@ module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithTurtles = function
   return $world$$;
 };
 module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithFlatland = function $module$contents$vxq$main_VXQModule$$addFlatCanvasWithFlatland$($element$$6_r$$) {
-  var $world$$ = new module$exports$vxq$worlds$flatland.World(512, 512), $i$$14_renderer$$ = new module$exports$vxq$renderers$FlatCanvas($world$$);
-  $element$$6_r$$.appendChild($i$$14_renderer$$.canvas);
+  var $world$$ = new module$exports$vxq$worlds$flatland.World(512, 512), $i$$15_renderer$$ = new module$exports$vxq$renderers$FlatCanvas($world$$);
+  $element$$6_r$$.appendChild($i$$15_renderer$$.canvas);
   $element$$6_r$$ = function $$element$$6_r$$$() {
     return .5 + (Math.random() + Math.random() + Math.random()) / 3;
   };
-  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 50);
-  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(200, -5);
-  $world$$.units.add($i$$14_renderer$$);
-  console.log($i$$14_renderer$$.goTo(500, 500, 0));
-  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 400, 200);
-  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(-100, 450);
-  $world$$.units.add($i$$14_renderer$$);
-  console.log($i$$14_renderer$$.goTo(25, 25, 0));
-  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 175);
-  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(-65, 125);
-  $world$$.units.add($i$$14_renderer$$);
-  console.log($i$$14_renderer$$.goTo(50, 400, 0));
-  for ($i$$14_renderer$$ = 0;4 > $i$$14_renderer$$;$i$$14_renderer$$++) {
+  $i$$15_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 50);
+  $i$$15_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(200, -5);
+  $world$$.units.add($i$$15_renderer$$);
+  console.log($i$$15_renderer$$.goTo(500, 500, 0));
+  $i$$15_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 400, 200);
+  $i$$15_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(-100, 450);
+  $world$$.units.add($i$$15_renderer$$);
+  console.log($i$$15_renderer$$.goTo(25, 25, 0));
+  $i$$15_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 175);
+  $i$$15_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(-65, 125);
+  $world$$.units.add($i$$15_renderer$$);
+  console.log($i$$15_renderer$$.goTo(50, 400, 0));
+  for ($i$$15_renderer$$ = 0;4 > $i$$15_renderer$$;$i$$15_renderer$$++) {
     var $planetComponent$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 200 + 50 * $element$$6_r$$(), 200 + 50 * $element$$6_r$$());
     $planetComponent$$.mass *= 10;
     $planetComponent$$.interialAmplification *= 10;
@@ -986,11 +1010,11 @@ module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithFlatland = functio
   $world$$.changeCallbacks.call();
   return $world$$;
 };
-module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$contents$vxq$main_VXQModule$$testTheTurtles$($i$$15_i$13_world$$) {
-  $i$$15_i$13_world$$ = void 0 === $i$$15_i$13_world$$ ? new module$exports$vxq$worlds$turtles.World(512, 512, []) : $i$$15_i$13_world$$;
+module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$contents$vxq$main_VXQModule$$testTheTurtles$($i$$16_i$13_world$$) {
+  $i$$16_i$13_world$$ = void 0 === $i$$16_i$13_world$$ ? new module$exports$vxq$worlds$turtles.World(512, 512, []) : $i$$16_i$13_world$$;
   var $turtle$$ = new module$exports$vxq$worlds$turtles.Turtle;
-  $i$$15_i$13_world$$.turtles.add($turtle$$);
-  $i$$15_i$13_world$$.changeCallbacks.call();
+  $i$$16_i$13_world$$.turtles.add($turtle$$);
+  $i$$16_i$13_world$$.changeCallbacks.call();
   module$exports$vxq$testing.assertEquals(50, $turtle$$.x);
   module$exports$vxq$testing.assertEquals(50, $turtle$$.y);
   $turtle$$.forward(50);
@@ -1002,21 +1026,20 @@ module$contents$vxq$main_VXQModule.prototype.testTheTurtles = function $module$c
   module$exports$vxq$testing.assertEquals(100, $turtle$$.y);
   $turtle$$.left(.375);
   $turtle$$.forward(100);
-  for ($i$$15_i$13_world$$ = 0;12 > $i$$15_i$13_world$$;$i$$15_i$13_world$$++) {
+  for ($i$$16_i$13_world$$ = 0;12 > $i$$16_i$13_world$$;$i$$16_i$13_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(100);
   $turtle$$.left(.25);
   $turtle$$.forward(200);
-  for ($i$$15_i$13_world$$ = 0;6 > $i$$15_i$13_world$$;$i$$15_i$13_world$$++) {
+  for ($i$$16_i$13_world$$ = 0;6 > $i$$16_i$13_world$$;$i$$16_i$13_world$$++) {
     $turtle$$.left(.0625), $turtle$$.forward(10);
   }
   $turtle$$.forward(50);
   console.log("Test complete.");
 };
 module$contents$vxq$main_VXQModule.prototype.exportFromClosure = function $module$contents$vxq$main_VXQModule$$exportFromClosure$() {
-  "object" === typeof module && null != module && (module.exports = this);
-  "object" === typeof window && null != window && (window.vxq = this);
+  "object" === typeof module && null !== module ? module.exports = this : goog.global.vxq = this;
 };
 var module$exports$vxq$main = new module$contents$vxq$main_VXQModule;
 module$exports$vxq$main.exportFromClosure();

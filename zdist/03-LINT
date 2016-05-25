@@ -1,19 +1,19 @@
 
-> vxq@0.1.0-dev.90 lint /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.91 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-(node:8894) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
-[01:55:31] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[01:55:31] Starting 'lint'...
-[01:55:35] gulp-google-closure-compiler: /vxq/index.js:13: WARNING - missing require: 'module$exports$vxq$debug'
+(node:14210) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
+[21:39:57] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[21:39:57] Starting 'lint'...
+[21:40:01] gulp-google-closure-compiler: /vxq/index.js:14: WARNING - missing require: 'module$exports$vxq$debug'
     debug.log('Let\'s testTheTurtles()!');
     ^
 
-/vxq/index.js:57: WARNING - missing require: 'module$exports$vxq$worlds$flatland'
+/vxq/index.js:58: WARNING - missing require: 'module$exports$vxq$worlds$flatland'
           flatland.V(5 - 10 * r(), 5 - 10 * r());
           ^
 
-/vxq/index.js:85: WARNING - missing require: 'module$exports$vxq$testing'
+/vxq/index.js:86: WARNING - missing require: 'module$exports$vxq$testing'
     testing.assertEquals(100, turtle.y);
     ^
 
@@ -33,10 +33,10 @@ exports = class {
     util.shuffle(changedUnits);
     ^
 
-/vxq/worlds/turtles.js:93: WARNING - missing require: 'module$exports$vxq$debug'
+/vxq/worlds/turtles.js:94: WARNING - missing require: 'module$exports$vxq$debug'
     debug.assert(Number.isFinite(z));
     ^
 
-0 error(s), 8 warning(s), 94.0% typed
+0 error(s), 8 warning(s), 93.7% typed
 
-[01:55:35] Finished 'lint' after 3.69 s
+[21:40:01] Finished 'lint' after 3.71 s

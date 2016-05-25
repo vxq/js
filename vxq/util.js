@@ -33,7 +33,9 @@ exports.CallbackList = class {
 };
 
 
-/** Randomly shuffles the items in an array. */
+/**
+ * Randomly shuffles the items in an array.
+ */
 exports.shuffle = (/** !Array */ array) => {
   // Fisher–Yates
   for (let i = 0; i < array.length - 1; i++) {

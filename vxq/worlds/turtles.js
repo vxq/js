@@ -61,6 +61,7 @@ exports.Turtle = class {
     return Math.cos(this.rotation * 2 * Math.PI);
   }
 
+  /** @export */
   right(/** number */ turns) {
     debug.assert(Number.isFinite(turns));
     this.rotation += turns;

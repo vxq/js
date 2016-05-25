@@ -3,6 +3,7 @@ goog.module('vxq.main');
 const turtles = goog.require('vxq.worlds.turtles');
 const flatland = goog.require('vxq.worlds.flatland');
 const debug = goog.require('vxq.debug');
+const global = goog.require('goog.global');
 const testing = goog.require('vxq.testing');
 const FlatCanvas = goog.require('vxq.renderers.FlatCanvas');
 
@@ -109,14 +110,10 @@ class VXQModule {
   }
 
   /** @protected */ exportFromClosure() {
-    // to CommonJS
-    if (typeof module === 'object' && module != null) {
+    if (typeof module === 'object' && module !== null) {
       module.exports = this;
-    }
-
-    // to browsers
-    if (typeof window === 'object' && window != null) {
-      window['vxq'] = this;
+    } else {
+      global['vxq'] = this;
     }
   }
 }

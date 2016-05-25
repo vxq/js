@@ -41,7 +41,8 @@ const flags = {
   externs: [
     'vxq/public.externs.js',
     'vxq/environment.externs.js'
-  ]
+  ],
+  generate_exports: true
 };
 
 const lintErrors = [].concat(flags.jscomp_error, flags.jscomp_warning, [
@@ -73,7 +74,8 @@ gulp.task('build-simple', () =>
     jscomp_warning: [].concat(flags.jscomp_warning, flags.jscomp_error),
     formatting: 'pretty_print',
     debug: true,
-    define: ['vxq.D.DEBUG=true']
+    define: ['vxq.D.DEBUG=true'],
+    generate_exports: false
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('build-debug', () =>
