@@ -1,4 +1,4 @@
-goog.module('vxq.renderers.FlatCanvas');
+goog.module('vxq.uis.FlatCanvas');
 /**
  * @fileoverview Renders a World on a 2D <canvas>.
  */
@@ -13,7 +13,7 @@ const util = goog.require('vxq.util');
  */
 class AgentRender {
   constructor(
-    /** !vxq.renderers.FlatCanvas */ renderer,
+    /** !vxq.uis.FlatCanvas */ renderer,
     /** !VXQ.Agent */ agent
   ) {
     /**
@@ -97,7 +97,6 @@ class Pointer {
 }
 
 
-/** @implements {VXQ.Renderer} */
 exports = class {
   constructor(/** !VXQ.World */ world) {
     /** @const */
@@ -162,10 +161,10 @@ exports = class {
       this.context.fillStyle = `rgba(0, 0, 0, ${0.25 * dt})`;
       this.context.fillRect(0, 0, this.world.width, this.world.height)
 
-      const renderers = Array.from(this.renders.values());
-      util.shuffle(renderers);
-      for (const renderer of renderers) {
-        renderer.update();
+      const renders = Array.from(this.renders.values());
+      util.shuffle(renders);
+      for (const render of renders) {
+        render.update();
       }
 
       const pointers = Array.from(this.pointers);

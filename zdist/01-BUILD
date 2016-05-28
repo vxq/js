@@ -1,47 +1,47 @@
 
-> vxq@0.1.0-dev.95 build /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.96 build /Users/j/src/github.com/vxq/js
 > gulp build
 
-(node:29067) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
-[23:16:30] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[23:16:30] Starting 'build'...
-[23:16:30] Starting 'copy-deps'...
-[23:16:30] Finished 'build' after 8.21 ms
-[23:16:30] Finished 'copy-deps' after 16 ms
-[23:16:30] Starting 'build-simple'...
-[23:16:33] gulp-google-closure-compiler: /vxq/renderers/flat-canvas.js:43: WARNING - Property x never defined on VXQ.Agent
+(node:29592) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
+[23:22:08] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[23:22:08] Starting 'build'...
+[23:22:08] Starting 'copy-deps'...
+[23:22:08] Finished 'build' after 8 ms
+[23:22:08] Finished 'copy-deps' after 16 ms
+[23:22:08] Starting 'build-simple'...
+[23:22:11] gulp-google-closure-compiler: /vxq/uis/flat-canvas.js:43: WARNING - Property x never defined on VXQ.Agent
         () => void this.update(agent.x, agent.y, agent.z));
                                      ^
 
-/vxq/renderers/flat-canvas.js:43: WARNING - Property y never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:43: WARNING - Property y never defined on VXQ.Agent
         () => void this.update(agent.x, agent.y, agent.z));
                                               ^
 
-/vxq/renderers/flat-canvas.js:43: WARNING - Property z never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:43: WARNING - Property z never defined on VXQ.Agent
         () => void this.update(agent.x, agent.y, agent.z));
                                                        ^
 
-/vxq/renderers/flat-canvas.js:65: WARNING - Property x never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:65: WARNING - Property x never defined on VXQ.Agent
     g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
                      ^
 
-/vxq/renderers/flat-canvas.js:65: WARNING - Property y never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:65: WARNING - Property y never defined on VXQ.Agent
     g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
                                    ^
 
-/vxq/renderers/flat-canvas.js:72: WARNING - Property x never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:72: WARNING - Property x never defined on VXQ.Agent
     g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
                      ^
 
-/vxq/renderers/flat-canvas.js:72: WARNING - Property y never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:72: WARNING - Property y never defined on VXQ.Agent
     g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
                                    ^
 
-/vxq/renderers/flat-canvas.js:101: WARNING - Property height never defined on VXQ.World
+/vxq/uis/flat-canvas.js:100: WARNING - Property height never defined on VXQ.World
 exports = class {
 ^
 
-/vxq/renderers/flat-canvas.js:101: WARNING - Property width never defined on VXQ.World
+/vxq/uis/flat-canvas.js:100: WARNING - Property width never defined on VXQ.World
 exports = class {
 ^
 
@@ -67,8 +67,8 @@ exports = class {
 
 0 error(s), 14 warning(s), 93.8% typed
 
-[23:16:33] Finished 'build-simple' after 2.8 s
-[23:16:33] Starting 'build-debug'...
+[23:22:11] Finished 'build-simple' after 2.56 s
+[23:22:11] Starting 'build-debug'...
 
 events.js:160
       throw er; // Unhandled 'error' event
@@ -79,39 +79,39 @@ java -jar /Users/j/src/github.com/vxq/js/node_modules/google-closure-compiler/co
 %output%
 }.call(typeof window == 'object' ? window: typeof this == 'object' ? this: null,typeof window == 'object' ? window : null,typeof module == 'object' ? module : null) --language_in=ECMASCRIPT6_STRICT --language_out=ECMASCRIPT5_STRICT --entry_point=vxq.main --jscomp_error=checkTypes --jscomp_error=missingReturn --jscomp_error=checkVars --jscomp_error=missingProvide --jscomp_error=missingRequire --jscomp_error=missingProperties --jscomp_warning=accessControls --jscomp_warning=undefinedVars --jscomp_warning=undefinedNames --jscomp_warning=visibility --jscomp_warning=externsValidation --externs=vxq/public.externs.js --externs=vxq/environment.externs.js --js_output_file=debug/vxq.js --formatting=pretty_print --debug=true --define=vxq.D.DEBUG=true --json_streams BOTH
 
-/vxq/renderers/flat-canvas.js:43: ERROR - Property x never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:43: ERROR - Property x never defined on VXQ.Agent
         () => void this.update(agent.x, agent.y, agent.z));
                                      ^
 
-/vxq/renderers/flat-canvas.js:43: ERROR - Property y never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:43: ERROR - Property y never defined on VXQ.Agent
         () => void this.update(agent.x, agent.y, agent.z));
                                               ^
 
-/vxq/renderers/flat-canvas.js:43: ERROR - Property z never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:43: ERROR - Property z never defined on VXQ.Agent
         () => void this.update(agent.x, agent.y, agent.z));
                                                        ^
 
-/vxq/renderers/flat-canvas.js:65: ERROR - Property x never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:65: ERROR - Property x never defined on VXQ.Agent
     g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
                      ^
 
-/vxq/renderers/flat-canvas.js:65: ERROR - Property y never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:65: ERROR - Property y never defined on VXQ.Agent
     g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
                                    ^
 
-/vxq/renderers/flat-canvas.js:72: ERROR - Property x never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:72: ERROR - Property x never defined on VXQ.Agent
     g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
                      ^
 
-/vxq/renderers/flat-canvas.js:72: ERROR - Property y never defined on VXQ.Agent
+/vxq/uis/flat-canvas.js:72: ERROR - Property y never defined on VXQ.Agent
     g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
                                    ^
 
-/vxq/renderers/flat-canvas.js:101: ERROR - Property height never defined on VXQ.World
+/vxq/uis/flat-canvas.js:100: ERROR - Property height never defined on VXQ.World
 exports = class {
 ^
 
-/vxq/renderers/flat-canvas.js:101: ERROR - Property width never defined on VXQ.World
+/vxq/uis/flat-canvas.js:100: ERROR - Property width never defined on VXQ.World
 exports = class {
 ^
 
@@ -145,10 +145,10 @@ npm ERR! argv "/usr/local/bin/node" "/Users/j/src/github.com/vxq/js/node_modules
 npm ERR! node v6.1.0
 npm ERR! npm  v3.9.2
 npm ERR! code ELIFECYCLE
-npm ERR! vxq@0.1.0-dev.95 build: `gulp build`
+npm ERR! vxq@0.1.0-dev.96 build: `gulp build`
 npm ERR! Exit status 1
 npm ERR! 
-npm ERR! Failed at the vxq@0.1.0-dev.95 build script 'gulp build'.
+npm ERR! Failed at the vxq@0.1.0-dev.96 build script 'gulp build'.
 npm ERR! Make sure you have the latest version of node.js and npm installed.
 npm ERR! If you do, this is most likely a problem with the vxq package,
 npm ERR! not with npm itself.
