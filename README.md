@@ -40,6 +40,14 @@ Maybe while you have your mouse held down a set of outlines are drawn showing
 areas to which each unit is closest, where they would be selected. It would be
 a unique visual element... but it could be too distracting.
 
+Hmm. I could consider putting this entirely in the UI layer, and not exposing it
+in the public interface, so all of the queueing is portable between games. It
+would need to listen for changes or poll, then issue subsequent commands when
+appropriate.
+
+This means I wouldn't be able to use the logic for NPCs in flatland, but that
+may be of secondary value.
+
 ---
 
 <!-- end of branch section -->
