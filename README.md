@@ -1,16 +1,6 @@
 `vxq/js#goto` branch
 ====================
 
-The purpose of this branch is to implement the .goTo() method for
-`flatland.Units`, allowing them to thrust their way towards a target.
-`FlatCanvasRenderer` will need to gain the ability to accept clicks to order
-some unit around. Initially we may simply use the first unit -- and highlight
-it in green. We may also want to extend the `VXQ.Agent` interface with an array
-of known waypoints.
-
-Instead of having opaque changed promises, we may want the waypoint system to
-be transparent, and support the replace/append operations like in an RST game.
-
 Brainstorming
 -------------
 
@@ -39,6 +29,20 @@ any point in that rectangle.
 Maybe while you have your mouse held down a set of outlines are drawn showing
 areas to which each unit is closest, where they would be selected. It would be
 a unique visual element... but it could be too distracting.
+
+.
+
+The purpose of this branch is to implement `flatland.Units`'s `.goTo()` method
+
+The purpose of this branch is to implement the .goTo() method for
+`flatland.Units`, allowing them to thrust their way towards a target.
+`FlatCanvasRenderer` will need to gain the ability to accept clicks to order
+some unit around. Initially we may simply use the first unit -- and highlight
+it in green. We may also want to extend the `VXQ.Agent` interface with an array
+of known waypoints.
+
+Instead of having opaque changed promises, we may want the waypoint system to
+be transparent, and support the replace/append operations like in an RST game.
 
 Hmm. I could consider putting this entirely in the UI layer, and not exposing it
 in the public interface, so all of the queueing is portable between games. It
