@@ -856,7 +856,7 @@ var module$exports$vxq$testing = {assert:function($condition$$, $message$$) {
 }, assertEquals:function($expected$$, $actual$$) {
   module$exports$vxq$testing.assert($expected$$ === $actual$$, $expected$$ + " !== " + $actual$$);
 }};
-var module$contents$vxq$renderers$FlatCanvas_AgentRender = function $module$contents$vxq$renderers$FlatCanvas_AgentRender$($renderer$$, $agent$$) {
+var module$contents$vxq$uis$FlatCanvas_AgentRender = function $module$contents$vxq$uis$FlatCanvas_AgentRender$($renderer$$, $agent$$) {
   var $$jscomp$this$$ = this;
   this.totalDistance = 0;
   this.hueSeed = 1E3 * Math.random();
@@ -867,20 +867,20 @@ var module$contents$vxq$renderers$FlatCanvas_AgentRender = function $module$cont
     return void $$jscomp$this$$.update($agent$$.x, $agent$$.y, $agent$$.z);
   });
 };
-module$contents$vxq$renderers$FlatCanvas_AgentRender.prototype.update = function $module$contents$vxq$renderers$FlatCanvas_AgentRender$$update$($deltaX_g_x$$, $deltaY_y$$, $deltaZ_opacity_z$$) {
+module$contents$vxq$uis$FlatCanvas_AgentRender.prototype.update = function $module$contents$vxq$uis$FlatCanvas_AgentRender$$update$($deltaX_g_x$$, $deltaY_y$$, $deltaZ_opacity_z$$) {
   $deltaX_g_x$$ = void 0 === $deltaX_g_x$$ ? this.lastX : $deltaX_g_x$$;
   $deltaY_y$$ = void 0 === $deltaY_y$$ ? this.lastY : $deltaY_y$$;
   $deltaZ_opacity_z$$ = void 0 === $deltaZ_opacity_z$$ ? this.lastZ : $deltaZ_opacity_z$$;
   module$exports$vxq$util.elementInView(this.renderer.canvas) && ($deltaX_g_x$$ -= this.lastX, $deltaY_y$$ -= this.lastY, $deltaZ_opacity_z$$ -= this.lastZ, $deltaZ_opacity_z$$ = Math.max(.2, Math.min(1, Math.sqrt($deltaX_g_x$$ * $deltaX_g_x$$ + $deltaY_y$$ * $deltaY_y$$ + $deltaZ_opacity_z$$ * $deltaZ_opacity_z$$) / 100)), $deltaX_g_x$$ = this.renderer.context, $deltaX_g_x$$.fillStyle = "hsla(" + this.hueSeed + ", 50%, 50%, " + $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.strokeStyle = "rgba(255, 255, 255, " + 
   $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.lineWidth = 1, $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI), $deltaX_g_x$$.fill(), $deltaX_g_x$$.stroke(), $deltaX_g_x$$.strokeStyle = "rgba(0, 0, 0, " + .5 * $deltaZ_opacity_z$$ + ")", $deltaX_g_x$$.beginPath(), $deltaX_g_x$$.lineWidth = 2, $deltaX_g_x$$.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI), $deltaX_g_x$$.stroke());
 };
-var module$contents$vxq$renderers$FlatCanvas_Pointer = function $module$contents$vxq$renderers$FlatCanvas_Pointer$($world$$, $source$$, $x$$, $y$$) {
+var module$contents$vxq$uis$FlatCanvas_Pointer = function $module$contents$vxq$uis$FlatCanvas_Pointer$($world$$, $source$$, $x$$, $y$$) {
   this.world = $world$$;
   this.source = $source$$;
   this.x = $x$$;
   this.y = $y$$;
   this.active = !1;
-}, module$exports$vxq$renderers$FlatCanvas = function $module$exports$vxq$renderers$FlatCanvas$($world$$) {
+}, module$exports$vxq$uis$FlatCanvas = function $module$exports$vxq$uis$FlatCanvas$($world$$) {
   var $$jscomp$this$$ = this;
   this.world = $world$$;
   this.canvas = document.createElement("canvas");
@@ -895,7 +895,7 @@ var module$contents$vxq$renderers$FlatCanvas_Pointer = function $module$contents
       $lastAgent$$ = $$jscomp$key$lastAgent$$.value;
     }
     if ($lastAgent$$) {
-      var $pointer$$ = new module$contents$vxq$renderers$FlatCanvas_Pointer($$jscomp$this$$.world, $lastAgent$$, $x$$, $event_y$$);
+      var $pointer$$ = new module$contents$vxq$uis$FlatCanvas_Pointer($$jscomp$this$$.world, $lastAgent$$, $x$$, $event_y$$);
       $$jscomp$this$$.pointers.add($pointer$$);
       $lastAgent$$.goTo($x$$, $event_y$$, 0).then(function() {
         $$jscomp$this$$.pointers.delete($pointer$$);
@@ -915,35 +915,35 @@ var module$contents$vxq$renderers$FlatCanvas_Pointer = function $module$contents
     $$jscomp$this$$.tick($dt$$);
   }, 100);
 };
-module$exports$vxq$renderers$FlatCanvas.prototype.tick = function $module$exports$vxq$renderers$FlatCanvas$$tick$($$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$) {
+module$exports$vxq$uis$FlatCanvas.prototype.tick = function $module$exports$vxq$uis$FlatCanvas$$tick$($$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$) {
   if (module$exports$vxq$util.elementInView(this.canvas)) {
     this.context.fillStyle = "rgba(0, 0, 0, " + .25 * $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$ + ")";
     this.context.fillRect(0, 0, this.world.width, this.world.height);
     $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$ = Array.from(this.renders.values());
     module$exports$vxq$util.shuffle($$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$);
     $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$ = $jscomp.makeIterator($$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$);
-    for (var $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next();!$$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.done;$$jscomp$key$pointer_$jscomp$key$renderer_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next()) {
-      $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.value.update();
+    for (var $$jscomp$key$pointer_$jscomp$key$render_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next();!$$jscomp$key$pointer_$jscomp$key$render_pointer$$.done;$$jscomp$key$pointer_$jscomp$key$render_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next()) {
+      $$jscomp$key$pointer_$jscomp$key$render_pointer$$.value.update();
     }
     $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$ = Array.from(this.pointers);
     module$exports$vxq$util.shuffle($$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$);
     $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$ = $jscomp.makeIterator($$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$);
-    for ($$jscomp$key$pointer_$jscomp$key$renderer_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next();!$$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.done;$$jscomp$key$pointer_$jscomp$key$renderer_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next()) {
-      $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$ = $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.value, this.context.strokeStyle = "rgba(210, 40, 40, 0.75)", this.context.beginPath(), this.context.lineWidth = 4, this.context.moveTo($$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.source.x, $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.source.y), this.context.lineTo($$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.x, $$jscomp$key$pointer_$jscomp$key$renderer_pointer$$.y), 
-      this.context.stroke();
+    for ($$jscomp$key$pointer_$jscomp$key$render_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next();!$$jscomp$key$pointer_$jscomp$key$render_pointer$$.done;$$jscomp$key$pointer_$jscomp$key$render_pointer$$ = $$jscomp$iter$6$$1_$jscomp$iter$7$$1_dt$$.next()) {
+      $$jscomp$key$pointer_$jscomp$key$render_pointer$$ = $$jscomp$key$pointer_$jscomp$key$render_pointer$$.value, this.context.strokeStyle = "rgba(210, 40, 40, 0.75)", this.context.beginPath(), this.context.lineWidth = 4, this.context.moveTo($$jscomp$key$pointer_$jscomp$key$render_pointer$$.source.x, $$jscomp$key$pointer_$jscomp$key$render_pointer$$.source.y), this.context.lineTo($$jscomp$key$pointer_$jscomp$key$render_pointer$$.x, $$jscomp$key$pointer_$jscomp$key$render_pointer$$.y), this.context.stroke()
+      ;
     }
   } else {
     this.context.fillStyle = "black", this.context.fillRect(0, 0, this.world.width, this.world.height);
   }
 };
-module$exports$vxq$renderers$FlatCanvas.prototype.updateRenders = function $module$exports$vxq$renderers$FlatCanvas$$updateRenders$() {
-  for (var $$jscomp$iter$8$$1_$jscomp$iter$9$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$8$$1_$jscomp$iter$9$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$8$$1_$jscomp$iter$9$$.next()) {
-    $$jscomp$key$agent_$jscomp$key$render_agent$$.value.cancel();
+module$exports$vxq$uis$FlatCanvas.prototype.updateRenders = function $module$exports$vxq$uis$FlatCanvas$$updateRenders$() {
+  for (var $$jscomp$iter$8$$1_$jscomp$iter$9$$ = $jscomp.makeIterator(this.renders), $$jscomp$key$agent_$jscomp$key$render$$1_agent$$ = $$jscomp$iter$8$$1_$jscomp$iter$9$$.next();!$$jscomp$key$agent_$jscomp$key$render$$1_agent$$.done;$$jscomp$key$agent_$jscomp$key$render$$1_agent$$ = $$jscomp$iter$8$$1_$jscomp$iter$9$$.next()) {
+    $$jscomp$key$agent_$jscomp$key$render$$1_agent$$.value.cancel();
   }
   this.renders = new Map;
   $$jscomp$iter$8$$1_$jscomp$iter$9$$ = $jscomp.makeIterator(this.world.agents);
-  for ($$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$8$$1_$jscomp$iter$9$$.next();!$$jscomp$key$agent_$jscomp$key$render_agent$$.done;$$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$iter$8$$1_$jscomp$iter$9$$.next()) {
-    $$jscomp$key$agent_$jscomp$key$render_agent$$ = $$jscomp$key$agent_$jscomp$key$render_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render_agent$$, new module$contents$vxq$renderers$FlatCanvas_AgentRender(this, $$jscomp$key$agent_$jscomp$key$render_agent$$));
+  for ($$jscomp$key$agent_$jscomp$key$render$$1_agent$$ = $$jscomp$iter$8$$1_$jscomp$iter$9$$.next();!$$jscomp$key$agent_$jscomp$key$render$$1_agent$$.done;$$jscomp$key$agent_$jscomp$key$render$$1_agent$$ = $$jscomp$iter$8$$1_$jscomp$iter$9$$.next()) {
+    $$jscomp$key$agent_$jscomp$key$render$$1_agent$$ = $$jscomp$key$agent_$jscomp$key$render$$1_agent$$.value, this.renders.set($$jscomp$key$agent_$jscomp$key$render$$1_agent$$, new module$contents$vxq$uis$FlatCanvas_AgentRender(this, $$jscomp$key$agent_$jscomp$key$render$$1_agent$$));
   }
 };
 var module$contents$vxq$main_VXQModule = function $module$contents$vxq$main_VXQModule$() {
@@ -953,30 +953,30 @@ module$contents$vxq$main_VXQModule.prototype.test = function $module$contents$vx
   this.testTheTurtles();
 };
 module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithTurtles = function $module$contents$vxq$main_VXQModule$$addFlatCanvasWithTurtles$($element$$) {
-  var $world$$ = new module$exports$vxq$worlds$turtles.World(512, 512, []), $renderer$$ = new module$exports$vxq$renderers$FlatCanvas($world$$);
-  $element$$.appendChild($renderer$$.canvas);
+  var $world$$ = new module$exports$vxq$worlds$turtles.World(512, 512, []), $ui$$ = new module$exports$vxq$uis$FlatCanvas($world$$);
+  $element$$.appendChild($ui$$.canvas);
   this.testTheTurtles($world$$);
   return $world$$;
 };
 module$contents$vxq$main_VXQModule.prototype.addFlatCanvasWithFlatland = function $module$contents$vxq$main_VXQModule$$addFlatCanvasWithFlatland$($element$$6_r$$) {
-  var $world$$ = new module$exports$vxq$worlds$flatland.World(512, 512), $i$$14_renderer$$ = new module$exports$vxq$renderers$FlatCanvas($world$$);
-  $element$$6_r$$.appendChild($i$$14_renderer$$.canvas);
+  var $world$$ = new module$exports$vxq$worlds$flatland.World(512, 512), $i$$14_ui$$ = new module$exports$vxq$uis$FlatCanvas($world$$);
+  $element$$6_r$$.appendChild($i$$14_ui$$.canvas);
   $element$$6_r$$ = function $$element$$6_r$$$() {
     return .5 + (Math.random() + Math.random() + Math.random()) / 3;
   };
-  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 50);
-  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(200, -5);
-  $world$$.units.add($i$$14_renderer$$);
-  console.log($i$$14_renderer$$.goTo(500, 500, 0));
-  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 400, 200);
-  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(-100, 450);
-  $world$$.units.add($i$$14_renderer$$);
-  console.log($i$$14_renderer$$.goTo(25, 25, 0));
-  $i$$14_renderer$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 175);
-  $i$$14_renderer$$.velocity = module$exports$vxq$worlds$flatland.V(-65, 125);
-  $world$$.units.add($i$$14_renderer$$);
-  console.log($i$$14_renderer$$.goTo(50, 400, 0));
-  for ($i$$14_renderer$$ = 0;4 > $i$$14_renderer$$;$i$$14_renderer$$++) {
+  $i$$14_ui$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 50);
+  $i$$14_ui$$.velocity = module$exports$vxq$worlds$flatland.V(200, -5);
+  $world$$.units.add($i$$14_ui$$);
+  console.log($i$$14_ui$$.goTo(500, 500, 0));
+  $i$$14_ui$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 400, 200);
+  $i$$14_ui$$.velocity = module$exports$vxq$worlds$flatland.V(-100, 450);
+  $world$$.units.add($i$$14_ui$$);
+  console.log($i$$14_ui$$.goTo(25, 25, 0));
+  $i$$14_ui$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 150, 175);
+  $i$$14_ui$$.velocity = module$exports$vxq$worlds$flatland.V(-65, 125);
+  $world$$.units.add($i$$14_ui$$);
+  console.log($i$$14_ui$$.goTo(50, 400, 0));
+  for ($i$$14_ui$$ = 0;4 > $i$$14_ui$$;$i$$14_ui$$++) {
     var $planetComponent$$ = new module$exports$vxq$worlds$flatland.Unit($world$$, 200 + 50 * $element$$6_r$$(), 200 + 50 * $element$$6_r$$());
     $planetComponent$$.mass *= 10;
     $planetComponent$$.interialAmplification *= 10;

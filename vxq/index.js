@@ -4,7 +4,7 @@ const turtles = goog.require('vxq.worlds.turtles');
 const flatland = goog.require('vxq.worlds.flatland');
 const debug = goog.require('vxq.debug');
 const testing = goog.require('vxq.testing');
-const FlatCanvas = goog.require('vxq.renderers.FlatCanvas');
+const FlatCanvas = goog.require('vxq.uis.FlatCanvas');
 
 
 /** @implements {VXQ} */
@@ -16,16 +16,16 @@ class VXQModule {
 
   /** @override */ addFlatCanvasWithTurtles(element) {
     const world = new turtles.World(512, 512, []);
-    const renderer = new FlatCanvas(world);
-    element.appendChild(renderer.canvas);
+    const ui = new FlatCanvas(world);
+    element.appendChild(ui.canvas);
     this.testTheTurtles(world);
     return world;
   }
 
   /** @override */ addFlatCanvasWithFlatland(element) {
     const world = new flatland.World(512, 512);
-    const renderer = new FlatCanvas(world);
-    element.appendChild(renderer.canvas);
+    const ui = new FlatCanvas(world);
+    element.appendChild(ui.canvas);
 
     const r = () =>
         0.5 + (Math.random() + Math.random() + Math.random()) / 3;
