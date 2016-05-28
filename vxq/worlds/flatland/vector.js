@@ -5,7 +5,10 @@ const debug = goog.require('vxq.debug');
 
 
 
-/** A finite 2D vector in flatland. */
+/**
+ * A finite 2D vector in flatland with constant .z=0.
+ * @implements {VXQ.Vector3D}
+ */
 class Vector {
   constructor(/** number */ x, /** number */ y) {
     debug.assert(
@@ -20,6 +23,13 @@ class Vector {
 
     /** @const */
     this.y = y;
+
+    /** @const */
+    this.z = 0;
+  }
+
+  static from(/** !VXQ.Vector3D */ vector) {
+    return new Vector(vector.x, vector.y)
   }
 
   /** @return {number} The directionless magnitude of this vector. */

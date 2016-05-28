@@ -732,6 +732,10 @@ var module$contents$vxq$worlds$flatland$Vector_Vector = function $module$content
   module$exports$vxq$debug.assert(Number.isFinite($y$$), "y = " + $y$$ + " must be a finite number");
   this.x = $x$$;
   this.y = $y$$;
+  this.z = 0;
+};
+module$contents$vxq$worlds$flatland$Vector_Vector.from = function $module$contents$vxq$worlds$flatland$Vector_Vector$from$($vector$$) {
+  return new module$contents$vxq$worlds$flatland$Vector_Vector($vector$$.x, $vector$$.y);
 };
 module$contents$vxq$worlds$flatland$Vector_Vector.prototype.magnitude = function $module$contents$vxq$worlds$flatland$Vector_Vector$$magnitude$() {
   return Math.sqrt(this.x * this.x + this.y * this.y);

@@ -45,23 +45,43 @@ VXQ.Renderer = class {
  * @interface
  */
 VXQ.World = class {
-  /** @return {number} */
-  get height() {}
-  /** @return {number} */
-  get width() {}
+  /**
+   * @return {!VXQ.Vector3D} A vector of the maximum expected value in each
+   *     dimension, or Infinity if there is no known limit.
+   */
+  get dimensions() {}
 
   /**
-   * All known agents in the world.
-   * @return {!Set<!VXQ.Agent>}
+   * @return {!Set<!VXQ.Agent>} All known agents currently in the world.
+   *
+   * HACK: May or may not be a copy; please do not mutate.
    */
   get agents() {}
 
   /**
-   * A callback list that will be called eventually after any changes to the
-   * set of agents in the world.
-   * @return {!VXQ.CallbackList}
+   * @return {!VXQ.CallbackList} A callback list that will be called
+   *     eventually after any changes to the set of agents in the world.
    */
   get changeCallbacks() {}
+};
+
+
+/**
+ * A vector in a 3D world.
+ * @interface
+ */
+VXQ.Vector3D = class {
+  /** @return {!VXQ.Vector3D} */
+  static from(/** !VXQ.Vector3D */ vector) {}
+
+  /** @return {number} */
+  get x() {}
+
+  /** @return {number} */
+  get y() {}
+
+  /** @return {number} */
+  get z() {}
 };
 
 
@@ -70,16 +90,22 @@ VXQ.World = class {
  * @interface
  */
 VXQ.Agent = class {
-  /** @return {number} */
-  get x() {}
-  /** @return {number} */
-  get y() {}
-  /** @return {number} */
-  get z() {}
-  
+  /**
+   * The agent's current position.
+   * @return {!VXQ.Vector3D}
+   */
+  get position() {}
+
+  /**
+   * The direction in which the agent is currently trying to move.
+   * Will be zero if the unit is not trying to move.
+   * @return {!VXQ.Vector3D}
+   */
+  get direction() {}
+
   /**
    * A callback list that will be called eventually after any changes to the
-   * agent's coordinates.
+   * agent's .position or .direction.
    * @return {!VXQ.CallbackList}
    */
   get changeCallbacks() {}
@@ -95,3 +121,4 @@ VXQ.Agent = class {
    */
   goTo(x, y, z) {}
 };
+
