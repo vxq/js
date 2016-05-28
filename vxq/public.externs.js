@@ -44,8 +44,6 @@ VXQ.World = class {
 
   /**
    * @return {!Set<!VXQ.Agent>} All known agents currently in the world.
-   *
-   * HACK: May or may not be a copy; please do not mutate.
    */
   get agents() {}
 
@@ -58,21 +56,29 @@ VXQ.World = class {
 
 
 /**
- * A vector in a 3D world.
+ * A vector in a 2D world.
  * @interface
  */
+VXQ.Vector2D = class {
+  constructor() {
+    /** @const {number} */
+    this.x;
+    /** @const {number} */
+    this.y;
+  }
+};
+
+
+/**
+ * A vector in a 3D world.
+ * @interface
+ * @extends {VXQ.Vector2D}
+ */
 VXQ.Vector3D = class {
-  /** @return {!VXQ.Vector3D} */
-  static from(/** !VXQ.Vector3D */ vector) {}
-
-  /** @return {number} */
-  get x() {}
-
-  /** @return {number} */
-  get y() {}
-
-  /** @return {number} */
-  get z() {}
+  constructor() {
+    /** @const {number} */
+    this.z;
+  }
 };
 
 

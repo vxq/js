@@ -25,12 +25,8 @@ class AgentRender {
     /** @const */
     this.hueSeed = Math.random() * 1000;
 
-    /** @type {number} */
-    this.lastX = 0.0;
-    /** @type {number} */
-    this.lastY = 0.0;
-    /** @type {number} */
-    this.lastZ = 0.0;
+    /** @type {!vxq.Vector2D} */
+    this.lastPosition = new vxq.Vector2D(0, 0);
 
     /** @const */
     this.renderer = renderer;
@@ -40,13 +36,10 @@ class AgentRender {
 
     /** @const */
     this.cancel = agent.changeCallbacks.add(
-        () => void this.update(agent.x, agent.y, agent.z));
+        () => void this.update(agent.position));
   }
 
-  update(
-      /** number= */ x = this.lastX,
-      /** number= */ y = this.lastY,
-      /** number= */ z = this.lastZ) {
+  update(/** !vxq.Vector2D= */ position = this.lastPosition) {
     if (!util.elementInView(this.renderer.canvas)) return;
 
     const deltaX = x - this.lastX;

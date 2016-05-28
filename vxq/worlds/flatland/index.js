@@ -5,7 +5,7 @@ goog.module('vxq.worlds.flatland');
 
 const World = goog.require('vxq.worlds.flatland.World');
 const Unit = goog.require('vxq.worlds.flatland.Unit');
-const Vector = goog.require('vxq.worlds.flatland.Vector');
+const Vector = goog.require('vxq.Vector2D');
 const {V} = Vector;
 
 

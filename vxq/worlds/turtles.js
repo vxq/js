@@ -34,6 +34,9 @@ exports.World = class {
 /** @implements {VXQ.Agent} */
 exports.Turtle = class {
   constructor() {
+    /** @const */
+    this.direction = {x: 0, y: 0, z: 0};
+
     /** @type {number} */
     this.x = 50;
     /** @type {number} */
@@ -49,6 +52,10 @@ exports.Turtle = class {
 
     /** @const */
     this.changeCallbacks = new util.CallbackList;
+  }
+
+  /** @override */ get position() {
+    return {x: this.x, y: this.y, z: this.z};
   }
 
   /** @return {number} The x component of the unit vector for .rotation. */

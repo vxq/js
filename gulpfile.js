@@ -73,7 +73,7 @@ gulp.task('build-simple', () =>
     jscomp_warning: [].concat(flags.jscomp_warning, flags.jscomp_error),
     formatting: 'pretty_print',
     debug: true,
-    define: ['vxq.D.DEBUG=true']
+    define: ['vxq.DEFS.DEBUG=true']
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('build-debug', () =>
@@ -81,7 +81,7 @@ gulp.task('build-debug', () =>
     js_output_file: 'debug/vxq.js',
     formatting: 'pretty_print',
     debug: true,
-    define: ['vxq.D.DEBUG=true']
+    define: ['vxq.DEFS.DEBUG=true']
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('build-prod', () =>

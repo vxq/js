@@ -4,7 +4,7 @@ goog.module('vxq.debug');
  * out unless vxq.debug.DEBUG is set.
  */
 
-const D = goog.require('vxq.D');
+const D = goog.require('vxq.DEFS');
 
 
 /**

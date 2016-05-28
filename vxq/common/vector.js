@@ -1,4 +1,4 @@
-goog.module('vxq.worlds.flatland.Vector');
+goog.module('vxq.Vector2D');
 
 
 const debug = goog.require('vxq.debug');
@@ -9,7 +9,7 @@ const debug = goog.require('vxq.debug');
  * A finite 2D vector in flatland with constant .z=0.
  * @implements {VXQ.Vector3D}
  */
-class Vector {
+class Vector2D {
   constructor(/** number */ x, /** number */ y) {
     debug.assert(
         Number.isFinite(x),
@@ -28,8 +28,8 @@ class Vector {
     this.z = 0;
   }
 
-  static from(/** !VXQ.Vector3D */ vector) {
-    return new Vector(vector.x, vector.y)
+  static from(/** !VXQ.Vector2D */ vector) {
+    return new Vector2D(vector.x, vector.y)
   }
 
   /** @return {number} The directionless magnitude of this vector. */
@@ -37,13 +37,13 @@ class Vector {
     return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
-  /** @return {!Vector} A unit vector with the same direction as this vector. */
+  /** @return {!Vector2D} A unit vector with the same direction as this vector. */
   direction() {
     return this.withMagnitude(1);
   }
 
   /**
-   * @return {!Vector} A vector with the same direction as this but a different
+   * @return {!Vector2D} A vector with the same direction as this but a different
    * magnitude.
    */
   withMagnitude(/** number */ magnitude) {
@@ -59,7 +59,7 @@ class Vector {
     }
   }
 
-  /** @return {!Vector} A new vector by scaling this vector. */
+  /** @return {!Vector2D} A new vector by scaling this vector. */
   scale(/** number */ factor) {
     debug.assert(
         Number.isFinite(factor),
@@ -72,18 +72,18 @@ class Vector {
     }
   }
 
-  /** @return {!Vector} A new Vector by adding another Vector. */
-  add(/** Vector */ other) {
+  /** @return {!Vector2D} A new Vector2D by adding another Vector2D. */
+  add(/** Vector2D */ other) {
     return V(this.x + other.x, this.y + other.y);
   }
 
-  /** @return {!Vector}  A new Vector by subtracting another Vector. */
-  subtract(/** Vector */ other) {
+  /** @return {!Vector2D}  A new Vector2D by subtracting another Vector2D. */
+  subtract(/** Vector2D */ other) {
     return V(this.x - other.x, this.y - other.y);
   }
 
   /**
-   * @return {!Vector} A new Vector by adding the specified values to each
+   * @return {!Vector2D} A new Vector2D by adding the specified values to each
    * component.
    */
   addXY(/** number */ x, /** number */ y) {
@@ -96,8 +96,8 @@ class Vector {
 }
 
 
-/** @return {!Vector} A new vector with the specified coordinates. */
-const V = Vector.V = (/** number */ x, /** number */ y) => new Vector(x, y);
+/** @return {!Vector2D} A new vector with the specified coordinates. */
+const V = Vector2D.V = (/** number */ x, /** number */ y) => new Vector2D(x, y);
 
 
-exports = Vector;
+exports = Vector2D;
