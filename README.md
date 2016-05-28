@@ -48,6 +48,13 @@ appropriate.
 This means I wouldn't be able to use the logic for NPCs in flatland, but that
 may be of secondary value.
 
+Okay, how about dialing this back one notch: it should be setting the
+destination, not the direction, because any otherwise it requires pathfinding
+in the ui when the common interface doesn't have enough information to do that.
+We'll retain the concept of the promises that cancel when the destination is
+reached, but not implement any other queuing there. Issuing a new goTo will
+cancel one that's already in progress.
+
 ---
 
 <!-- end of branch section -->

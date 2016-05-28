@@ -110,12 +110,9 @@ VXQ.Agent = class {
   /**
    * Request that the agent attempt to move towards a specific point.
    * The attempt may take time, or not reach the destination.
-   * @param {number} x
-   * @param {number} y
-   * @param {number} z
    * @return {!Promise<void>} A promise that resolves when the agent has
    *     finished attempting to reach the destination.
    */
-  goTo(x, y, z) {}
+  goTo(/** !VXQ.Vector3D */ position) {}
 };
 

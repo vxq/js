@@ -35,7 +35,7 @@ exports.World = class {
 exports.Turtle = class {
   constructor() {
     /** @const */
-    this.direction = {x: 0, y: 0, z: 0};
+    this.direction = /** @type {!VXQ.Vector3D} */ ({x: 0, y: 0, z: 0});
 
     /** @type {number} */
     this.x = 50;

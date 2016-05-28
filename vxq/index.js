@@ -1,5 +1,6 @@
 goog.module('vxq.main');
 
+const {V} = goog.require('vxq.Vector2D');
 const turtles = goog.require('vxq.worlds.turtles');
 const flatland = goog.require('vxq.worlds.flatland');
 const debug = goog.require('vxq.debug');
@@ -31,22 +32,22 @@ class VXQModule {
         0.5 + (Math.random() + Math.random() + Math.random()) / 3;
 
     const unit1 = new flatland.Unit(world, 150, 50);
-    unit1.velocity = flatland.V(200, -5);
+    unit1.velocity = V(200, -5);
     world.units.add(unit1);
 
-    console.log(unit1.goTo(500, 500, 0));
+    console.log(unit1.goTo(V(500, 500)));
 
     const unit2 = new flatland.Unit(world, 400, 200);
-    unit2.velocity = flatland.V(-100, 450);
+    unit2.velocity = V(-100, 450);
     world.units.add(unit2);
 
-    console.log(unit2.goTo(25, 25, 0));
+    console.log(unit2.goTo(V(25, 25)));
 
     const unit3 = new flatland.Unit(world, 150, 175);
-    unit3.velocity = flatland.V(-65, 125);
+    unit3.velocity = V(-65, 125);
     world.units.add(unit3);
 
-    console.log(unit3.goTo(50, 400, 0));
+    console.log(unit3.goTo(V(50, 400)));
 
     for (let i = 0; i < 4; i++) {
       const planetComponent =
@@ -54,7 +55,7 @@ class VXQModule {
       planetComponent.mass *= 10;
       planetComponent.interialAmplification *= 10;
       planetComponent.velocity =
-          flatland.V(5 - 10 * r(), 5 - 10 * r());
+          V(5 - 10 * r(), 5 - 10 * r());
       world.units.add(planetComponent);
     }
 

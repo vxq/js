@@ -3,6 +3,7 @@ goog.module('vxq.uis.FlatCanvas');
  * @fileoverview Renders a World on a 2D <canvas>.
  */
 
+const {V} = goog.require('vxq.Vector2D');
 const util = goog.require('vxq.util');
 
 
@@ -26,7 +27,7 @@ class AgentRender {
     this.hueSeed = Math.random() * 1000;
 
     /** @type {!vxq.Vector2D} */
-    this.lastPosition = new vxq.Vector2D(0, 0);
+    this.lastPosition = V(0, 0);
 
     /** @const */
     this.renderer = renderer;
@@ -42,11 +43,7 @@ class AgentRender {
   update(/** !vxq.Vector2D= */ position = this.lastPosition) {
     if (!util.elementInView(this.renderer.canvas)) return;
 
-    const deltaX = x - this.lastX;
-    const deltaY = y - this.lastY;
-    const deltaZ = z - this.lastZ;
-    const distance =
-        Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+    const distance = this.lastPosition.subtract(position).magnitude();
     const opacity = Math.max(0.2, Math.min(1.0, distance / 100));
 
     const g = this.renderer.context;
@@ -55,14 +52,14 @@ class AgentRender {
     g.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
     g.beginPath();
     g.lineWidth = 1;
-    g.arc(this.agent.x, this.agent.y, 6, 0, 2 * Math.PI);
+    g.arc(this.agent.position.x, this.agent.position.y, 6, 0, 2 * Math.PI);
     g.fill();
     g.stroke();
 
     g.strokeStyle = `rgba(0, 0, 0, ${0.5 * opacity})`;
     g.beginPath();
     g.lineWidth = 2;
-    g.arc(this.agent.x, this.agent.y, 8, 0, 2 * Math.PI);
+    g.arc(this.agent.position.x, this.agent.position.y, 8, 0, 2 * Math.PI);
     g.stroke();
 
   }
@@ -99,8 +96,8 @@ exports = class {
     this.canvas = /** @type {!HTMLCanvasElement} */ (
         document.createElement('canvas'));
 
-    this.canvas.width = this.world.width;
-    this.canvas.height = this.world.height;
+    this.canvas.width = Math.min(this.world.dimensions.x, 1000);
+    this.canvas.height = Math.min(this.world.dimensions.y, 1000);
 
     this.canvas.style.cursor = 'crosshair';
 
@@ -122,7 +119,7 @@ exports = class {
       if (lastAgent) {
         const pointer = new Pointer(this.world, lastAgent, x, y);
         this.pointers.add(pointer);
-        lastAgent.goTo(x, y, 0).then(() => {
+        lastAgent.goTo(V(x, y)).then(() => {
           this.pointers.delete(pointer);
         });
       }
@@ -132,7 +129,7 @@ exports = class {
     this.context = this.canvas.getContext('2d');
 
     this.context.fillStyle = 'black';
-    this.context.fillRect(0, 0, this.world.width, this.world.height);
+    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     /** @protected {!Map<!VXQ.Agent,!AgentRender>} */
     this.renders = new Map();
@@ -152,7 +149,7 @@ exports = class {
   tick(/** number */ dt) {
     if (util.elementInView(this.canvas)) {
       this.context.fillStyle = `rgba(0, 0, 0, ${0.25 * dt})`;
-      this.context.fillRect(0, 0, this.world.width, this.world.height)
+      this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
       const renders = Array.from(this.renders.values());
       util.shuffle(renders);
@@ -172,7 +169,7 @@ exports = class {
       }
     } else {
       this.context.fillStyle = `black`;
-      this.context.fillRect(0, 0, this.world.width, this.world.height);
+      this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
   }
 

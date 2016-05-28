@@ -3,13 +3,20 @@ const closureCompiler = require('google-closure-compiler').gulp();
 const runSequence = require('run-sequence');
 
 
+
+gulp.task('pbuild', ['copy-deps', 'build-simple', 'build-debug', 'build-prod']);
+
+gulp.task('build', () => runSequence(
+    'copy-deps', 'build-simple', 'build-debug', 'build-prod'));
+
+
+
 const srcs = [
   '!**/*.externs.js',
   'vxq/**/*.js'
 ];
 const dest = 'zdist';
-
-const flags = {
+const prodFlags = {
   compilation_level: 'ADVANCED_OPTIMIZATIONS',
   use_types_for_optimization: true,
   dependency_mode: 'STRICT',
@@ -17,13 +24,13 @@ const flags = {
   get output_wrapper() {
     return [
       `-function(window, module) {\n`,
-        `%output%\n`,
+      `%output%\n`,
       `}.call(`,
-          `typeof window == 'object' ? window`,
-            `: typeof this == 'object' ? this`,
-            `: null,`,
-          `typeof window == 'object' ? window : null,`,
-          `typeof module == 'object' ? module : null`,
+      `typeof window == 'object' ? window`,
+      `: typeof this == 'object' ? this`,
+      `: null,`,
+      `typeof window == 'object' ? window : null,`,
+      `typeof module == 'object' ? module : null`,
       `)`
     ].join('');
   },
@@ -44,59 +51,88 @@ const flags = {
   ]
 };
 
-const lintErrors = [].concat(flags.jscomp_error, flags.jscomp_warning, [
-  'fileoverviewTags', 'nonStandardJsDocs', 'deprecated'
-]);
-const lintWarnings = [
-  'lintChecks', 'suspiciousCode'
-];
 
-gulp.task('pbuild', ['copy-deps', 'build-simple', 'build-debug', 'build-prod']);
-gulp.task('build', () => runSequence(
-    'copy-deps', 'build-simple', 'build-debug', 'build-prod'));
 
 gulp.task('copy-deps', () => gulp.src(
     'node_modules/sw-toolbox/sw-toolbox.js',
     {base: 'node_modules/sw-toolbox/'}
-).pipe(gulp.dest('zdist')));
+).pipe(gulp.dest(dest)));
 
-gulp.task('watch-simple', ['copy-deps', 'build-simple'], () =>
-    gulp.watch('vxq/**', ['build-simple']));
+
+
+gulp.task('watch-simple', ['copy-deps', 'build-simple-no-error'], () =>
+    gulp.watch('vxq/**', ['build-simple-no-error']));
 
 gulp.task('build-simple', () =>
-  gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    compilation_level: 'SIMPLE_OPTIMIZATIONS',
-    dependency_mode: 'LOOSE',
-    use_types_for_optimization: false,
-    js_output_file: 'simple/vxq.js',
-    jscomp_error: [],
-    jscomp_warning: [].concat(flags.jscomp_warning, flags.jscomp_error),
-    formatting: 'pretty_print',
-    debug: true,
-    define: ['vxq.DEFS.DEBUG=true']
-  }))).pipe(gulp.dest(dest)));
+    gulp.src(srcs)
+        .pipe(buildSimple())
+        .pipe(gulp.dest(dest)));
+
+gulp.task('build-simple-no-error', () =>
+    gulp.src(srcs)
+        .pipe(buildSimple())
+        .on('error', error => console.error(String(error)))
+        .pipe(gulp.dest(dest)));
+
+const buildSimple = () => closureCompiler(Object.assign({}, prodFlags, {
+  compilation_level: 'SIMPLE_OPTIMIZATIONS',
+  dependency_mode: 'LOOSE',
+  use_types_for_optimization: false,
+  js_output_file: 'simple/vxq.js',
+  jscomp_error: [],
+  jscomp_warning: [].concat(prodFlags.jscomp_warning, prodFlags.jscomp_error),
+  formatting: 'pretty_print',
+  debug: true,
+  define: ['vxq.DEFS.DEBUG=true']
+}));
+
+
 
 gulp.task('build-debug', () =>
-  gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    js_output_file: 'debug/vxq.js',
-    formatting: 'pretty_print',
-    debug: true,
-    define: ['vxq.DEFS.DEBUG=true']
-  }))).pipe(gulp.dest(dest)));
+  gulp.src(srcs)
+      .pipe(buildDebug())
+      .pipe(gulp.dest(dest)));
+
+const buildDebug = () => closureCompiler(Object.assign({}, prodFlags, {
+  js_output_file: 'debug/vxq.js',
+  formatting: 'pretty_print',
+  debug: true,
+  define: ['vxq.DEFS.DEBUG=true']
+}));
+
+
 
 gulp.task('build-prod', () =>
-  gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    js_output_file: 'prod/vxq.js'
-  }))).pipe(gulp.dest(dest)));
+    gulp.src(srcs)
+        .pipe(buildProd())
+        .pipe(gulp.dest(dest)));
+
+const buildProd = () => closureCompiler(Object.assign({}, prodFlags, {
+  js_output_file: 'prod/vxq.js'
+}));
+
+
 
 gulp.task('lint', () =>
-  // Runs prod build, but with lint checks and all warnings turned to errors,
-  // and discarding the output files.
-  gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    // We need to have an output path, but don't want to save this
-    // (it should be identical to prod.js anyway), so we put it here.
-    js_output_file: 'tmp/prod/vxq.js',
-    dependency_mode: 'LOOSE',
-    jscomp_error: lintErrors,
-    jscomp_warning: lintWarnings
-  }))).pipe(gulp.dest(dest)));
+    // Runs prod build, but with lint checks and all warnings turned to errors,
+    // and discarding the output files.
+    gulp.src(srcs)
+        .pipe(buildLint())
+        .pipe(gulp.dest(dest)));
+
+const lintErrors = [].concat(prodFlags.jscomp_error, prodFlags.jscomp_warning, [
+  'fileoverviewTags', 'nonStandardJsDocs', 'deprecated'
+]);
+
+const lintWarnings = [
+  'lintChecks', 'suspiciousCode'
+];
+
+const buildLint = () => closureCompiler(Object.assign({}, prodFlags, {
+  // We need to have an output path, but don't want to save this
+  // (it should be identical to prod.js anyway), so we put it here.
+  js_output_file: 'tmp/prod/vxq.js',
+  dependency_mode: 'LOOSE',
+  jscomp_error: lintErrors,
+  jscomp_warning: lintWarnings
+}));

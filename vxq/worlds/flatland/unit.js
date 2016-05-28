@@ -7,7 +7,7 @@ const Vector = goog.require('vxq.Vector2D');
 const {V} = Vector;
 
 
-/** @implements {VXQ.Agent} */
+    /** @implements {VXQ.Agent} */
 class Unit {
   constructor(
       /** !vxq.worlds.flatland.World */ world,
@@ -57,11 +57,6 @@ class Unit {
      */
     this.targetMaxSpeed = 10.0;
 
-    /**
-     * @type {?Promise<void>}
-     */
-    this.lastMove = Promise.resolve();
-
     /** @override */
     this.changeCallbacks = new util.CallbackList;
   }
@@ -78,20 +73,22 @@ class Unit {
     return 0;
   }
 
-  /** @override */ goTo(x, y, z) {
+  /** @override */ goTo(p) {
+    position = Vector2D.from(p);
+
     const go = () => new Promise(resolve => {
       const cancel = this.changeCallbacks.add(() => {
         updateThrust();
       });
 
       const updateThrust = () => {
-        const displacement = V(x, y).subtract(this.position);
+        const displacement = position.subtract(this.position);
 
         // Mitigate overshooting by thrusting based on position predicted.
         const projectedPosition =
             this.position.add(this.velocity.scale(1.5));
 
-        const projectedDisplacement = V(x, y).subtract(projectedPosition);
+        const projectedDisplacement = position.subtract(projectedPosition);
 
         if (displacement.magnitude() <= this.targetMaxDistance &&
             this.velocity.magnitude() <= this.targetMaxSpeed) {
@@ -105,7 +102,6 @@ class Unit {
       };
       updateThrust();
     });
-    return this.lastMove = this.lastMove.then(go, go);
   }
 }
 

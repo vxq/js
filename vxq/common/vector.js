@@ -29,7 +29,7 @@ class Vector2D {
   }
 
   static from(/** !VXQ.Vector2D */ vector) {
-    return new Vector2D(vector.x, vector.y)
+    return V(vector.x, vector.y)
   }
 
   /** @return {number} The directionless magnitude of this vector. */

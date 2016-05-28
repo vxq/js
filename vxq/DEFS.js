@@ -1,4 +1,4 @@
-goog.provide('DEFS');
+goog.provide('vxq.DEFS');
 /**
  * @fileoverview A common location for Closure compile-time @defines, which may
  * not yet be compatible with goog.module files.
