@@ -1,8 +1,25 @@
 `vxq/js#goto` branch
 ====================
 
-Brainstorming
--------------
+
+`VXQ.Agent::goTo(destination:!VXQ.Vector3D):!Promise<void>`
+----
+
+Returns a promise that is resolved when the agent reaches the destination, or
+is rejected this command is cancelled by another or fails.
+
+
+RTS-style waypointing in `vxq.uis.FlatCanvas`
+----
+
+This is going in the UI layer so it can be used with any game without requiring
+them/their libraries to reimplement waypointing. Interoperability with games'
+own waypointing systems might be something to consider in the future, but
+definitely not yet.
+
+Starcraft will be a model, and the visuals might be vaguely similar.
+
+### Brainstorming
 
 - Default Left Click - Select Unit
 - Right Click - Move to Location
@@ -21,49 +38,21 @@ Holding down SHIFT appends to the queue.
 Holding down CONTROL pauses the current action, prepends it to the queue, and
 begins executing the new action.
 
-When you click, it selects the nearest controllable unit. (Maybe it's time to
-superclass agent into Unit or Sprite or something.) If you click and drag, a
-rectangle is visible, and you select all units which are the closest unit to
-any point in that rectangle.
 
-Maybe while you have your mouse held down a set of outlines are drawn showing
-areas to which each unit is closest, where they would be selected. It would be
-a unique visual element... but it could be too distracting.
+Unit territory layer in `vxq.uis.FlatCanvas`
+---
 
-.
-
-The purpose of this branch is to implement `flatland.Units`'s `.goTo()` method
-
-The purpose of this branch is to implement the .goTo() method for
-`flatland.Units`, allowing them to thrust their way towards a target.
-`FlatCanvasRenderer` will need to gain the ability to accept clicks to order
-some unit around. Initially we may simply use the first unit -- and highlight
-it in green. We may also want to extend the `VXQ.Agent` interface with an array
-of known waypoints.
-
-Instead of having opaque changed promises, we may want the waypoint system to
-be transparent, and support the replace/append operations like in an RST game.
-
-Hmm. I could consider putting this entirely in the UI layer, and not exposing it
-in the public interface, so all of the queueing is portable between games. It
-would need to listen for changes or poll, then issue subsequent commands when
-appropriate.
-
-This means I wouldn't be able to use the logic for NPCs in flatland, but that
-may be of secondary value.
-
-Okay, how about dialing this back one notch: it should be setting the
-destination, not the direction, because any otherwise it requires pathfinding
-in the ui when the common interface doesn't have enough information to do that.
-We'll retain the concept of the promises that cancel when the destination is
-reached, but not implement any other queuing there. Issuing a new goTo will
-cancel one that's already in progress.
+Overlay borders around the "territory" of each unit, defined as territory to
+which that is the nearest unit. Allow you to click/drag anywhere in a unit's
+territory to select that unit.
 
 ---
 
 <!-- end of branch section -->
 
 ---
+
+
 
 TBD
 ===
