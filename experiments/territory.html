@@ -17,6 +17,29 @@
 <canvas id=canvas></canvas>
 
 <script>'use strict'; ~function() {
+  const byKey = keyFn => {
+    const cache = new Map();
+    return (a, b) => {
+      let aValue;
+      if (cache.has(a)) {
+        aValue = cache.get(a);
+      } else {
+        aValue = keyFn(a);
+        cache.set(a, aValue)
+      }
+
+      let bValue;
+      if (cache.has(b)) {
+        bValue = cache.get(b);
+      } else {
+        bValue = keyFn(b);
+        cache.set(b, bValue)
+      }
+
+      return aValue - bValue;
+    }
+  }
+
   class V {
     constructor(x, y) {
       this.x = x;
@@ -56,16 +79,18 @@
       this.color = `hsla(${Math.random() * 18 + teamHue}, 70%, 50%, 0.5)`;
     }
 
-    sortByProximity(units) {
-      const distances = new Map();
-      for (const unit of units) {
-        distances.set(unit, unit.position.subtract(this.position).magnitude());
-      }
-
+    sortedByProximity(units) {
       const sortedUnits = Array.from(units);
-      sortedUnits.sort((a, b) => distances.get(a) - distances.get(b));
-
+      sortedUnits.sort(byKey(
+          unit => unit.position.subtract(this.position).magnitude()));
       return sortedUnits;
+    }
+
+    sortClockwise(points) {
+      points.sort(byKey(
+          point => -Math.atan2(
+              point.x - this.position.x,
+              point.y - this.position.y)));
     }
   }
 
@@ -105,34 +130,45 @@
         this.g.fill();
         this.g.stroke();
 
-        let neighbours = [];
-        for (const other of unit.sortByProximity(this.units).slice(0, this.units.length / 2)) {
+        const neighbours = [];
+        const border = [];
+        for (const other of unit.sortedByProximity(this.units).slice(0, this.units.length / 3)) {
           if (unit === other) {
             continue;
           }
 
           const midpoint = unit.position.add(other.position).scale(1 / 2);
-
           const displacement = midpoint.subtract(unit.position);
-          const crosspoints = [
-            midpoint.add(V.of(displacement.y, displacement.x).scale(0.5)),
-            midpoint.add(V.of(displacement.y, displacement.x).scale(0.25)),
-            midpoint.subtract(V.of(displacement.y, displacement.x).scale(0.25)),
-            midpoint.subtract(V.of(displacement.y, displacement.x).scale(0.5))
-          ];
+          const orthogonal = V.of(displacement.y, displacement.x);
 
-          for (const crosspoint of crosspoints) {
-            neighbours.push(new Unit(crosspoint));
+          neighbours.push(other);
+
+          border.push(midpoint);
+          for (let o = -1; o <= +1; o += 1/16) {
+            border.push(midpoint.add(orthogonal.scale(o)))
           }
         }
 
         for (const neighbour of neighbours) {
           this.g.beginPath();
-          this.g.lineWidth = 0.25;
+          this.g.lineWidth = 1;
           this.g.moveTo(unit.position.x, unit.position.y);
           this.g.lineTo(neighbour.position.x, neighbour.position.y);
           this.g.stroke();
         }
+
+        this.g.beginPath();
+        this.g.lineWidth = 2;
+
+        unit.sortClockwise(border);
+
+        this.g.moveTo(border[0].x, border[1].y);
+        for (const point of border) {
+          this.g.lineTo(point.x, point.y);
+        }
+        this.g.lineTo(border[0].x, border[0].y);
+
+        this.g.fill();
       }
     }
   }
@@ -143,7 +179,7 @@
 
   // Get the unit closest to the center.
   const unit =
-      (new Unit(V.of(world.width / 2, world.height / 2))).sortByProximity(world.units)[0];
+      (new Unit(V.of(world.width / 2, world.height / 2))).sortedByProximity(world.units)[0];
   unit.color = 'rgba(0, 0, 0, 0.8)';
 
 
@@ -156,5 +192,5 @@
           unit.position.y += Math.random() * 1.0 - 0.5);
     }
     world.draw();
-  }, 1000 / 60);
+  }, 1000 / 30);
 }()</script>
