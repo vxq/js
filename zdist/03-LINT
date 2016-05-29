@@ -1,7 +1,42 @@
 
-> vxq@0.1.0-dev.35 lint /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.101 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-[01:53:38] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[01:53:38] Starting 'lint'...
-[01:53:41] Finished 'lint' after 3.06 s
+(node:39613) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
+[00:57:42] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[00:57:42] Starting 'lint'...
+[00:57:45] gulp-google-closure-compiler: /vxq/index.js:13: WARNING - missing require: 'module$exports$vxq$debug'
+    debug.log('Let\'s testTheTurtles()!');
+    ^
+
+/vxq/index.js:57: WARNING - missing require: 'module$exports$vxq$worlds$flatland'
+          flatland.V(5 - 10 * r(), 5 - 10 * r());
+          ^
+
+/vxq/index.js:85: WARNING - missing require: 'module$exports$vxq$testing'
+    testing.assertEquals(100, turtle.y);
+    ^
+
+/vxq/uis/flat-canvas.js:100: WARNING - missing require: 'module$exports$vxq$util'
+exports = class {
+^
+
+/vxq/worlds/flatland/unit.js:83: WARNING - Value assigned to local variable cancel is never read
+      const cancel = this.changeCallbacks.add(() => {
+            ^
+
+/vxq/worlds/flatland/vector.js:54: WARNING - missing require: 'module$exports$vxq$debug'
+    debug.assert(
+    ^
+
+/vxq/worlds/flatland/world.js:108: WARNING - missing require: 'module$exports$vxq$util'
+    util.shuffle(changedUnits);
+    ^
+
+/vxq/worlds/turtles.js:93: WARNING - missing require: 'module$exports$vxq$debug'
+    debug.assert(Number.isFinite(z));
+    ^
+
+0 error(s), 8 warning(s), 94.0% typed
+
+[00:57:45] Finished 'lint' after 3.28 s

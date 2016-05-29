@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.1.0-dev.35",
+  "version": "0.1.0-dev.101",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -12,14 +12,17 @@
     "run-sequence": "^1.1.5",
     "semver": "^5.1.0",
     "tape": "^4.5.1",
-    "typescript": "^1.8.10"
+    "typescript": "^1.8.10",
+    "sw-toolbox": "^3.1.1"
   },
   "files": [
     "index.js",
     "zdist/",
     "vxq/",
     "scripts/",
-    "test/"
+    "test/",
+    "*.js/",
+    "*.md"
   ],
   "scripts": {
     "prepublish": "scripts/pre-publish",
@@ -28,6 +31,5 @@
     "build": "gulp build",
     "test": "node test",
     "lint": "gulp lint"
-  },
-  "dependencies": {}
+  }
 }

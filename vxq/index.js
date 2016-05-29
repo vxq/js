@@ -4,7 +4,7 @@ const turtles = goog.require('vxq.worlds.turtles');
 const flatland = goog.require('vxq.worlds.flatland');
 const debug = goog.require('vxq.debug');
 const testing = goog.require('vxq.testing');
-const FlatCanvas = goog.require('vxq.renderers.FlatCanvas');
+const FlatCanvas = goog.require('vxq.uis.FlatCanvas');
 
 
 /** @implements {VXQ} */
@@ -16,34 +16,47 @@ class VXQModule {
 
   /** @override */ addFlatCanvasWithTurtles(element) {
     const world = new turtles.World(512, 512, []);
-    const renderer = new FlatCanvas(world);
-    element.appendChild(renderer.canvas);
+    const ui = new FlatCanvas(world);
+    element.appendChild(ui.canvas);
     this.testTheTurtles(world);
     return world;
   }
 
   /** @override */ addFlatCanvasWithFlatland(element) {
     const world = new flatland.World(512, 512);
-    const renderer = new FlatCanvas(world);
-    element.appendChild(renderer.canvas);
+    const ui = new FlatCanvas(world);
+    element.appendChild(ui.canvas);
 
     const r = () =>
         0.5 + (Math.random() + Math.random() + Math.random()) / 3;
 
-    const unit1 = new flatland.Unit(world, 50, 50);
-    unit1.vX = r() * 50;
-    unit1.vY = r() * 50;
+    const unit1 = new flatland.Unit(world, 150, 50);
+    unit1.velocity = flatland.V(200, -5);
     world.units.add(unit1);
 
-    const unit2 = new flatland.Unit(world, 100, 50);
-    unit2.vX = r() * -8;
-    unit2.vY = r() * 36;
+    console.log(unit1.goTo(500, 500, 0));
+
+    const unit2 = new flatland.Unit(world, 400, 200);
+    unit2.velocity = flatland.V(-100, 450);
     world.units.add(unit2);
 
-    const unit3 = new flatland.Unit(world, 100, 175);
-    unit3.vX = r() * -4;
-    unit3.vY = r() * -20;
+    console.log(unit2.goTo(25, 25, 0));
+
+    const unit3 = new flatland.Unit(world, 150, 175);
+    unit3.velocity = flatland.V(-65, 125);
     world.units.add(unit3);
+
+    console.log(unit3.goTo(50, 400, 0));
+
+    for (let i = 0; i < 4; i++) {
+      const planetComponent =
+          new flatland.Unit(world, 200 + r() * 50, 200 + r() * 50);
+      planetComponent.mass *= 10;
+      planetComponent.interialAmplification *= 10;
+      planetComponent.velocity =
+          flatland.V(5 - 10 * r(), 5 - 10 * r());
+      world.units.add(planetComponent);
+    }
 
     world.changeCallbacks.call();
 

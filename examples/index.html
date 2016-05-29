@@ -1,32 +1,72 @@
 <!doctype html>
 <body hidden>
 
-<base href="../zdist/" />
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../sw.js').then(function() {
+      console.info('ServiceWorker registered.');
+    }, function(error) {
+      console.warn(error);
+    });
+  } else {
+    console.info('ServiceWorker unavailable.');
+  }
+</script>
 
 <style>
   html {
     font-family: "Trebuchet MS", sans-serif;
-    padding: 92px 0;
+    padding: 32px 0;
     background: #666;
     text-align: center;
   }
 
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
   section {
     display: inline-block;
-    width: 32%;
+    width: 30%;
+    max-width: 600px;
     padding-bottom: 4px;
     background: white;
+    vertical-align: top;
+  }
+
+  section + section {
+    margin-left: 2%;
+  }
+
+  @media(max-width: 700px) {
+    html {
+      padding: 0;
+    }
+    section {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    section + section {
+      margin: 0;
+    }
   }
 
   section article {
-    border-top: 4px solid #666;
     min-height: 16px;
   }
 
   section article canvas {
     width: 100%;
-    border-bottom: 4px solid #666;
-    background: white;
+  }
+
+  h1, footer {
+    min-height: 32px;
+    padding: 4px;
+    color: white;
+    background: #123;
+    margin-bottom: 16px;
+    margin-top: 16px;
   }
 
   h2 a {
@@ -34,40 +74,45 @@
   }
 </style>
 
-<section>
-  <h2><a href="./simple/vxq.js">simple</a></h2>
+<h1>
+  Examples
+</h1>
 
-  <article><script src="./simple/vxq.js"></script><script>
-    const simpleTurtles =
-        vxq.addFlatCanvasWithTurtles(document.currentScript.parentNode);
+<section>
+  <h2><a href="../zdist/simple/vxq.js">simple</a></h2>
+
+  <article><script src="../zdist/simple/vxq.js"></script><script>
     const simpleFlatland =
         vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
-  </script></article>
-</section>
-
-<section>
-  <h2><a href="./debug/vxq.js">debug</a></h2>
-
-  <article><script src="./debug/vxq.js"></script><script>
-    const debugTurtles =
+    const simpleTurtles =
         vxq.addFlatCanvasWithTurtles(document.currentScript.parentNode);
+    delete vxq;
+  </script></article>
+</section><section>
+  <h2><a href="../zdist/debug/vxq.js">debug</a></h2>
+
+  <article><script src="../zdist/debug/vxq.js"></script><script>
     const debugFlatland =
         vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
+    const debugTurtles =
+        vxq.addFlatCanvasWithTurtles(document.currentScript.parentNode);
     delete vxq;
   </script></article>
-</section>
+</section><section>
+  <h2><a href="../zdist/prod/vxq.js">prod</a></h2>
 
-<section>
-  <h2><a href="./prod/vxq.js">prod</a></h2>
-
-  <article><script src="./prod/vxq.js"></script><script>
-    const prodTurtles =
-        vxq.addFlatCanvasWithTurtles(document.currentScript.parentNode);
+  <article><script src="../zdist/prod/vxq.js"></script><script>
     const prodFlatland =
         vxq.addFlatCanvasWithFlatland(document.currentScript.parentNode);
+    const prodTurtles =
+        vxq.addFlatCanvasWithTurtles(document.currentScript.parentNode);
     delete vxq;
   </script></article>
 </section>
+
+<footer>
+
+</footer>
 
 <script>
   document.body.hidden = false;

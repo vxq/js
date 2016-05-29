@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eux;
+git push --tags;
+git pull;
+git push --mirror;
+git pull;
+git push --mirror;

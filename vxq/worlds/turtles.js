@@ -51,10 +51,12 @@ exports.Turtle = class {
     this.changeCallbacks = new util.CallbackList;
   }
 
+  /** @return {number} The x component of the unit vector for .rotation. */
   get xFactor() {
     return -Math.sin(this.rotation * 2 * Math.PI);
   }
 
+  /** @return {number} The y component of the unit vector for .rotation. */
   get yFactor() {
     return Math.cos(this.rotation * 2 * Math.PI);
   }

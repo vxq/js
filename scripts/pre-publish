@@ -2,7 +2,11 @@
 set -veuxo pipefail;
 
 npm run clean;
-npm run build | tee zdist/01-BUILD;
-npm run test  | tee zdist/02-TEST;
-npm run lint  | tee zdist/03-LINT;
-echo "exit status 0" | tee zdist/00-SUCCESS;
+npm run build             2>&1 | tee zdist/01-BUILD;
+npm run test              2>&1 | tee zdist/02-TEST;
+if [ -z "${VXQ_SKIP_LINT:-}" ]; then
+npm run lint              2>&1 | tee zdist/03-LINT;
+else
+  echo "${VXQ_SKIP_LINT}" 2>&1 | tee zdist/05-LINT-SKIPPED;
+fi
+echo "exit status 0"      2>&1 | tee zdist/00-SUCCESS;
