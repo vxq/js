@@ -62,12 +62,31 @@
       return V.of(factor * this.x, factor * this.y);
     }
 
+    withMagnitude(magnitude) {
+      const currentMagnitude = this.magnitude();
+      if (currentMagnitude !== 0) {
+        return this.scale(magnitude / currentMagnitude);
+      } else {
+        return V(0, 0);
+      }
+    }
+
     add(other) {
       return V.of(this.x + other.x, this.y + other.y);
     }
 
     subtract(other) {
       return V.of(this.x - other.x, this.y - other.y);
+    }
+
+    // The angle in radians of this direction where (1, 0) is 0.
+    angle() {
+      return Math.atan2(this.x, this.y)
+    }
+
+    projection(other) {
+      // https://en.wikipedia.org/wiki/Scalar_projection
+      return this.magnitude() * Math.cos(this.angle() - other.angle());
     }
   }
 
@@ -87,10 +106,7 @@
     }
 
     sortClockwise(points) {
-      points.sort(byKey(
-          point => -Math.atan2(
-              point.x - this.position.x,
-              point.y - this.position.y)));
+      points.sort(byKey(point => -point.subtract(this.position).angle()));
     }
   }
 
@@ -108,6 +124,11 @@
     }
 
     populate() {
+      this.units.push(new Unit(new V(-this.width * 4, -this.height * 4)));
+      this.units.push(new Unit(new V(+this.width * 4, -this.height * 4)));
+      this.units.push(new Unit(new V(-this.width * 4, +this.height * 4)));
+      this.units.push(new Unit(new V(+this.width * 4, +this.height * 4)));
+
       for (let i = 0; i < 32; i++) {
         this.units.push(new Unit(new V(
             Math.random() * this.width,
@@ -130,10 +151,12 @@
         this.g.fill();
         this.g.stroke();
 
-        const neighbours = [];
+        const potentialNeighbours = new Set(this.units);
+        potentialNeighbours.delete(unit);
+
         const border = [];
-        for (const other of unit.sortedByProximity(this.units).slice(0, this.units.length / 3)) {
-          if (unit === other) {
+        for (const other of unit.sortedByProximity(this.units)) {
+          if (!potentialNeighbours.has(other)) {
             continue;
           }
 
@@ -141,15 +164,23 @@
           const displacement = midpoint.subtract(unit.position);
           const orthogonal = V.of(displacement.y, displacement.x);
 
-          neighbours.push(other);
+          // remove units whom this prohibits from being neighbours
+          for (const potentialNeighbour of Array.from(potentialNeighbours)) {
+            if (potentialNeighbour == other) {
+              continue;
+            }
+
+            if (potentialNeighbour.position.subtract(midpoint).projection(displacement) >= 0) {
+              potentialNeighbours.delete(potentialNeighbour);
+            }
+          }
 
           border.push(midpoint);
-          for (let o = -1; o <= +1; o += 1/16) {
-            border.push(midpoint.add(orthogonal.scale(o)))
-          }
+          border.push(midpoint.add(orthogonal.withMagnitude(-4)));
+          border.push(midpoint.add(orthogonal.withMagnitude(+4)));
         }
 
-        for (const neighbour of neighbours) {
+        for (const neighbour of potentialNeighbours) {
           this.g.beginPath();
           this.g.lineWidth = 1;
           this.g.moveTo(unit.position.x, unit.position.y);
@@ -160,9 +191,13 @@
         this.g.beginPath();
         this.g.lineWidth = 2;
 
+        if (border.length == 0) {
+          continue;
+        }
+
         unit.sortClockwise(border);
 
-        this.g.moveTo(border[0].x, border[1].y);
+        this.g.moveTo(border[0].x, border[0].y);
         for (const point of border) {
           this.g.lineTo(point.x, point.y);
         }
@@ -192,5 +227,5 @@
           unit.position.y += Math.random() * 1.0 - 0.5);
     }
     world.draw();
-  }, 1000 / 30);
+  }, 1000 / 10);
 }()</script>
