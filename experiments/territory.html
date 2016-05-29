@@ -51,7 +51,9 @@
   class Unit {
     constructor(position) {
       this.position = position;
-      this.color = `hsla(${Math.random() * 360}, 50%, 50%, 0.8)`;
+      var teams = 2;
+      var teamHue = 360 * Math.floor(Math.random() * teams) / teams;
+      this.color = `hsla(${Math.random() * 18 + teamHue}, 70%, 50%, 0.5)`;
     }
 
     sortByProximity(units) {
@@ -134,7 +136,7 @@
   // Get the unit closest to the center.
   const unit =
       (new Unit(V.of(world.width / 2, world.height / 2))).sortByProximity(world.units)[0];
-  unit.color = 'black';
+  unit.color = 'rgba(0, 0, 0, 0.8)';
 
 
   world.draw();
