@@ -65,11 +65,7 @@ class Vector2D {
         Number.isFinite(factor),
         `magnitude = ${factor} must be a finite number`);
 
-    if (factor == 0 || (this.x == 0 && this.y == 0)) {
-      return V(0, 0);
-    } else {
-      return V(factor * this.x, factor * this.y);
-    }
+    return V(factor * this.x, factor * this.y);
   }
 
   /** @return {!Vector2D} A new Vector2D by adding another Vector2D. */

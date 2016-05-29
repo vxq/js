@@ -672,7 +672,7 @@ module$contents$vxq$Vector2D_Vector2D.prototype.withMagnitude = function $module
 };
 module$contents$vxq$Vector2D_Vector2D.prototype.scale = function $module$contents$vxq$Vector2D_Vector2D$$scale$($factor$$) {
   module$exports$vxq$debug.assert(Number.isFinite($factor$$), "magnitude = " + $factor$$ + " must be a finite number");
-  return 0 == $factor$$ || 0 == this.x && 0 == this.y ? module$contents$vxq$Vector2D_V(0, 0) : module$contents$vxq$Vector2D_V($factor$$ * this.x, $factor$$ * this.y);
+  return module$contents$vxq$Vector2D_V($factor$$ * this.x, $factor$$ * this.y);
 };
 module$contents$vxq$Vector2D_Vector2D.prototype.add = function $module$contents$vxq$Vector2D_Vector2D$$add$($other$$) {
   return module$contents$vxq$Vector2D_V(this.x + $other$$.x, this.y + $other$$.y);
