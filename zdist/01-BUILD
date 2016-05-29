@@ -1,15 +1,15 @@
 
-> vxq@0.1.0-dev.100 build /Users/j/src/github.com/vxq/js
+> vxq@0.1.0-dev.101 build /Users/j/src/github.com/vxq/js
 > gulp build
 
-(node:31980) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
-[01:06:05] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[01:06:05] Starting 'build'...
-[01:06:05] Starting 'copy-deps'...
-[01:06:05] Finished 'build' after 7.05 ms
-[01:06:05] Finished 'copy-deps' after 16 ms
-[01:06:05] Starting 'build-simple'...
-[01:06:08] gulp-google-closure-compiler: /vxq/worlds/flatland/unit.js:12: WARNING - property direction on interface VXQ.Agent is not implemented by type module$contents$vxq$worlds$flatland$Unit_Unit
+(node:34464) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
+[17:17:28] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[17:17:28] Starting 'build'...
+[17:17:28] Starting 'copy-deps'...
+[17:17:28] Finished 'build' after 8.22 ms
+[17:17:28] Finished 'copy-deps' after 18 ms
+[17:17:28] Starting 'build-simple'...
+[17:17:32] gulp-google-closure-compiler: /vxq/worlds/flatland/unit.js:12: WARNING - property direction on interface VXQ.Agent is not implemented by type module$contents$vxq$worlds$flatland$Unit_Unit
   constructor(
   ^
 
@@ -71,8 +71,8 @@ required: number
 
 0 error(s), 12 warning(s), 93.7% typed
 
-[01:06:08] Finished 'build-simple' after 3.15 s
-[01:06:08] Starting 'build-debug'...
+[17:17:32] Finished 'build-simple' after 3.85 s
+[17:17:32] Starting 'build-debug'...
 
 events.js:160
       throw er; // Unhandled 'error' event
@@ -149,10 +149,10 @@ npm ERR! argv "/usr/local/bin/node" "/Users/j/src/github.com/vxq/js/node_modules
 npm ERR! node v6.1.0
 npm ERR! npm  v3.9.2
 npm ERR! code ELIFECYCLE
-npm ERR! vxq@0.1.0-dev.100 build: `gulp build`
+npm ERR! vxq@0.1.0-dev.101 build: `gulp build`
 npm ERR! Exit status 1
 npm ERR! 
-npm ERR! Failed at the vxq@0.1.0-dev.100 build script 'gulp build'.
+npm ERR! Failed at the vxq@0.1.0-dev.101 build script 'gulp build'.
 npm ERR! Make sure you have the latest version of node.js and npm installed.
 npm ERR! If you do, this is most likely a problem with the vxq package,
 npm ERR! not with npm itself.

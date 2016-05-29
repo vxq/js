@@ -46,6 +46,9 @@ Overlay borders around the "territory" of each unit, defined as territory to
 which that is the nearest unit. Allow you to click/drag anywhere in a unit's
 territory to select that unit.
 
+This is probably a well-exercised idea, so consider researching how it's been
+done before.
+
 ---
 
 <!-- end of branch section -->
