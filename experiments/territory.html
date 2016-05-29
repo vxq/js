@@ -170,7 +170,7 @@
               continue;
             }
 
-            if (potentialNeighbour.position.subtract(midpoint).projection(displacement) >= 0) {
+            if (potentialNeighbour.position.subtract(other.position).projection(displacement) >= 0) {
               potentialNeighbours.delete(potentialNeighbour);
             }
           }
