@@ -2,10 +2,10 @@
 > vxq@0.1.0-dev.100 lint /Users/j/src/github.com/vxq/js
 > gulp lint
 
-(node:37603) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
-[00:44:06] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
-[00:44:06] Starting 'lint'...
-[00:44:09] gulp-google-closure-compiler: /vxq/index.js:13: WARNING - missing require: 'module$exports$vxq$debug'
+(node:37629) fs: re-evaluating native module sources is not supported. If you are using the graceful-fs module, please update it to a more recent version.
+[00:44:22] Using gulpfile ~/src/github.com/vxq/js/gulpfile.js
+[00:44:22] Starting 'lint'...
+[00:44:26] gulp-google-closure-compiler: /vxq/index.js:13: WARNING - missing require: 'module$exports$vxq$debug'
     debug.log('Let\'s testTheTurtles()!');
     ^
 
@@ -39,4 +39,4 @@ exports = class {
 
 0 error(s), 8 warning(s), 94.0% typed
 
-[00:44:09] Finished 'lint' after 3.21 s
+[00:44:26] Finished 'lint' after 3.5 s
