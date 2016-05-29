@@ -1,0 +1,150 @@
+<!doctype html>
+<meta charset="utf-8" />
+
+<style>
+  html {
+    background: #777;
+  }
+
+  canvas {
+    display: block;
+    margin: 42px auto;
+    background: white;
+    border: 1px solid black;
+  }
+</style>
+
+<canvas id=canvas></canvas>
+
+<script>'use strict'; ~function() {
+  class V {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    static from(v) {
+      return new V(v.x, v.y);
+    }
+
+    static of(x, y) {
+      return new V(x, y);
+    }
+
+    magnitude() {
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+
+    scale(factor) {
+      return V.of(factor * this.x, factor * this.y);
+    }
+
+    add(other) {
+      return V.of(this.x + other.x, this.y + other.y);
+    }
+
+    subtract(other) {
+      return V.of(this.x - other.x, this.y - other.y);
+    }
+  }
+
+  class Unit {
+    constructor(position) {
+      this.position = position;
+      this.color = `hsla(${Math.random() * 360}, 50%, 50%, 0.8)`;
+    }
+
+    sortByProximity(units) {
+      const distances = new Map();
+      for (const unit of units) {
+        distances.set(unit, unit.position.subtract(this.position).magnitude());
+      }
+
+      const sortedUnits = Array.from(units);
+      sortedUnits.sort((a, b) => distances.get(a) - distances.get(b));
+
+      return sortedUnits;
+    }
+  }
+
+  class World {
+    constructor(canvas, width, height) {
+      this.width = width;
+      this.height = height;
+      this.canvas = canvas;
+
+      canvas.width = width;
+      canvas.height = height;
+
+      this.g = canvas.getContext('2d');
+      this.units = [];
+    }
+
+    populate() {
+      for (let i = 0; i < 32; i++) {
+        this.units.push(new Unit(new V(
+            Math.random() * this.width,
+            Math.random() * this.height)));
+      }
+    }
+
+    draw() {
+      this.g.fillStyle = 'white';
+      this.g.fillRect(0, 0, this.width, this.height);
+
+      for (const unit of this.units) {
+        this.g.fillStyle = unit.color;
+        this.g.strokeStyle = unit.color;
+
+
+        this.g.beginPath();
+        this.g.lineWidth = 2;
+        this.g.arc(unit.position.x, unit.position.y, 4, 0, 2 * Math.PI);
+        this.g.fill();
+        this.g.stroke();
+
+        let neighbours = [];
+        for (const other of unit.sortByProximity(this.units)) {
+          if (unit === other) {
+            continue;
+          }
+
+          neighbours.push(other);
+
+          if ('incomplete' && neighbours.length > 3) {
+            break;
+          }
+        }
+
+        for (const neighbour of neighbours) {
+          this.g.beginPath();
+          this.g.lineWidth = 0.25;
+          this.g.moveTo(unit.position.x, unit.position.y);
+          this.g.lineTo(neighbour.position.x, neighbour.position.y);
+          this.g.stroke();
+        }
+      }
+    }
+  }
+
+  const world = new World(canvas, 512, 512);
+  world.populate();
+  world.draw();
+
+  // Get the unit closest to the center.
+  const unit =
+      (new Unit(V.of(world.width / 2, world.height / 2))).sortByProximity(world.units)[0];
+  unit.color = 'black';
+
+
+  world.draw();
+
+  setInterval(() => {
+    for (const unit of world.units) {
+      unit.position = V.of(
+          unit.position.x += Math.random() * 1.0 - 0.5,
+          unit.position.y += Math.random() * 1.0 - 0.5);
+    }
+    world.draw();
+  }, 1000 / 60);
+}()</script>

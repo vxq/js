@@ -746,7 +746,7 @@ module$contents$vxq$worlds$flatland$Vector_Vector.prototype.withMagnitude = func
 };
 module$contents$vxq$worlds$flatland$Vector_Vector.prototype.scale = function $module$contents$vxq$worlds$flatland$Vector_Vector$$scale$($factor$$) {
   module$exports$vxq$debug.assert(Number.isFinite($factor$$), "magnitude = " + $factor$$ + " must be a finite number");
-  return 0 == $factor$$ || 0 == this.x && 0 == this.y ? module$contents$vxq$worlds$flatland$Vector_V(0, 0) : module$contents$vxq$worlds$flatland$Vector_V($factor$$ * this.x, $factor$$ * this.y);
+  return module$contents$vxq$worlds$flatland$Vector_V($factor$$ * this.x, $factor$$ * this.y);
 };
 module$contents$vxq$worlds$flatland$Vector_Vector.prototype.add = function $module$contents$vxq$worlds$flatland$Vector_Vector$$add$($other$$) {
   return module$contents$vxq$worlds$flatland$Vector_V(this.x + $other$$.x, this.y + $other$$.y);

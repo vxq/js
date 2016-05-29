@@ -129,7 +129,7 @@ function $JSCompiler_StaticMethods_withMagnitude$$($JSCompiler_StaticMethods_wit
 }
 $module$contents$vxq$worlds$flatland$Vector_Vector$$.prototype.scale = function $$module$contents$vxq$worlds$flatland$Vector_Vector$$$$scale$($factor$$1$$) {
   $module$exports$vxq$debug$assert$$(Number.isFinite($factor$$1$$), "magnitude = " + $factor$$1$$ + " must be a finite number");
-  return 0 == $factor$$1$$ || 0 == this.x && 0 == this.y ? $module$contents$vxq$worlds$flatland$Vector_V$$(0, 0) : $module$contents$vxq$worlds$flatland$Vector_V$$($factor$$1$$ * this.x, $factor$$1$$ * this.y);
+  return $module$contents$vxq$worlds$flatland$Vector_V$$($factor$$1$$ * this.x, $factor$$1$$ * this.y);
 };
 $module$contents$vxq$worlds$flatland$Vector_Vector$$.prototype.add = function $$module$contents$vxq$worlds$flatland$Vector_Vector$$$$add$($other$$3$$) {
   return $module$contents$vxq$worlds$flatland$Vector_V$$(this.x + $other$$3$$.x, this.y + $other$$3$$.y);
