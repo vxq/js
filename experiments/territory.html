@@ -106,15 +106,23 @@
         this.g.stroke();
 
         let neighbours = [];
-        for (const other of unit.sortByProximity(this.units)) {
+        for (const other of unit.sortByProximity(this.units).slice(0, this.units.length / 2)) {
           if (unit === other) {
             continue;
           }
 
-          neighbours.push(other);
+          const midpoint = unit.position.add(other.position).scale(1 / 2);
 
-          if ('incomplete' && neighbours.length > 3) {
-            break;
+          const displacement = midpoint.subtract(unit.position);
+          const crosspoints = [
+            midpoint.add(V.of(displacement.y, displacement.x).scale(0.5)),
+            midpoint.add(V.of(displacement.y, displacement.x).scale(0.25)),
+            midpoint.subtract(V.of(displacement.y, displacement.x).scale(0.25)),
+            midpoint.subtract(V.of(displacement.y, displacement.x).scale(0.5))
+          ];
+
+          for (const crosspoint of crosspoints) {
+            neighbours.push(new Unit(crosspoint));
           }
         }
 
