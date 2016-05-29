@@ -1,6 +1,6 @@
 {
   "name": "vxq",
-  "version": "0.1.0-dev.63",
+  "version": "0.1.0-dev.101",
   "repository": "vxq/js",
   "description": "TBD",
   "license": "UNLICENSED",
@@ -10,7 +10,8 @@
     "npm-check-updates": "^2.6.5",
     "run-sequence": "^1.1.5",
     "semver": "^5.1.0",
-    "tape": "^4.5.1"
+    "tape": "^4.5.1",
+    "sw-toolbox": "^3.1.1"
   },
   "dependencies": {
     "voxelquest-wrapper": "vxq/voxelquest-wrapper#master"
@@ -20,7 +21,9 @@
     "zdist/",
     "vxq/",
     "scripts/",
-    "test/"
+    "test/",
+    "*.js/",
+    "*.md"
   ],
   "scripts": {
     "prepublish": "scripts/pre-publish",

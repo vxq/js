@@ -1,7 +1,7 @@
 pages:
   script:
   - mkdir /p public/
-  - cp -r zdist/ examples/ test/ public/
+  - cp -r *.js *.json zdist/ examples/ test/ public/
   artifacts:
     paths:
     - public/

@@ -1,0 +1,233 @@
+<!doctype html>
+<meta charset="utf-8" />
+
+<style>
+  html {
+    background: #777;
+  }
+
+  canvas {
+    display: block;
+    margin: 42px auto;
+    background: white;
+    border: 1px solid black;
+  }
+</style>
+
+<canvas id=canvas></canvas>
+
+<script>'use strict'; ~function() {
+  const byKey = keyFn => {
+    const cache = new Map();
+    return (a, b) => {
+      let aValue;
+      if (cache.has(a)) {
+        aValue = cache.get(a);
+      } else {
+        aValue = keyFn(a);
+        cache.set(a, aValue)
+      }
+
+      let bValue;
+      if (cache.has(b)) {
+        bValue = cache.get(b);
+      } else {
+        bValue = keyFn(b);
+        cache.set(b, bValue)
+      }
+
+      return aValue - bValue;
+    }
+  }
+
+  class V {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    static from(v) {
+      return new V(v.x, v.y);
+    }
+
+    static of(x, y) {
+      return new V(x, y);
+    }
+
+    magnitude() {
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+
+    scale(factor) {
+      return V.of(factor * this.x, factor * this.y);
+    }
+
+    withMagnitude(magnitude) {
+      const currentMagnitude = this.magnitude();
+      if (currentMagnitude !== 0) {
+        return this.scale(magnitude / currentMagnitude);
+      } else {
+        return V(0, 0);
+      }
+    }
+
+    add(other) {
+      return V.of(this.x + other.x, this.y + other.y);
+    }
+
+    subtract(other) {
+      return V.of(this.x - other.x, this.y - other.y);
+    }
+
+    // The angle in radians of this direction where (1, 0) is 0.
+    angle() {
+      return Math.atan2(this.x, this.y)
+    }
+
+    projection(other) {
+      // https://en.wikipedia.org/wiki/Scalar_projection
+      return this.magnitude() * Math.cos(this.angle() - other.angle());
+    }
+  }
+
+  class Unit {
+    constructor(position) {
+      this.position = position;
+      var teams = 2;
+      var teamHue = 360 * Math.floor(Math.random() * teams) / teams;
+      this.color = `hsla(${Math.random() * 18 + teamHue}, 70%, 50%, 0.5)`;
+    }
+
+    sortedByProximity(units) {
+      const sortedUnits = Array.from(units);
+      sortedUnits.sort(byKey(
+          unit => unit.position.subtract(this.position).magnitude()));
+      return sortedUnits;
+    }
+
+    sortClockwise(points) {
+      points.sort(byKey(point => -point.subtract(this.position).angle()));
+    }
+  }
+
+  class World {
+    constructor(canvas, width, height) {
+      this.width = width;
+      this.height = height;
+      this.canvas = canvas;
+
+      canvas.width = width;
+      canvas.height = height;
+
+      this.g = canvas.getContext('2d');
+      this.units = [];
+    }
+
+    populate() {
+      this.units.push(new Unit(new V(-this.width * 2, -this.height * 2)));
+      this.units.push(new Unit(new V(+this.width * 2, -this.height * 2)));
+      this.units.push(new Unit(new V(-this.width * 2, +this.height * 2)));
+      this.units.push(new Unit(new V(+this.width * 2, +this.height * 2)));
+
+
+
+      for (let i = 0; i < 64; i++) {
+        this.units.push(new Unit(new V(
+            Math.random() * this.width,
+            Math.random() * this.height)));
+      }
+    }
+
+    draw() {
+      this.g.fillStyle = 'white';
+      this.g.fillRect(0, 0, this.width, this.height);
+
+      for (const unit of this.units) {
+        this.g.fillStyle = unit.color;
+        this.g.strokeStyle = unit.color;
+
+
+        this.g.beginPath();
+        this.g.lineWidth = 2;
+        this.g.arc(unit.position.x, unit.position.y, 4, 0, 2 * Math.PI);
+        this.g.fill();
+        this.g.stroke();
+
+        const potentialNeighbours = new Set(this.units);
+        potentialNeighbours.delete(unit);
+
+        const border = [];
+        for (const other of unit.sortedByProximity(this.units)) {
+          if (!potentialNeighbours.has(other)) {
+            continue;
+          }
+
+          const midpoint = unit.position.add(other.position).scale(1 / 2);
+          const displacement = midpoint.subtract(unit.position);
+          const orthogonal = V.of(displacement.y, displacement.x);
+
+          // remove units whom this prohibits from being neighbours
+          for (const potentialNeighbour of Array.from(potentialNeighbours)) {
+            if (potentialNeighbour == other) {
+              continue;
+            }
+
+            if (potentialNeighbour.position.subtract(other.position).projection(displacement) >= 0) {
+              potentialNeighbours.delete(potentialNeighbour);
+            }
+          }
+
+          border.push(midpoint);
+          border.push(midpoint.add(orthogonal.withMagnitude(-4)));
+          border.push(midpoint.add(orthogonal.withMagnitude(+4)));
+        }
+
+        for (const neighbour of potentialNeighbours) {
+          this.g.beginPath();
+          this.g.lineWidth = 1;
+          this.g.moveTo(unit.position.x, unit.position.y);
+          this.g.lineTo(neighbour.position.x, neighbour.position.y);
+          this.g.stroke();
+        }
+
+        this.g.beginPath();
+        this.g.lineWidth = 2;
+
+        if (border.length == 0) {
+          continue;
+        }
+
+        unit.sortClockwise(border);
+
+        this.g.moveTo(border[0].x, border[0].y);
+        for (const point of border) {
+          this.g.lineTo(point.x, point.y);
+        }
+        this.g.lineTo(border[0].x, border[0].y);
+
+        this.g.fill();
+      }
+    }
+  }
+
+  const world = new World(canvas, 512, 512);
+  world.populate();
+  world.draw();
+
+  // Get the unit closest to the center.
+  const unit =
+      (new Unit(V.of(world.width / 2, world.height / 2))).sortedByProximity(world.units)[0];
+  unit.color = 'rgba(0, 0, 0, 0.8)';
+
+
+  world.draw();
+
+  setInterval(() => {
+    for (const unit of world.units) {
+      unit.position = V.of(
+          unit.position.x += Math.random() * 1.0 - 0.5,
+          unit.position.y += Math.random() * 1.0 - 0.5);
+    }
+    world.draw();
+  }, 1000 / 60);
+}()</script>

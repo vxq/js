@@ -43,15 +43,24 @@ const flags = {
     'vxq/environment.externs.js'
   ]
 };
-const lintFlags = [
-    'lintChecks', 'fileoverviewTags', 'nonStandardJsDocs', 'suspiciousCode',
-    'deprecated'
+
+const lintErrors = [].concat(flags.jscomp_error, flags.jscomp_warning, [
+  'fileoverviewTags', 'nonStandardJsDocs', 'deprecated'
+]);
+const lintWarnings = [
+  'lintChecks', 'suspiciousCode'
 ];
 
-gulp.task('pbuild', ['build-simple', 'build-debug', 'build-prod']);
-gulp.task('build', () => runSequence('build-simple', 'build-debug', 'build-prod'));
+gulp.task('pbuild', ['copy-deps', 'build-simple', 'build-debug', 'build-prod']);
+gulp.task('build', () => runSequence(
+    'copy-deps', 'build-simple', 'build-debug', 'build-prod'));
 
-gulp.task('watch-simple', ['build-simple'], () =>
+gulp.task('copy-deps', () => gulp.src(
+    'node_modules/sw-toolbox/sw-toolbox.js',
+    {base: 'node_modules/sw-toolbox/'}
+).pipe(gulp.dest('zdist')));
+
+gulp.task('watch-simple', ['copy-deps', 'build-simple'], () =>
     gulp.watch('vxq/**', ['build-simple']));
 
 gulp.task('build-simple', () =>
@@ -60,7 +69,6 @@ gulp.task('build-simple', () =>
     dependency_mode: 'LOOSE',
     use_types_for_optimization: false,
     js_output_file: 'simple/vxq.js',
-    output_manifest: 'zdist/simple/vxq.manifest',
     jscomp_error: [],
     jscomp_warning: [].concat(flags.jscomp_warning, flags.jscomp_error),
     formatting: 'pretty_print',
@@ -71,7 +79,6 @@ gulp.task('build-simple', () =>
 gulp.task('build-debug', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
     js_output_file: 'debug/vxq.js',
-    output_manifest: 'zdist/debug/vxq.manifest',
     formatting: 'pretty_print',
     debug: true,
     define: ['vxq.D.DEBUG=true']
@@ -79,8 +86,7 @@ gulp.task('build-debug', () =>
 
 gulp.task('build-prod', () =>
   gulp.src(srcs).pipe(closureCompiler(Object.assign({}, flags, {
-    js_output_file: 'prod/vxq.js',
-    output_manifest: 'zdist/prod/vxq.manifest'
+    js_output_file: 'prod/vxq.js'
   }))).pipe(gulp.dest(dest)));
 
 gulp.task('lint', () =>
@@ -91,7 +97,6 @@ gulp.task('lint', () =>
     // (it should be identical to prod.js anyway), so we put it here.
     js_output_file: 'tmp/prod/vxq.js',
     dependency_mode: 'LOOSE',
-    jscomp_error: [].concat(
-        lintFlags, flags.jscomp_warning, flags.jscomp_error),
-    jscomp_warning: []
+    jscomp_error: lintErrors,
+    jscomp_warning: lintWarnings
   }))).pipe(gulp.dest(dest)));

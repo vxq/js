@@ -4,7 +4,7 @@
 
 
 /**
- * The public module interface exported from vxq.
+ * The public module renderer exported from vxq.
  * @interface
  */
 let VXQ = class {
@@ -28,15 +28,6 @@ VXQ.CallbackList = class {
    *     this from the callback list.
    */
    add(f) {}
-};
-
-
-/**
- * Represents the contents of a world in some way.
- * @interface
- */
-VXQ.Renderer = class {
-  constructor(/** !VXQ.World */ world) {}
 };
 
 
